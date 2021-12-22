@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "ko-KR"
@@ -106,7 +106,7 @@ author:
   avatar           : "/assets/img/avatar2.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "본격적인 개발 블로그를 시작해 볼까!"
   location         : "Seoul, South Korea"
-  email            : "cocoti5797@gmail.com"
+  email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
