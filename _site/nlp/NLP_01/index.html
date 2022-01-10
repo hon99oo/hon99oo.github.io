@@ -1,0 +1,795 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰 - 홍구의 개발 블로그</title>
+<meta name="description" content="본격적인 개발 블로그를 시작해볼까!">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰">
+<meta property="og:url" content="http://localhost:4000/nlp/NLP_01/">
+
+
+  <meta property="og:description" content="본격적인 개발 블로그를 시작해볼까!">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-10T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/nlp/NLP_01/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰
+
+        
+      </h1>
+      
+        <p class="page__lead">
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2022-01-10T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              
+
+            </nav>
+          </aside>
+        
+        <h1>Introduction</h1>
+<ul>
+  <li>Neural Machine Translation
+    <ul>
+      <li>End-to-End 학습 접근 방식의 자동 번역</li>
+      <li>기존 구문 기반 번역의 약점을 극복</li>
+    </ul>
+  </li>
+  <li>Neural Machine Translation 단점
+    <ul>
+      <li>데이터 양과 매개변수가 많아 훈련과 추론 속도가 느림</li>
+      <li>Rare Word 처리의 문제점</li>
+      <li>가끔씩 모든 단어에 대해 번역하지 못함</li>
+    </ul>
+  </li>
+  <li>Google’s Neural Machine Translation
+    <ul>
+      <li>LSTM으로 이루어져 있는 8개의 ENCODER와 8개의 DECODER</li>
+      <li>병렬 처리 개선을 위해 DECODER의 최하층과 ENCODER의 최상층을 ATTENTION으로 연결</li>
+      <li>번역속도를 높이기 위해 low-precision arithmetic, Rare Word 처리를 위해 WordPiece 사용</li>
+    </ul>
+  </li>
+</ul>
+<hr />
+
+<h1>Model Architecture</h1>
+<p><img src="../../assets/img/nlp/nlp-01-01.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Model Parallelism
+    <ul>
+      <li>모델 병렬화와 데이터 병렬화 모두 사용함</li>
+      <li>Downpour SGD를 사용하여 데이터 병렬화
+        <ul>
+          <li>여러개의 모델로 나누어, 여러개의 머신에서 동시에 학습함, 각각 학습된 gradient를 평균내어 모델에 적용</li>
+          <li>실험에서는 10개의 머신에서 128개의 문장을 Mini-batch로 사용</li>
+        </ul>
+      </li>
+      <li>모델 병렬화
+        <ul>
+          <li>머신당 8개의 GPU 사용 ( 각 층 마다 서로 다른 GPU에 할당 )</li>
+          <li>i번째 레이어의 작업이 종료전에 i+1번째 작업 진행 가능</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<hr />
+
+<h1>Segmentation Approches</h1>
+<ul>
+  <li>Wordpiece Model
+    <ul>
+      <li>띄어쓰기는 _, 단어는 내부단어 통계에 기반하여 띄어쓰기로 분리</li>
+      <li>띄어쓰기를 _로 치환한 이유는 차후에 문장 복원을 위해</li>
+      <li>실험에서는 wordpiece를 8K~32K에서 좋은 결과 얻음</li>
+      <li>wordpiece로도 얻을 수 없었던 rare word는 copy model을 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-02.png" width="100%" height="100%" /></p>
+
+<ul>
+  <li>Mixed Word/Character Model
+    <ul>
+      <li>OOV 처리를 <UNK>로 하지 않고 문자 단위로 나누어 처리함</UNK></li>
+      <li>시작 문자 <b>, 중간 문자 <M>, 끝 문자 <E></E></M></b></li>
+      <li>전체 작업 과정에서 유지한 채로 학습한 후 태그를 삭제함</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h1>Training Criteria</h1>
+<ul>
+  <li>Maximum-liklihood 학습 방식은 로그 확률 값을 최대화하는 목적 함수 ( BLUE 평가 지표와 부합되지 않음 )</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-03.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Reward개념의 목적함수 사용</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-04.png" width="100%" height="100%" /></p>
+<ul>
+  <li>r은 문장 단위 점수 ( 출력 문서와 실제 문서의 차이 계산 )</li>
+  <li>GLEU 점수 지표 사용 ( 출력 문장과 정답 문장을 1~4 토큰으로 만든 뒤 recall과 precision을 구한 뒤 더 작은 값을 GLEU로 정함 )</li>
+  <li>ML방식과 RL 방식 혼합하여 사용 이 때, a는 0.017</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-05.png" width="100%" height="100%" /></p>
+
+<hr />
+
+<h1>Quantizable Model And Quantized Inference</h1>
+<ul>
+  <li>NMT은 연산량이 많아 Inference 시간이 오래 걸리는 것이 큰 단점</li>
+  <li>해결하기 위하여 Quantized inference 수행!</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-06.png" width="100%" height="100%" /></p>
+
+<hr />
+
+<h1>Decoder</h1>
+<ul>
+  <li>Beam Search를 사용하여 점수 함수를 최대화 하는 시퀀스 Y를 찾음</li>
+  <li>Length normalization
+    <ul>
+      <li>길이가 더 긴 문장의 확률이 떨어지기 때문에 이를 보정하기 위하여 사용</li>
+      <li>하이퍼 파라미터 a 사용 ( 실험에서는 0.6 ~ 0.7 사용 )</li>
+    </ul>
+  </li>
+  <li>Coverage Panelty
+    <ul>
+      <li>source word xi로 부터 attention weight의 합을 구함</li>
+      <li>로그를 취했기 때문에 attention weight이 편중되지 않은 source word의 값이 매우 작음 음수를 가지게 됨</li>
+      <li>실험에서는 a는 0.6 b는 0.2 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-07.png" width="100%" height="100%" /></p>
+
+<hr />
+
+<h1>Experiments And Results</h1>
+<ul>
+  <li>Data set
+    <ul>
+      <li>WMT En -&gt; Fr 36M</li>
+      <li>WMT En -&gt; De 5M</li>
+    </ul>
+  </li>
+  <li>Evaluation Metrics
+    <ul>
+      <li>BLUE</li>
+      <li>implicit human evaluation ( BLUE는 번역 점수 잘 못메김 )</li>
+    </ul>
+  </li>
+  <li>Training Procederue
+    <ul>
+      <li>TensorFlow 사용하여 구현</li>
+      <li>12개의 머신으로 병렬화</li>
+      <li>[-0.04, 0.04] 사이로 매개변수를 균일하게 초기화</li>
+      <li>Adam Optimizer와 SGD 혼합하여 사용 ( 첫 60k는 Adam으로 그 후로는 SGD 사용)</li>
+    </ul>
+  </li>
+  <li>Learning Rate는 0.5 ( 1.2M 이후부터 200k 단위마다 반씩 줄여가며 학습 )</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/nlp-01-08.png" width="100%" height="100%" />
+<img src="../../assets/img/nlp/nlp-01-09.png" width="100%" height="100%" />
+<img src="../../assets/img/nlp/nlp-01-10.png" width="100%" height="100%" /></p>
+
+<hr />
+
+<h1>Conclusion</h1>
+<ol>
+  <li>Wordpiece 모델은 번역 품질과 inference 속도를 효과적으로 높힘</li>
+  <li>모델과 데이터의 병렬화는 sequence-to-sequence NMT 모델을 일주일 안으로 효율적으로 훈련시킬 수 있음</li>
+  <li>Model quantization은 inference 속도를 가속화할 수 있어 대형 모델에 사용하기 용이함</li>
+  <li>Length-normalization, coverage penalty 등과 같은 추가 세부 사항이 NMT 시스템을 잘 작동시키게 도와줌</li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#nlp" class="page__taxonomy-item p-category" rel="tag">nlp</a><span class="sep">, </span>
+    
+      <a href="/tags/#paper-review" class="page__taxonomy-item p-category" rel="tag">paper review</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#nlp" class="page__taxonomy-item p-category" rel="tag">NLP</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-01-10T00:00:00+09:00">January 10, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Google%27s+Neural+Machine+Translation+System+%3A+Bridging+the+Gap+between+Human+and+Machine+Translation+%EB%85%BC%EB%AC%B8+%EB%A6%AC%EB%B7%B0%20http%3A%2F%2Flocalhost%3A4000%2Fnlp%2FNLP_01%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fnlp%2FNLP_01%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fnlp%2FNLP_01%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/doodle/doodle_02/" class="pagination--pager" title="2022년 초보 개발자의 취업 계획
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/doodle/doodle_02/" rel="permalink">2022년 초보 개발자의 취업 계획
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">2021년이 벌써 지나가고 곧 2022년이 온다…!
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/test%20post/test/" rel="permalink">test post 입니다.
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">발췌부분 설정하면 이 글이 들어가고, 설정하지 않는다면 글의 첫 문단이 들어가게됨
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/doodle/doodle_01/" rel="permalink">블로그를 다시 시작해 보자
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Git Blog로 개발자 블로그를 본격적으로 시작해 보자!
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

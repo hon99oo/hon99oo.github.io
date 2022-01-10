@@ -1,0 +1,18 @@
+I"�<h1>Introduction</h1>
+<ul>
+  <li>Neural Machine Translation
+    <ul>
+      <li>End-to-End 학습 접근 방식의 자동 번역</li>
+      <li>기존 구문 기반 번역의 약점을 극복</li>
+    </ul>
+  </li>
+  <li>Neural Machine Translation 단점
+데이터 양과 매개변수가 많아 훈련과 추론 속도가 느림
+Rare Word 처리의 문제점
+가끔씩 모든 단어에 대해 번역하지 못함
+Google’s Neural Machine Translation
+LSTM으로 이루어져 있는 8개의 ENCODER와 8개의 DECODER
+병렬 처리 개선을 위해 DECODER의 최하층과 ENCODER의 최상층을 ATTENTION으로 연결
+번역속도를 높이기 위해 low-precision arithmetic, Rare Word 처리를 위해 WordPiece 사용</li>
+</ul>
+:ET

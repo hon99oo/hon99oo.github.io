@@ -10,7 +10,7 @@ author_profile: true
 <hr>
 <hr>
 경력<br><br>
-2021.07 - 2022.01 SpaceWalk(DE Chapter) Intern<br>
+2021.07 - 2022.04 SpaceWalk(DE Chapter) Intern<br>
 2020.09 - 2021.02 세종대학교 NLP 학부 연구생 
 <br>
 <hr>

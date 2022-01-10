@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-10T21:58:32+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_01/" rel="alternate" type="text/html" title="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_01</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_01/">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Neural Machine Translation
+    &lt;ul&gt;
+      &lt;li&gt;End-to-End 학습 접근 방식의 자동 번역&lt;/li&gt;
+      &lt;li&gt;기존 구문 기반 번역의 약점을 극복&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Neural Machine Translation 단점
+    &lt;ul&gt;
+      &lt;li&gt;데이터 양과 매개변수가 많아 훈련과 추론 속도가 느림&lt;/li&gt;
+      &lt;li&gt;Rare Word 처리의 문제점&lt;/li&gt;
+      &lt;li&gt;가끔씩 모든 단어에 대해 번역하지 못함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Google’s Neural Machine Translation
+    &lt;ul&gt;
+      &lt;li&gt;LSTM으로 이루어져 있는 8개의 ENCODER와 8개의 DECODER&lt;/li&gt;
+      &lt;li&gt;병렬 처리 개선을 위해 DECODER의 최하층과 ENCODER의 최상층을 ATTENTION으로 연결&lt;/li&gt;
+      &lt;li&gt;번역속도를 높이기 위해 low-precision arithmetic, Rare Word 처리를 위해 WordPiece 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;h1&gt;Model Architecture&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-01.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Model Parallelism
+    &lt;ul&gt;
+      &lt;li&gt;모델 병렬화와 데이터 병렬화 모두 사용함&lt;/li&gt;
+      &lt;li&gt;Downpour SGD를 사용하여 데이터 병렬화
+        &lt;ul&gt;
+          &lt;li&gt;여러개의 모델로 나누어, 여러개의 머신에서 동시에 학습함, 각각 학습된 gradient를 평균내어 모델에 적용&lt;/li&gt;
+          &lt;li&gt;실험에서는 10개의 머신에서 128개의 문장을 Mini-batch로 사용&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;모델 병렬화
+        &lt;ul&gt;
+          &lt;li&gt;머신당 8개의 GPU 사용 ( 각 층 마다 서로 다른 GPU에 할당 )&lt;/li&gt;
+          &lt;li&gt;i번째 레이어의 작업이 종료전에 i+1번째 작업 진행 가능&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+
+&lt;h1&gt;Segmentation Approches&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Wordpiece Model
+    &lt;ul&gt;
+      &lt;li&gt;띄어쓰기는 _, 단어는 내부단어 통계에 기반하여 띄어쓰기로 분리&lt;/li&gt;
+      &lt;li&gt;띄어쓰기를 _로 치환한 이유는 차후에 문장 복원을 위해&lt;/li&gt;
+      &lt;li&gt;실험에서는 wordpiece를 8K~32K에서 좋은 결과 얻음&lt;/li&gt;
+      &lt;li&gt;wordpiece로도 얻을 수 없었던 rare word는 copy model을 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-02.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mixed Word/Character Model
+    &lt;ul&gt;
+      &lt;li&gt;OOV 처리를 &lt;UNK&gt;로 하지 않고 문자 단위로 나누어 처리함&lt;/UNK&gt;&lt;/li&gt;
+      &lt;li&gt;시작 문자 &lt;b&gt;, 중간 문자 &lt;M&gt;, 끝 문자 &lt;E&gt;&lt;/E&gt;&lt;/M&gt;&lt;/b&gt;&lt;/li&gt;
+      &lt;li&gt;전체 작업 과정에서 유지한 채로 학습한 후 태그를 삭제함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h1&gt;Training Criteria&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Maximum-liklihood 학습 방식은 로그 확률 값을 최대화하는 목적 함수 ( BLUE 평가 지표와 부합되지 않음 )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-03.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Reward개념의 목적함수 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-04.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;r은 문장 단위 점수 ( 출력 문서와 실제 문서의 차이 계산 )&lt;/li&gt;
+  &lt;li&gt;GLEU 점수 지표 사용 ( 출력 문장과 정답 문장을 1~4 토큰으로 만든 뒤 recall과 precision을 구한 뒤 더 작은 값을 GLEU로 정함 )&lt;/li&gt;
+  &lt;li&gt;ML방식과 RL 방식 혼합하여 사용 이 때, a는 0.017&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-05.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1&gt;Quantizable Model And Quantized Inference&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;NMT은 연산량이 많아 Inference 시간이 오래 걸리는 것이 큰 단점&lt;/li&gt;
+  &lt;li&gt;해결하기 위하여 Quantized inference 수행!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-06.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1&gt;Decoder&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Beam Search를 사용하여 점수 함수를 최대화 하는 시퀀스 Y를 찾음&lt;/li&gt;
+  &lt;li&gt;Length normalization
+    &lt;ul&gt;
+      &lt;li&gt;길이가 더 긴 문장의 확률이 떨어지기 때문에 이를 보정하기 위하여 사용&lt;/li&gt;
+      &lt;li&gt;하이퍼 파라미터 a 사용 ( 실험에서는 0.6 ~ 0.7 사용 )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Coverage Panelty
+    &lt;ul&gt;
+      &lt;li&gt;source word xi로 부터 attention weight의 합을 구함&lt;/li&gt;
+      &lt;li&gt;로그를 취했기 때문에 attention weight이 편중되지 않은 source word의 값이 매우 작음 음수를 가지게 됨&lt;/li&gt;
+      &lt;li&gt;실험에서는 a는 0.6 b는 0.2 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-07.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1&gt;Experiments And Results&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Data set
+    &lt;ul&gt;
+      &lt;li&gt;WMT En -&amp;gt; Fr 36M&lt;/li&gt;
+      &lt;li&gt;WMT En -&amp;gt; De 5M&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Evaluation Metrics
+    &lt;ul&gt;
+      &lt;li&gt;BLUE&lt;/li&gt;
+      &lt;li&gt;implicit human evaluation ( BLUE는 번역 점수 잘 못메김 )&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Training Procederue
+    &lt;ul&gt;
+      &lt;li&gt;TensorFlow 사용하여 구현&lt;/li&gt;
+      &lt;li&gt;12개의 머신으로 병렬화&lt;/li&gt;
+      &lt;li&gt;[-0.04, 0.04] 사이로 매개변수를 균일하게 초기화&lt;/li&gt;
+      &lt;li&gt;Adam Optimizer와 SGD 혼합하여 사용 ( 첫 60k는 Adam으로 그 후로는 SGD 사용)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Learning Rate는 0.5 ( 1.2M 이후부터 200k 단위마다 반씩 줄여가며 학습 )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/nlp-01-08.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;../../assets/img/nlp/nlp-01-09.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;../../assets/img/nlp/nlp-01-10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1&gt;Conclusion&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;Wordpiece 모델은 번역 품질과 inference 속도를 효과적으로 높힘&lt;/li&gt;
+  &lt;li&gt;모델과 데이터의 병렬화는 sequence-to-sequence NMT 모델을 일주일 안으로 효율적으로 훈련시킬 수 있음&lt;/li&gt;
+  &lt;li&gt;Model quantization은 inference 속도를 가속화할 수 있어 대형 모델에 사용하기 용이함&lt;/li&gt;
+  &lt;li&gt;Length-normalization, coverage penalty 등과 같은 추가 세부 사항이 NMT 시스템을 잘 작동시키게 도와줌&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /></entry><entry><title type="html">2022년 초보 개발자의 취업 계획</title><link href="http://localhost:4000/doodle/doodle_02/" rel="alternate" type="text/html" title="2022년 초보 개발자의 취업 계획" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>http://localhost:4000/doodle/doodle_02</id><content type="html" xml:base="http://localhost:4000/doodle/doodle_02/">&lt;p&gt;&lt;img src=&quot;../../assets/img/calendar_2022.jpeg&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;곧 2022년이다. 2021년 한해를 마무리해보자.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2021년 : 마무리&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;3月-6月 졸업작품
+&lt;img src=&quot;../../assets/img/codergarden_logo.png&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;7月-12月 인턴생활
+&lt;img src=&quot;../../assets/img/spacewalk.png&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;졸업작품 하얗게 불태우고 바로 인턴 생활을 했다. 현업이 되게 궁금했는데 이 부분에 대해서는 굉장히 많은 도움이 된 것 같다.
+그리고 Data Engineering 직무도 굉장히 관심 있었는데 직접 경험할 수 있어서 좋았다. 나는 조금 더 다양한 경험을 하고 싶어서 
+Back End 직무를 공략할 생각이다. 언어는 아무래도 java가 강력하다고 생각해서 java 공부를 시작할 것 같다.&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;2022년 : 11월 전까지 아래 서류들을 준비해보자&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;졸업요건 맞추기&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;토익 또는 오픽&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;정보처리기사&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;CS&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Algorithm&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Java 스킬&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;~2022년 포트폴리오 정리&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;코딩 캠프(네이버부캠,우테코 등등…) 준비&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Java Backend Roadmap&lt;/strong&gt;
+&lt;img src=&quot;../../assets/img/java_be_roadmap.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="doodle" /><category term="doodle" /><summary type="html">2021년이 벌써 지나가고 곧 2022년이 온다...!</summary></entry><entry><title type="html">블로그를 다시 시작해 보자</title><link href="http://localhost:4000/doodle/doodle_01/" rel="alternate" type="text/html" title="블로그를 다시 시작해 보자" /><published>2021-12-21T01:43:00+09:00</published><updated>2021-12-21T01:43:00+09:00</updated><id>http://localhost:4000/doodle/doodle_01</id><content type="html" xml:base="http://localhost:4000/doodle/doodle_01/">&lt;p&gt;4학년 1학기 졸업작품을 3월부터 6월까지 열심히 달렸다. 졸업작품을 끝마치고 나니 현업의 욕심이 생겨 열심히 인턴 지원을 진행하였다. 그렇게 자소서를 쓰고 대학생활을 하며 잰힝했던 포트폴리오를 정리하고 7월 11일에 ‘스페이스워크’라는 회사에 인턴 포지션으로 입사하게 되었다. 인턴 포지션에 입사한 이후로 코딩에 대한 열정이 팍 식은거 같다. 회사일은 내가 졸업작품을 했을 때 처럼 큰 열정을 쏟아 붓지 못한 채 시키는 일만 하는 수동적 인간이 되었다. 그렇게 거의 5개월을 따로 공부도 하지 않고 열정이 없는 채로 살아왔던 것 같다. 당장 내 앞에 펼쳐져 있는 숙제들도 해결하지 않고 뒤로 미뤄두고 기상 - 회사 일 쪼금 - 게임 - 취침의 쳇바퀴의 반복적 인생을 살아왔다.&lt;/p&gt;
+
+&lt;p&gt;인턴 포지션 종료일은 1월 11일이다. 이후 나는 졸업요건을 하나 충족하지 않아 초과학기를 해야하며 다음 취업을 준비해야 한다. 인턴 포지션 종료까지는 약 2개월 정도 남았다. 지금은 욕심이지만, 인턴 종료 이후 곧바로 다른 회사의 인턴 포지션으로 들어가거나 현재 있는 회사에 잔류 하는 것이 목표이다. 현재 다니고 있는 회사에서 열심히 하지 못했던 이유는 나에게 목표의식이 조금 사라졌다는 변명을 들 수 있을 것 같다. 다시금 목표가 생긴 현재 이를 정확히 인지하고 행동으로 실천할 때가 온 것 같다.&lt;/p&gt;
+
+&lt;p&gt;인턴 생활을 하기 전까지는 모두 뇌피셜로 코딩을 해오고 공부를 해왔다. 그 때는 BE와 FE의 차이점도 몰랐고 DE가 요즘 핫하다는 이야기만 듣고 무슨 일을 하는지도 모른채로 DE포지션으로 인턴을 지원했었다. 하지만, 현업 생활을 약 4개월정도 하고 난 뒤 내 주변에 현업 생활을 하고 있는 지인들의 이야기가 궁금해졌고 많은 사람들의 이야기를 듣고 싶어 일명 DevTalk을 요청하였다. 그리고 이제는 정확하지는 않지만, 개발자라는 직군이 어떻게 돌아가는지 그리고 내가 어떤 일을 할 수 있고 어떤 일을 하고 싶은지 조금은 알 수 있게 되었다.&lt;/p&gt;
+
+&lt;p&gt;우선 나의 문제점을 발견했다. 간단하고 명확하게 말하자면, 나는 현재 ‘코싸개’이다. 생각하지 않고 주어진 문제를 해결하기 위해 수단과 방법을 가리지 않고 그저 코드만을 작성했던 굉장히 질 나쁜 개발자였던 것이다. 생각해보면 내가 이 프로그래밍에 관해 진지하게 공부했던 적이 없다. 학문을 가르치는 대학에서 소프트웨어학과를 진학하고 전공 과목은 집중하지 않고 프로젝트를 어떻게든 이쁘게 만들기 위해서 프로젝트를 위한 공부만 했던 것 같다. 현재 사용하고 있는 기술들은 모두 근본이 되는 알고리즘과 컴퓨터구조론에서부터 비롯된 기술임을 몰랐던 것이다. 나에게 가장 부족한 점은 ‘근본 지식’을 모르는 것이다. 많이 늦었다고 말할 수 있지만, 오늘부터 ‘근본 지식’에 관련하여 몇가지를 체계적으로 공부할 생각이다.&lt;/p&gt;
+
+&lt;p&gt;첫번째, 알고리즘이다. 알고리즘을 제대로 배워본 적이 없다. 사실 우리학교의 전공 필수 과목이지만, 너무 어렵고 공부하기도 싫어서 대충 했던 기억이 있다. 그리고 모르는 지식이 있으면 그 때 그 때 구글링으로 일시적으로 지식의 빈자리를 매꿀 뿐이었다. 근본이 되는 알고리즘 서적으로 공부할 계획이다. 두번째, 컴퓨터구조론이다. 컴퓨터구조론 또한 우리학교의 전공 필수 과목이지만, 족보를 바탕으로 공부해서 학점은 좋게 받았지만 남아있는 지식은 없다. 알고리즘과 컴퓨터구조론을 우선 공부하여 인턴 포지션 종료 전 까지 어느정도의 지식을 확보하고 싶은 계획이다.&lt;/p&gt;
+
+&lt;p&gt;이후 나는 BE나 DE 직군으로 나아갈 예정이다. 현재 내가 사용하는 주 언어는 python이지만, java에도 관심이 조금씩 가고 있다. 알고리즘과 컴퓨터구조론 공부를 마치고 나면 DE의 근본책과 BE의 근본책 두가지를 구매해서 공부할 예정이다. 이 열정이 언제 식을지 모르겠지만, 현재 내 발등에는 불이 그것도 존나게 뜨거운 불이 떨어졌다.&lt;/p&gt;
+
+&lt;p&gt;화이팅이다 홍구야&lt;/p&gt;</content><author><name>honggoo</name></author><category term="doodle" /><category term="doodle" /><summary type="html">Git Blog로 개발자 블로그를 본격적으로 시작해 보자!</summary></entry><entry><title type="html">test post 입니다.</title><link href="http://localhost:4000/test%20post/test/" rel="alternate" type="text/html" title="test post 입니다." /><published>2021-12-21T01:43:00+09:00</published><updated>2021-12-21T01:43:00+09:00</updated><id>http://localhost:4000/test%20post/test</id><content type="html" xml:base="http://localhost:4000/test%20post/test/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="test post" /><category term="test" /><category term="theme" /><summary type="html">발췌부분 설정하면 이 글이 들어가고, 설정하지 않는다면 글의 첫 문단이 들어가게됨</summary></entry></feed>
