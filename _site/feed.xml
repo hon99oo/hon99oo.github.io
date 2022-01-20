@@ -1,4 +1,213 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-10T21:58:32+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_01/" rel="alternate" type="text/html" title="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_01</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_01/">&lt;h1&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-21T02:27:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">CS:APP - 01</title><link href="http://localhost:4000/cs:app/csapp_01/" rel="alternate" type="text/html" title="CS:APP - 01" /><published>2022-01-21T00:00:00+09:00</published><updated>2022-01-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_01</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_01/">&lt;h1 id=&quot;csapp&quot;&gt;CS:APP&lt;/h1&gt;
+&lt;p&gt;Computer Systems A Programmer’s Perspective, CSAPP로도 잘 알려져있는 컴퓨터 구조론의 바이블이다. 이 책을 통해서 컴퓨터구조론을 다시 공부해볼 생각이다.
+군대 전역 직후 2학년 2학기로 복학해서 컴퓨터 구조론 전공 수업을 들었지만 학점을 위한 공부만 해서 남아있는게 없는 것 같다. 인턴 생활을 하면서 다양한 부분에서 어려움을 겪었는데
+기초를 몰라서 헤메고 있다는 느낌을 굉장히 많이 받았다.&lt;/p&gt;
+
+&lt;p&gt;첫 페이지를 읽었을 때 이 책으로 정하길 정말 잘했다는 생각이 들었다. 전공 수업때 사용했던 컴퓨터구조론 책은 제작자의 관점에서 기술 되었다는 느낌을 강하게 받았었다.
+하지만, CSAPP는 프로그래머의 관점에서 기술하였고, 컴퓨터구조론의 시스템들을 어떻게 사용해서 좋은 프로그램을 개발할 수 있는지를 배울 수 있다고 한다. 
+인턴 생활을 하면서 실제 현업을 겪고 느꼇던 강한 의문들을 해결할 수 있을 것 같은 느낌이다.&lt;/p&gt;
+
+&lt;p&gt;책의 목차는 정보의 표현과 처리로 시작하여 프로그램의 기계어 표현, 프로세서 구조, 프로그램 성능 최적화, 메모리 계층구조, 링커, 예외적인 제어흐름, 가상메모리, 시스템 수준 입출력, 네트워크 프로그래밍, 동시성 프로그래밍 
+순서로 이어져 있다. 많은 사람들은 6장 메모리 계층구조, 7장 링커의 전까지 읽어도 좋다고 하지만, 가능하다면 12장 동시성 프로그래밍까지 읽어볼 생각이다.&lt;/p&gt;
+
+&lt;h1 id=&quot;chapter-01-컴퓨터-시스템으로의-여행&quot;&gt;Chapter 01. 컴퓨터 시스템으로의 여행&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템 구현방식은 변하지만 근본적인 개념들은 변하지 않는다.&lt;/li&gt;
+  &lt;li&gt;프로그래머들로 하여금 컴포넌트들이 어떻게 동작하고 프로그램 성능과 정확성에 어떤 영향을 주는지 알 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;11-정보는-비트와-컨텍스트로-이루어진다&quot;&gt;1.1 정보는 비트와 컨텍스트로 이루어진다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;텍스트 문자 -&amp;gt; 아스키(ASCII) 표준 사용하여 표현 -&amp;gt; 각 문자를 바이트 길이의 정수 값으로 표현 -&amp;gt; 연속된 바이트 파일 저장&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;12-프로그램은-다른-프로그램에-의해-다른-형태로-번역된다&quot;&gt;1.2 프로그램은 다른 프로그램에 의해 다른 형태로 번역된다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;hello.c 실행 -&amp;gt; 저급 기계어 인스트럭션들로 번역 -&amp;gt; (실행가능 목적 프로그램)으로 합쳐져 바이너리 디스크 파일로 저장 
+-&amp;gt; 컴파일러 드라이브는 유닉스 시스템에서 소스파일에서 오브젝트 파일로 변경 -&amp;gt; 4개의 단계를 거쳐서 실행
+    &lt;ul&gt;
+      &lt;li&gt;4개의 단계:
+        &lt;ol&gt;
+          &lt;li&gt;전처리기&lt;/li&gt;
+          &lt;li&gt;컴파일러&lt;/li&gt;
+          &lt;li&gt;어셈블러&lt;/li&gt;
+          &lt;li&gt;링커&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;13-컴파일-시스템이-어떻게-동작하는지-이해하는-것은-중요하다&quot;&gt;1.3 컴파일 시스템이 어떻게 동작하는지 이해하는 것은 중요하다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로그램 성능 최적화하기
+    &lt;ul&gt;
+      &lt;li&gt;eg1) switch문은 if-else문을 연속해서 사용하는 것보다 효율적인가?&lt;/li&gt;
+      &lt;li&gt;eg2) while 루프는 for 루프보다 더 효율적일까?&lt;/li&gt;
+      &lt;li&gt;eg3) 포인터 참조가 배열 인덱스보다 더 효율적인가?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;링크 에러 이해하기
+    &lt;ul&gt;
+      &lt;li&gt;eg1) 정적변수와 전역변수의 차이는 무엇인가?&lt;/li&gt;
+      &lt;li&gt;eg2) 다른 파일에 동일한 이름의 두 개의 전역변수를 정의한다면 무슨 일이 일어나는가?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;보안 약점 피하기
+    &lt;ul&gt;
+      &lt;li&gt;eg1) 프로그램 스택에 데이터와 제어 정보가 저장되는 방식은 무엇인가?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;14-프로세서는-메모리에-저장된-인스트럭션을-읽고-해석한다&quot;&gt;1.4 프로세서는 메모리에 저장된 인스트럭션을 읽고 해석한다.&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;인스트럭션이란 : 컴퓨터에게 일을 시키는 단위(기계어)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;시스템의 하드웨어 조직
+    &lt;ul&gt;
+      &lt;li&gt;버스 : 시스템 내를 관통하는 전기적 배선군&lt;/li&gt;
+      &lt;li&gt;입출력 장치 : 시스템과 외부세계외의 연결 담당&lt;/li&gt;
+      &lt;li&gt;메인 메모리 : 프로세서가 프로그램을 실행하는 동안 데이터와 프로그램을 모두 저장하는 임시 저장장치&lt;/li&gt;
+      &lt;li&gt;프로세서 : 인스트럭션들을 해독(실행)하는 엔진
+        &lt;ul&gt;
+          &lt;li&gt;인스트럭션의 요청에 의해 CPU(프로세서)가 실행하는 단순한 작업의 예
+            &lt;ul&gt;
+              &lt;li&gt;적재(load), 저장(store), 작업(operate), 점프(jump)&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로그램의 실행
+(그림 추가 예정 ㅎㅎ..)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;15-캐시가-중요하다&quot;&gt;1.5 캐시가 중요하다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;hello 프로그램의 기계어 인스트럭션들은 본래 하드디스크에 저장되어 있다.&lt;/li&gt;
+  &lt;li&gt;프로그램이 로딩될 때 이들은 메인 메모리로 복사된다.&lt;/li&gt;
+  &lt;li&gt;이 작업이 시간이 너무 오래 걸려서 “단기간에 필요로 할 가능성이 높은 정보를 임시로 저장하는” 캐시 메모리가 설계 되었다.&lt;/li&gt;
+  &lt;li&gt;캐시 시스템의 이면에 깔려 있는 아이디어는 프로그램이 지엽적인 영역의 코드와 데이터를 액세스하는 경향인 지역성을 활용하였다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;16-저장장치들은-계층구조를-이룬다&quot;&gt;1.6 저장장치들은 계층구조를 이룬다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;모든 컴퓨터 시스템의 저장장치즈들은 메모리 계층구조로 구성되어 있다.&lt;/li&gt;
+  &lt;li&gt;(그림 추가 예정 ㅎㅎ..)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;17-운영체제는-하드웨어를-관리한다&quot;&gt;1.7 운영체제는 하드웨어를 관리한다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제는 두 가지 주요 목적을 가지고 있다.
+    &lt;ol&gt;
+      &lt;li&gt;제멋대로 동작하는 응용프로그램들이 하드웨어를 잘못 사용하는 것을 막기 위해&lt;/li&gt;
+      &lt;li&gt;응용프로그램들이 단순하고 균일한 메커니즘을 사용하여 복잡하고 매우 다른 저수준 하드웨어 장치들을 조작할 수 있도록 하기 위해&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위 두가지 목표를 위해 근본적인 추상화를 통해 달성하고 있다.&lt;/li&gt;
+  &lt;li&gt;추상화 결과
+    &lt;ul&gt;
+      &lt;li&gt;프로세스 : 프로세서, 메인 메모리, 입출력장치 모두의 추상화 결과&lt;/li&gt;
+      &lt;li&gt;가상 메모리 : 메인 메모리와 디스크 입출력 장치의 추상화&lt;/li&gt;
+      &lt;li&gt;파일 : 입출력장치의 추상화&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;18-시스템은-네트워크를-사용하여-다른-시스템과-통신한다&quot;&gt;1.8 시스템은 네트워크를 사용하여 다른 시스템과 통신한다.&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;네트워크는 또 다른 입력장치로 볼 수 있다.&lt;/li&gt;
+  &lt;li&gt;시스템이 메인 메모리로부터 네트워크 어댑터로 일련의 바이트를 복사할 때, 데이터는 로컬디스크 드라이브 대신에 네트워크를 통해서 다른 컴퓨터로 이동된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;19-중요한-주제들&quot;&gt;1.9 중요한 주제들&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Amdahl의 법칙
+    &lt;ul&gt;
+      &lt;li&gt;우리가 어떤 시스템의 한 부분의 성능을 개선할 때, 전체 시스템 성능에 대한 효과는 구 부분이 얼마나 중요한가와 이 부분이 얼마나 빨라졌는가에 관계된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;동시성과 병렬성
+    &lt;ul&gt;
+      &lt;li&gt;동시성 : 다수의 동시에 벌어지는 일을 갖는 시스템에 관한 일반적인 개념&lt;/li&gt;
+      &lt;li&gt;병렬성 : 동시성을 사용해서 시스템을 보다 더 빠르게 동작하도록 하는 것&lt;/li&gt;
+      &lt;li&gt;쓰레드 수준 동시성
+        &lt;ul&gt;
+          &lt;li&gt;쓰레드를 이용하면 한 개의 프로세스 내에서 실행되는 다수의 제어흐름을 가질 수 있음&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;인스트럭션 수준 병렬성
+        &lt;ul&gt;
+          &lt;li&gt;프로세서들은 훨씬 낮은 수준에서의 추상화로 여러 개의 인스트럭션을 한 번에 실행할 수 있음&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;컴퓨터 시스템에서 추상화의 중요성
+    &lt;ul&gt;
+      &lt;li&gt;추상화의 사용은 전산학에서 가장 중요한 개념!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;110-요약&quot;&gt;1.10 요약&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;컴퓨터 내의 정보는 비트들의 그룹으로 표시&lt;/li&gt;
+  &lt;li&gt;컴파일러와 링커에 의해 바이너리 실행파일들로 번역&lt;/li&gt;
+  &lt;li&gt;프로세서는 메인 메모리에 저장된 바이너리 인스트럭션을 읽고 해석&lt;/li&gt;
+  &lt;li&gt;컴퓨터는 대부분의 시간을 메모리, 입출력장치, CPU 레지스터 간에 데이터를 복사하고 쓰는 데 사용&lt;/li&gt;
+  &lt;li&gt;위와 같은 이유로 시스템의 저장장치들은 계층구조 형성&lt;/li&gt;
+  &lt;li&gt;운영체제 커널은 응용프로그램과 하드웨어 사이에서 중간자 역할 수행&lt;/li&gt;
+  &lt;li&gt;네트워크는 컴퓨터 시스템이 서로 통신할 수 있는 방법 제공&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">Chapter 01. 컴퓨터 시스템으로의 여행</summary></entry><entry><title type="html">TDD와 each map</title><link href="http://localhost:4000/docker/doodle_03/" rel="alternate" type="text/html" title="TDD와 each map" /><published>2022-01-11T00:00:00+09:00</published><updated>2022-01-11T00:00:00+09:00</updated><id>http://localhost:4000/docker/doodle_03</id><content type="html" xml:base="http://localhost:4000/docker/doodle_03/">&lt;h1 id=&quot;tdd&quot;&gt;TDD&lt;/h1&gt;
+
+&lt;p&gt;TDD(Test Driven Development)란 본격적인 개발에 들어가기 전에 테스트
+계획 및 코드를 작성하는 것을 의미한다. 테스트가 개발을 이끌어 나가는 것이다.
+예를들어, 개발 중 에러가 발생했을 때 소규모 개발에서는 큰 문제가 되지는 않지만,
+대규모의 개발 상황에서는 수 많은 모듈과 함수간 종속성들이 굉장히 많은 시간을 괴롭히게 된다.
+이러한 문제점을 해결하기 위해서 테스트 주도 개발이 등장했다.&lt;/p&gt;
+
+&lt;p&gt;나는 pytest를 사용할 것이다.
+https://binux.tistory.com/47&lt;/p&gt;
+
+&lt;p&gt;일단, monkeypatch.setattr 살펴보자. 
+이것은 어떤것을 하냐면, mocking이다. Mocking은 실제 값이 아닌 가짜 값을 만들어내는 것이다.&lt;/p&gt;
+
+&lt;p&gt;음 예를들면 Upload 클래스가 있다.&lt;/p&gt;
+
+&lt;p&gt;Class Upload  &lt;br /&gt;
+|_ Def Extract &lt;br /&gt;
+|_ Def Transform &lt;br /&gt;
+|_ Def Load&lt;/p&gt;
+
+&lt;p&gt;이렇게 되어있을 때 나는 Transform 부분만 테스트하고 싶다. 하지만 함수의 종속성으로 인하여
+Transform에서 사용되는 data는 Extract로 부터 참조되며 Extract에서 추출되는 data는 
+특정 라이브러리의 기능을 참조한다. 나는 Transform 부분만 테스트하고 싶지만 이런 경우에 Extract부터
+특정 라이브러리으 기능까지 테스트해야되는 상황에 처한 것이다. 이런 경우에 이제 Mocking이라는 기술을 쓴다.
+pytest에서도 제공하는 function이 있지만, 단순한 예를 하나 들자면 정답과 인풋값을 csv파일이나 등등으로 미리 만들어서
+로컬에서 참조하도록 코드를 작성하면 된다.&lt;/p&gt;
+
+&lt;p&gt;하지만 이때, 테스트 코드에서 원코드를 실행할 때 원코드의 Extract가 실행 되기 때문에
+monkeypatch.setattr 같은 기능으로 해당 function을 사용하지 않고 넘겨주는 기능을 넣어줘야한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;h1 id=&quot;each-map&quot;&gt;each map&lt;/h1&gt;
+&lt;p&gt;each map을 알아야한다. 
+음 지금 내가 하는 것은 DB -&amp;gt; transform -&amp;gt; DB 적재이다.
+transform에서 전처리 및 parsing을 해주는데, transform에서 이뤄지는 작업은
+모든 Dataframe이 메모리 상으로 올라가게 된다. 작은 task면 문제없이 실행 되겠지만,
+큰 규모의 task는 메모리를 많이 차지하게 되어 에러가 날 수 있다.
+이럴 때 사용 하는 것이 each map이다.
+each map은 dataframe에서 row 별로 메모리 상으로 올린다.
+이후 해당 row에서 특정 처리를 진행 후에 buffer로 옮긴 뒤 DB로 적재를 한다.
+이 때 조심해야 하는 부분은 seperate다. row에서 컬럼으로 구분하는 seperate값을 잘 이용해야지 에러가 나지 않을 것이다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;즉! pytest 부분을 더 공부하고 적절한 testset을 생각해보고, testcode를 작성해보자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...2</summary></entry><entry><title type="html">Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_01/" rel="alternate" type="text/html" title="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_01</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_01/">&lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Neural Machine Translation
     &lt;ul&gt;
@@ -162,7 +371,73 @@
   &lt;li&gt;모델과 데이터의 병렬화는 sequence-to-sequence NMT 모델을 일주일 안으로 효율적으로 훈련시킬 수 있음&lt;/li&gt;
   &lt;li&gt;Model quantization은 inference 속도를 가속화할 수 있어 대형 모델에 사용하기 용이함&lt;/li&gt;
   &lt;li&gt;Length-normalization, coverage penalty 등과 같은 추가 세부 사항이 NMT 시스템을 잘 작동시키게 도와줌&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /></entry><entry><title type="html">2022년 초보 개발자의 취업 계획</title><link href="http://localhost:4000/doodle/doodle_02/" rel="alternate" type="text/html" title="2022년 초보 개발자의 취업 계획" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>http://localhost:4000/doodle/doodle_02</id><content type="html" xml:base="http://localhost:4000/doodle/doodle_02/">&lt;p&gt;&lt;img src=&quot;../../assets/img/calendar_2022.jpeg&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /></entry><entry><title type="html">Docker는 대충 이런 느낌인가?</title><link href="http://localhost:4000/docker/docker_01/" rel="alternate" type="text/html" title="Docker는 대충 이런 느낌인가?" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/docker/docker_01</id><content type="html" xml:base="http://localhost:4000/docker/docker_01/">&lt;h1 id=&quot;docker&quot;&gt;Docker&lt;/h1&gt;
+
+&lt;p&gt;내가 느낀 전체적인 도커의 메커니즘 : 어떠어떠한 것을 빌드해서 이미지를 만들고 
+-&amp;gt; 이미지를 도커로 띄운 뒤 -&amp;gt; 이미지를 받아서 로컬에서 개발작업을 진행&lt;/p&gt;
+
+&lt;p&gt;!!많은 시행착오를 거쳐 도커의 메커니즘에 대해 이해가 조금 되었다.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Dockerfile을 만든다.&lt;/li&gt;
+  &lt;li&gt;해당 디렉토리 위치에서 docker build를 한다.&lt;/li&gt;
+  &lt;li&gt;docker build을 하면 이미지가 생성된다.&lt;/li&gt;
+  &lt;li&gt;이미지가 생성됐으면, 해당 이미지로 docker run을 한다.&lt;/li&gt;
+  &lt;li&gt;docker run을 하면 컨테이너가 만들어지고 해당 이미지를 컨테이너 안으로 넣는다?띄운다?&lt;/li&gt;
+  &lt;li&gt;그럼 환경셋팅이 된다…?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;틀린 부분도 있겠지만 아주 조오금 조오오오오금 메커니즘이 이해가 됐다. &lt;br /&gt;
+앗 참고로 음… 저런 run이니 이미지 파일들이니 어떤 컨테이너가 실행중인지를 GUI로 확인할 수 있는 프로그램이 Docker Desktop 같다 ㅎㅎ..&lt;/p&gt;
+
+&lt;p&gt;추가적으로 환경세팅을 완료한 것 같다. 음… 위의 6번까지 진행한 후에&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;컨테이너를 만들면 어떠한 가상환경이 만들어지는 것 같다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그럼 그 컨테이너에가 파이썬 환경으로 이루어져있고 추가로 다양한 패키지들이 들어있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그럼 그 환경을 내가 사용하고 있는 Pycharm과 연동을 하는 거다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;어떻게 하냐면 파이참 프로젝트의 인터프리터를 해당 컨테이너에 있는 파이썬path로 설정해주는거다.
+*https://i-am-eden.tistory.com/13&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그리고 코딩하면 된다 ㅎㅎ
+***&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커엔진 - 도커를 실행하면 Dockered라는 데몬 프로그램이 서버로 실행. &lt;br /&gt;
+**여기서 잠깐! 데몬 프로그램이 뭘까? &lt;br /&gt;
+https://blogger.pe.kr/770  (포그라운드, 백그라운드, 데몬 프로세스)  &lt;br /&gt;
+https://haruhiism.tistory.com/9&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커실행 : 도커 이미지를 받아서 컨테이너로 실행 &lt;br /&gt;
+** -it 라는 명령어는 -i와 -t 옵션이 합쳐진 옵션, -i는 호스트와 컨테이너 상호 입출력을 맞추고,
+-t는 TTY를 활성화해서 컨테이너에 터미널로 입력이 가능하게 한다. &lt;br /&gt;
+** TTY가 뭐지?! &lt;br /&gt;
+https://cosmosproject2015.tistory.com/143 (TTY, PTS, PTY)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커 volume : 데이터를 컨테이너에 저장하지 않고 호스트에 저장하는 방식 &lt;br /&gt;
+https://www.daleseo.com/docker-volumes-bind-mounts/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;도커빌드 : Dockerfile로 사용자 정의 이미지를 만듬&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;*공부하기 : 도커 아키텍쳐, 컨테이너-OS 간의 통신 구조 &lt;br /&gt;
+**&lt;/em&gt;
+Docker의 개념 및 핵심 설명 : 
+https://khj93.tistory.com/entry/Docker-Docker-%EA%B0%9C%EB%85%90&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;Docker 예제 실습중 갱장히 이상한 오류가 발생했다.&lt;/p&gt;
+
+&lt;p&gt;failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount174403522/Dockerfile: no such file or directory&lt;/p&gt;
+
+&lt;p&gt;구글링을 계속 해봤지만 dockerfile -&amp;gt; Dockerfile 로 이름을 바꾸라는 답변밖에 없었다. &lt;br /&gt;
+하지만, 오류가 고쳐지지 않았고 터미널을 Open한 디렉토리 경로를 상위 폴더 위치로 open을 해서 났던 오류였다 ㅎㅎ&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...</summary></entry><entry><title type="html">2022년 초보 개발자의 취업 계획</title><link href="http://localhost:4000/doodle/doodle_02/" rel="alternate" type="text/html" title="2022년 초보 개발자의 취업 계획" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>http://localhost:4000/doodle/doodle_02</id><content type="html" xml:base="http://localhost:4000/doodle/doodle_02/">&lt;p&gt;&lt;img src=&quot;../../assets/img/calendar_2022.jpeg&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;곧 2022년이다. 2021년 한해를 마무리해보자.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
