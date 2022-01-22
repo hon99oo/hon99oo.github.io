@@ -1,43 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-22T04:11:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">CS:APP - 03</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="CS:APP - 03" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;2.1 정보의 저장
-    &lt;ul&gt;
-      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2.2 정수의 표시
-    &lt;ul&gt;
-      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
-    &lt;ul&gt;
-      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
-
-&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
-
-&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)</summary></entry><entry><title type="html">CS:APP - 02</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="CS:APP - 02" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-22T11:39:02+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;컴퓨터는 두 개의 값을 갖는 신호로 표현되는 정보를 저장하고 처리한다.&lt;/li&gt;
   &lt;li&gt;비트 패턴
@@ -330,7 +291,112 @@
 &lt;blockquote&gt;
   &lt;p&gt;2.2 정수의 표현 챕터에서 나온 Signed와 Unsigned의 인코딩, 변환, 비교 그리고 비트 확장 및 절삭은 다음 챕터인 산술연산에서 모두 사용된다.
 위의 내용들을 정확히 숙지하지 않고 산술연산을 공부하게 되면 많은 어려움을 겪을 수 있다. 이번 챕터를 확실하게 이해하고 다음 챕터로 넘어가자.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</summary></entry><entry><title type="html">CS:APP - 01</title><link href="http://localhost:4000/cs:app/csapp_01/" rel="alternate" type="text/html" title="CS:APP - 01" /><published>2022-01-21T00:00:00+09:00</published><updated>2022-01-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_01</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_01/">&lt;h1 id=&quot;csapp&quot;&gt;CS:APP&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 02</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.1 정보의 저장
+    &lt;ul&gt;
+      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2.2 정수의 표시
+    &lt;ul&gt;
+      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
+    &lt;ul&gt;
+      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
+
+&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
+
+&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry><entry><title type="html">[java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
+&lt;p&gt;학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
+java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
+Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!&lt;br /&gt;
+&lt;br /&gt;
+해당 포스트는 Mac Os 환경에서 진행되었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-intellij-설치&quot;&gt;1. IntelliJ 설치&lt;/h3&gt;
+&lt;p&gt;우선 IntelliJ Mac Os 버전을 설치하려면 
+&lt;a href=&quot;https://www.jetbrains.com/ko-kr/idea/download/#section=mac&quot;&gt;IntelliJ 설치 링크&lt;/a&gt;
+에 접속한다.&lt;br /&gt;
+각자 Mac 환경에 맞는 파일을 다운로드한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+java 학습을 위해선 Community Edition으로도 충분하다고 한다. 하지만 본인이 학생 신분이라면 학생 라이센스를 이용한
+Ultimate 버전을 추천한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+아래와 같은 창이 뜨면 설치 성공!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-java-project-만들기&quot;&gt;2. Java Project 만들기&lt;/h3&gt;
+&lt;p&gt;위의 창에서 Create New Project를 누르면 아래와 같은 창이 열린다. &lt;br /&gt;
+왼쪽의 리스트에서는 Java 선택, 오른쪽 리스트에서는 아무것도 선택하지 않고, 오른쪽 아래의 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_3.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Java 프로젝트를 생성할 때 샘플코드를 생성할지 여부. &lt;br /&gt;
+본인이 직접 생성할 것이기 때문에 아무것도 선택하지 않고 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_4.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+프로젝트 이름을 정하고 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_5.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-hello-world-출력하기&quot;&gt;3. Hello World 출력하기&lt;/h3&gt;
+&lt;p&gt;프로젝트 생성이 완료되면, main 메소드가 있는 새로운 Java 클래스를 생성하기 위해 src 폴더를 우클릭한다.&lt;br /&gt;
+New &amp;gt; Java Class 를 선택한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_7.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+새로 생성할 Java Class 이름을 설정하고 Enter를 친다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_8.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Hello World 출력 코드를 작성한다.&lt;br /&gt;
+상단의 망치 버튼을 클릭하여 빌드하거나 “control + option + R”키를 눌러 빌드한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+혹은 out &amp;gt; production &amp;gt; “project_name” &amp;gt; “Class_name” 우클릭 후 Run을 선택해도 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+이제 IntelliJ와 함께 Java 공부를 시작해보자,,,!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="IntelliJ" /><summary type="html">java 공부를 시작해보자!</summary></entry><entry><title type="html">[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행</title><link href="http://localhost:4000/cs:app/csapp_01/" rel="alternate" type="text/html" title="[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행" /><published>2022-01-21T00:00:00+09:00</published><updated>2022-01-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_01</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_01/">&lt;h1 id=&quot;csapp&quot;&gt;CS:APP&lt;/h1&gt;
 &lt;p&gt;Computer Systems A Programmer’s Perspective, CSAPP로도 잘 알려져있는 컴퓨터 구조론의 바이블이다. 이 책을 통해서 컴퓨터구조론을 다시 공부해볼 생각이다.
 군대 전역 직후 2학년 2학기로 복학해서 컴퓨터 구조론 전공 수업을 들었지만 학점을 위한 공부만 해서 남아있는게 없는 것 같다. 인턴 생활을 하면서 다양한 부분에서 어려움을 겪었는데
 기초를 몰라서 헤메고 있다는 느낌을 굉장히 많이 받았다.&lt;/p&gt;
@@ -495,7 +561,7 @@
   &lt;li&gt;위와 같은 이유로 시스템의 저장장치들은 계층구조 형성&lt;/li&gt;
   &lt;li&gt;운영체제 커널은 응용프로그램과 하드웨어 사이에서 중간자 역할 수행&lt;/li&gt;
   &lt;li&gt;네트워크는 컴퓨터 시스템이 서로 통신할 수 있는 방법 제공&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">Chapter 01. 컴퓨터 시스템으로의 여행</summary></entry><entry><title type="html">TDD와 each map</title><link href="http://localhost:4000/docker/doodle_03/" rel="alternate" type="text/html" title="TDD와 each map" /><published>2022-01-11T00:00:00+09:00</published><updated>2022-01-11T00:00:00+09:00</updated><id>http://localhost:4000/docker/doodle_03</id><content type="html" xml:base="http://localhost:4000/docker/doodle_03/">&lt;h1 id=&quot;tdd&quot;&gt;TDD&lt;/h1&gt;
+&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 01</summary></entry><entry><title type="html">TDD와 each map</title><link href="http://localhost:4000/docker/doodle_03/" rel="alternate" type="text/html" title="TDD와 each map" /><published>2022-01-11T00:00:00+09:00</published><updated>2022-01-11T00:00:00+09:00</updated><id>http://localhost:4000/docker/doodle_03</id><content type="html" xml:base="http://localhost:4000/docker/doodle_03/">&lt;h1 id=&quot;tdd&quot;&gt;TDD&lt;/h1&gt;
 
 &lt;p&gt;TDD(Test Driven Development)란 본격적인 개발에 들어가기 전에 테스트
 계획 및 코드를 작성하는 것을 의미한다. 테스트가 개발을 이끌어 나가는 것이다.

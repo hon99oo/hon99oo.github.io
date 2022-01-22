@@ -1,0 +1,13 @@
+I"O<h1 id="intellij">IntelliJ</h1>
+<p>학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
+java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
+Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!<br />
+<br /></p>
+
+<h3 id="1-intellij-설치">1. IntelliJ 설치</h3>
+<p><a href="https://www.jetbrains.com/ko-kr/idea/download/#section=mac">IntelliJ 설치 사이트</a></p>
+
+<p>https://www.jetbrains.com/ko-kr/idea/download/#section=mac
+<img src="../../assets/img/java/01/img.png" width="80%" height="100%" /></p>
+
+:ET
