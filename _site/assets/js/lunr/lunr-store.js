@@ -53,9 +53,27 @@ var store = [{
         "url": "/cs:app/csapp_03/",
         "teaser": null
       },{
-        "title": "[java/IntelliJ] IntelliJ 설치 및 Hello world 작성",
+        "title": "[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성",
         "excerpt":"IntelliJ  학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다.  java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인 Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!    해당 포스트는 Mac Os 환경에서 진행되었다.   1. IntelliJ 설치  우선 IntelliJ Mac Os 버전을 설치하려면  IntelliJ 설치 링크 에 접속한다.  각자 Mac 환경에 맞는 파일을 다운로드한다.          java 학습을 위해선 Community Edition으로도 충분하다고 한다. 하지만 본인이 학생 신분이라면 학생 라이센스를 이용한 Ultimate 버전을 추천한다.          아래와 같은 창이 뜨면 설치 성공!      2. Java Project 만들기  위의 창에서 Create New Project를 누르면 아래와 같은 창이 열린다.   왼쪽의 리스트에서는 Java 선택, 오른쪽 리스트에서는 아무것도 선택하지 않고, 오른쪽 아래의 “Next” 버튼을 누른다.          Java 프로젝트를 생성할 때 샘플코드를 생성할지 여부.   본인이 직접 생성할 것이기 때문에 아무것도 선택하지 않고 “Next” 버튼을 누른다.          프로젝트 이름을 정하고 “Next” 버튼을 누른다.      3. Hello World 출력하기  프로젝트 생성이 완료되면, main 메소드가 있는 새로운 Java 클래스를 생성하기 위해 src 폴더를 우클릭한다.  New &gt; Java Class 를 선택한다.          새로 생성할 Java Class 이름을 설정하고 Enter를 친다.          Hello World 출력 코드를 작성한다.  상단의 망치 버튼을 클릭하여 빌드하거나 “control + option + R”키를 눌러 빌드한다.          혹은 out &gt; production &gt; “project_name” &gt; “Class_name” 우클릭 후 Run을 선택해도 된다.          이제 IntelliJ와 함께 Java 공부를 시작해보자,,,!  ","categories": ["Java"],
         "tags": ["Java","IntelliJ"],
         "url": "/java/java_01/",
+        "teaser": null
+      },{
+        "title": "[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산",
+        "excerpt":"Part1 자바 시작하기  Java     객체지향언어   C,C++ 문법을 기본으로 개발            C언어에 객체지향 특성 확장           플랫폼에 독립적임            JVM으로 인해서 어떤 플랫폼에서도 실행 가능함           Garbage Collector로 사용되지 않는 메모리 자동적으로 정리해줌   JDK : Java Development Kit        JAVA 개발순서     코드 작성   코드 컴파일   컴파일한 소스를 JVM을 이용하여 실행        주석문     // : 행단위 주석   /* */ : 블럭단위 주석   /** ..*.. */ : 문서화 주석       Part2 변수와 계산   변수  변수 값(Data)을 저장할 수 있는 메모리 공간     java는 강형 언어로써 모든 변수의 타입이 컴파일 시에 결정됨   java 식별자 명명 규칙            첫 번째 글자는 문자 이거나 $,_ 이어야 함       $,_ 이외의 특수문자는 사용 불가능       키워드는 식별자로 사용할 수 없음           java 변수 명명 관례            첫 번째 문자가 소문자인 명사로 정함       여러 단어로 구서된 이름의 경우 두번째 단어부터 첫글자를 대문자로 함 (카멜 표기법)       _를 쓰지 않음               상수  상수란 수식에서 변하지 않는 값을 의미     상수의 선언            final 상수타입 상수명;                    eg) final int J;                           상수 명명 관례            대문자로만 구성된 명사로 정함       여러 단어로 구성된 이릠의 경우 단어 사이에 _을 써서 구분함           상수를 사용해야 하는 경우            값이 변하면 위험한 경우에 상수 사용       값만 봤을 때 무엇을 의미하는지 쉽게 파악할 수 없는 값에도 값 자체를 사용하기 보다는 상수를 사용               기본형 타입  기본형 타입은 가장 기본이 되는 데이터 타입으로써 정수형,실수형,문자형,불린형을 의미한다.     논리형            boolean 1byte 크기, true와 false 중 한 가지 값을 가질 수 있음           문자형            char 2byte 크기, 작은따옴표를 이용하여 한 글자 표현 가능           정수형            int 4byte, long 8byte           실수형            float 4byte, double 9byte           리터럴            CS 분야에서 리터럴이란, 소스 코드의 고정된 값을 대표하는 용어       리터럴은 일종의 값이다. true, false, 10, 11.1, ‘a’등 이런 값 자체를 리터럴이라고 함           사용 방법            long : 값을 적을 때 뒤에 l이나 L 적어야함       float : 값을 적을 때 뒤에 f나 F를 적어야함               기본형 타입변환     묵시적 형변환            크기가 작은 타입을 크기가 더 큰 타입으로 바꿀 때에는 묵시적으로 형을 바꾸어 줌           명시적 형변환            크기가 더 큰 타입을 작은 타입으로 바꿀 때에는 명시적으로 변환 해주어야 함       eg) long x = 20; int y = (int) x;               연산자 우선순위     최우선연산자 ( ., [], () )   단항연산자 ( ++,–,!,~,+/-   : 부정, bit변환&gt;부호&gt;증감)            단, 후위연산자(a++)은 우선순위가 낮음       eg) a=5, x = a++ - 5 라면 x는 0, a는6           산술연산자 ( *,/,%,+,-,shift) &lt; 시프트연산자 ( »,«,»&gt; ) &gt;   비교연산자 ( &gt;,&lt;,&gt;=,&lt;=,==,!= )   비트연산자 ( &amp;,|,,~ )   논리연산자 (&amp;&amp; , || , !)   삼항연산자 (조건식) ? :   대입연산자 =,*=,/=,%=,+=,-=  ","categories": ["Java"],
+        "tags": ["Java","프로그래머스 자바 입문"],
+        "url": "/java/java_02/",
+        "teaser": null
+      },{
+        "title": "[Java/프로그래머스] Part3 제어문",
+        "excerpt":"Part3 제어문   if 조건문  조건식의 연산 결과에 따라 블록 내부 문장의 실해 여부를 결정할 수 있다.     if 문   if - else 문   if - else if - else 문       논리 연산자  논리 연산자의 피연산자는 블린 타입만 사용할 수 있다. 결과는 불린값이다.                                     OR :                                       AND : &amp;&amp;   NOT : !   EXCLUSIVE-Or : ^       삼항 연산자     조건식 ? 피연산자1 : 피연산자2            조건식의 결과가 true 라면 결과는 피연산자1       조건식의 결과가 false 라면 결과는 피연산자2               switch문  switch문은 어떤 변수의 값에 따라서 문장을 실행할 수 있도록 하는 제어문이다.   switch(변수){         case 값1 :              실행문;              break;         case 값2 :              실행문;              break;           default;         }     break를 쓰지 않으면 value값이 값1일 경우 값1, 값2, default를 모두 실행한다.   JDK7 이후에는 문자열 타입의 변수도 가능함       while문  조건문의 실행 결과가 true일 동안 반복해서 실행한다.   while(조건문){         실행문;      }      do while문  while 문의 경우 조건이 만족되지 않을 때 실행되지 않지만, do while 문은 무조건 한번은 수행 된다.      do{         실행문;     }while(조건문);     실행문을 한번은 실행하고 싶을 경우에 사용됨       for 반복문  for 구문 자체에 변수 초기화, 조건식, 증감식이 한줄로 표현됨       for(초기화식; 조건식; 증감식){         실행문;         실행문;     }  ","categories": ["Java"],
+        "tags": ["Java","프로그래머스 자바 입문"],
+        "url": "/java/java_03/",
+        "teaser": null
+      },{
+        "title": "[Java/프로그래머스] Part4 배열",
+        "excerpt":"Part4 배열   배열 만들기  배열 사용하기  2차원 배열  for each  ","categories": ["Java"],
+        "tags": ["Java","프로그래머스 자바 입문"],
+        "url": "/java/java_04/",
         "teaser": null
       }]

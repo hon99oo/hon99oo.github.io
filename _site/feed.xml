@@ -1,4 +1,351 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-22T11:39:02+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-22T17:01:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[Java/프로그래머스] Part3 제어문</title><link href="http://localhost:4000/java/java_03/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part3 제어문" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_03</id><content type="html" xml:base="http://localhost:4000/java/java_03/">&lt;h1 id=&quot;part3-제어문&quot;&gt;Part3 제어문&lt;/h1&gt;
+
+&lt;h2 id=&quot;if-조건문&quot;&gt;if 조건문&lt;/h2&gt;
+&lt;p&gt;조건식의 연산 결과에 따라 블록 내부 문장의 실해 여부를 결정할 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;if 문&lt;/li&gt;
+  &lt;li&gt;if - else 문&lt;/li&gt;
+  &lt;li&gt;if - else if - else 문&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;논리-연산자&quot;&gt;논리 연산자&lt;/h2&gt;
+&lt;p&gt;논리 연산자의 피연산자는 블린 타입만 사용할 수 있다. 결과는 불린값이다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;OR :&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;AND : &amp;amp;&amp;amp;&lt;/li&gt;
+  &lt;li&gt;NOT : !&lt;/li&gt;
+  &lt;li&gt;EXCLUSIVE-Or : ^&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;삼항-연산자&quot;&gt;삼항 연산자&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;조건식 ? 피연산자1 : 피연산자2
+    &lt;ul&gt;
+      &lt;li&gt;조건식의 결과가 true 라면 결과는 피연산자1&lt;/li&gt;
+      &lt;li&gt;조건식의 결과가 false 라면 결과는 피연산자2&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;switch문&quot;&gt;switch문&lt;/h2&gt;
+&lt;p&gt;switch문은 어떤 변수의 값에 따라서 문장을 실행할 수 있도록 하는 제어문이다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;변수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+            &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+            &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;break를 쓰지 않으면 value값이 값1일 경우 값1, 값2, default를 모두 실행한다.&lt;/li&gt;
+  &lt;li&gt;JDK7 이후에는 문자열 타입의 변수도 가능함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;while문&quot;&gt;while문&lt;/h2&gt;
+&lt;p&gt;조건문의 실행 결과가 true일 동안 반복해서 실행한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;조건문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;do-while문&quot;&gt;do while문&lt;/h2&gt;
+&lt;p&gt;while 문의 경우 조건이 만족되지 않을 때 실행되지 않지만, do while 문은 무조건 한번은 수행 된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;   &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;조건문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;실행문을 한번은 실행하고 싶을 경우에 사용됨&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;for-반복문&quot;&gt;for 반복문&lt;/h2&gt;
+&lt;p&gt;for 구문 자체에 변수 초기화, 조건식, 증감식이 한줄로 표현됨&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;초기화식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조건식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;증감식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 02</summary></entry><entry><title type="html">[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산</title><link href="http://localhost:4000/java/java_02/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_02</id><content type="html" xml:base="http://localhost:4000/java/java_02/">&lt;h1 id=&quot;part1-자바-시작하기&quot;&gt;Part1 자바 시작하기&lt;/h1&gt;
+&lt;h2 id=&quot;java&quot;&gt;Java&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;객체지향언어&lt;/li&gt;
+  &lt;li&gt;C,C++ 문법을 기본으로 개발
+    &lt;ul&gt;
+      &lt;li&gt;C언어에 객체지향 특성 확장&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;플랫폼에 독립적임
+    &lt;ul&gt;
+      &lt;li&gt;JVM으로 인해서 어떤 플랫폼에서도 실행 가능함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Garbage Collector로 사용되지 않는 메모리 자동적으로 정리해줌&lt;/li&gt;
+  &lt;li&gt;JDK : Java Development Kit&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;java-개발순서&quot;&gt;JAVA 개발순서&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;코드 작성&lt;/li&gt;
+  &lt;li&gt;코드 컴파일&lt;/li&gt;
+  &lt;li&gt;컴파일한 소스를 JVM을 이용하여 실행&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;주석문&quot;&gt;주석문&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;//&lt;/code&gt; : 행단위 주석&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/* */&lt;/code&gt; : 블럭단위 주석&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/** ..*.. */&lt;/code&gt; : 문서화 주석&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;part2-변수와-계산&quot;&gt;Part2 변수와 계산&lt;/h1&gt;
+
+&lt;h2 id=&quot;변수&quot;&gt;변수&lt;/h2&gt;
+&lt;p&gt;변수 값(Data)을 저장할 수 있는 메모리 공간&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;java는 강형 언어로써 모든 변수의 타입이 컴파일 시에 결정됨&lt;/li&gt;
+  &lt;li&gt;java 식별자 명명 규칙
+    &lt;ul&gt;
+      &lt;li&gt;첫 번째 글자는 문자 이거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_&lt;/code&gt; 이어야 함&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_&lt;/code&gt; 이외의 특수문자는 사용 불가능&lt;/li&gt;
+      &lt;li&gt;키워드는 식별자로 사용할 수 없음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;java 변수 명명 관례
+    &lt;ul&gt;
+      &lt;li&gt;첫 번째 문자가 소문자인 명사로 정함&lt;/li&gt;
+      &lt;li&gt;여러 단어로 구서된 이름의 경우 두번째 단어부터 첫글자를 대문자로 함 (카멜 표기법)&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_&lt;/code&gt;를 쓰지 않음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;상수&quot;&gt;상수&lt;/h2&gt;
+&lt;p&gt;상수란 수식에서 변하지 않는 값을 의미&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;상수의 선언
+    &lt;ul&gt;
+      &lt;li&gt;final 상수타입 상수명;
+        &lt;ul&gt;
+          &lt;li&gt;eg) final int J;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;상수 명명 관례
+    &lt;ul&gt;
+      &lt;li&gt;대문자로만 구성된 명사로 정함&lt;/li&gt;
+      &lt;li&gt;여러 단어로 구성된 이릠의 경우 단어 사이에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_&lt;/code&gt;을 써서 구분함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;상수를 사용해야 하는 경우
+    &lt;ul&gt;
+      &lt;li&gt;값이 변하면 위험한 경우에 상수 사용&lt;/li&gt;
+      &lt;li&gt;값만 봤을 때 무엇을 의미하는지 쉽게 파악할 수 없는 값에도 값 자체를 사용하기 보다는 상수를 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;기본형-타입&quot;&gt;기본형 타입&lt;/h2&gt;
+&lt;p&gt;기본형 타입은 가장 기본이 되는 데이터 타입으로써 정수형,실수형,문자형,불린형을 의미한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;논리형
+    &lt;ul&gt;
+      &lt;li&gt;boolean 1byte 크기, true와 false 중 한 가지 값을 가질 수 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;문자형
+    &lt;ul&gt;
+      &lt;li&gt;char 2byte 크기, 작은따옴표를 이용하여 한 글자 표현 가능&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;정수형
+    &lt;ul&gt;
+      &lt;li&gt;int 4byte, long 8byte&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;실수형
+    &lt;ul&gt;
+      &lt;li&gt;float 4byte, double 9byte&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;리터럴
+    &lt;ul&gt;
+      &lt;li&gt;CS 분야에서 리터럴이란, 소스 코드의 고정된 값을 대표하는 용어&lt;/li&gt;
+      &lt;li&gt;리터럴은 일종의 값이다. true, false, 10, 11.1, ‘a’등 이런 값 자체를 리터럴이라고 함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;사용 방법
+    &lt;ul&gt;
+      &lt;li&gt;long : 값을 적을 때 뒤에 l이나 L 적어야함&lt;/li&gt;
+      &lt;li&gt;float : 값을 적을 때 뒤에 f나 F를 적어야함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;기본형-타입변환&quot;&gt;기본형 타입변환&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;묵시적 형변환
+    &lt;ul&gt;
+      &lt;li&gt;크기가 작은 타입을 크기가 더 큰 타입으로 바꿀 때에는 묵시적으로 형을 바꾸어 줌&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;명시적 형변환
+    &lt;ul&gt;
+      &lt;li&gt;크기가 더 큰 타입을 작은 타입으로 바꿀 때에는 명시적으로 변환 해주어야 함&lt;/li&gt;
+      &lt;li&gt;eg) long x = 20; int y = (int) x;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;연산자-우선순위&quot;&gt;연산자 우선순위&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;최우선연산자 ( ., [], () )&lt;/li&gt;
+  &lt;li&gt;단항연산자 ( ++,–,!,~,+/-   : 부정, bit변환&amp;gt;부호&amp;gt;증감)
+    &lt;ul&gt;
+      &lt;li&gt;단, 후위연산자(a++)은 우선순위가 낮음&lt;/li&gt;
+      &lt;li&gt;eg) a=5, x = a++ - 5 라면 x는 0, a는6&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;산술연산자 ( *,/,%,+,-,shift) &amp;lt; 시프트연산자 ( »,«,»&amp;gt; ) &amp;gt;&lt;/li&gt;
+  &lt;li&gt;비교연산자 ( &amp;gt;,&amp;lt;,&amp;gt;=,&amp;lt;=,==,!= )&lt;/li&gt;
+  &lt;li&gt;비트연산자 ( &amp;amp;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;|&lt;/code&gt;,,~ )&lt;/li&gt;
+  &lt;li&gt;논리연산자 (&amp;amp;&amp;amp; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;||&lt;/code&gt; , !)&lt;/li&gt;
+  &lt;li&gt;삼항연산자 (조건식) ? :&lt;/li&gt;
+  &lt;li&gt;대입연산자 =,*=,/=,%=,+=,-=&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 01</summary></entry><entry><title type="html">[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
+&lt;p&gt;학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
+java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
+Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!&lt;br /&gt;
+&lt;br /&gt;
+해당 포스트는 Mac Os 환경에서 진행되었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-intellij-설치&quot;&gt;1. IntelliJ 설치&lt;/h3&gt;
+&lt;p&gt;우선 IntelliJ Mac Os 버전을 설치하려면 
+&lt;a href=&quot;https://www.jetbrains.com/ko-kr/idea/download/#section=mac&quot;&gt;IntelliJ 설치 링크&lt;/a&gt;
+에 접속한다.&lt;br /&gt;
+각자 Mac 환경에 맞는 파일을 다운로드한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+java 학습을 위해선 Community Edition으로도 충분하다고 한다. 하지만 본인이 학생 신분이라면 학생 라이센스를 이용한
+Ultimate 버전을 추천한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+아래와 같은 창이 뜨면 설치 성공!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-java-project-만들기&quot;&gt;2. Java Project 만들기&lt;/h3&gt;
+&lt;p&gt;위의 창에서 Create New Project를 누르면 아래와 같은 창이 열린다. &lt;br /&gt;
+왼쪽의 리스트에서는 Java 선택, 오른쪽 리스트에서는 아무것도 선택하지 않고, 오른쪽 아래의 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_3.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Java 프로젝트를 생성할 때 샘플코드를 생성할지 여부. &lt;br /&gt;
+본인이 직접 생성할 것이기 때문에 아무것도 선택하지 않고 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_4.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+프로젝트 이름을 정하고 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_5.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-hello-world-출력하기&quot;&gt;3. Hello World 출력하기&lt;/h3&gt;
+&lt;p&gt;프로젝트 생성이 완료되면, main 메소드가 있는 새로운 Java 클래스를 생성하기 위해 src 폴더를 우클릭한다.&lt;br /&gt;
+New &amp;gt; Java Class 를 선택한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_7.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+새로 생성할 Java Class 이름을 설정하고 Enter를 친다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_8.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Hello World 출력 코드를 작성한다.&lt;br /&gt;
+상단의 망치 버튼을 클릭하여 빌드하거나 “control + option + R”키를 눌러 빌드한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+혹은 out &amp;gt; production &amp;gt; “project_name” &amp;gt; “Class_name” 우클릭 후 Run을 선택해도 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+이제 IntelliJ와 함께 Java 공부를 시작해보자,,,!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="IntelliJ" /><summary type="html">java 공부를 시작해보자!</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;2.1 정보의 저장
+    &lt;ul&gt;
+      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2.2 정수의 표시
+    &lt;ul&gt;
+      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
+    &lt;ul&gt;
+      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
+
+&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
+
+&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
+
+&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;컴퓨터는 두 개의 값을 갖는 신호로 표현되는 정보를 저장하고 처리한다.&lt;/li&gt;
   &lt;li&gt;비트 패턴
@@ -291,112 +638,12 @@
 &lt;blockquote&gt;
   &lt;p&gt;2.2 정수의 표현 챕터에서 나온 Signed와 Unsigned의 인코딩, 변환, 비교 그리고 비트 확장 및 절삭은 다음 챕터인 산술연산에서 모두 사용된다.
 위의 내용들을 정확히 숙지하지 않고 산술연산을 공부하게 되면 많은 어려움을 겪을 수 있다. 이번 챕터를 확실하게 이해하고 다음 챕터로 넘어가자.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 02</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산 ~ 2.4 부동소수점)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;2.1 정보의 저장
-    &lt;ul&gt;
-      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2.2 정수의 표시
-    &lt;ul&gt;
-      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 02</summary></entry><entry><title type="html">[Java/프로그래머스] Part4 배열</title><link href="http://localhost:4000/java/java_04/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part4 배열" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_04</id><content type="html" xml:base="http://localhost:4000/java/java_04/">&lt;h1 id=&quot;part4-배열&quot;&gt;Part4 배열&lt;/h1&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
-    &lt;ul&gt;
-      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
-
-&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
-
-&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
-
-&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry><entry><title type="html">[java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
-&lt;p&gt;학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
-java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
-Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!&lt;br /&gt;
-&lt;br /&gt;
-해당 포스트는 Mac Os 환경에서 진행되었다.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-intellij-설치&quot;&gt;1. IntelliJ 설치&lt;/h3&gt;
-&lt;p&gt;우선 IntelliJ Mac Os 버전을 설치하려면 
-&lt;a href=&quot;https://www.jetbrains.com/ko-kr/idea/download/#section=mac&quot;&gt;IntelliJ 설치 링크&lt;/a&gt;
-에 접속한다.&lt;br /&gt;
-각자 Mac 환경에 맞는 파일을 다운로드한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-java 학습을 위해선 Community Edition으로도 충분하다고 한다. 하지만 본인이 학생 신분이라면 학생 라이센스를 이용한
-Ultimate 버전을 추천한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-아래와 같은 창이 뜨면 설치 성공!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;2-java-project-만들기&quot;&gt;2. Java Project 만들기&lt;/h3&gt;
-&lt;p&gt;위의 창에서 Create New Project를 누르면 아래와 같은 창이 열린다. &lt;br /&gt;
-왼쪽의 리스트에서는 Java 선택, 오른쪽 리스트에서는 아무것도 선택하지 않고, 오른쪽 아래의 “Next” 버튼을 누른다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_3.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-Java 프로젝트를 생성할 때 샘플코드를 생성할지 여부. &lt;br /&gt;
-본인이 직접 생성할 것이기 때문에 아무것도 선택하지 않고 “Next” 버튼을 누른다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_4.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-프로젝트 이름을 정하고 “Next” 버튼을 누른다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_5.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-hello-world-출력하기&quot;&gt;3. Hello World 출력하기&lt;/h3&gt;
-&lt;p&gt;프로젝트 생성이 완료되면, main 메소드가 있는 새로운 Java 클래스를 생성하기 위해 src 폴더를 우클릭한다.&lt;br /&gt;
-New &amp;gt; Java Class 를 선택한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_7.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-새로 생성할 Java Class 이름을 설정하고 Enter를 친다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_8.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-Hello World 출력 코드를 작성한다.&lt;br /&gt;
-상단의 망치 버튼을 클릭하여 빌드하거나 “control + option + R”키를 눌러 빌드한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-혹은 out &amp;gt; production &amp;gt; “project_name” &amp;gt; “Class_name” 우클릭 후 Run을 선택해도 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-이제 IntelliJ와 함께 Java 공부를 시작해보자,,,!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="IntelliJ" /><summary type="html">java 공부를 시작해보자!</summary></entry><entry><title type="html">[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행</title><link href="http://localhost:4000/cs:app/csapp_01/" rel="alternate" type="text/html" title="[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행" /><published>2022-01-21T00:00:00+09:00</published><updated>2022-01-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_01</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_01/">&lt;h1 id=&quot;csapp&quot;&gt;CS:APP&lt;/h1&gt;
+&lt;h2 id=&quot;배열-만들기&quot;&gt;배열 만들기&lt;/h2&gt;
+&lt;h2 id=&quot;배열-사용하기&quot;&gt;배열 사용하기&lt;/h2&gt;
+&lt;h2 id=&quot;2차원-배열&quot;&gt;2차원 배열&lt;/h2&gt;
+&lt;h2 id=&quot;for-each&quot;&gt;for each&lt;/h2&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행</title><link href="http://localhost:4000/cs:app/csapp_01/" rel="alternate" type="text/html" title="[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행" /><published>2022-01-21T00:00:00+09:00</published><updated>2022-01-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_01</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_01/">&lt;h1 id=&quot;csapp&quot;&gt;CS:APP&lt;/h1&gt;
 &lt;p&gt;Computer Systems A Programmer’s Perspective, CSAPP로도 잘 알려져있는 컴퓨터 구조론의 바이블이다. 이 책을 통해서 컴퓨터구조론을 다시 공부해볼 생각이다.
 군대 전역 직후 2학년 2학기로 복학해서 컴퓨터 구조론 전공 수업을 들었지만 학점을 위한 공부만 해서 남아있는게 없는 것 같다. 인턴 생활을 하면서 다양한 부분에서 어려움을 겪었는데
 기초를 몰라서 헤메고 있다는 느낌을 굉장히 많이 받았다.&lt;/p&gt;
@@ -605,7 +852,73 @@ each map은 dataframe에서 row 별로 메모리 상으로 올린다.
 이 때 조심해야 하는 부분은 seperate다. row에서 컬럼으로 구분하는 seperate값을 잘 이용해야지 에러가 나지 않을 것이다.&lt;/p&gt;
 
 &lt;hr /&gt;
-&lt;p&gt;즉! pytest 부분을 더 공부하고 적절한 testset을 생각해보고, testcode를 작성해보자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...2</summary></entry><entry><title type="html">Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_01/" rel="alternate" type="text/html" title="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_01</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_01/">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;즉! pytest 부분을 더 공부하고 적절한 testset을 생각해보고, testcode를 작성해보자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...2</summary></entry><entry><title type="html">Docker는 대충 이런 느낌인가?</title><link href="http://localhost:4000/docker/docker_01/" rel="alternate" type="text/html" title="Docker는 대충 이런 느낌인가?" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/docker/docker_01</id><content type="html" xml:base="http://localhost:4000/docker/docker_01/">&lt;h1 id=&quot;docker&quot;&gt;Docker&lt;/h1&gt;
+
+&lt;p&gt;내가 느낀 전체적인 도커의 메커니즘 : 어떠어떠한 것을 빌드해서 이미지를 만들고 
+-&amp;gt; 이미지를 도커로 띄운 뒤 -&amp;gt; 이미지를 받아서 로컬에서 개발작업을 진행&lt;/p&gt;
+
+&lt;p&gt;!!많은 시행착오를 거쳐 도커의 메커니즘에 대해 이해가 조금 되었다.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Dockerfile을 만든다.&lt;/li&gt;
+  &lt;li&gt;해당 디렉토리 위치에서 docker build를 한다.&lt;/li&gt;
+  &lt;li&gt;docker build을 하면 이미지가 생성된다.&lt;/li&gt;
+  &lt;li&gt;이미지가 생성됐으면, 해당 이미지로 docker run을 한다.&lt;/li&gt;
+  &lt;li&gt;docker run을 하면 컨테이너가 만들어지고 해당 이미지를 컨테이너 안으로 넣는다?띄운다?&lt;/li&gt;
+  &lt;li&gt;그럼 환경셋팅이 된다…?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;틀린 부분도 있겠지만 아주 조오금 조오오오오금 메커니즘이 이해가 됐다. &lt;br /&gt;
+앗 참고로 음… 저런 run이니 이미지 파일들이니 어떤 컨테이너가 실행중인지를 GUI로 확인할 수 있는 프로그램이 Docker Desktop 같다 ㅎㅎ..&lt;/p&gt;
+
+&lt;p&gt;추가적으로 환경세팅을 완료한 것 같다. 음… 위의 6번까지 진행한 후에&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;컨테이너를 만들면 어떠한 가상환경이 만들어지는 것 같다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그럼 그 컨테이너에가 파이썬 환경으로 이루어져있고 추가로 다양한 패키지들이 들어있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그럼 그 환경을 내가 사용하고 있는 Pycharm과 연동을 하는 거다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;어떻게 하냐면 파이참 프로젝트의 인터프리터를 해당 컨테이너에 있는 파이썬path로 설정해주는거다.
+*https://i-am-eden.tistory.com/13&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그리고 코딩하면 된다 ㅎㅎ
+***&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커엔진 - 도커를 실행하면 Dockered라는 데몬 프로그램이 서버로 실행. &lt;br /&gt;
+**여기서 잠깐! 데몬 프로그램이 뭘까? &lt;br /&gt;
+https://blogger.pe.kr/770  (포그라운드, 백그라운드, 데몬 프로세스)  &lt;br /&gt;
+https://haruhiism.tistory.com/9&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커실행 : 도커 이미지를 받아서 컨테이너로 실행 &lt;br /&gt;
+** -it 라는 명령어는 -i와 -t 옵션이 합쳐진 옵션, -i는 호스트와 컨테이너 상호 입출력을 맞추고,
+-t는 TTY를 활성화해서 컨테이너에 터미널로 입력이 가능하게 한다. &lt;br /&gt;
+** TTY가 뭐지?! &lt;br /&gt;
+https://cosmosproject2015.tistory.com/143 (TTY, PTS, PTY)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;도커 volume : 데이터를 컨테이너에 저장하지 않고 호스트에 저장하는 방식 &lt;br /&gt;
+https://www.daleseo.com/docker-volumes-bind-mounts/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;도커빌드 : Dockerfile로 사용자 정의 이미지를 만듬&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;*공부하기 : 도커 아키텍쳐, 컨테이너-OS 간의 통신 구조 &lt;br /&gt;
+**&lt;/em&gt;
+Docker의 개념 및 핵심 설명 : 
+https://khj93.tistory.com/entry/Docker-Docker-%EA%B0%9C%EB%85%90&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;Docker 예제 실습중 갱장히 이상한 오류가 발생했다.&lt;/p&gt;
+
+&lt;p&gt;failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount174403522/Dockerfile: no such file or directory&lt;/p&gt;
+
+&lt;p&gt;구글링을 계속 해봤지만 dockerfile -&amp;gt; Dockerfile 로 이름을 바꾸라는 답변밖에 없었다. &lt;br /&gt;
+하지만, 오류가 고쳐지지 않았고 터미널을 Open한 디렉토리 경로를 상위 폴더 위치로 open을 해서 났던 오류였다 ㅎㅎ&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...</summary></entry><entry><title type="html">Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_01/" rel="alternate" type="text/html" title="Google’s Neural Machine Translation System : Bridging the Gap between Human and Machine Translation 논문 리뷰" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_01</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_01/">&lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Neural Machine Translation
     &lt;ul&gt;
@@ -769,131 +1082,4 @@ each map은 dataframe에서 row 별로 메모리 상으로 올린다.
   &lt;li&gt;모델과 데이터의 병렬화는 sequence-to-sequence NMT 모델을 일주일 안으로 효율적으로 훈련시킬 수 있음&lt;/li&gt;
   &lt;li&gt;Model quantization은 inference 속도를 가속화할 수 있어 대형 모델에 사용하기 용이함&lt;/li&gt;
   &lt;li&gt;Length-normalization, coverage penalty 등과 같은 추가 세부 사항이 NMT 시스템을 잘 작동시키게 도와줌&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /></entry><entry><title type="html">Docker는 대충 이런 느낌인가?</title><link href="http://localhost:4000/docker/docker_01/" rel="alternate" type="text/html" title="Docker는 대충 이런 느낌인가?" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/docker/docker_01</id><content type="html" xml:base="http://localhost:4000/docker/docker_01/">&lt;h1 id=&quot;docker&quot;&gt;Docker&lt;/h1&gt;
-
-&lt;p&gt;내가 느낀 전체적인 도커의 메커니즘 : 어떠어떠한 것을 빌드해서 이미지를 만들고 
--&amp;gt; 이미지를 도커로 띄운 뒤 -&amp;gt; 이미지를 받아서 로컬에서 개발작업을 진행&lt;/p&gt;
-
-&lt;p&gt;!!많은 시행착오를 거쳐 도커의 메커니즘에 대해 이해가 조금 되었다.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Dockerfile을 만든다.&lt;/li&gt;
-  &lt;li&gt;해당 디렉토리 위치에서 docker build를 한다.&lt;/li&gt;
-  &lt;li&gt;docker build을 하면 이미지가 생성된다.&lt;/li&gt;
-  &lt;li&gt;이미지가 생성됐으면, 해당 이미지로 docker run을 한다.&lt;/li&gt;
-  &lt;li&gt;docker run을 하면 컨테이너가 만들어지고 해당 이미지를 컨테이너 안으로 넣는다?띄운다?&lt;/li&gt;
-  &lt;li&gt;그럼 환경셋팅이 된다…?&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;틀린 부분도 있겠지만 아주 조오금 조오오오오금 메커니즘이 이해가 됐다. &lt;br /&gt;
-앗 참고로 음… 저런 run이니 이미지 파일들이니 어떤 컨테이너가 실행중인지를 GUI로 확인할 수 있는 프로그램이 Docker Desktop 같다 ㅎㅎ..&lt;/p&gt;
-
-&lt;p&gt;추가적으로 환경세팅을 완료한 것 같다. 음… 위의 6번까지 진행한 후에&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;컨테이너를 만들면 어떠한 가상환경이 만들어지는 것 같다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그럼 그 컨테이너에가 파이썬 환경으로 이루어져있고 추가로 다양한 패키지들이 들어있다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그럼 그 환경을 내가 사용하고 있는 Pycharm과 연동을 하는 거다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;어떻게 하냐면 파이참 프로젝트의 인터프리터를 해당 컨테이너에 있는 파이썬path로 설정해주는거다.
-*https://i-am-eden.tistory.com/13&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그리고 코딩하면 된다 ㅎㅎ
-***&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;도커엔진 - 도커를 실행하면 Dockered라는 데몬 프로그램이 서버로 실행. &lt;br /&gt;
-**여기서 잠깐! 데몬 프로그램이 뭘까? &lt;br /&gt;
-https://blogger.pe.kr/770  (포그라운드, 백그라운드, 데몬 프로세스)  &lt;br /&gt;
-https://haruhiism.tistory.com/9&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;도커실행 : 도커 이미지를 받아서 컨테이너로 실행 &lt;br /&gt;
-** -it 라는 명령어는 -i와 -t 옵션이 합쳐진 옵션, -i는 호스트와 컨테이너 상호 입출력을 맞추고,
--t는 TTY를 활성화해서 컨테이너에 터미널로 입력이 가능하게 한다. &lt;br /&gt;
-** TTY가 뭐지?! &lt;br /&gt;
-https://cosmosproject2015.tistory.com/143 (TTY, PTS, PTY)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;도커 volume : 데이터를 컨테이너에 저장하지 않고 호스트에 저장하는 방식 &lt;br /&gt;
-https://www.daleseo.com/docker-volumes-bind-mounts/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;도커빌드 : Dockerfile로 사용자 정의 이미지를 만듬&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;em&gt;*공부하기 : 도커 아키텍쳐, 컨테이너-OS 간의 통신 구조 &lt;br /&gt;
-**&lt;/em&gt;
-Docker의 개념 및 핵심 설명 : 
-https://khj93.tistory.com/entry/Docker-Docker-%EA%B0%9C%EB%85%90&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;Docker 예제 실습중 갱장히 이상한 오류가 발생했다.&lt;/p&gt;
-
-&lt;p&gt;failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount174403522/Dockerfile: no such file or directory&lt;/p&gt;
-
-&lt;p&gt;구글링을 계속 해봤지만 dockerfile -&amp;gt; Dockerfile 로 이름을 바꾸라는 답변밖에 없었다. &lt;br /&gt;
-하지만, 오류가 고쳐지지 않았고 터미널을 Open한 디렉토리 경로를 상위 폴더 위치로 open을 해서 났던 오류였다 ㅎㅎ&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...</summary></entry><entry><title type="html">2022년 초보 개발자의 취업 계획</title><link href="http://localhost:4000/doodle/doodle_02/" rel="alternate" type="text/html" title="2022년 초보 개발자의 취업 계획" /><published>2021-12-22T00:00:00+09:00</published><updated>2021-12-22T00:00:00+09:00</updated><id>http://localhost:4000/doodle/doodle_02</id><content type="html" xml:base="http://localhost:4000/doodle/doodle_02/">&lt;p&gt;&lt;img src=&quot;../../assets/img/calendar_2022.jpeg&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;곧 2022년이다. 2021년 한해를 마무리해보자.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;2021년 : 마무리&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;3月-6月 졸업작품
-&lt;img src=&quot;../../assets/img/codergarden_logo.png&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;7月-12月 인턴생활
-&lt;img src=&quot;../../assets/img/spacewalk.png&quot; width=&quot;80%&quot; height=&quot;70%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;졸업작품 하얗게 불태우고 바로 인턴 생활을 했다. 현업이 되게 궁금했는데 이 부분에 대해서는 굉장히 많은 도움이 된 것 같다.
-그리고 Data Engineering 직무도 굉장히 관심 있었는데 직접 경험할 수 있어서 좋았다. 나는 조금 더 다양한 경험을 하고 싶어서 
-Back End 직무를 공략할 생각이다. 언어는 아무래도 java가 강력하다고 생각해서 java 공부를 시작할 것 같다.&lt;/p&gt;
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;2022년 : 11월 전까지 아래 서류들을 준비해보자&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;졸업요건 맞추기&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;토익 또는 오픽&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;정보처리기사&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;CS&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Algorithm&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;Java 스킬&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;~2022년 포트폴리오 정리&lt;br /&gt;&lt;/li&gt;
-  &lt;li&gt;코딩 캠프(네이버부캠,우테코 등등…) 준비&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;strong&gt;Java Backend Roadmap&lt;/strong&gt;
-&lt;img src=&quot;../../assets/img/java_be_roadmap.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="doodle" /><category term="doodle" /><summary type="html">2021년이 벌써 지나가고 곧 2022년이 온다...!</summary></entry><entry><title type="html">test post 입니다.</title><link href="http://localhost:4000/test%20post/test/" rel="alternate" type="text/html" title="test post 입니다." /><published>2021-12-21T01:43:00+09:00</published><updated>2021-12-21T01:43:00+09:00</updated><id>http://localhost:4000/test%20post/test</id><content type="html" xml:base="http://localhost:4000/test%20post/test/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="test post" /><category term="test" /><category term="theme" /><summary type="html">발췌부분 설정하면 이 글이 들어가고, 설정하지 않는다면 글의 첫 문단이 들어가게됨</summary></entry><entry><title type="html">블로그를 다시 시작해 보자</title><link href="http://localhost:4000/doodle/doodle_01/" rel="alternate" type="text/html" title="블로그를 다시 시작해 보자" /><published>2021-12-21T01:43:00+09:00</published><updated>2021-12-21T01:43:00+09:00</updated><id>http://localhost:4000/doodle/doodle_01</id><content type="html" xml:base="http://localhost:4000/doodle/doodle_01/">&lt;p&gt;4학년 1학기 졸업작품을 3월부터 6월까지 열심히 달렸다. 졸업작품을 끝마치고 나니 현업의 욕심이 생겨 열심히 인턴 지원을 진행하였다. 그렇게 자소서를 쓰고 대학생활을 하며 잰힝했던 포트폴리오를 정리하고 7월 11일에 ‘스페이스워크’라는 회사에 인턴 포지션으로 입사하게 되었다. 인턴 포지션에 입사한 이후로 코딩에 대한 열정이 팍 식은거 같다. 회사일은 내가 졸업작품을 했을 때 처럼 큰 열정을 쏟아 붓지 못한 채 시키는 일만 하는 수동적 인간이 되었다. 그렇게 거의 5개월을 따로 공부도 하지 않고 열정이 없는 채로 살아왔던 것 같다. 당장 내 앞에 펼쳐져 있는 숙제들도 해결하지 않고 뒤로 미뤄두고 기상 - 회사 일 쪼금 - 게임 - 취침의 쳇바퀴의 반복적 인생을 살아왔다.&lt;/p&gt;
-
-&lt;p&gt;인턴 포지션 종료일은 1월 11일이다. 이후 나는 졸업요건을 하나 충족하지 않아 초과학기를 해야하며 다음 취업을 준비해야 한다. 인턴 포지션 종료까지는 약 2개월 정도 남았다. 지금은 욕심이지만, 인턴 종료 이후 곧바로 다른 회사의 인턴 포지션으로 들어가거나 현재 있는 회사에 잔류 하는 것이 목표이다. 현재 다니고 있는 회사에서 열심히 하지 못했던 이유는 나에게 목표의식이 조금 사라졌다는 변명을 들 수 있을 것 같다. 다시금 목표가 생긴 현재 이를 정확히 인지하고 행동으로 실천할 때가 온 것 같다.&lt;/p&gt;
-
-&lt;p&gt;인턴 생활을 하기 전까지는 모두 뇌피셜로 코딩을 해오고 공부를 해왔다. 그 때는 BE와 FE의 차이점도 몰랐고 DE가 요즘 핫하다는 이야기만 듣고 무슨 일을 하는지도 모른채로 DE포지션으로 인턴을 지원했었다. 하지만, 현업 생활을 약 4개월정도 하고 난 뒤 내 주변에 현업 생활을 하고 있는 지인들의 이야기가 궁금해졌고 많은 사람들의 이야기를 듣고 싶어 일명 DevTalk을 요청하였다. 그리고 이제는 정확하지는 않지만, 개발자라는 직군이 어떻게 돌아가는지 그리고 내가 어떤 일을 할 수 있고 어떤 일을 하고 싶은지 조금은 알 수 있게 되었다.&lt;/p&gt;
-
-&lt;p&gt;우선 나의 문제점을 발견했다. 간단하고 명확하게 말하자면, 나는 현재 ‘코싸개’이다. 생각하지 않고 주어진 문제를 해결하기 위해 수단과 방법을 가리지 않고 그저 코드만을 작성했던 굉장히 질 나쁜 개발자였던 것이다. 생각해보면 내가 이 프로그래밍에 관해 진지하게 공부했던 적이 없다. 학문을 가르치는 대학에서 소프트웨어학과를 진학하고 전공 과목은 집중하지 않고 프로젝트를 어떻게든 이쁘게 만들기 위해서 프로젝트를 위한 공부만 했던 것 같다. 현재 사용하고 있는 기술들은 모두 근본이 되는 알고리즘과 컴퓨터구조론에서부터 비롯된 기술임을 몰랐던 것이다. 나에게 가장 부족한 점은 ‘근본 지식’을 모르는 것이다. 많이 늦었다고 말할 수 있지만, 오늘부터 ‘근본 지식’에 관련하여 몇가지를 체계적으로 공부할 생각이다.&lt;/p&gt;
-
-&lt;p&gt;첫번째, 알고리즘이다. 알고리즘을 제대로 배워본 적이 없다. 사실 우리학교의 전공 필수 과목이지만, 너무 어렵고 공부하기도 싫어서 대충 했던 기억이 있다. 그리고 모르는 지식이 있으면 그 때 그 때 구글링으로 일시적으로 지식의 빈자리를 매꿀 뿐이었다. 근본이 되는 알고리즘 서적으로 공부할 계획이다. 두번째, 컴퓨터구조론이다. 컴퓨터구조론 또한 우리학교의 전공 필수 과목이지만, 족보를 바탕으로 공부해서 학점은 좋게 받았지만 남아있는 지식은 없다. 알고리즘과 컴퓨터구조론을 우선 공부하여 인턴 포지션 종료 전 까지 어느정도의 지식을 확보하고 싶은 계획이다.&lt;/p&gt;
-
-&lt;p&gt;이후 나는 BE나 DE 직군으로 나아갈 예정이다. 현재 내가 사용하는 주 언어는 python이지만, java에도 관심이 조금씩 가고 있다. 알고리즘과 컴퓨터구조론 공부를 마치고 나면 DE의 근본책과 BE의 근본책 두가지를 구매해서 공부할 예정이다. 이 열정이 언제 식을지 모르겠지만, 현재 내 발등에는 불이 그것도 존나게 뜨거운 불이 떨어졌다.&lt;/p&gt;
-
-&lt;p&gt;화이팅이다 홍구야&lt;/p&gt;</content><author><name>honggoo</name></author><category term="doodle" /><category term="doodle" /><summary type="html">Git Blog로 개발자 블로그를 본격적으로 시작해 보자!</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /></entry></feed>
