@@ -1,0 +1,35 @@
+I"K<h1 id="introduction">Introduction</h1>
+<ul>
+  <li>Pre-training은 최근 NLP 분야에서 활발한 연구가 이루어지는 주제 중 하나</li>
+  <li>Google의 Bert와 XLNet은 자연어 이해(NLU) Task에서 큰 성공을 거둔 모델</li>
+  <li>NLU Task 외에 Sequence to Sequence를 기반으로 하는 자연어 생성 Task가 있음
+    <ul>
+      <li>Machine Translation, Abstract Text Summarization</li>
+    </ul>
+  </li>
+  <li>자연어 생성 Task는 Encoder - Attention - Decoder 구조의 모델들이 사용됨</li>
+</ul>
+
+<h1 id="encoder-attention-decoder">Encoder-Attention-Decoder</h1>
+<p><img src="../../assets/img/nlp/02/img.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Encoder는 Source sequence X를 input으로 받은 후, 이를 hidden representations sequence로 변형</li>
+  <li>Decoder는 Encoder로부터 hidden representations sequence를 전달 받아 Target Sequence Y를 생성하며, 이 때 Attention mechanism이 학습한 Input에 대한 정보를 함께 참조</li>
+</ul>
+
+<h1 id="related-works">Related Works</h1>
+<p><img src="../../assets/img/nlp/02/img_1.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Bert와 XLNet은 Language Understanding을 위해 Encoder를 Pre-train</li>
+  <li>GPT는 Language Modeling을 위해 Decoder를 Pre-train</li>
+  <li>이전 모델들은 Encoder, Attention, Decoder를 함께 Pre-train하지 못했음</li>
+</ul>
+
+<h1 id="massmasked-sequence-to-sequence-pre-training">MASS:Masked Sequence to Sequence Pre-training</h1>
+<p><img src="../../assets/img/nlp/02/img_2.png" width="100%" height="100%" /></p>
+<ul>
+  <li>새로운 모델 MASS는 Masked Sequence to Sequence Pre-training의 약자</li>
+  <li>Input에서 K개의 토큰 Fragment를 임의로 지정해 Masking</li>
+  <li>마스킹 된 Fragment를 Encoder-Attention-Decoder를 거쳐 예측하도록 훈련시킴</li>
+</ul>
+:ET
