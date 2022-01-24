@@ -1,4 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-24T14:20:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">ELMO - Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_03/" rel="alternate" type="text/html" title="ELMO - Deep contextualized word representations 논문 리뷰" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_03</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_03/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-25T01:54:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)</title><link href="http://localhost:4000/cs:app/csapp_05/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_05</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_05/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴퓨터는 데이터를 처리하고, 메모리를 관리하고, 저장장치에 데이터를 읽거나 쓰고, 네트워크를 통해 통신하는 등의 하위 동작들을 인코딩한 연속되 바이트인 기계어 코드를 실행한다.&lt;/li&gt;
+  &lt;li&gt;컴파일러는 프로그램 언어의 규칙, 대상 컴퓨터의 인스트럭션 집합, 운영체제의 관례 등에 따라 기계어 코드를 생성한다.&lt;/li&gt;
+  &lt;li&gt;어셈블러 코드로 프로그램을 짤 때는 프로그래머가 계산을 하기 위해 사용해야 하는 저급 인스트럭션들을 명시해야 한다.&lt;/li&gt;
+  &lt;li&gt;기계어 코드를 배우면 컴파일러의 최적화 성능을 알 수 있으며, 코드에 내제된 비효율성을 분석할 수 있다.&lt;/li&gt;
+  &lt;li&gt;이 장은 X86-64에 기초하고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;31-역사적-관점&quot;&gt;3.1 역사적 관점&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;x86이라고 통칭하는 인텔 프로세서 제품군은 오랜 기간 진화를 통한 개발을 해왔다.
+    &lt;blockquote&gt;
+      &lt;p&gt;대충 엄청 많은 프로세서들이 나열 되는데, 팬티엄4E(2004, 125M 트랜지스터) 하이퍼쓰레딩 기법의 추가와 AMD사에서 개발한 IA32의 64비트 확장 구현인 EM64T가
+추가된 해당 모델을 x86-64라고 부른다고 한다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;32-프로그램의-인코딩&quot;&gt;3.2 프로그램의 인코딩&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;C 언어에서 gcc 명령은 소스 코드(test.c)를 실행 코드로 변환하기 위해 일련의 프로그램들을 호출한다.
+    &lt;ol&gt;
+      &lt;li&gt;C 전처리가 #include로 명시된 파일을 코드에 삽입해 주고 #define으로 선언된 매크로를 확장해준다.&lt;/li&gt;
+      &lt;li&gt;컴파일러는 소스파일의 어셈블러 버전(test.s)를 생성한다.&lt;/li&gt;
+      &lt;li&gt;어셈블러는 어셈블리 코드를 바이너리 목적코드인(test.o)로 변환한다.
+        &lt;ul&gt;
+          &lt;li&gt;목적코드는 기계어 코드의 한 유형이다. - 모든 인스트럭션과 바이너리 표현을 포함하고 있지만 전역 값들의 주소는 아직 채워지지 않았다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;마지막으로 링커가 목적코드 파일을 라이브러리 함수들을 구현한 코드와 함께 합쳐서 최종 실행 파일인 p를 생성한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;커맨드 라인 옵션으로 -0g를 주면 C 코드의 전체 구조를 따르는 기계어 코드를 생성하는 최적호 수준을 적용한다.
+    &lt;ul&gt;
+      &lt;li&gt;높은 수준의 최적화를 적용하면 만들어진 코드가 너무 많이 변경되어 본래의 코드와 생성된 기계어 코드 간의 관계를 이해하기 어렵다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;321-기계수준-코드&quot;&gt;3.2.1 기계수준 코드&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴퓨터 시스템은 보다 간단한 추상화 모델을 이용해서 세부 구현내용을 감추면서 추상화의 여러 가지 다른 형태를 사용하고 있다.
+    &lt;ol&gt;
+      &lt;li&gt;기계수준 프로그램의 형식과 동작은 인스트럭션 집합구조 즉 “ISA”에 의해 정의된다.
+        &lt;ul&gt;
+          &lt;li&gt;프로세서의 상태, 인스트럭션의 형식, 프로세서 상태에 대한 각 인스트럭션들의 영향들을 정의한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;기계수준 프로그램이 사용하는 주소는 가상주소이며, 메모리가 매우 큰 바이트 배열인 것처럼 보이게 하는 메모리 모델을 제공한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;컴파일러는 추상화된 실행모델로 표현된 프로그램을 프로세서가 실행하는 매우 기초적인 인스트럭션들로 변환하는 대부분의 일을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;322-코드-예제&quot;&gt;3.2.2 코드 예제&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;기계어 코드의 몇몇 특징과 이들의 역어셈블된 표현에 주목할 필요가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;x86-64 인스트럭션들은 1에서 15바이트 길이를 갖는다.&lt;/li&gt;
+      &lt;li&gt;인스트럭션의 형식은 주어진 시작 위치에서부터 바이트들을 기계어 인스트럭션으로 유일하게 디코딩할 수 있도록 설계한다.&lt;/li&gt;
+      &lt;li&gt;역어셈블러는 기계어 코드 파일의 바이트 순서에만 전적으로 의존한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;33-데이터의-형식&quot;&gt;3.3 데이터의 형식&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;인텔 프로세서들이 근본적으로 16비트 구조를 사용하다가 추후에 32비트로 확장했기 때문에 인텔은 “워드”라는 단어를 16비트 데이터 타입을 말할 때 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;34-정보-접근하기&quot;&gt;3.4 정보 접근하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;x86-64 주처리장치 CPU는 64비트 값을 저장할 수 있는 16개의 범용 레지스터를 보유하고 있다.
+    &lt;ul&gt;
+      &lt;li&gt;이들 레지스터는 정수 데이터와 포인터를 저장하는데 사용한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;341-오퍼랜드-식별자-specifier&quot;&gt;3.4.1 오퍼랜드 식별자 specifier&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;대부분의 인스트럭션은 하나 이상의 오퍼랜드를 가진다.&lt;/li&gt;
+  &lt;li&gt;오퍼랜드는 연산을 수행할 소스 값과 그 결과를 저장할 목적지의 위치를 명시한다.&lt;/li&gt;
+  &lt;li&gt;소스 값은 상수로 주어지거나 레지스터나 메모리로부터 읽을 수 있다. 결과 값은 레지스터나 메모리에 저장된다.&lt;/li&gt;
+  &lt;li&gt;세가지 타입으로 나뉘어짐
+    &lt;ol&gt;
+      &lt;li&gt;immediate로, 상수값을 말한다.&lt;/li&gt;
+      &lt;li&gt;register는 레지스터의 내용을 나타내며&lt;/li&gt;
+      &lt;li&gt;Memory, 메모리 참조로 유효주소라고 부르는 계산된 주소에 의해 메모리 위치에 접근하게 된다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;342-데이터-이동-인스트럭션&quot;&gt;3.4.2 데이터 이동 인스트럭션&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;가장 많이 사용되는 인스트럭션은 데이터를 한 위치에서 다른 위치로 복사하는 명령어다.
+    &lt;ul&gt;
+      &lt;li&gt;MOV 클래스 : 소스 위치에서 데이터를 목적지 위치로 어떤 변환도 하지 않고 복사한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;소스 오퍼랜드는 상수, 레지스터 저장 값, 메모리 저장 값을 표시한다.&lt;/li&gt;
+  &lt;li&gt;목적 오퍼랜드는 레지스터 또는 메모리 주소의 위치를 지정한다.&lt;/li&gt;
+  &lt;li&gt;x86-64는 데이터 이동 인스트럭션에서 두 개의 오퍼랜드 모두가 메모리 위치에 올 수 없도록 제한하고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_6.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;343-코드-예제&quot;&gt;3.4.3 코드 예제&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;C언어에서 “포인터”라고 부르는 것이 어셈블리어에서는 단순히 주소를 나타낸다.&lt;/li&gt;
+    &lt;li&gt;포인터를 역참조하는 것은 포인터를 레지스터에 복사하고, 이 레지스터를 메모리 참조에 사용하는 과정으로 이루어진다.&lt;/li&gt;
+    &lt;li&gt;지역변수들은 메모리에 저장되기보다는 종종 레지스터에 저장된다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;344-스택-데이터의-저장과-추출-pushpop&quot;&gt;3.4.4 스택 데이터의 저장과 추출 push,pop&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;push와 pop은 프로그램 스택에 데이터를 저장(push)하거나 스택에서 데이터를 추출(pop)하기 위해 사용한다.&lt;/li&gt;
+  &lt;li&gt;스택은 프로시저 호출을 처리하는 데 중요한 역할을 한다.&lt;/li&gt;
+  &lt;li&gt;프로그램 스택은 메모리의 특정 영역에 위치한다.&lt;/li&gt;
+  &lt;li&gt;스택의 탑top 원소가 모든 스택 원소 중에서 가장 낮은 주소를 갖는 형태다.&lt;/li&gt;
+  &lt;li&gt;스택은 pop이 되어도 stack의 top을 표현하는 주소가 올라간거지 값은 여전히 pop이 된 위치에 남아있다.&lt;/li&gt;
+  &lt;li&gt;스택이 프로그램 코드와 다른 형태의 프로그램 데이터와 동일한 메모리에 저장되기 때문에 프로그램들은 표준 메모리 주소지정 방법을 사용해서 스택 내 임의의 위치에 접근할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 05</summary></entry><entry><title type="html">[NLP/Paper]ELMO - Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_03/" rel="alternate" type="text/html" title="[NLP/Paper]ELMO - Deep contextualized word representations 논문 리뷰" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_03</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_03/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
   &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
@@ -108,7 +265,7 @@
 &lt;ul&gt;
   &lt;li&gt;We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks.&lt;/li&gt;
   &lt;li&gt;Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about words in-context, and that using all layers improves overall task performance.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...3</summary></entry><entry><title type="html">MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_02/" rel="alternate" type="text/html" title="MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_02</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_02/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...3</summary></entry><entry><title type="html">[NLP/Paper]MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_02/" rel="alternate" type="text/html" title="[NLP/Paper]MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_02</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_02/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Pre-training은 최근 NLP 분야에서 활발한 연구가 이루어지는 주제 중 하나&lt;/li&gt;
   &lt;li&gt;Google의 Bert와 XLNet은 자연어 이해(NLU) Task에서 큰 성공을 거둔 모델&lt;/li&gt;
@@ -275,140 +432,451 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;24-부동소수점&quot;&gt;2.4 부동소수점&lt;/h2&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;h1 id=&quot;24-부동소수점&quot;&gt;2.4 부동소수점&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;2.1 정보의 저장
+  &lt;li&gt;부동소수점 표현은 V = x*2^y 형태의 소수를 인코딩한다.&lt;/li&gt;
+  &lt;li&gt;거의 모든 컴퓨터가 IEEE 부동소수점이라고 알려지게 된 방식을 지원한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;241-비율이진수fractional-binary-numbers&quot;&gt;2.4.1 비율이진수(Fractional Binary Numbers)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;부동소수점에 대해서 이해하기 위한 첫 단계는 비율 이진수에 대해 생각해보는 것이다.
     &lt;ul&gt;
-      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
+      &lt;li&gt;숫자들의 자리값은 십진 소수점 부호(‘.’)에 상대적으로 정의된다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/04/img.png&quot; width=&quot;20%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위와 같은 방식으로 binary 표기법으로 생각해보자.
+    &lt;ul&gt;
+      &lt;li&gt;부호 ‘.’는 이진 소수점이 되고, 좌측의 브트들은 비음수의 2의 제곱을 자리값으로 가지며, 우측은 2의 음의 제곱을 자리값으로 갖는다.&lt;/li&gt;
+      &lt;li&gt;이진 소수점을 한 자리 우측으로 이동하면 2로 곱한 효과, 좌측으로 이동하면 2로 나눈 효과를 가진다.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/04/img_1.png&quot; width=&quot;20%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이진수 표기는 x*2^y로 나타낼 수 있는 수만 표시할 수 있다.&lt;/li&gt;
+  &lt;li&gt;이진 표시를 길게 늘려서 정확도를 높이도록 근사해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;242-ieee-부동소수점-표시&quot;&gt;2.4.2 IEEE 부동소수점 표시&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;IEEE 부동소수점 표준은 수를 V = (-1)^s&lt;em&gt;M&lt;/em&gt;2^E 형태로 나타낸다
+    &lt;ul&gt;
+      &lt;li&gt;s는 음수와 양수를 결정한다.&lt;/li&gt;
+      &lt;li&gt;유효숫자 M은 비율 이진수다.&lt;/li&gt;
+      &lt;li&gt;지수 E는 2의 제곱으로 자리값을 제공한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;2.2 정수의 표시
+  &lt;li&gt;부동소수점 수의 비트 표시는 이 값들을 인코딩하기 위해 세 개의 필드로 나누어진다.
     &lt;ul&gt;
-      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
+      &lt;li&gt;한 개의 부호 비트 s는 부호 s를 직접 인코딩한다.&lt;/li&gt;
+      &lt;li&gt;k비트 지수 필드 exp = ek-1…e1e0는 지수 E를 인코딩한다.&lt;/li&gt;
+      &lt;li&gt;n비트 비율 필드 frac = fn-1 … f1f0는 유효숫자 M을 인코딩한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/04/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Case 1: 정규화 값 Normalized Values
+    &lt;ul&gt;
+      &lt;li&gt;가장 일반적인 경우&lt;/li&gt;
+      &lt;li&gt;exp의 비트 패턴이 모두 0은 아니며, 모두 1이 아니어야 한다.&lt;/li&gt;
+      &lt;li&gt;E = e - Bias (Bias = 2^(k-1) - 1)&lt;/li&gt;
+      &lt;li&gt;비율 필드 frac은 비율 값 f&lt;/li&gt;
+      &lt;li&gt;유효 숫자 M = 1 + f 로 정의&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Case 2: 비정규화 값 Denormalized Values
+    &lt;ul&gt;
+      &lt;li&gt;지수 필드가 모두 0일 때 나타낸 수는 비정규화 형태를 갖는다.&lt;/li&gt;
+      &lt;li&gt;E = 1 - Bias&lt;/li&gt;
+      &lt;li&gt;M = f = 0&lt;/li&gt;
+      &lt;li&gt;비정규화 숫자들의 기능은 0.0에 매우 가까운 값들을 나타냄
+        &lt;ul&gt;
+          &lt;li&gt;이들은 점증적 언더플로우라고 알려진 특성을 제공 (가능한 숫자 값들이 0.0 근처에서 같은 간격을 갖는다는 의미)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Case 3: 특수 값 Special Values
+    &lt;ul&gt;
+      &lt;li&gt;지수 필드가 모두 1인 경우
+        &lt;ul&gt;
+          &lt;li&gt;비율 필드가 모두 0이면, 결과값은 무한대를 나타냄&lt;/li&gt;
+          &lt;li&gt;비율 필드가 0이 아니면 NaN(not a numbuer)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/04/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;243-숫자-예제&quot;&gt;2.4.3 숫자 예제&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/04/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;244-근사법-rounding&quot;&gt;2.4.4 근사법 Rounding&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;부동소수점 산술연산은 표시방법이 제한된 범위와 정밀도를 갖기 때문에 실제 연산의 근사값을 사용할 수밖에 없다.&lt;/li&gt;
+  &lt;li&gt;“가장 유사한” 값 x를 체계적으로 계산하는 방법을 근사rounding 연산이다.&lt;/li&gt;
+  &lt;li&gt;네가지 근사 모드를 정의함
+    &lt;ul&gt;
+      &lt;li&gt;짝수근사법(round-to-even): 가장 가까운 값, 중간에 위치할 경우 짝수를 향해 근사함&lt;/li&gt;
+      &lt;li&gt;영방향근사 모드(round toward-zero): 양수 값을 아래쪽으로, 음수를 위쪽으로 근사함&lt;/li&gt;
+      &lt;li&gt;하향근사 모드(round-down): 양수와 음수를 모두 아래쪽으로 근사함&lt;/li&gt;
+      &lt;li&gt;상향근사 모드(round-up): 양수와 음수를 모두 위쪽으로 근사함&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
+&lt;h2 id=&quot;245-부동소수점-연산&quot;&gt;2.4.5 부동소수점 연산&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
+  &lt;li&gt;부동소수점 값 x,y를 실수로 보고, 일부 연산이 실수들에 대해 정의된다면 Round(x,y)가 되는데, 이것은 실수 연산의 정확한 결과 값을 근사한 것이다.&lt;/li&gt;
+  &lt;li&gt;부동소수점 덧셈에서 결합법칙이 성립하지 않는 것은 그룹의 특징 중에서 빠진 가장 중요한 부분이다.&lt;/li&gt;
+  &lt;li&gt;교환법칙은 성립하지만, 결합벅칙은 성립 되지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;c에서-부동소수점&quot;&gt;C에서 부동소수점&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;C는 짝수 근사모드를 사용한다.&lt;/li&gt;
+  &lt;li&gt;int에서 float로, 숫자는 오버플로우할 수 없지만, 근사될 수 있다.&lt;/li&gt;
+  &lt;li&gt;int나 float에서 double로, 정확한 수치 값은 보존될 수 있다.&lt;/li&gt;
+  &lt;li&gt;double에서 float로 범위가 더 작아지기 때문에 값이 오버플로우하여 무한대가 될 수 있따.&lt;/li&gt;
+  &lt;li&gt;float나 double에서 int로, 값은 0 방향으로 근사된다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;25-요약&quot;&gt;2.5 요약&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;정보를 비트로 인코딩하며, 이들은 일반적으로 연속된 바이트들로 구성된다.&lt;/li&gt;
+  &lt;li&gt;대부분의 머신들은 정수를 인코딩하기 위해 2의 보수를 사용하고 부동소수점을 인코딩하기 위해 IEEE 표준 754를 사용한다.&lt;/li&gt;
+  &lt;li&gt;부호형 및 비부호형 정수를 캐스팅할 때 비트 패턴을 유지하려고 하는데, T2U, U2T 함수들에 의해 나타난다.&lt;/li&gt;
+  &lt;li&gt;제한된 길이는 숫자들이 나타낼 수 있는 범위를 넘어설 때 오버플로우를 발생시킨다.&lt;/li&gt;
+  &lt;li&gt;비부호형과 2의 보수 산술연산은 결합법칙, 교환법칙, 분배법칙 등의 정수 산술연산의 많은 특성을 만족한다.&lt;/li&gt;
+  &lt;li&gt;결합법칙, 교환법칙, 분배법칙 특성을 쉬프트와 2의 제곱의 곱셈 간 관계와 함께 사용된다.&lt;/li&gt;
+  &lt;li&gt;부동소수점 산술연산은 매우 조심스럽게 사용해야한다.
     &lt;ul&gt;
-      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
+      &lt;li&gt;제한된 범위와 정밀도를 갖기 때문이며, 결합법칙 같은 일반적인 수학 법칙을 따르지 않기 때문이다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
-&lt;p&gt;x,y, 0≤x, y≤e^w가 있다고 하자, 두 합의 계산 범위는 0≤x+y≤2^(w+1)-2를 갖는다. 이 합의 크기를 표현 하기 위해서는 w+1개의 비트가 필요하게 된다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;“워드 크기 증가”는 산술연산의 결과를 완벽하게 표시하려면 필요한 워드 크기를 제한할 수 없다는 것을 의미한다.&lt;/li&gt;
-  &lt;li&gt;프로그래밍 언어들은 고정길이 산술연산을 지원하며 따라서 “덧셈”과 “곱셈”같은 연산은 정수에 대응하는 일반적인 연산들과는 다르다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;x,y에 대해 x+y 정수합을 w비트 길이로 절삭한 후에 다시 비부호형 정수로 나타낸다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;부동소수점을 마지막으로 Chapter2 정보의 표현과 처리를 마무리하였다. 데이터 엔지니어링 인턴 포지션에서 ETL 작업을 하며 소수점 데이터에 접근 했을 때 
+R코드와 Python의 소수 처리 방식이 달라서 해당 오류를 잡는데 많은 시간이 걸린 경험이 있었다. 그 때 당시에는 대충 방식이 다르구나~ 로 끝났지만, 이번 챕터를
+공부하게 되면서 아 부동소수점의 표현 방식 때문에(책은 C를 기준으로 하고 있지만,,,) 그런 오류가 잡혔던 거구나 하고 시야가 조금 더 넓어진 것 같다. 
+2.2절의 캐스팅과 2.4절의 부동소수점을 공부하면서 꽤 많은 애를 먹었지만, 앞으로 코딩을 하면서 캐스팅이나 소수점을 다룰 때 더 주의 깊게 다룰 수 있을 것 같다.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴퓨터는 두 개의 값을 갖는 신호로 표현되는 정보를 저장하고 처리한다.&lt;/li&gt;
+  &lt;li&gt;비트 패턴
+    &lt;ul&gt;
+      &lt;li&gt;이진수 체계를 사용하여 여러 비트를 묶어서 양수들을 인코딩하기 위해 사용한다.&lt;/li&gt;
+      &lt;li&gt;표준 문자코드를 사용해서 문서의 글자와 기호를 인코딩할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인코딩
+    &lt;ul&gt;
+      &lt;li&gt;비부호형 : 전통적인 이진수 표시 사용&lt;/li&gt;
+      &lt;li&gt;부호형(2의 보수) : 양수 또는 음수 값을 갖는 부호형 정수를 표시하는 가장 일반적인 방법&lt;/li&gt;
+      &lt;li&gt;부동소수점 : 2진수 버전의 소수 표시방법&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 장을 통해 표시 가능한 숫자의 범위, 비트수준 표시, 산술연산 성질 같은 특성을 도출한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;21-정보의-저장&quot;&gt;2.1 정보의 저장&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;기계수준의 프로그램은 메모리를 ‘가상메모리’라고 하는 거대한 바이트의 배열로 취급&lt;/li&gt;
+  &lt;li&gt;메모리의 각 바이트는 주소라고 하는 고유한 숫자로 식별할 수 있음&lt;/li&gt;
+  &lt;li&gt;모든 가능한 주소들의 집합을 ‘가상 주소공간’이라고 부름&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;211-16진수-표시&quot;&gt;2.1.1 16진수 표시&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;1바이트는 8비트로 이루어짐&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;이진수 표시와 십진수 표시는 비트 패턴을 표시하는 데 매우 불편함 -&amp;gt; 16진수 사용&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;16진수 &amp;lt;-&amp;gt; 10진수 &amp;lt;-&amp;gt; 2진수 변환을 잘 할 수 있어야 이후 내용이 헷갈리지 않음&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;212-데이터의-크기&quot;&gt;2.1.2 데이터의 크기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;모든 컴퓨터는 워드 크기(word size)를 규격으로 가지게 됨
+    &lt;ul&gt;
+      &lt;li&gt;w비트 워드 크기를 갖는 컴퓨터에서 가상주소는 0에서 2^w - 1 범위를 가짐&lt;/li&gt;
+      &lt;li&gt;프로그램은 최대 2^w 바이트에 접근 가능&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;정상적인 경우에는 x+y값을 유지하지만, 오버플로우의 경우에는 2^w만큼 줄어드는 효과를 낸다.&lt;/p&gt;
+    &lt;p&gt;최근에는 32비트 워드 크기를 갖는 컴퓨터에서 64비트 워드 크기를 갖는 컴퓨터로 전환이 보편적임&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_1.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/01.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;213-주소지정과-바이트-순서&quot;&gt;2.1.3 주소지정과 바이트 순서&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;여러 바이트에 걸쳐 있는 프로그램 객체들에 있어 두 개의 관습 설정
+    &lt;ul&gt;
+      &lt;li&gt;객체의 주소가 무엇이 되어야 하는지&lt;/li&gt;
+      &lt;li&gt;메모리에 바이트들을 어떻게 정렬해야 하는지&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비트 표시 [xw−1, xw−2, . . . , x1, x0]를 갖는 w-비트 정수가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;가장 중요한 바이트 : [xw−1, xw−2, . . . , xw−8]&lt;/li&gt;
+      &lt;li&gt;가장 덜 중요한 바이트 : [x7, x6, . . . , x0]&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;바이트 저장 방법
+    &lt;ul&gt;
+      &lt;li&gt;리틀 엔디안 : 가장 덜 중요한 바이트가 먼저 오는&lt;/li&gt;
+      &lt;li&gt;빅 엔디안 : 가장 중요한 바이트가 먼저 오는&lt;/li&gt;
+      &lt;li&gt;대부분의 인텔 호환 머신들은 리틀 엔디안 방식으로 동작&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;바이트 순서가 이슈가 되는 경우
+    &lt;ul&gt;
+      &lt;li&gt;이진 데이터가 네트워크를 통해 다른 컴퓨터로 전송될 때
+        &lt;ul&gt;
+          &lt;li&gt;리틀 엔디안과 빅 엔디안과의 통신에 있어 바이트 순서가 뒤바뀜&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;정수 데이터를 나타내는 바이트들을 살펴볼 때&lt;/li&gt;
+      &lt;li&gt;프로그램이 정상적인 타입 체계를 회피하도록 작성되었을 때&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;214-스트링의-표시&quot;&gt;2.1.4 스트링의 표시&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;그냥 ASCII를 사용한다는 내용,,,&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;215-코드의-표현&quot;&gt;2.1.5 코드의 표현&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;인스트럭션들의 인코딩이 컴퓨터 타입마다 모두 다름&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img02.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;컴퓨터 시스템에서 근본 개념은 컴퓨터의 관점에서 볼 때 프로그램이라는 것은 단순히 바이트의 연속이라는 것&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;216-부울-boolean-대수&quot;&gt;2.1.6 부울 Boolean 대수&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;NOT : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;AND : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;OR : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;|&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;EXCLUSIVE-OR : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;^&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;217-c에서의-비트수준-연산&quot;&gt;2.1.7 C에서의 비트수준 연산&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C에서는 비트들 간의 부울 연산을 지원&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_1.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비트수준 연산은 일반적으로 마스크 연산을 구현할 때 사용한다.&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;마스크: 비트 연산에 사용되는 데이터&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;219-c에서의-쉬프트-연산&quot;&gt;2.1.9 C에서의 쉬프트 연산&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;비트 패턴을 좌우로 이동시키는 쉬프트 연산 집합 제공&lt;/li&gt;
+  &lt;li&gt;x « k
+    &lt;ul&gt;
+      &lt;li&gt;x는 좌측으로 k비트 이동하고, 중요한 좌측의 k비트가 밀려서 삭제되며, 우측에는 k개의 0으로 채워진다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;x » k
+    &lt;ul&gt;
+      &lt;li&gt;좌측 쉬프트와 비슷하지만 미묘한 차이가 있다.&lt;/li&gt;
+      &lt;li&gt;논리 우측 쉬프트 : 좌측 끝을 k개의 0들로 채움&lt;/li&gt;
+      &lt;li&gt;산술 우측 쉬프트 : 좌측 끝을 가장 중요한 비트를 K개 반복해서 채움&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;부호형 데이터는 산술 우측 쉬프트, 비부호형 데이터는 논리 우측 쉬프트 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;22-정수의-표시&quot;&gt;2.2 정수의 표시&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;컴퓨터가 어떻게 정수를 인코딩하고 사용하는지, 아래 그림은 수학적 용어들로 나열한 것&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;221-정수형-데이터-타입&quot;&gt;2.2.1 정수형 데이터 타입&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;서로 다른 크기에 할당된 바이트 수는 컴퓨터의 워드 크기와 컴파일러에 따라 달라진다.&lt;/li&gt;
+  &lt;li&gt;64비트 프로그램에서의 C 정수형 자료형의 일반적인 범위
+    &lt;ul&gt;
+      &lt;li&gt;음수의 범위가 양의 범위보다 1 더 넓은 것에 주목&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;222-비부호형의-인코딩&quot;&gt;2.2.2 비부호형의 인코딩&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;음수 값을 포함하지 않음&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;B2U는 Binary 에서 Unsigned의 줄임말&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_4.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;../../assets/img/csapp/02/img_5.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;223-2의-보수-twos-complement-인코딩&quot;&gt;2.2.3 2의 보수 two’s complement 인코딩&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;음수 값을 포함&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;B2T는 Binary 에서 Two’s complement의 줄임말&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_6.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;../../assets/img/csapp/02/img_7.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;산술연산에서 완전한 정수 결과가 그 데이터 타입의 제한된 워드 길이로 나타낼 수 없을 때 이 연산은 “오버플로우한다”고 한다.&lt;/p&gt;
+  &lt;p&gt;모든 머신들에서의 호환성을 극대화하는 것을 고려하는 프로그래머라면 자료형들의 보장된 범위를 넘어가는 표현 가능한 값의 특정 범위를 가정해서는 안되며, 
+부호형 수에 대해서 특정 표시를 가정해서도 안된다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
-&lt;p&gt;2의 보수 덧셈의 결과값이 너무 크거나(양수) 또는 너무 작아서(음수) 표시할 수 없을 때 우리는 어떻게 해야 할지 결정해야 한다.&lt;/p&gt;
+&lt;h3 id=&quot;224-비부호형과-부호형-간의-변환&quot;&gt;2.2.4 비부호형과 부호형 간의 변환&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;x+y를 w비트 길이로 절삭한 후에 2의 보수로 결과를 나타내는 연산이다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;
-  &lt;img src=&quot;../../assets/img/csapp/03/img_3.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;2의 보수의 합이 2^(w-1)을 넘어간다면 양수 오버플로우가 생기고, -2^(w-1) 미만으로 내려간다면 음수 오버플로우가 생겨 각각에 2^w을 더해주거나 빼준다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;비부호형 비트반전&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_4.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;2의보수 비트반전&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_5.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;비부호형 곱셉은 2w비트 정수 곱의 하위 w비트로 주어지는 w비트 값을 만드는 것으로 정의된다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;비부호형 수를 w비트로 절삭하는 것은 해당 값을 2^w로 나눈 나머지를 계싼하는 것과 같다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;2^w로 나눈 나머지를 취하고 비부호형에서 2의 보수형태로 변환하는 것과 같다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_7.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;정수 곱셉은 매우 느리다. 컴파일러에서 수행되는 중요한 최적화는 상수를 곱하게 되는 경우들을 쉬프트와 덧셈의 조합으로 대체한다.&lt;/li&gt;
-  &lt;li&gt;2의 제곱을 곱하는 경우
+  &lt;li&gt;C는 서로 다른 숫자 데이터 타입들 간에 캐스팅을 허용한다.&lt;/li&gt;
+  &lt;li&gt;2의 보수에서 비부호형으로의 변환
     &lt;ul&gt;
-      &lt;li&gt;k≥0인 모든 k에 대해 x2^k의 w+k 비트수준 표현은 우측에 k개의 0을 추가한 것이다.&lt;/li&gt;
-      &lt;li&gt;eg) 11은 w=4인 경우 [1011]이다. 이것을 왼쪽으로 k=2 쉬프트 하면 [101100]이 되며 이것은 11*4=44를 인코딩한 것이다.&lt;/li&gt;
+      &lt;li&gt;TMin ≤ x ≤ TMax를 만족하는 x에 대해&lt;br /&gt; x가 0보다 크거나 같으면 x&lt;br /&gt;x가 0보다 작으면 x+2^w&lt;/li&gt;
     &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;이유는 2의 보수는 가장 중요한 바트 위치에 부호를 표현하는 비트를 사용하는데 Unsigned에서는 부호비트를 사용하지 않기 때문이다.&lt;/p&gt;
+    &lt;/blockquote&gt;
   &lt;/li&gt;
-  &lt;li&gt;2의 제곱을 곱하면 비부형이건 2의 보수 산술연산이건 오버플로우가 발생할 수 있다.
+  &lt;li&gt;비부호형에서 2의 보수로의 변환
     &lt;ul&gt;
-      &lt;li&gt;eg) 위의 예제를 예로 들자면, [101100]을 4비트로 절삭하면 &lt;a href=&quot;십진수 12 = 44mod16&quot;&gt;1100&lt;/a&gt;을 얻는다.&lt;/li&gt;
+      &lt;li&gt;0 ≤ u ≤ UMax를 만족하는 u에 대해&lt;br /&gt;u가 TMax보다 작거나 같으면 u&lt;br /&gt;u가 TMax보다 크면 u-2^w&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;이유는 T2U의 이유와 동일하다.&lt;br /&gt;
+이러한 특성이 산술연산에서 오버플로우를 일으킨다. 2.3장에서 해당 내용이 나올 예정이다.(이해하는데 살짝 오래걸려씀 ㅜㅜ..)&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;225-c에서-부호형과-비부호형의-비교&quot;&gt;2.2.5 C에서 부호형과 비부호형의 비교&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;C에서는 부호형과 비부호형 산술연산을 지원한다.
+    &lt;ul&gt;
+      &lt;li&gt;C는 묵시적으로 부호형 인자를 비부호형으로 변환하고, 숫자들이 비음수라고 가정하고 계산을 수행한다.
+&lt;img src=&quot;../../assets/img/csapp/02/img_8.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;정수 곱셈이 쉬프트와 덧셈을 사용하는 것보다 훨씬 비용이 많이 드는 연산이기 때문에 C 컴파일러들은 정수가 상수와 곱해지는 경우에 이들을 쉬프트, 덧셈, 뺄셈 등의 조합을 사용해서 제거하려고 노력한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
+&lt;h3 id=&quot;226-수의-비트-표시를-확장하기&quot;&gt;2.2.6 수의 비트 표시를 확장하기&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;정수 나눗셈은 정수 곱셉보다 훨씬 느리다. 2의 제곱으로 나누는 것은 오른쪽 쉬프트를 사용한다.&lt;/li&gt;
-  &lt;li&gt;비부호형은 논리 쉬프트, 2의 보수는 산술 쉬프트를 사용한다.&lt;/li&gt;
-  &lt;li&gt;2의 보수 음수에서는 보정값을 더해서 결과값을 0 방향으로 근사하도록 한다.&lt;/li&gt;
+  &lt;li&gt;비부호형 수를 길이가 긴 데이터 타입으로 변환하기 위해서 단순히 앞에 0들을 추가할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;영의 확장 zero extension 이라고 알려짐&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2의 보수를 보다 긴 데이터 타입으로 변환하려면 앞에 가장 중요한 비트를 복사해서 추가한다.
+    &lt;ul&gt;
+      &lt;li&gt;부호 확장 sign extension 이라고 알려짐&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_9.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;
-&lt;p&gt;컴퓨터에서 실행되는 “정수” 산술연산은 실제로는 modular 산술연산의 형태로 수행된다. 숫자를 표현하기 위해 유한한 길이의 워드를 사용하기 때문에 가능한 값의 범위가 제한되며 연산의 결과가 오버플로우될 수 있다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry><entry><title type="html">[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
+&lt;h3 id=&quot;227-숫자의-절삭&quot;&gt;2.2.7 숫자의 절삭&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;진짜 진짜 너무 어려웠다… mod가 뭔지 몰랐는데 mod는 나머지 구하기를 뜻하고 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;비트의 개수를 줄이는 경우이다.
+    &lt;ul&gt;
+      &lt;li&gt;eg1) int type을 short type으로 캐스팅할 때. 32비트 int를 16비트 short로 절삭한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비부호형 수의 절삭
+    &lt;ul&gt;
+      &lt;li&gt;x’ = x mod 2^k 이다.
+        &lt;ul&gt;
+          &lt;li&gt;삭제되는 모든 비트들은 i ≥ k인 2^i의 자리값을 가진다.&lt;/li&gt;
+          &lt;li&gt;자리값들은 모듈(mod) 계산으로 모두 0이 된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2의 보수 숫자의 절삭
+    &lt;ul&gt;
+      &lt;li&gt;x’ = U2T(x mod 2^k) 이다.
+        &lt;ul&gt;
+          &lt;li&gt;가장 중요한 비트인 x_k-1이 자리값 2^(k-1) 대신 -2^(k-1)을 갖는 효과를 가진다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;228-signed와-unsigned에-관한-조언&quot;&gt;2.2.8 Signed와 Unsigned에 관한 조언&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;부호형을 비부호형으로 묵시적인 타입 변환을 하면 다소 직관적이지 않은 동작을 보인다.&lt;/li&gt;
+  &lt;li&gt;비부호형 값들은 워드 길이 데이터를 숫자 값으로 해석하지 않고 단지 비트들의 집합으로 생각하려는 경우에 매우 유용하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2.2 정수의 표현 챕터에서 나온 Signed와 Unsigned의 인코딩, 변환, 비교 그리고 비트 확장 및 절삭은 다음 챕터인 산술연산에서 모두 사용된다.
+위의 내용들을 정확히 숙지하지 않고 산술연산을 공부하게 되면 많은 어려움을 겪을 수 있다. 이번 챕터를 확실하게 이해하고 다음 챕터로 넘어가자.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 02</summary></entry><entry><title type="html">[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
 &lt;p&gt;학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
 java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
 Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!&lt;br /&gt;
@@ -760,462 +1228,137 @@ Hello World 출력 코드를 작성한다.&lt;br /&gt;
 
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;value:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iarr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
     &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;컴퓨터는 두 개의 값을 갖는 신호로 표현되는 정보를 저장하고 처리한다.&lt;/li&gt;
-  &lt;li&gt;비트 패턴
+  &lt;li&gt;2.1 정보의 저장
     &lt;ul&gt;
-      &lt;li&gt;이진수 체계를 사용하여 여러 비트를 묶어서 양수들을 인코딩하기 위해 사용한다.&lt;/li&gt;
-      &lt;li&gt;표준 문자코드를 사용해서 문서의 글자와 기호를 인코딩할 수 있다.&lt;/li&gt;
+      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;인코딩
+  &lt;li&gt;2.2 정수의 표시
     &lt;ul&gt;
-      &lt;li&gt;비부호형 : 전통적인 이진수 표시 사용&lt;/li&gt;
-      &lt;li&gt;부호형(2의 보수) : 양수 또는 음수 값을 갖는 부호형 정수를 표시하는 가장 일반적인 방법&lt;/li&gt;
-      &lt;li&gt;부동소수점 : 2진수 버전의 소수 표시방법&lt;/li&gt;
+      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;이 장을 통해 표시 가능한 숫자의 범위, 비트수준 표시, 산술연산 성질 같은 특성을 도출한다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;21-정보의-저장&quot;&gt;2.1 정보의 저장&lt;/h2&gt;
+&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;기계수준의 프로그램은 메모리를 ‘가상메모리’라고 하는 거대한 바이트의 배열로 취급&lt;/li&gt;
-  &lt;li&gt;메모리의 각 바이트는 주소라고 하는 고유한 숫자로 식별할 수 있음&lt;/li&gt;
-  &lt;li&gt;모든 가능한 주소들의 집합을 ‘가상 주소공간’이라고 부름&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;211-16진수-표시&quot;&gt;2.1.1 16진수 표시&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;1바이트는 8비트로 이루어짐&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;이진수 표시와 십진수 표시는 비트 패턴을 표시하는 데 매우 불편함 -&amp;gt; 16진수 사용&lt;/p&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;16진수 &amp;lt;-&amp;gt; 10진수 &amp;lt;-&amp;gt; 2진수 변환을 잘 할 수 있어야 이후 내용이 헷갈리지 않음&lt;/p&gt;
-    &lt;/blockquote&gt;
+  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
+    &lt;ul&gt;
+      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;212-데이터의-크기&quot;&gt;2.1.2 데이터의 크기&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
+&lt;p&gt;x,y, 0≤x, y≤e^w가 있다고 하자, 두 합의 계산 범위는 0≤x+y≤2^(w+1)-2를 갖는다. 이 합의 크기를 표현 하기 위해서는 w+1개의 비트가 필요하게 된다.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;모든 컴퓨터는 워드 크기(word size)를 규격으로 가지게 됨
-    &lt;ul&gt;
-      &lt;li&gt;w비트 워드 크기를 갖는 컴퓨터에서 가상주소는 0에서 2^w - 1 범위를 가짐&lt;/li&gt;
-      &lt;li&gt;프로그램은 최대 2^w 바이트에 접근 가능&lt;/li&gt;
-    &lt;/ul&gt;
+  &lt;li&gt;“워드 크기 증가”는 산술연산의 결과를 완벽하게 표시하려면 필요한 워드 크기를 제한할 수 없다는 것을 의미한다.&lt;/li&gt;
+  &lt;li&gt;프로그래밍 언어들은 고정길이 산술연산을 지원하며 따라서 “덧셈”과 “곱셈”같은 연산은 정수에 대응하는 일반적인 연산들과는 다르다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;x,y에 대해 x+y 정수합을 w비트 길이로 절삭한 후에 다시 비부호형 정수로 나타낸다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;최근에는 32비트 워드 크기를 갖는 컴퓨터에서 64비트 워드 크기를 갖는 컴퓨터로 전환이 보편적임&lt;/p&gt;
+    &lt;p&gt;정상적인 경우에는 x+y값을 유지하지만, 오버플로우의 경우에는 2^w만큼 줄어드는 효과를 낸다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/01.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_1.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h3 id=&quot;213-주소지정과-바이트-순서&quot;&gt;2.1.3 주소지정과 바이트 순서&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;여러 바이트에 걸쳐 있는 프로그램 객체들에 있어 두 개의 관습 설정
-    &lt;ul&gt;
-      &lt;li&gt;객체의 주소가 무엇이 되어야 하는지&lt;/li&gt;
-      &lt;li&gt;메모리에 바이트들을 어떻게 정렬해야 하는지&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;비트 표시 [xw−1, xw−2, . . . , x1, x0]를 갖는 w-비트 정수가 있다.
-    &lt;ul&gt;
-      &lt;li&gt;가장 중요한 바이트 : [xw−1, xw−2, . . . , xw−8]&lt;/li&gt;
-      &lt;li&gt;가장 덜 중요한 바이트 : [x7, x6, . . . , x0]&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;바이트 저장 방법
-    &lt;ul&gt;
-      &lt;li&gt;리틀 엔디안 : 가장 덜 중요한 바이트가 먼저 오는&lt;/li&gt;
-      &lt;li&gt;빅 엔디안 : 가장 중요한 바이트가 먼저 오는&lt;/li&gt;
-      &lt;li&gt;대부분의 인텔 호환 머신들은 리틀 엔디안 방식으로 동작&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;바이트 순서가 이슈가 되는 경우
-    &lt;ul&gt;
-      &lt;li&gt;이진 데이터가 네트워크를 통해 다른 컴퓨터로 전송될 때
-        &lt;ul&gt;
-          &lt;li&gt;리틀 엔디안과 빅 엔디안과의 통신에 있어 바이트 순서가 뒤바뀜&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;정수 데이터를 나타내는 바이트들을 살펴볼 때&lt;/li&gt;
-      &lt;li&gt;프로그램이 정상적인 타입 체계를 회피하도록 작성되었을 때&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;214-스트링의-표시&quot;&gt;2.1.4 스트링의 표시&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;그냥 ASCII를 사용한다는 내용,,,&lt;/p&gt;
+  &lt;p&gt;산술연산에서 완전한 정수 결과가 그 데이터 타입의 제한된 워드 길이로 나타낼 수 없을 때 이 연산은 “오버플로우한다”고 한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;215-코드의-표현&quot;&gt;2.1.5 코드의 표현&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
+&lt;p&gt;2의 보수 덧셈의 결과값이 너무 크거나(양수) 또는 너무 작아서(음수) 표시할 수 없을 때 우리는 어떻게 해야 할지 결정해야 한다.&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;인스트럭션들의 인코딩이 컴퓨터 타입마다 모두 다름&lt;/p&gt;
+    &lt;p&gt;x+y를 w비트 길이로 절삭한 후에 2의 보수로 결과를 나타내는 연산이다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img02.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;컴퓨터 시스템에서 근본 개념은 컴퓨터의 관점에서 볼 때 프로그램이라는 것은 단순히 바이트의 연속이라는 것&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;
+  &lt;img src=&quot;../../assets/img/csapp/03/img_3.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;216-부울-boolean-대수&quot;&gt;2.1.6 부울 Boolean 대수&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;NOT : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;AND : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;OR : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;|&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;EXCLUSIVE-OR : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;^&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;2의 보수의 합이 2^(w-1)을 넘어간다면 양수 오버플로우가 생기고, -2^(w-1) 미만으로 내려간다면 음수 오버플로우가 생겨 각각에 2^w을 더해주거나 빼준다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;217-c에서의-비트수준-연산&quot;&gt;2.1.7 C에서의 비트수준 연산&lt;/h3&gt;
+&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;C에서는 비트들 간의 부울 연산을 지원&lt;/p&gt;
+    &lt;p&gt;비부호형 비트반전&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_1.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_4.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;비트수준 연산은 일반적으로 마스크 연산을 구현할 때 사용한다.&lt;/p&gt;
-    &lt;blockquote&gt;
-      &lt;p&gt;마스크: 비트 연산에 사용되는 데이터&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+    &lt;p&gt;2의보수 비트반전&lt;/p&gt;
 
-&lt;h3 id=&quot;219-c에서의-쉬프트-연산&quot;&gt;2.1.9 C에서의 쉬프트 연산&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;비트 패턴을 좌우로 이동시키는 쉬프트 연산 집합 제공&lt;/li&gt;
-  &lt;li&gt;x « k
-    &lt;ul&gt;
-      &lt;li&gt;x는 좌측으로 k비트 이동하고, 중요한 좌측의 k비트가 밀려서 삭제되며, 우측에는 k개의 0으로 채워진다.&lt;/li&gt;
-    &lt;/ul&gt;
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_5.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;x » k
-    &lt;ul&gt;
-      &lt;li&gt;좌측 쉬프트와 비슷하지만 미묘한 차이가 있다.&lt;/li&gt;
-      &lt;li&gt;논리 우측 쉬프트 : 좌측 끝을 k개의 0들로 채움&lt;/li&gt;
-      &lt;li&gt;산술 우측 쉬프트 : 좌측 끝을 가장 중요한 비트를 K개 반복해서 채움&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;부호형 데이터는 산술 우측 쉬프트, 비부호형 데이터는 논리 우측 쉬프트 사용&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;22-정수의-표시&quot;&gt;2.2 정수의 표시&lt;/h2&gt;
+&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;비부호형 곱셉은 2w비트 정수 곱의 하위 w비트로 주어지는 w비트 값을 만드는 것으로 정의된다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비부호형 수를 w비트로 절삭하는 것은 해당 값을 2^w로 나눈 나머지를 계싼하는 것과 같다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;컴퓨터가 어떻게 정수를 인코딩하고 사용하는지, 아래 그림은 수학적 용어들로 나열한 것&lt;/p&gt;
+    &lt;p&gt;2^w로 나눈 나머지를 취하고 비부호형에서 2의 보수형태로 변환하는 것과 같다.&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_7.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;221-정수형-데이터-타입&quot;&gt;2.2.1 정수형 데이터 타입&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;서로 다른 크기에 할당된 바이트 수는 컴퓨터의 워드 크기와 컴파일러에 따라 달라진다.&lt;/li&gt;
-  &lt;li&gt;64비트 프로그램에서의 C 정수형 자료형의 일반적인 범위
+  &lt;li&gt;정수 곱셉은 매우 느리다. 컴파일러에서 수행되는 중요한 최적화는 상수를 곱하게 되는 경우들을 쉬프트와 덧셈의 조합으로 대체한다.&lt;/li&gt;
+  &lt;li&gt;2의 제곱을 곱하는 경우
     &lt;ul&gt;
-      &lt;li&gt;음수의 범위가 양의 범위보다 1 더 넓은 것에 주목&lt;/li&gt;
+      &lt;li&gt;k≥0인 모든 k에 대해 x2^k의 w+k 비트수준 표현은 우측에 k개의 0을 추가한 것이다.&lt;/li&gt;
+      &lt;li&gt;eg) 11은 w=4인 경우 [1011]이다. 이것을 왼쪽으로 k=2 쉬프트 하면 [101100]이 되며 이것은 11*4=44를 인코딩한 것이다.&lt;/li&gt;
     &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;222-비부호형의-인코딩&quot;&gt;2.2.2 비부호형의 인코딩&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;음수 값을 포함하지 않음&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;B2U는 Binary 에서 Unsigned의 줄임말&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_4.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;
-&lt;img src=&quot;../../assets/img/csapp/02/img_5.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;223-2의-보수-twos-complement-인코딩&quot;&gt;2.2.3 2의 보수 two’s complement 인코딩&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;음수 값을 포함&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;B2T는 Binary 에서 Two’s complement의 줄임말&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_6.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;
-&lt;img src=&quot;../../assets/img/csapp/02/img_7.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;li&gt;2의 제곱을 곱하면 비부형이건 2의 보수 산술연산이건 오버플로우가 발생할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;eg) 위의 예제를 예로 들자면, [101100]을 4비트로 절삭하면 &lt;a href=&quot;십진수 12 = 44mod16&quot;&gt;1100&lt;/a&gt;을 얻는다.&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;모든 머신들에서의 호환성을 극대화하는 것을 고려하는 프로그래머라면 자료형들의 보장된 범위를 넘어가는 표현 가능한 값의 특정 범위를 가정해서는 안되며, 
-부호형 수에 대해서 특정 표시를 가정해서도 안된다.&lt;/p&gt;
+  &lt;p&gt;정수 곱셈이 쉬프트와 덧셈을 사용하는 것보다 훨씬 비용이 많이 드는 연산이기 때문에 C 컴파일러들은 정수가 상수와 곱해지는 경우에 이들을 쉬프트, 덧셈, 뺄셈 등의 조합을 사용해서 제거하려고 노력한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;224-비부호형과-부호형-간의-변환&quot;&gt;2.2.4 비부호형과 부호형 간의 변환&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;C는 서로 다른 숫자 데이터 타입들 간에 캐스팅을 허용한다.&lt;/li&gt;
-  &lt;li&gt;2의 보수에서 비부호형으로의 변환
-    &lt;ul&gt;
-      &lt;li&gt;TMin ≤ x ≤ TMax를 만족하는 x에 대해&lt;br /&gt; x가 0보다 크거나 같으면 x&lt;br /&gt;x가 0보다 작으면 x+2^w&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;이유는 2의 보수는 가장 중요한 바트 위치에 부호를 표현하는 비트를 사용하는데 Unsigned에서는 부호비트를 사용하지 않기 때문이다.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;비부호형에서 2의 보수로의 변환
-    &lt;ul&gt;
-      &lt;li&gt;0 ≤ u ≤ UMax를 만족하는 u에 대해&lt;br /&gt;u가 TMax보다 작거나 같으면 u&lt;br /&gt;u가 TMax보다 크면 u-2^w&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;blockquote&gt;
-      &lt;p&gt;이유는 T2U의 이유와 동일하다.&lt;br /&gt;
-이러한 특성이 산술연산에서 오버플로우를 일으킨다. 2.3장에서 해당 내용이 나올 예정이다.(이해하는데 살짝 오래걸려씀 ㅜㅜ..)&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
+  &lt;li&gt;정수 나눗셈은 정수 곱셉보다 훨씬 느리다. 2의 제곱으로 나누는 것은 오른쪽 쉬프트를 사용한다.&lt;/li&gt;
+  &lt;li&gt;비부호형은 논리 쉬프트, 2의 보수는 산술 쉬프트를 사용한다.&lt;/li&gt;
+  &lt;li&gt;2의 보수 음수에서는 보정값을 더해서 결과값을 0 방향으로 근사하도록 한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;225-c에서-부호형과-비부호형의-비교&quot;&gt;2.2.5 C에서 부호형과 비부호형의 비교&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;C에서는 부호형과 비부호형 산술연산을 지원한다.
-    &lt;ul&gt;
-      &lt;li&gt;C는 묵시적으로 부호형 인자를 비부호형으로 변환하고, 숫자들이 비음수라고 가정하고 계산을 수행한다.
-&lt;img src=&quot;../../assets/img/csapp/02/img_8.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;226-수의-비트-표시를-확장하기&quot;&gt;2.2.6 수의 비트 표시를 확장하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;비부호형 수를 길이가 긴 데이터 타입으로 변환하기 위해서 단순히 앞에 0들을 추가할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;영의 확장 zero extension 이라고 알려짐&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2의 보수를 보다 긴 데이터 타입으로 변환하려면 앞에 가장 중요한 비트를 복사해서 추가한다.
-    &lt;ul&gt;
-      &lt;li&gt;부호 확장 sign extension 이라고 알려짐&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/02/img_9.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;227-숫자의-절삭&quot;&gt;2.2.7 숫자의 절삭&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;진짜 진짜 너무 어려웠다… mod가 뭔지 몰랐는데 mod는 나머지 구하기를 뜻하고 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;비트의 개수를 줄이는 경우이다.
-    &lt;ul&gt;
-      &lt;li&gt;eg1) int type을 short type으로 캐스팅할 때. 32비트 int를 16비트 short로 절삭한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;비부호형 수의 절삭
-    &lt;ul&gt;
-      &lt;li&gt;x’ = x mod 2^k 이다.
-        &lt;ul&gt;
-          &lt;li&gt;삭제되는 모든 비트들은 i ≥ k인 2^i의 자리값을 가진다.&lt;/li&gt;
-          &lt;li&gt;자리값들은 모듈(mod) 계산으로 모두 0이 된다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2의 보수 숫자의 절삭
-    &lt;ul&gt;
-      &lt;li&gt;x’ = U2T(x mod 2^k) 이다.
-        &lt;ul&gt;
-          &lt;li&gt;가장 중요한 비트인 x_k-1이 자리값 2^(k-1) 대신 -2^(k-1)을 갖는 효과를 가진다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;228-signed와-unsigned에-관한-조언&quot;&gt;2.2.8 Signed와 Unsigned에 관한 조언&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;부호형을 비부호형으로 묵시적인 타입 변환을 하면 다소 직관적이지 않은 동작을 보인다.&lt;/li&gt;
-  &lt;li&gt;비부호형 값들은 워드 길이 데이터를 숫자 값으로 해석하지 않고 단지 비트들의 집합으로 생각하려는 경우에 매우 유용하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;2.2 정수의 표현 챕터에서 나온 Signed와 Unsigned의 인코딩, 변환, 비교 그리고 비트 확장 및 절삭은 다음 챕터인 산술연산에서 모두 사용된다.
-위의 내용들을 정확히 숙지하지 않고 산술연산을 공부하게 되면 많은 어려움을 겪을 수 있다. 이번 챕터를 확실하게 이해하고 다음 챕터로 넘어가자.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 02</summary></entry><entry><title type="html">[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행</title><link href="http://localhost:4000/cs:app/csapp_01/" rel="alternate" type="text/html" title="[CS:APP] Chapter 01. 컴퓨터 시스템으로의 여행" /><published>2022-01-21T00:00:00+09:00</published><updated>2022-01-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_01</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_01/">&lt;h1 id=&quot;csapp&quot;&gt;CS:APP&lt;/h1&gt;
-&lt;p&gt;Computer Systems A Programmer’s Perspective, CSAPP로도 잘 알려져있는 컴퓨터 구조론의 바이블이다. 이 책을 통해서 컴퓨터구조론을 다시 공부해볼 생각이다.
-군대 전역 직후 2학년 2학기로 복학해서 컴퓨터 구조론 전공 수업을 들었지만 학점을 위한 공부만 해서 남아있는게 없는 것 같다. 인턴 생활을 하면서 다양한 부분에서 어려움을 겪었는데
-기초를 몰라서 헤메고 있다는 느낌을 굉장히 많이 받았다.&lt;/p&gt;
-
-&lt;p&gt;첫 페이지를 읽었을 때 이 책으로 정하길 정말 잘했다는 생각이 들었다. 전공 수업때 사용했던 컴퓨터구조론 책은 제작자의 관점에서 기술 되었다는 느낌을 강하게 받았었다.
-하지만, CSAPP는 프로그래머의 관점에서 기술하였고, 컴퓨터구조론의 시스템들을 어떻게 사용해서 좋은 프로그램을 개발할 수 있는지를 배울 수 있다고 한다. 
-인턴 생활을 하면서 실제 현업을 겪고 느꼇던 강한 의문들을 해결할 수 있을 것 같은 느낌이다.&lt;/p&gt;
-
-&lt;p&gt;책의 목차는 정보의 표현과 처리로 시작하여 프로그램의 기계어 표현, 프로세서 구조, 프로그램 성능 최적화, 메모리 계층구조, 링커, 예외적인 제어흐름, 가상메모리, 시스템 수준 입출력, 네트워크 프로그래밍, 동시성 프로그래밍 
-순서로 이어져 있다. 많은 사람들은 6장 메모리 계층구조, 7장 링커의 전까지 읽어도 좋다고 하지만, 가능하다면 12장 동시성 프로그래밍까지 읽어볼 생각이다.&lt;/p&gt;
-
-&lt;h1 id=&quot;chapter-01-컴퓨터-시스템으로의-여행&quot;&gt;Chapter 01. 컴퓨터 시스템으로의 여행&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;시스템 구현방식은 변하지만 근본적인 개념들은 변하지 않는다.&lt;/li&gt;
-  &lt;li&gt;프로그래머들로 하여금 컴포넌트들이 어떻게 동작하고 프로그램 성능과 정확성에 어떤 영향을 주는지 알 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;11-정보는-비트와-컨텍스트로-이루어진다&quot;&gt;1.1 정보는 비트와 컨텍스트로 이루어진다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;텍스트 문자 -&amp;gt; 아스키(ASCII) 표준 사용하여 표현 -&amp;gt; 각 문자를 바이트 길이의 정수 값으로 표현 -&amp;gt; 연속된 바이트 파일 저장&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;12-프로그램은-다른-프로그램에-의해-다른-형태로-번역된다&quot;&gt;1.2 프로그램은 다른 프로그램에 의해 다른 형태로 번역된다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;hello.c 실행 -&amp;gt; 저급 기계어 인스트럭션들로 번역 -&amp;gt; (실행가능 목적 프로그램)으로 합쳐져 바이너리 디스크 파일로 저장 
--&amp;gt; 컴파일러 드라이브는 유닉스 시스템에서 소스파일에서 오브젝트 파일로 변경 -&amp;gt; 4개의 단계를 거쳐서 실행
-    &lt;ul&gt;
-      &lt;li&gt;4개의 단계:
-        &lt;ol&gt;
-          &lt;li&gt;전처리기&lt;/li&gt;
-          &lt;li&gt;컴파일러&lt;/li&gt;
-          &lt;li&gt;어셈블러&lt;/li&gt;
-          &lt;li&gt;링커&lt;/li&gt;
-        &lt;/ol&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;13-컴파일-시스템이-어떻게-동작하는지-이해하는-것은-중요하다&quot;&gt;1.3 컴파일 시스템이 어떻게 동작하는지 이해하는 것은 중요하다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로그램 성능 최적화하기
-    &lt;ul&gt;
-      &lt;li&gt;eg1) switch문은 if-else문을 연속해서 사용하는 것보다 효율적인가?&lt;/li&gt;
-      &lt;li&gt;eg2) while 루프는 for 루프보다 더 효율적일까?&lt;/li&gt;
-      &lt;li&gt;eg3) 포인터 참조가 배열 인덱스보다 더 효율적인가?&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;링크 에러 이해하기
-    &lt;ul&gt;
-      &lt;li&gt;eg1) 정적변수와 전역변수의 차이는 무엇인가?&lt;/li&gt;
-      &lt;li&gt;eg2) 다른 파일에 동일한 이름의 두 개의 전역변수를 정의한다면 무슨 일이 일어나는가?&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;보안 약점 피하기
-    &lt;ul&gt;
-      &lt;li&gt;eg1) 프로그램 스택에 데이터와 제어 정보가 저장되는 방식은 무엇인가?&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;14-프로세서는-메모리에-저장된-인스트럭션을-읽고-해석한다&quot;&gt;1.4 프로세서는 메모리에 저장된 인스트럭션을 읽고 해석한다.&lt;/h3&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;인스트럭션이란 : 컴퓨터에게 일을 시키는 단위(기계어)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;시스템의 하드웨어 조직
-    &lt;ul&gt;
-      &lt;li&gt;버스 : 시스템 내를 관통하는 전기적 배선군&lt;/li&gt;
-      &lt;li&gt;입출력 장치 : 시스템과 외부세계외의 연결 담당&lt;/li&gt;
-      &lt;li&gt;메인 메모리 : 프로세서가 프로그램을 실행하는 동안 데이터와 프로그램을 모두 저장하는 임시 저장장치&lt;/li&gt;
-      &lt;li&gt;프로세서 : 인스트럭션들을 해독(실행)하는 엔진
-        &lt;ul&gt;
-          &lt;li&gt;인스트럭션의 요청에 의해 CPU(프로세서)가 실행하는 단순한 작업의 예
-            &lt;ul&gt;
-              &lt;li&gt;적재(load), 저장(store), 작업(operate), 점프(jump)&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프로그램의 실행
-(그림 추가 예정 ㅎㅎ..)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;15-캐시가-중요하다&quot;&gt;1.5 캐시가 중요하다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;hello 프로그램의 기계어 인스트럭션들은 본래 하드디스크에 저장되어 있다.&lt;/li&gt;
-  &lt;li&gt;프로그램이 로딩될 때 이들은 메인 메모리로 복사된다.&lt;/li&gt;
-  &lt;li&gt;이 작업이 시간이 너무 오래 걸려서 “단기간에 필요로 할 가능성이 높은 정보를 임시로 저장하는” 캐시 메모리가 설계 되었다.&lt;/li&gt;
-  &lt;li&gt;캐시 시스템의 이면에 깔려 있는 아이디어는 프로그램이 지엽적인 영역의 코드와 데이터를 액세스하는 경향인 지역성을 활용하였다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;16-저장장치들은-계층구조를-이룬다&quot;&gt;1.6 저장장치들은 계층구조를 이룬다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;모든 컴퓨터 시스템의 저장장치즈들은 메모리 계층구조로 구성되어 있다.&lt;/li&gt;
-  &lt;li&gt;(그림 추가 예정 ㅎㅎ..)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;17-운영체제는-하드웨어를-관리한다&quot;&gt;1.7 운영체제는 하드웨어를 관리한다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;운영체제는 두 가지 주요 목적을 가지고 있다.
-    &lt;ol&gt;
-      &lt;li&gt;제멋대로 동작하는 응용프로그램들이 하드웨어를 잘못 사용하는 것을 막기 위해&lt;/li&gt;
-      &lt;li&gt;응용프로그램들이 단순하고 균일한 메커니즘을 사용하여 복잡하고 매우 다른 저수준 하드웨어 장치들을 조작할 수 있도록 하기 위해&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;위 두가지 목표를 위해 근본적인 추상화를 통해 달성하고 있다.&lt;/li&gt;
-  &lt;li&gt;추상화 결과
-    &lt;ul&gt;
-      &lt;li&gt;프로세스 : 프로세서, 메인 메모리, 입출력장치 모두의 추상화 결과&lt;/li&gt;
-      &lt;li&gt;가상 메모리 : 메인 메모리와 디스크 입출력 장치의 추상화&lt;/li&gt;
-      &lt;li&gt;파일 : 입출력장치의 추상화&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;18-시스템은-네트워크를-사용하여-다른-시스템과-통신한다&quot;&gt;1.8 시스템은 네트워크를 사용하여 다른 시스템과 통신한다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;네트워크는 또 다른 입력장치로 볼 수 있다.&lt;/li&gt;
-  &lt;li&gt;시스템이 메인 메모리로부터 네트워크 어댑터로 일련의 바이트를 복사할 때, 데이터는 로컬디스크 드라이브 대신에 네트워크를 통해서 다른 컴퓨터로 이동된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;19-중요한-주제들&quot;&gt;1.9 중요한 주제들&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Amdahl의 법칙
-    &lt;ul&gt;
-      &lt;li&gt;우리가 어떤 시스템의 한 부분의 성능을 개선할 때, 전체 시스템 성능에 대한 효과는 구 부분이 얼마나 중요한가와 이 부분이 얼마나 빨라졌는가에 관계된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;동시성과 병렬성
-    &lt;ul&gt;
-      &lt;li&gt;동시성 : 다수의 동시에 벌어지는 일을 갖는 시스템에 관한 일반적인 개념&lt;/li&gt;
-      &lt;li&gt;병렬성 : 동시성을 사용해서 시스템을 보다 더 빠르게 동작하도록 하는 것&lt;/li&gt;
-      &lt;li&gt;쓰레드 수준 동시성
-        &lt;ul&gt;
-          &lt;li&gt;쓰레드를 이용하면 한 개의 프로세스 내에서 실행되는 다수의 제어흐름을 가질 수 있음&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;인스트럭션 수준 병렬성
-        &lt;ul&gt;
-          &lt;li&gt;프로세서들은 훨씬 낮은 수준에서의 추상화로 여러 개의 인스트럭션을 한 번에 실행할 수 있음&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;컴퓨터 시스템에서 추상화의 중요성
-    &lt;ul&gt;
-      &lt;li&gt;추상화의 사용은 전산학에서 가장 중요한 개념!&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;110-요약&quot;&gt;1.10 요약&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;컴퓨터 내의 정보는 비트들의 그룹으로 표시&lt;/li&gt;
-  &lt;li&gt;컴파일러와 링커에 의해 바이너리 실행파일들로 번역&lt;/li&gt;
-  &lt;li&gt;프로세서는 메인 메모리에 저장된 바이너리 인스트럭션을 읽고 해석&lt;/li&gt;
-  &lt;li&gt;컴퓨터는 대부분의 시간을 메모리, 입출력장치, CPU 레지스터 간에 데이터를 복사하고 쓰는 데 사용&lt;/li&gt;
-  &lt;li&gt;위와 같은 이유로 시스템의 저장장치들은 계층구조 형성&lt;/li&gt;
-  &lt;li&gt;운영체제 커널은 응용프로그램과 하드웨어 사이에서 중간자 역할 수행&lt;/li&gt;
-  &lt;li&gt;네트워크는 컴퓨터 시스템이 서로 통신할 수 있는 방법 제공&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 01</summary></entry></feed>
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;
+&lt;p&gt;컴퓨터에서 실행되는 “정수” 산술연산은 실제로는 modular 산술연산의 형태로 수행된다. 숫자를 표현하기 위해 유한한 길이의 워드를 사용하기 때문에 가능한 값의 범위가 제한되며 연산의 결과가 오버플로우될 수 있다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry></feed>

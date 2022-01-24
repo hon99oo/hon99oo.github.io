@@ -1,0 +1,40 @@
+I"j<h1 id="chapter-02-정보의-표현과-처리">Chapter 02. 정보의 표현과 처리</h1>
+<ul>
+  <li>2.1 정보의 저장
+    <ul>
+      <li>컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지</li>
+    </ul>
+  </li>
+  <li>2.2 정수의 표시
+    <ul>
+      <li>인코딩, 비부호형 및 2의보수</li>
+    </ul>
+  </li>
+  <li>2.3 정수의 산술연산
+    <ul>
+      <li>비부호형 및 2의보수의 덧셈,뺄셈,곱셉,나눗셈</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="24-부동소수점">2.4 부동소수점</h1>
+<ul>
+  <li>부동소수점 표현은 V = x*2^y 형태의 소수를 인코딩한다.</li>
+  <li>거의 모든 컴퓨터가 IEEE 부동소수점이라고 알려지게 된 방식을 지원한다.</li>
+</ul>
+
+<h2 id="241-비율이진수fractional-binary-numbers">2.4.1 비율이진수(Fractional Binary Numbers)</h2>
+<ul>
+  <li>부동소수점에 대해서 이해하기 위한 첫 단계는 비율 이진수에 대해 생각해보는 것이다.
+    <ul>
+      <li>숫자들의 자리값은 십진 소수점 부호(‘.’)에 상대적으로 정의된다.</li>
+    </ul>
+
+    <p><img src="../../assets/img/csapp/04/img.png" width="20%" height="100%" /></p>
+  </li>
+  <li>위와 같은 방식으로 binary 표기법으로 생각해보자.
+  <img src="../../assets/img/csapp/04/img_1.png" width="20%" height="100%" /></li>
+</ul>
+:ET
