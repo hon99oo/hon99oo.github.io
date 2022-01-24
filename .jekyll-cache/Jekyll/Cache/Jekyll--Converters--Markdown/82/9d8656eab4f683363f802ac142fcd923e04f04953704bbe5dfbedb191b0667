@@ -1,0 +1,144 @@
+I"O<h1 id="introduction">Introduction</h1>
+<ul>
+  <li>Pre-trained word representations are a key component in many neural language understanding models.</li>
+  <li>Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.</li>
+  <li>We use vectors derived from a bidirectional LSTM that is trained with a coupled language model (LM) objective on a large text corpus.</li>
+  <li>In many experiments, the ELMo representation has been shown to be very excellent, and the error rate is relatively reduced by 20%</li>
+</ul>
+
+<p><br /><br /></p>
+<h1 id="related-works">Related Works</h1>
+<ul>
+  <li>Pretrained word vector의 활용이 표준화 되었지만, 하나의 단어에 하나의 벡터를 부여하다보니 context-independent한 문제가 있었다.</li>
+  <li>워드 임베딩을 풍부하게 하기 위해, subword information을 활용하거나 다의어의 경우 의미별로 다른 벡터를 학습시키는 방법이 등장하였다.
+    <ul>
+      <li>context2vec</li>
+      <li>CoVe</li>
+    </ul>
+  </li>
+  <li>이전 연구에 의하면 biRNN의 서로 다른 레이어가 다른 형태의 정보를 인코딩하는데, 본 연구에서도 유사한 효과가 나타났다.</li>
+</ul>
+
+<p><br /><br /></p>
+<h1 id="model">Model</h1>
+<ul>
+  <li>ELMO
+    <ul>
+      <li>ELMO word representations are functions of the entire input sentence.</li>
+      <li>They are computed on top of two-layer biLMs with character convolutions, as a linear function of the internal network states.</li>
+      <li>This setup allows us to do semi-supervised learning, where the biLM is pre-trained at a large scale and easily incorporated into a wide range of existing neural NLP architectures.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/nlp/03/img.png" width="100%" height="100%" /></p>
+
+<ul>
+  <li>Pretrained BiLM</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/03/img_1.png" width="100%" height="100%" />
+<img src="../../assets/img/nlp/03/img_2.png" width="100%" height="100%" /></p>
+
+<ul>
+  <li>Task-specific ELMo Embedding</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/03/img_3.png" width="100%" height="100%" /></p>
+
+<ul>
+  <li>Using biLMs for supervised NLP tasks
+    <ul>
+      <li>기존의 임베딩 벡터와 함께 사용된다.</li>
+      <li>ELMo 표현을 만드는데 사용된 사전 훈련된 언어 모델의 가중치는 고정시키고, 각 층의 가중치와 스칼라 파라미터는 훈련 과정에서 학습된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/nlp/03/img_4.png" width="100%" height="100%" /></p>
+
+<p><br /><br /></p>
+<h1 id="evaluation">Evaluation</h1>
+
+<p><img src="../../assets/img/nlp/03/img_5.png" width="100%" height="100%" /></p>
+
+<ul>
+  <li>6개의 NLP task에서 에러율을 6~20% 줄였다.</li>
+  <li>6개의 NLP task에서 높은 점수를 기록했다.</li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="analysis">Analysis</h1>
+
+<p><img src="../../assets/img/nlp/03/img_6.png" width="100%" height="100%" /></p>
+<ul>
+  <li>기존에 top layer output만 사용 한 것 대비 성능 향상을 검증했다.</li>
+  <li>대부분의 경우 Regularization parameter λ 가 작을수록 성능이 더 좋아지는 경향이 있다.</li>
+</ul>
+
+<p><img src="../../assets/img/nlp/03/img_6.png" width="100%" height="100%" /></p>
+<ul>
+  <li>일부 task(SNLI, SQuAD) 에서는 ELMo 벡터를 Output에 다시 concat 시키는 것이 효과가 있다.</li>
+</ul>
+
+<h1 id="experimentunsupervised-machine-translation">Experiment:Unsupervised Machine Translation</h1>
+<p><img src="../../assets/img/nlp/02/img_5.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Unsupervised Machine Translation Task에 있어 이전 모델들, 최근까지 SOTA였던 Facebook의 XLM모델과 MASS의 성능 비교를 수행</li>
+  <li>Facebook의 XLM은 Encoder와 Decoder를 각각 Bert의 Masked LM과 standard LM으로 Pre-train 시킨 모델</li>
+  <li>MASS는 6개의 Machine Translation Task에 있어 XLM을 능가하는 성능, SOTA 기록</li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="experimentlow-resource-translation">Experiment:Low-resource Translation</h1>
+<p><img src="../../assets/img/nlp/02/img_6.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Low-resource Machine Translation : bilingual 트레이닝 데이터셋이 부족한 환경에서의 기계번역</li>
+  <li>Englisgh-Fench, English-German, English-Romanian 데이터 셋을 10K, 100K, 1M의 사이즈로 늘려가며 Low-resource 환경에서의 Machine Translation 테스트</li>
+  <li>MASS는 모든 스케일에서 Low-resource MT의 baseline 성능을 능가</li>
+  <li>데이터셋의 사이즈가 작을수록 더욱 두드러지게 나타남</li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="experimentabstractive-summarization">Experiment:Abstractive Summarization</h1>
+<p><img src="../../assets/img/nlp/02/img_7.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Pre-trained Bert를 인코더로 Pre-trained Language Model을 Decoder로 사용한 BERT+LM 모델과 DAE(Denoising Auto-Encoder), MASS의 Abstractive Summarization 성능을 Gigaword Corpus에 대해 비교</li>
+  <li>MASS는 BERT+LM과 DAE 두 모델의 Abstractive Summarization 성능을 모두 능가</li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="experimentconversational-response-generation">Experiment:Conversational Response Generation</h1>
+<p><img src="../../assets/img/nlp/02/img_8.png" width="100%" height="100%" /></p>
+<ul>
+  <li>Abstractive Summarization 성능 비교에 사용되었던 BERT+LM 모델과 Baseline, MASS의 Conversational Response Generation 성능을 Cornell Movie Dialog Corpus에 대해 비교</li>
+  <li>MASS가 BERT+LM 모델과 Baseline 보다 낮은 Perplexity를 기록하며 더 좋은 성능을 보여줌</li>
+</ul>
+
+<p><br /><br /></p>
+
+<h1 id="the-probability-formulation">The probability formulation</h1>
+<p><img src="../../assets/img/nlp/02/img_9.png" width="100%" height="100%" /></p>
+<ul>
+  <li>(a) 영어-프랑스 번역의 영어, (b) 영어-프랑스 번역의 프랑스어, (c) 영어-프랑스 번역의 BLUE score (d) Text Summarization의 ROUGE score, (e) conversational response generation의 PPL</li>
+  <li>하이퍼 파라미터 K를 다르게 설정해가며, MASS의 성능에 대한 다양한 실험 결과</li>
+  <li>실험을 통해 K가 문장의 절반 정도 크기에 해당할 때, downstream task에서 가장 좋은 성능을 보임을 알게 됨
+    <ul>
+      <li>문장 내 절반의 토큰을 Masking하는 것이 Encoder와 Decoder의 Pre-training에 있어 적절한 균형을 제공</li>
+    </ul>
+  </li>
+  <li>K가 1(BERT), K가 m(GPT) 이었을 때는 downstream task에서 좋은 성능이 나오지 않음 이 이유는 MASS가 Sequence to Sequence 기반의 Language Generation Task에 이점을 지니고 있음을 반증</li>
+</ul>
+
+<p><br /><br /></p>
+<h1 id="couclusion">Couclusion</h1>
+<ul>
+  <li>MASS는 Sequence to Sequence 기반의 다양한 Language generation Task에 있어 좋은 성능 기록</li>
+  <li>Language generation에서 좋은 성능을 기록한 MASS가 BERT와 XLnet이 뛰어난 결과를 기록한 Natural Language Understanding Task에서도 좋은 성능을 보일 것인지 차후 실험해볼 예정</li>
+  <li>또한 MASS 모델이 Image와 Video와 같은 NLP와 다른 도메인에서도 Sequence to Sequence 기반의 생성 Task를 수행해낼 수 있을지에 대한 추가 실험도 해볼 예정</li>
+</ul>
+:ET

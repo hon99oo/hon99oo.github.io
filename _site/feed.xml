@@ -1,4 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-23T16:10:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_02/" rel="alternate" type="text/html" title="MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_02</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_02/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-24T14:20:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">ELMO - Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_03/" rel="alternate" type="text/html" title="ELMO - Deep contextualized word representations 논문 리뷰" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_03</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_03/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
+  &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
+  &lt;li&gt;We use vectors derived from a bidirectional LSTM that is trained with a coupled language model (LM) objective on a large text corpus.&lt;/li&gt;
+  &lt;li&gt;In many experiments, the ELMo representation has been shown to be very excellent, and the error rate is relatively reduced by 20%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;related-works&quot;&gt;Related Works&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pretrained word vector의 활용이 표준화 되었지만, 하나의 단어에 하나의 벡터를 부여하다보니 context-independent한 문제가 있었다.&lt;/li&gt;
+  &lt;li&gt;워드 임베딩을 풍부하게 하기 위해, subword information을 활용하거나 다의어의 경우 의미별로 다른 벡터를 학습시키는 방법이 등장하였다.
+    &lt;ul&gt;
+      &lt;li&gt;context2vec&lt;/li&gt;
+      &lt;li&gt;CoVe&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이전 연구에 의하면 biRNN의 서로 다른 레이어가 다른 형태의 정보를 인코딩하는데, 본 연구에서도 유사한 효과가 나타났다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;model&quot;&gt;Model&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELMO
+    &lt;ul&gt;
+      &lt;li&gt;ELMO word representations are functions of the entire input sentence.&lt;/li&gt;
+      &lt;li&gt;They are computed on top of two-layer biLMs with character convolutions, as a linear function of the internal network states.&lt;/li&gt;
+      &lt;li&gt;This setup allows us to do semi-supervised learning, where the biLM is pre-trained at a large scale and easily incorporated into a wide range of existing neural NLP architectures.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pretrained BiLM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;../../assets/img/nlp/03/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Task-specific ELMo Embedding&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Using biLMs for supervised NLP tasks
+    &lt;ul&gt;
+      &lt;li&gt;기존의 임베딩 벡터와 함께 사용된다.&lt;/li&gt;
+      &lt;li&gt;ELMo 표현을 만드는데 사용된 사전 훈련된 언어 모델의 가중치는 고정시키고, 각 층의 가중치와 스칼라 파라미터는 훈련 과정에서 학습된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;6개의 NLP task에서 에러율을 6~20% 줄였다.&lt;/li&gt;
+  &lt;li&gt;6개의 NLP task에서 높은 점수를 기록했다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;analysis&quot;&gt;Analysis&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_6.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;기존에 top layer output만 사용 한 것 대비 성능 향상을 검증했다.&lt;/li&gt;
+  &lt;li&gt;대부분의 경우 Regularization parameter λ 가 작을수록 성능이 더 좋아지는 경향이 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/nlp/03/img_7.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;일부 task(SNLI, SQuAD) 에서는 ELMo 벡터를 Output에 다시 concat 시키는 것이 효과가 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/nlp/03/img_8.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GloVe 단어 벡터에서 ‘play’와 비슷한 단어는 품사를 변형한 것 또는 스포츠에 관한 유사 단어만 뜬다.&lt;/li&gt;
+  &lt;li&gt;biLM에서는 문맥을 고려한다는 것을 알 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/nlp/03/img_9.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;biLM의 첫 번째 레이어는 syntactic 정보를, 두 번째 레이어는 semantic 정보를 더 잘 인코딩 하는 것으로 나타난다.&lt;/li&gt;
+  &lt;li&gt;이는 biLM의 모든 레이어를 사용하는 것이 성능향상에 도움이 된다는 것을 증명한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/nlp/03/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELMo를 활용하면 같은 성능을 내는 데에 있어 훨씬 학습이 효율적임을 알 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks.&lt;/li&gt;
+  &lt;li&gt;Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about words in-context, and that using all layers improves overall task performance.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...3</summary></entry><entry><title type="html">MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_02/" rel="alternate" type="text/html" title="MASS:Masked Sequence to Sequence pre-training for Language Generation 논문 리뷰" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_02</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_02/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Pre-training은 최근 NLP 분야에서 활발한 연구가 이루어지는 주제 중 하나&lt;/li&gt;
   &lt;li&gt;Google의 Bert와 XLNet은 자연어 이해(NLU) Task에서 큰 성공을 거둔 모델&lt;/li&gt;
@@ -144,137 +254,227 @@
   &lt;li&gt;MASS는 Sequence to Sequence 기반의 다양한 Language generation Task에 있어 좋은 성능 기록&lt;/li&gt;
   &lt;li&gt;Language generation에서 좋은 성능을 기록한 MASS가 BERT와 XLnet이 뛰어난 결과를 기록한 Natural Language Understanding Task에서도 좋은 성능을 보일 것인지 차후 실험해볼 예정&lt;/li&gt;
   &lt;li&gt;또한 MASS 모델이 Image와 Video와 같은 NLP와 다른 도메인에서도 Sequence to Sequence 기반의 생성 Task를 수행해낼 수 있을지에 대한 추가 실험도 해볼 예정&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...2</summary></entry><entry><title type="html">[Java/프로그래머스] Part4 배열</title><link href="http://localhost:4000/java/java_04/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part4 배열" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_04</id><content type="html" xml:base="http://localhost:4000/java/java_04/">&lt;h1 id=&quot;part4-배열&quot;&gt;Part4 배열&lt;/h1&gt;
-
-&lt;h2 id=&quot;배열-만들기&quot;&gt;배열 만들기&lt;/h2&gt;
-&lt;p&gt;배열은 같은 데이터 타입을 가진 연속된 메모리 공간으로 이루어진 자료구조이다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;배열-사용하기&quot;&gt;배열 사용하기&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...2</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.4 부동소수점)</title><link href="http://localhost:4000/cs:app/csapp_04/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.4 부동소수점)" /><published>2022-01-23T00:00:00+09:00</published><updated>2022-01-23T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_04</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_04/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;배열에 접근할 때에는 인덱스를 통해서 접근한다.&lt;/li&gt;
-  &lt;li&gt;배열의 길이를 알아내는 방법 : array.length&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2차원-배열&quot;&gt;2차원 배열&lt;/h2&gt;
-&lt;p&gt;2차원 배열이란 배열의 배열이다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][];&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//위와 같이 선언하면 array5는 3개짜리 배열을 참조한다. 3개짜리 배열은 아직 참조하는 배열이 없다는 것을 의미.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//정수를 하나 담을 수 있는 배열을 생성해서 array5 의 0 번째 인덱스가 참조한다.  &lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//정수를 두개 담을 수 있는 배열을 생성해서 array5 의 1 번째 인덱스가 참조한다.  &lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//정수를 세개 담을 수 있는 배열을 생성해서 array5 의 2 번째 인덱스가 참조한다. &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;for-each&quot;&gt;for each&lt;/h2&gt;
-&lt;p&gt;for문 안에 (value:array), array의 값 하나씩 value로 매칭된다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;python for in 이랑 똑같은거 같아서 너무 반갑다!&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iarr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;value:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iarr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 03</summary></entry><entry><title type="html">[Java/프로그래머스] Part3 제어문</title><link href="http://localhost:4000/java/java_03/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part3 제어문" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_03</id><content type="html" xml:base="http://localhost:4000/java/java_03/">&lt;h1 id=&quot;part3-제어문&quot;&gt;Part3 제어문&lt;/h1&gt;
-
-&lt;h2 id=&quot;if-조건문&quot;&gt;if 조건문&lt;/h2&gt;
-&lt;p&gt;조건식의 연산 결과에 따라 블록 내부 문장의 실해 여부를 결정할 수 있다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;if 문&lt;/li&gt;
-  &lt;li&gt;if - else 문&lt;/li&gt;
-  &lt;li&gt;if - else if - else 문&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;논리-연산자&quot;&gt;논리 연산자&lt;/h2&gt;
-&lt;p&gt;논리 연산자의 피연산자는 블린 타입만 사용할 수 있다. 결과는 불린값이다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;OR :&lt;/td&gt;
-          &lt;td&gt; &lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-  &lt;li&gt;AND : &amp;amp;&amp;amp;&lt;/li&gt;
-  &lt;li&gt;NOT : !&lt;/li&gt;
-  &lt;li&gt;EXCLUSIVE-Or : ^&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;삼항-연산자&quot;&gt;삼항 연산자&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;조건식 ? 피연산자1 : 피연산자2
+  &lt;li&gt;2.1 정보의 저장
     &lt;ul&gt;
-      &lt;li&gt;조건식의 결과가 true 라면 결과는 피연산자1&lt;/li&gt;
-      &lt;li&gt;조건식의 결과가 false 라면 결과는 피연산자2&lt;/li&gt;
+      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2.2 정수의 표시
+    &lt;ul&gt;
+      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2.3 정수의 산술연산
+    &lt;ul&gt;
+      &lt;li&gt;비부호형 및 2의보수의 덧셈,뺄셈,곱셉,나눗셈&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;switch문&quot;&gt;switch문&lt;/h2&gt;
-&lt;p&gt;switch문은 어떤 변수의 값에 따라서 문장을 실행할 수 있도록 하는 제어문이다.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;변수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
-            &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
-            &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
+&lt;h2 id=&quot;24-부동소수점&quot;&gt;2.4 부동소수점&lt;/h2&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;break를 쓰지 않으면 value값이 값1일 경우 값1, 값2, default를 모두 실행한다.&lt;/li&gt;
-  &lt;li&gt;JDK7 이후에는 문자열 타입의 변수도 가능함&lt;/li&gt;
+  &lt;li&gt;2.1 정보의 저장
+    &lt;ul&gt;
+      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2.2 정수의 표시
+    &lt;ul&gt;
+      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
+    &lt;ul&gt;
+      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
+&lt;p&gt;x,y, 0≤x, y≤e^w가 있다고 하자, 두 합의 계산 범위는 0≤x+y≤2^(w+1)-2를 갖는다. 이 합의 크기를 표현 하기 위해서는 w+1개의 비트가 필요하게 된다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;“워드 크기 증가”는 산술연산의 결과를 완벽하게 표시하려면 필요한 워드 크기를 제한할 수 없다는 것을 의미한다.&lt;/li&gt;
+  &lt;li&gt;프로그래밍 언어들은 고정길이 산술연산을 지원하며 따라서 “덧셈”과 “곱셈”같은 연산은 정수에 대응하는 일반적인 연산들과는 다르다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;x,y에 대해 x+y 정수합을 w비트 길이로 절삭한 후에 다시 비부호형 정수로 나타낸다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;정상적인 경우에는 x+y값을 유지하지만, 오버플로우의 경우에는 2^w만큼 줄어드는 효과를 낸다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_1.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;당연한걸 수도 있지만, case 에 조건문을 달면 오류가 난다 하하,,,&lt;/p&gt;
+  &lt;p&gt;산술연산에서 완전한 정수 결과가 그 데이터 타입의 제한된 워드 길이로 나타낼 수 없을 때 이 연산은 “오버플로우한다”고 한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;while문&quot;&gt;while문&lt;/h2&gt;
-&lt;p&gt;조건문의 실행 결과가 true일 동안 반복해서 실행한다.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;조건문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
+&lt;p&gt;2의 보수 덧셈의 결과값이 너무 크거나(양수) 또는 너무 작아서(음수) 표시할 수 없을 때 우리는 어떻게 해야 할지 결정해야 한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;x+y를 w비트 길이로 절삭한 후에 2의 보수로 결과를 나타내는 연산이다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;
+  &lt;img src=&quot;../../assets/img/csapp/03/img_3.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2의 보수의 합이 2^(w-1)을 넘어간다면 양수 오버플로우가 생기고, -2^(w-1) 미만으로 내려간다면 음수 오버플로우가 생겨 각각에 2^w을 더해주거나 빼준다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;do-while문&quot;&gt;do while문&lt;/h2&gt;
-&lt;p&gt;while 문의 경우 조건이 만족되지 않을 때 실행되지 않지만, do while 문은 무조건 한번은 수행 된다.&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;   &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;조건문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
+&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;실행문을 한번은 실행하고 싶을 경우에 사용됨&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비부호형 비트반전&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_4.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;2의보수 비트반전&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_5.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;for-반복문&quot;&gt;for 반복문&lt;/h2&gt;
-&lt;p&gt;for 구문 자체에 변수 초기화, 조건식, 증감식이 한줄로 표현됨&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;초기화식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조건식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;증감식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 02</summary></entry><entry><title type="html">[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산</title><link href="http://localhost:4000/java/java_02/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_02</id><content type="html" xml:base="http://localhost:4000/java/java_02/">&lt;h1 id=&quot;part1-자바-시작하기&quot;&gt;Part1 자바 시작하기&lt;/h1&gt;
+&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;비부호형 곱셉은 2w비트 정수 곱의 하위 w비트로 주어지는 w비트 값을 만드는 것으로 정의된다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;비부호형 수를 w비트로 절삭하는 것은 해당 값을 2^w로 나눈 나머지를 계싼하는 것과 같다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;2^w로 나눈 나머지를 취하고 비부호형에서 2의 보수형태로 변환하는 것과 같다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_7.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;정수 곱셉은 매우 느리다. 컴파일러에서 수행되는 중요한 최적화는 상수를 곱하게 되는 경우들을 쉬프트와 덧셈의 조합으로 대체한다.&lt;/li&gt;
+  &lt;li&gt;2의 제곱을 곱하는 경우
+    &lt;ul&gt;
+      &lt;li&gt;k≥0인 모든 k에 대해 x2^k의 w+k 비트수준 표현은 우측에 k개의 0을 추가한 것이다.&lt;/li&gt;
+      &lt;li&gt;eg) 11은 w=4인 경우 [1011]이다. 이것을 왼쪽으로 k=2 쉬프트 하면 [101100]이 되며 이것은 11*4=44를 인코딩한 것이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;2의 제곱을 곱하면 비부형이건 2의 보수 산술연산이건 오버플로우가 발생할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;eg) 위의 예제를 예로 들자면, [101100]을 4비트로 절삭하면 &lt;a href=&quot;십진수 12 = 44mod16&quot;&gt;1100&lt;/a&gt;을 얻는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;정수 곱셈이 쉬프트와 덧셈을 사용하는 것보다 훨씬 비용이 많이 드는 연산이기 때문에 C 컴파일러들은 정수가 상수와 곱해지는 경우에 이들을 쉬프트, 덧셈, 뺄셈 등의 조합을 사용해서 제거하려고 노력한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;정수 나눗셈은 정수 곱셉보다 훨씬 느리다. 2의 제곱으로 나누는 것은 오른쪽 쉬프트를 사용한다.&lt;/li&gt;
+  &lt;li&gt;비부호형은 논리 쉬프트, 2의 보수는 산술 쉬프트를 사용한다.&lt;/li&gt;
+  &lt;li&gt;2의 보수 음수에서는 보정값을 더해서 결과값을 0 방향으로 근사하도록 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;
+&lt;p&gt;컴퓨터에서 실행되는 “정수” 산술연산은 실제로는 modular 산술연산의 형태로 수행된다. 숫자를 표현하기 위해 유한한 길이의 워드를 사용하기 때문에 가능한 값의 범위가 제한되며 연산의 결과가 오버플로우될 수 있다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry><entry><title type="html">[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
+&lt;p&gt;학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
+java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
+Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!&lt;br /&gt;
+&lt;br /&gt;
+해당 포스트는 Mac Os 환경에서 진행되었다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-intellij-설치&quot;&gt;1. IntelliJ 설치&lt;/h3&gt;
+&lt;p&gt;우선 IntelliJ Mac Os 버전을 설치하려면 
+&lt;a href=&quot;https://www.jetbrains.com/ko-kr/idea/download/#section=mac&quot;&gt;IntelliJ 설치 링크&lt;/a&gt;
+에 접속한다.&lt;br /&gt;
+각자 Mac 환경에 맞는 파일을 다운로드한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+java 학습을 위해선 Community Edition으로도 충분하다고 한다. 하지만 본인이 학생 신분이라면 학생 라이센스를 이용한
+Ultimate 버전을 추천한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+아래와 같은 창이 뜨면 설치 성공!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-java-project-만들기&quot;&gt;2. Java Project 만들기&lt;/h3&gt;
+&lt;p&gt;위의 창에서 Create New Project를 누르면 아래와 같은 창이 열린다. &lt;br /&gt;
+왼쪽의 리스트에서는 Java 선택, 오른쪽 리스트에서는 아무것도 선택하지 않고, 오른쪽 아래의 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_3.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Java 프로젝트를 생성할 때 샘플코드를 생성할지 여부. &lt;br /&gt;
+본인이 직접 생성할 것이기 때문에 아무것도 선택하지 않고 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_4.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+프로젝트 이름을 정하고 “Next” 버튼을 누른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_5.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-hello-world-출력하기&quot;&gt;3. Hello World 출력하기&lt;/h3&gt;
+&lt;p&gt;프로젝트 생성이 완료되면, main 메소드가 있는 새로운 Java 클래스를 생성하기 위해 src 폴더를 우클릭한다.&lt;br /&gt;
+New &amp;gt; Java Class 를 선택한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_7.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+새로 생성할 Java Class 이름을 설정하고 Enter를 친다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_8.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+Hello World 출력 코드를 작성한다.&lt;br /&gt;
+상단의 망치 버튼을 클릭하여 빌드하거나 “control + option + R”키를 눌러 빌드한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+혹은 out &amp;gt; production &amp;gt; “project_name” &amp;gt; “Class_name” 우클릭 후 Run을 선택해도 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+이제 IntelliJ와 함께 Java 공부를 시작해보자,,,!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="IntelliJ" /><summary type="html">java 공부를 시작해보자!</summary></entry><entry><title type="html">[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산</title><link href="http://localhost:4000/java/java_02/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part1 자바 시작하기, Part2 변수와 계산" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_02</id><content type="html" xml:base="http://localhost:4000/java/java_02/">&lt;h1 id=&quot;part1-자바-시작하기&quot;&gt;Part1 자바 시작하기&lt;/h1&gt;
 &lt;h2 id=&quot;java&quot;&gt;Java&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;객체지향언어&lt;/li&gt;
@@ -430,206 +630,137 @@
   &lt;li&gt;논리연산자 (&amp;amp;&amp;amp; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;||&lt;/code&gt; , !)&lt;/li&gt;
   &lt;li&gt;삼항연산자 (조건식) ? :&lt;/li&gt;
   &lt;li&gt;대입연산자 =,*=,/=,%=,+=,-=&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 01</summary></entry><entry><title type="html">[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성</title><link href="http://localhost:4000/java/java_01/" rel="alternate" type="text/html" title="[Java/IntelliJ] IntelliJ 설치 및 Hello world 작성" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_01</id><content type="html" xml:base="http://localhost:4000/java/java_01/">&lt;h1 id=&quot;intellij&quot;&gt;IntelliJ&lt;/h1&gt;
-&lt;p&gt;학교에서는 java를 배울 때 이클립스(Eclipse)를 사용했다. 하지만 python을 주로 다루면서 파이참(Pycharm)에 익숙해졌다. 
-java 공부를 하면서 좀 더 친숙한 JetBrains 회사의 개발도구를 사용하려고 한다. 정보를 조금 찾아보니 IntelliJ가 현재 내가 사용하고 있는 환경인
-Mac Os에서 이클립스보다 오류가 덜 발생한다고 한다. 통합 개발 환경도 제공한다고 하니 이보다 더 좋을 수가 없다!&lt;br /&gt;
-&lt;br /&gt;
-해당 포스트는 Mac Os 환경에서 진행되었다.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 01</summary></entry><entry><title type="html">[Java/프로그래머스] Part3 제어문</title><link href="http://localhost:4000/java/java_03/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part3 제어문" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_03</id><content type="html" xml:base="http://localhost:4000/java/java_03/">&lt;h1 id=&quot;part3-제어문&quot;&gt;Part3 제어문&lt;/h1&gt;
 
-&lt;h3 id=&quot;1-intellij-설치&quot;&gt;1. IntelliJ 설치&lt;/h3&gt;
-&lt;p&gt;우선 IntelliJ Mac Os 버전을 설치하려면 
-&lt;a href=&quot;https://www.jetbrains.com/ko-kr/idea/download/#section=mac&quot;&gt;IntelliJ 설치 링크&lt;/a&gt;
-에 접속한다.&lt;br /&gt;
-각자 Mac 환경에 맞는 파일을 다운로드한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-java 학습을 위해선 Community Edition으로도 충분하다고 한다. 하지만 본인이 학생 신분이라면 학생 라이센스를 이용한
-Ultimate 버전을 추천한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-아래와 같은 창이 뜨면 설치 성공!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;2-java-project-만들기&quot;&gt;2. Java Project 만들기&lt;/h3&gt;
-&lt;p&gt;위의 창에서 Create New Project를 누르면 아래와 같은 창이 열린다. &lt;br /&gt;
-왼쪽의 리스트에서는 Java 선택, 오른쪽 리스트에서는 아무것도 선택하지 않고, 오른쪽 아래의 “Next” 버튼을 누른다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_3.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-Java 프로젝트를 생성할 때 샘플코드를 생성할지 여부. &lt;br /&gt;
-본인이 직접 생성할 것이기 때문에 아무것도 선택하지 않고 “Next” 버튼을 누른다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_4.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-프로젝트 이름을 정하고 “Next” 버튼을 누른다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_5.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-hello-world-출력하기&quot;&gt;3. Hello World 출력하기&lt;/h3&gt;
-&lt;p&gt;프로젝트 생성이 완료되면, main 메소드가 있는 새로운 Java 클래스를 생성하기 위해 src 폴더를 우클릭한다.&lt;br /&gt;
-New &amp;gt; Java Class 를 선택한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_7.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-새로 생성할 Java Class 이름을 설정하고 Enter를 친다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_8.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-Hello World 출력 코드를 작성한다.&lt;br /&gt;
-상단의 망치 버튼을 클릭하여 빌드하거나 “control + option + R”키를 눌러 빌드한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-혹은 out &amp;gt; production &amp;gt; “project_name” &amp;gt; “Class_name” 우클릭 후 Run을 선택해도 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/java/01/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-이제 IntelliJ와 함께 Java 공부를 시작해보자,,,!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="IntelliJ" /><summary type="html">java 공부를 시작해보자!</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)</title><link href="http://localhost:4000/cs:app/csapp_03/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.3 정수의 산술연산)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_03</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_03/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;h2 id=&quot;if-조건문&quot;&gt;if 조건문&lt;/h2&gt;
+&lt;p&gt;조건식의 연산 결과에 따라 블록 내부 문장의 실해 여부를 결정할 수 있다.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;2.1 정보의 저장
-    &lt;ul&gt;
-      &lt;li&gt;컴퓨터는 데이터, 인스트럭션등을 어떻게 저장하는지&lt;/li&gt;
-    &lt;/ul&gt;
+  &lt;li&gt;if 문&lt;/li&gt;
+  &lt;li&gt;if - else 문&lt;/li&gt;
+  &lt;li&gt;if - else if - else 문&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;논리-연산자&quot;&gt;논리 연산자&lt;/h2&gt;
+&lt;p&gt;논리 연산자의 피연산자는 블린 타입만 사용할 수 있다. 결과는 불린값이다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;OR :&lt;/td&gt;
+          &lt;td&gt; &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
   &lt;/li&gt;
-  &lt;li&gt;2.2 정수의 표시
+  &lt;li&gt;AND : &amp;amp;&amp;amp;&lt;/li&gt;
+  &lt;li&gt;NOT : !&lt;/li&gt;
+  &lt;li&gt;EXCLUSIVE-Or : ^&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;삼항-연산자&quot;&gt;삼항 연산자&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;조건식 ? 피연산자1 : 피연산자2
     &lt;ul&gt;
-      &lt;li&gt;인코딩, 비부호형 및 2의보수&lt;/li&gt;
+      &lt;li&gt;조건식의 결과가 true 라면 결과는 피연산자1&lt;/li&gt;
+      &lt;li&gt;조건식의 결과가 false 라면 결과는 피연산자2&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;switch문&quot;&gt;switch문&lt;/h2&gt;
+&lt;p&gt;switch문은 어떤 변수의 값에 따라서 문장을 실행할 수 있도록 하는 제어문이다.&lt;/p&gt;
 
-&lt;h2 id=&quot;23-정수의-산술연산&quot;&gt;2.3 정수의 산술연산&lt;/h2&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;변수&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+            &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;값&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; 
+            &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;    
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;두 개의 양수를 더해서 음수가 나오는 경우, x&amp;lt;y와 x-y&amp;lt;0이 다른 결과를 보일 때 초보 프로그래머(나포함 ㅋ..)들은 놀라게 된다,
-    &lt;ul&gt;
-      &lt;li&gt;그렇다면 컴퓨터 산술연산의 미묘한 느낌을 이해해보자.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;231-비부호형-덧셈&quot;&gt;2.3.1 비부호형 덧셈&lt;/h3&gt;
-&lt;p&gt;x,y, 0≤x, y≤e^w가 있다고 하자, 두 합의 계산 범위는 0≤x+y≤2^(w+1)-2를 갖는다. 이 합의 크기를 표현 하기 위해서는 w+1개의 비트가 필요하게 된다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;“워드 크기 증가”는 산술연산의 결과를 완벽하게 표시하려면 필요한 워드 크기를 제한할 수 없다는 것을 의미한다.&lt;/li&gt;
-  &lt;li&gt;프로그래밍 언어들은 고정길이 산술연산을 지원하며 따라서 “덧셈”과 “곱셈”같은 연산은 정수에 대응하는 일반적인 연산들과는 다르다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;x,y에 대해 x+y 정수합을 w비트 길이로 절삭한 후에 다시 비부호형 정수로 나타낸다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;정상적인 경우에는 x+y값을 유지하지만, 오버플로우의 경우에는 2^w만큼 줄어드는 효과를 낸다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_1.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;break를 쓰지 않으면 value값이 값1일 경우 값1, 값2, default를 모두 실행한다.&lt;/li&gt;
+  &lt;li&gt;JDK7 이후에는 문자열 타입의 변수도 가능함&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;산술연산에서 완전한 정수 결과가 그 데이터 타입의 제한된 워드 길이로 나타낼 수 없을 때 이 연산은 “오버플로우한다”고 한다.&lt;/p&gt;
+  &lt;p&gt;당연한걸 수도 있지만, case 에 조건문을 달면 오류가 난다 하하,,,&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;while문&quot;&gt;while문&lt;/h2&gt;
+&lt;p&gt;조건문의 실행 결과가 true일 동안 반복해서 실행한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;232-2의-보수의-덧셈&quot;&gt;2.3.2 2의 보수의 덧셈&lt;/h3&gt;
-&lt;p&gt;2의 보수 덧셈의 결과값이 너무 크거나(양수) 또는 너무 작아서(음수) 표시할 수 없을 때 우리는 어떻게 해야 할지 결정해야 한다.&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;조건문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;do-while문&quot;&gt;do while문&lt;/h2&gt;
+&lt;p&gt;while 문의 경우 조건이 만족되지 않을 때 실행되지 않지만, do while 문은 무조건 한번은 수행 된다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;   &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;조건문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;x+y를 w비트 길이로 절삭한 후에 2의 보수로 결과를 나타내는 연산이다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;
-  &lt;img src=&quot;../../assets/img/csapp/03/img_3.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;실행문을 한번은 실행하고 싶을 경우에 사용됨&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;for-반복문&quot;&gt;for 반복문&lt;/h2&gt;
+&lt;p&gt;for 구문 자체에 변수 초기화, 조건식, 증감식이 한줄로 표현됨&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;초기화식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;조건식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;증감식&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;실행문&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 02</summary></entry><entry><title type="html">[Java/프로그래머스] Part4 배열</title><link href="http://localhost:4000/java/java_04/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part4 배열" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/java/java_04</id><content type="html" xml:base="http://localhost:4000/java/java_04/">&lt;h1 id=&quot;part4-배열&quot;&gt;Part4 배열&lt;/h1&gt;
+
+&lt;h2 id=&quot;배열-만들기&quot;&gt;배열 만들기&lt;/h2&gt;
+&lt;p&gt;배열은 같은 데이터 타입을 가진 연속된 메모리 공간으로 이루어진 자료구조이다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;배열-사용하기&quot;&gt;배열 사용하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;배열에 접근할 때에는 인덱스를 통해서 접근한다.&lt;/li&gt;
+  &lt;li&gt;배열의 길이를 알아내는 방법 : array.length&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2차원-배열&quot;&gt;2차원 배열&lt;/h2&gt;
+&lt;p&gt;2차원 배열이란 배열의 배열이다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[][]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][];&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//위와 같이 선언하면 array5는 3개짜리 배열을 참조한다. 3개짜리 배열은 아직 참조하는 배열이 없다는 것을 의미.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//정수를 하나 담을 수 있는 배열을 생성해서 array5 의 0 번째 인덱스가 참조한다.  &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//정수를 두개 담을 수 있는 배열을 생성해서 array5 의 1 번째 인덱스가 참조한다.  &lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;array5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//정수를 세개 담을 수 있는 배열을 생성해서 array5 의 2 번째 인덱스가 참조한다. &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;for-each&quot;&gt;for each&lt;/h2&gt;
+&lt;p&gt;for문 안에 (value:array), array의 값 하나씩 value로 매칭된다.&lt;/p&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;2의 보수의 합이 2^(w-1)을 넘어간다면 양수 오버플로우가 생기고, -2^(w-1) 미만으로 내려간다면 음수 오버플로우가 생겨 각각에 2^w을 더해주거나 빼준다.&lt;/p&gt;
+  &lt;p&gt;python for in 이랑 똑같은거 같아서 너무 반갑다!&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;iarr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
 
-&lt;h3 id=&quot;233-2의-보수에서의-비트반전-negation&quot;&gt;2.3.3 2의 보수에서의 비트반전 Negation&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;비부호형 비트반전&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_4.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;2의보수 비트반전&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_5.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;234-비부호형-곱셈&quot;&gt;2.3.4 비부호형 곱셈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;비부호형 곱셉은 2w비트 정수 곱의 하위 w비트로 주어지는 w비트 값을 만드는 것으로 정의된다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;비부호형 수를 w비트로 절삭하는 것은 해당 값을 2^w로 나눈 나머지를 계싼하는 것과 같다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;235-2의-보수-곱셈&quot;&gt;2.3.5 2의 보수 곱셈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;2^w로 나눈 나머지를 취하고 비부호형에서 2의 보수형태로 변환하는 것과 같다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/03/img_7.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;236-상수를-사용한-곱셈&quot;&gt;2.3.6 상수를 사용한 곱셈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;정수 곱셉은 매우 느리다. 컴파일러에서 수행되는 중요한 최적화는 상수를 곱하게 되는 경우들을 쉬프트와 덧셈의 조합으로 대체한다.&lt;/li&gt;
-  &lt;li&gt;2의 제곱을 곱하는 경우
-    &lt;ul&gt;
-      &lt;li&gt;k≥0인 모든 k에 대해 x2^k의 w+k 비트수준 표현은 우측에 k개의 0을 추가한 것이다.&lt;/li&gt;
-      &lt;li&gt;eg) 11은 w=4인 경우 [1011]이다. 이것을 왼쪽으로 k=2 쉬프트 하면 [101100]이 되며 이것은 11*4=44를 인코딩한 것이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2의 제곱을 곱하면 비부형이건 2의 보수 산술연산이건 오버플로우가 발생할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;eg) 위의 예제를 예로 들자면, [101100]을 4비트로 절삭하면 &lt;a href=&quot;십진수 12 = 44mod16&quot;&gt;1100&lt;/a&gt;을 얻는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;정수 곱셈이 쉬프트와 덧셈을 사용하는 것보다 훨씬 비용이 많이 드는 연산이기 때문에 C 컴파일러들은 정수가 상수와 곱해지는 경우에 이들을 쉬프트, 덧셈, 뺄셈 등의 조합을 사용해서 제거하려고 노력한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;237-2의-제곱으로-나눗셈하기&quot;&gt;2.3.7 2의 제곱으로 나눗셈하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;정수 나눗셈은 정수 곱셉보다 훨씬 느리다. 2의 제곱으로 나누는 것은 오른쪽 쉬프트를 사용한다.&lt;/li&gt;
-  &lt;li&gt;비부호형은 논리 쉬프트, 2의 보수는 산술 쉬프트를 사용한다.&lt;/li&gt;
-  &lt;li&gt;2의 보수 음수에서는 보정값을 더해서 결과값을 0 방향으로 근사하도록 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;238-정수-산술연산에-대한-마지막-고찰&quot;&gt;2.3.8 정수 산술연산에 대한 마지막 고찰&lt;/h3&gt;
-&lt;p&gt;컴퓨터에서 실행되는 “정수” 산술연산은 실제로는 modular 산술연산의 형태로 수행된다. 숫자를 표현하기 위해 유한한 길이의 워드를 사용하기 때문에 가능한 값의 범위가 제한되며 연산의 결과가 오버플로우될 수 있다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;value:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iarr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)</title><link href="http://localhost:4000/cs:app/csapp_02/" rel="alternate" type="text/html" title="[CS:APP] Chapter 02. 정보의 표현과 처리 (2.1 정보의 저장 ~ 2.2 정수의 표시)" /><published>2022-01-22T00:00:00+09:00</published><updated>2022-01-22T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_02</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_02/">&lt;h1 id=&quot;chapter-02-정보의-표현과-처리&quot;&gt;Chapter 02. 정보의 표현과 처리&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;컴퓨터는 두 개의 값을 갖는 신호로 표현되는 정보를 저장하고 처리한다.&lt;/li&gt;
   &lt;li&gt;비트 패턴
@@ -1087,114 +1218,4 @@ Hello World 출력 코드를 작성한다.&lt;br /&gt;
   &lt;li&gt;위와 같은 이유로 시스템의 저장장치들은 계층구조 형성&lt;/li&gt;
   &lt;li&gt;운영체제 커널은 응용프로그램과 하드웨어 사이에서 중간자 역할 수행&lt;/li&gt;
   &lt;li&gt;네트워크는 컴퓨터 시스템이 서로 통신할 수 있는 방법 제공&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 01</summary></entry><entry><title type="html">TDD와 each map</title><link href="http://localhost:4000/docker/doodle_03/" rel="alternate" type="text/html" title="TDD와 each map" /><published>2022-01-11T00:00:00+09:00</published><updated>2022-01-11T00:00:00+09:00</updated><id>http://localhost:4000/docker/doodle_03</id><content type="html" xml:base="http://localhost:4000/docker/doodle_03/">&lt;h1 id=&quot;tdd&quot;&gt;TDD&lt;/h1&gt;
-
-&lt;p&gt;TDD(Test Driven Development)란 본격적인 개발에 들어가기 전에 테스트
-계획 및 코드를 작성하는 것을 의미한다. 테스트가 개발을 이끌어 나가는 것이다.
-예를들어, 개발 중 에러가 발생했을 때 소규모 개발에서는 큰 문제가 되지는 않지만,
-대규모의 개발 상황에서는 수 많은 모듈과 함수간 종속성들이 굉장히 많은 시간을 괴롭히게 된다.
-이러한 문제점을 해결하기 위해서 테스트 주도 개발이 등장했다.&lt;/p&gt;
-
-&lt;p&gt;나는 pytest를 사용할 것이다.
-https://binux.tistory.com/47&lt;/p&gt;
-
-&lt;p&gt;일단, monkeypatch.setattr 살펴보자. 
-이것은 어떤것을 하냐면, mocking이다. Mocking은 실제 값이 아닌 가짜 값을 만들어내는 것이다.&lt;/p&gt;
-
-&lt;p&gt;음 예를들면 Upload 클래스가 있다.&lt;/p&gt;
-
-&lt;p&gt;Class Upload  &lt;br /&gt;
-|_ Def Extract &lt;br /&gt;
-|_ Def Transform &lt;br /&gt;
-|_ Def Load&lt;/p&gt;
-
-&lt;p&gt;이렇게 되어있을 때 나는 Transform 부분만 테스트하고 싶다. 하지만 함수의 종속성으로 인하여
-Transform에서 사용되는 data는 Extract로 부터 참조되며 Extract에서 추출되는 data는 
-특정 라이브러리의 기능을 참조한다. 나는 Transform 부분만 테스트하고 싶지만 이런 경우에 Extract부터
-특정 라이브러리으 기능까지 테스트해야되는 상황에 처한 것이다. 이런 경우에 이제 Mocking이라는 기술을 쓴다.
-pytest에서도 제공하는 function이 있지만, 단순한 예를 하나 들자면 정답과 인풋값을 csv파일이나 등등으로 미리 만들어서
-로컬에서 참조하도록 코드를 작성하면 된다.&lt;/p&gt;
-
-&lt;p&gt;하지만 이때, 테스트 코드에서 원코드를 실행할 때 원코드의 Extract가 실행 되기 때문에
-monkeypatch.setattr 같은 기능으로 해당 function을 사용하지 않고 넘겨주는 기능을 넣어줘야한다.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;h1 id=&quot;each-map&quot;&gt;each map&lt;/h1&gt;
-&lt;p&gt;each map을 알아야한다. 
-음 지금 내가 하는 것은 DB -&amp;gt; transform -&amp;gt; DB 적재이다.
-transform에서 전처리 및 parsing을 해주는데, transform에서 이뤄지는 작업은
-모든 Dataframe이 메모리 상으로 올라가게 된다. 작은 task면 문제없이 실행 되겠지만,
-큰 규모의 task는 메모리를 많이 차지하게 되어 에러가 날 수 있다.
-이럴 때 사용 하는 것이 each map이다.
-each map은 dataframe에서 row 별로 메모리 상으로 올린다.
-이후 해당 row에서 특정 처리를 진행 후에 buffer로 옮긴 뒤 DB로 적재를 한다.
-이 때 조심해야 하는 부분은 seperate다. row에서 컬럼으로 구분하는 seperate값을 잘 이용해야지 에러가 나지 않을 것이다.&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;즉! pytest 부분을 더 공부하고 적절한 testset을 생각해보고, testcode를 작성해보자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...2</summary></entry><entry><title type="html">Docker는 대충 이런 느낌인가?</title><link href="http://localhost:4000/docker/docker_01/" rel="alternate" type="text/html" title="Docker는 대충 이런 느낌인가?" /><published>2022-01-10T00:00:00+09:00</published><updated>2022-01-10T00:00:00+09:00</updated><id>http://localhost:4000/docker/docker_01</id><content type="html" xml:base="http://localhost:4000/docker/docker_01/">&lt;h1 id=&quot;docker&quot;&gt;Docker&lt;/h1&gt;
-
-&lt;p&gt;내가 느낀 전체적인 도커의 메커니즘 : 어떠어떠한 것을 빌드해서 이미지를 만들고 
--&amp;gt; 이미지를 도커로 띄운 뒤 -&amp;gt; 이미지를 받아서 로컬에서 개발작업을 진행&lt;/p&gt;
-
-&lt;p&gt;!!많은 시행착오를 거쳐 도커의 메커니즘에 대해 이해가 조금 되었다.&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Dockerfile을 만든다.&lt;/li&gt;
-  &lt;li&gt;해당 디렉토리 위치에서 docker build를 한다.&lt;/li&gt;
-  &lt;li&gt;docker build을 하면 이미지가 생성된다.&lt;/li&gt;
-  &lt;li&gt;이미지가 생성됐으면, 해당 이미지로 docker run을 한다.&lt;/li&gt;
-  &lt;li&gt;docker run을 하면 컨테이너가 만들어지고 해당 이미지를 컨테이너 안으로 넣는다?띄운다?&lt;/li&gt;
-  &lt;li&gt;그럼 환경셋팅이 된다…?&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;틀린 부분도 있겠지만 아주 조오금 조오오오오금 메커니즘이 이해가 됐다. &lt;br /&gt;
-앗 참고로 음… 저런 run이니 이미지 파일들이니 어떤 컨테이너가 실행중인지를 GUI로 확인할 수 있는 프로그램이 Docker Desktop 같다 ㅎㅎ..&lt;/p&gt;
-
-&lt;p&gt;추가적으로 환경세팅을 완료한 것 같다. 음… 위의 6번까지 진행한 후에&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;컨테이너를 만들면 어떠한 가상환경이 만들어지는 것 같다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그럼 그 컨테이너에가 파이썬 환경으로 이루어져있고 추가로 다양한 패키지들이 들어있다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그럼 그 환경을 내가 사용하고 있는 Pycharm과 연동을 하는 거다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;어떻게 하냐면 파이참 프로젝트의 인터프리터를 해당 컨테이너에 있는 파이썬path로 설정해주는거다.
-*https://i-am-eden.tistory.com/13&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그리고 코딩하면 된다 ㅎㅎ
-***&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;도커엔진 - 도커를 실행하면 Dockered라는 데몬 프로그램이 서버로 실행. &lt;br /&gt;
-**여기서 잠깐! 데몬 프로그램이 뭘까? &lt;br /&gt;
-https://blogger.pe.kr/770  (포그라운드, 백그라운드, 데몬 프로세스)  &lt;br /&gt;
-https://haruhiism.tistory.com/9&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;도커실행 : 도커 이미지를 받아서 컨테이너로 실행 &lt;br /&gt;
-** -it 라는 명령어는 -i와 -t 옵션이 합쳐진 옵션, -i는 호스트와 컨테이너 상호 입출력을 맞추고,
--t는 TTY를 활성화해서 컨테이너에 터미널로 입력이 가능하게 한다. &lt;br /&gt;
-** TTY가 뭐지?! &lt;br /&gt;
-https://cosmosproject2015.tistory.com/143 (TTY, PTS, PTY)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;도커 volume : 데이터를 컨테이너에 저장하지 않고 호스트에 저장하는 방식 &lt;br /&gt;
-https://www.daleseo.com/docker-volumes-bind-mounts/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;도커빌드 : Dockerfile로 사용자 정의 이미지를 만듬&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;em&gt;*공부하기 : 도커 아키텍쳐, 컨테이너-OS 간의 통신 구조 &lt;br /&gt;
-**&lt;/em&gt;
-Docker의 개념 및 핵심 설명 : 
-https://khj93.tistory.com/entry/Docker-Docker-%EA%B0%9C%EB%85%90&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;Docker 예제 실습중 갱장히 이상한 오류가 발생했다.&lt;/p&gt;
-
-&lt;p&gt;failed to solve with frontend dockerfile.v0: failed to read dockerfile: open /var/lib/docker/tmp/buildkit-mount174403522/Dockerfile: no such file or directory&lt;/p&gt;
-
-&lt;p&gt;구글링을 계속 해봤지만 dockerfile -&amp;gt; Dockerfile 로 이름을 바꾸라는 답변밖에 없었다. &lt;br /&gt;
-하지만, 오류가 고쳐지지 않았고 터미널을 Open한 디렉토리 경로를 상위 폴더 위치로 open을 해서 났던 오류였다 ㅎㅎ&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Docker" /><category term="Docker" /><summary type="html">인턴 하면서 끄적였던 것들...</summary></entry></feed>
+&lt;/ol&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 01</summary></entry></feed>
