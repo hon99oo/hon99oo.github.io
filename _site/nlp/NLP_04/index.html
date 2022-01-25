@@ -187,7 +187,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          3 분 소요
         
       </span>
     
@@ -341,7 +341,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#tasks">Tasks</a></li><li><a href="#model-architecture">Model Architecture</a></li><li><a href="#training-procedure">Training Procedure</a></li></ul>
+              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#tasks">Tasks</a></li><li><a href="#model-architecture">Model Architecture</a></li><li><a href="#training-procedure">Training Procedure</a></li><li><a href="#experiments">Experiments</a></li><li><a href="#experiments---glue-results">Experiments - GLUE Results</a></li><li><a href="#experiments---domain-adaptation-results">Experiments - Domain Adaptation Results</a></li><li><a href="#conclusion">Conclusion</a></li></ul>
 
             </nav>
           </aside>
@@ -479,6 +479,78 @@
 <h1 id="training-procedure">Training Procedure</h1>
 
 <p><img src="../../assets/img/nlp/04/img_10.png" width="100%" height="100%" /></p>
+
+<h1 id="experiments">Experiments</h1>
+<ul>
+  <li>Datasets
+    <ul>
+      <li>GLUE 벤치마크는 QA, Sentiment Analysis, Text Similarity, Textual Entailment를 포함한 NLU task</li>
+      <li>SNLI 데이터셋은 570K개의 문장 쌍</li>
+      <li>SciTail은 Science Question Answering 데이터셋에서 파생된 Textual Entailment 데이터셋임
+        <ul>
+          <li>주어진 전제가 주어진 가설을 수반하는지 여부를 평가</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="../../assets/img/nlp/04/img_11.png" width="100%" height="100%" /></p>
+  </li>
+  <li>Implementation details
+    <ul>
+      <li>Optimizer : Adamax</li>
+      <li>learning rate : 5e-5</li>
+      <li>Batch Size : 32</li>
+      <li>Maximum number of epoch : 5</li>
+      <li>Fine-tuning layer dropout : task마다 다르게 설정(MNLI:0.3, CoLA:0.05, Else:0.1)</li>
+      <li>Tokenizer : WordPiece</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="experiments---glue-results">Experiments - GLUE Results</h1>
+
+<p><img src="../../assets/img/nlp/04/img_12.png" width="100%" height="100%" /></p>
+
+<ul>
+  <li>MT-DNN이 BERT보다 전체 성능이 약 1.8% 향상됨</li>
+  <li>각각의 Task 결과가 대부분 SOTA임</li>
+  <li>
+    <p>Dataset이 적은 Task(MRPC, RTE)의 경우 비교적 높은 성능 향상이 있음</p>
+
+    <p><img src="../../assets/img/nlp/04/img_13.png" width="100%" height="100%" /></p>
+  </li>
+  <li>Specific layer로 SAN 사용, pairwise ranking을 한 효과를 보여주는 실험</li>
+  <li>BERT vs ST-DNN
+    <ul>
+      <li>ST-DNN은 BERT처럼 single-task로 fine-tunning함</li>
+      <li>MNLI, QQP, MRPC, QNLI에서 BERT보다 성능이 좋음</li>
+    </ul>
+  </li>
+  <li>ST-DNN vs MT-DNN
+    <ul>
+      <li>데이터가 적은 실험에서 더 큰 성능향상이 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="experiments---domain-adaptation-results">Experiments - Domain Adaptation Results</h1>
+
+<p><img src="../../assets/img/nlp/04/img_14.png" width="60%" height="100%" /></p>
+
+<ul>
+  <li>SNLI와 SciTail에 MT-DNN을 적용한 실험</li>
+  <li>MT-DNN은 데이터를 0.1%만 써도 성능이 잘나옴</li>
+  <li>MT-DNN이 BERT보다 데이터가 적을 때, 압도적인 성능을 보여줌</li>
+</ul>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<ul>
+  <li>Multi-task learning model과 pre-training을 결합한 MT-DNN 모델 제안</li>
+  <li>MT-DNN은 SNLI, SchiTail 및 GLUE에서 10가 NLU task에 높은 성능 향상 결과를 얻음</li>
+  <li>MT-DNN은 Domain Adaption 실험에서도 탁월한 일반화 기능을 보여줌</li>
+  <li>MT-DNN 개선을 위해 MTL에서의 모델 구조 공유에 더 깊은 이해, fine-tuning과 pre-training을 위한 더 효과적인 훈련 방법을 더 연구해야함</li>
+</ul>
 
         
       </section>

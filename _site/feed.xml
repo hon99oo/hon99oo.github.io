@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-26T03:56:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-26T04:02:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
 
 &lt;h1 id=&quot;35-산술연산과-논리연산&quot;&gt;3.5 산술연산과 논리연산&lt;/h1&gt;
 
@@ -136,7 +136,79 @@
 
 &lt;h1 id=&quot;training-procedure&quot;&gt;Training Procedure&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...4</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)</title><link href="http://localhost:4000/cs:app/csapp_05/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_05</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_05/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;experiments&quot;&gt;Experiments&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Datasets
+    &lt;ul&gt;
+      &lt;li&gt;GLUE 벤치마크는 QA, Sentiment Analysis, Text Similarity, Textual Entailment를 포함한 NLU task&lt;/li&gt;
+      &lt;li&gt;SNLI 데이터셋은 570K개의 문장 쌍&lt;/li&gt;
+      &lt;li&gt;SciTail은 Science Question Answering 데이터셋에서 파생된 Textual Entailment 데이터셋임
+        &lt;ul&gt;
+          &lt;li&gt;주어진 전제가 주어진 가설을 수반하는지 여부를 평가&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Implementation details
+    &lt;ul&gt;
+      &lt;li&gt;Optimizer : Adamax&lt;/li&gt;
+      &lt;li&gt;learning rate : 5e-5&lt;/li&gt;
+      &lt;li&gt;Batch Size : 32&lt;/li&gt;
+      &lt;li&gt;Maximum number of epoch : 5&lt;/li&gt;
+      &lt;li&gt;Fine-tuning layer dropout : task마다 다르게 설정(MNLI:0.3, CoLA:0.05, Else:0.1)&lt;/li&gt;
+      &lt;li&gt;Tokenizer : WordPiece&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;experiments---glue-results&quot;&gt;Experiments - GLUE Results&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_12.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MT-DNN이 BERT보다 전체 성능이 약 1.8% 향상됨&lt;/li&gt;
+  &lt;li&gt;각각의 Task 결과가 대부분 SOTA임&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Dataset이 적은 Task(MRPC, RTE)의 경우 비교적 높은 성능 향상이 있음&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_13.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Specific layer로 SAN 사용, pairwise ranking을 한 효과를 보여주는 실험&lt;/li&gt;
+  &lt;li&gt;BERT vs ST-DNN
+    &lt;ul&gt;
+      &lt;li&gt;ST-DNN은 BERT처럼 single-task로 fine-tunning함&lt;/li&gt;
+      &lt;li&gt;MNLI, QQP, MRPC, QNLI에서 BERT보다 성능이 좋음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ST-DNN vs MT-DNN
+    &lt;ul&gt;
+      &lt;li&gt;데이터가 적은 실험에서 더 큰 성능향상이 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;experiments---domain-adaptation-results&quot;&gt;Experiments - Domain Adaptation Results&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_14.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SNLI와 SciTail에 MT-DNN을 적용한 실험&lt;/li&gt;
+  &lt;li&gt;MT-DNN은 데이터를 0.1%만 써도 성능이 잘나옴&lt;/li&gt;
+  &lt;li&gt;MT-DNN이 BERT보다 데이터가 적을 때, 압도적인 성능을 보여줌&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Multi-task learning model과 pre-training을 결합한 MT-DNN 모델 제안&lt;/li&gt;
+  &lt;li&gt;MT-DNN은 SNLI, SchiTail 및 GLUE에서 10가 NLU task에 높은 성능 향상 결과를 얻음&lt;/li&gt;
+  &lt;li&gt;MT-DNN은 Domain Adaption 실험에서도 탁월한 일반화 기능을 보여줌&lt;/li&gt;
+  &lt;li&gt;MT-DNN 개선을 위해 MTL에서의 모델 구조 공유에 더 깊은 이해, fine-tuning과 pre-training을 위한 더 효과적인 훈련 방법을 더 연구해야함&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...4</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)</title><link href="http://localhost:4000/cs:app/csapp_05/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_05</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_05/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;컴퓨터는 데이터를 처리하고, 메모리를 관리하고, 저장장치에 데이터를 읽거나 쓰고, 네트워크를 통해 통신하는 등의 하위 동작들을 인코딩한 연속되 바이트인 기계어 코드를 실행한다.&lt;/li&gt;
   &lt;li&gt;컴파일러는 프로그램 언어의 규칙, 대상 컴퓨터의 인스트럭션 집합, 운영체제의 관례 등에 따라 기계어 코드를 생성한다.&lt;/li&gt;
