@@ -341,7 +341,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#tasks">Tasks</a></li><li><a href="#model-architecture">Model Architecture</a></li></ul>
+              <ul class="toc__menu"><li><a href="#introduction">Introduction</a></li><li><a href="#tasks">Tasks</a></li><li><a href="#model-architecture">Model Architecture</a></li><li><a href="#training-procedure">Training Procedure</a></li></ul>
 
             </nav>
           </aside>
@@ -430,22 +430,16 @@
     <ul>
       <li>[CLS] Token과 Task Specific Parameter의 곱에 Softmax를 취하여 Ouput 추출</li>
     </ul>
+
+    <p><img src="../../assets/img/nlp/04/img_3.png" width="60%" height="100%" /></p>
   </li>
-</ul>
-
-<p><img src="../../assets/img/nlp/04/img_3.png" width="60%" height="100%" /></p>
-
-<ul>
   <li>Text Similarity Ouput
     <ul>
       <li>[CLS] Token을 활용하여 Task Specific Parameter와 곱한 후 sigmoid function을 사용하여 Score를 예측</li>
     </ul>
+
+    <p><img src="../../assets/img/nlp/04/img_4.png" width="60%" height="100%" /></p>
   </li>
-</ul>
-
-<p><img src="../../assets/img/nlp/04/img_4.png" width="60%" height="100%" /></p>
-
-<ul>
   <li>Pairwise Text Classification Ouput
     <ul>
       <li>BERT와 다르게 Stochastic Answer Network(SAN)를 이용함
@@ -460,19 +454,17 @@
 
 <p><img src="../../assets/img/nlp/04/img_5.png" width="100%" height="100%" /></p>
 
-<p><img src="../../assets/img/nlp/04/img_6.png" width="100%" height="100%" /></p>
-
 <ul>
   <li>각 step을 진행할때마다 linear classifier를 거쳐 각 클래스에 대한 확률 분포 계산</li>
 </ul>
 
-<p><img src="../../assets/img/nlp/04/img_7.png" width="100%" height="100%" /></p>
+<p><img src="../../assets/img/nlp/04/img_6.png" width="60%" height="100%" /></p>
 
 <ul>
   <li>모든 K-step output을 평균하여 클래스에 대한 최종 확률 분포를 계산, averaging 연산 전에 stochastic prediction droput을 적용</li>
 </ul>
 
-<p><img src="../../assets/img/nlp/04/img_8.png" width="100%" height="100%" /></p>
+<p><img src="../../assets/img/nlp/04/img_7.png" width="60%" height="100%" /></p>
 
 <ul>
   <li>Relevance Ranking Ouput
@@ -481,6 +473,12 @@
     </ul>
   </li>
 </ul>
+
+<p><img src="../../assets/img/nlp/04/img_8.png" width="60%" height="100%" /></p>
+
+<h1 id="training-procedure">Training Procedure</h1>
+
+<p><img src="../../assets/img/nlp/04/img_10.png" width="100%" height="100%" /></p>
 
         
       </section>

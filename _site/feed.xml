@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-26T03:53:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-26T03:56:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.7 프로시저)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
 
 &lt;h1 id=&quot;35-산술연산과-논리연산&quot;&gt;3.5 산술연산과 논리연산&lt;/h1&gt;
 
@@ -88,22 +88,16 @@
     &lt;ul&gt;
       &lt;li&gt;[CLS] Token과 Task Specific Parameter의 곱에 Softmax를 취하여 Ouput 추출&lt;/li&gt;
     &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
   &lt;li&gt;Text Similarity Ouput
     &lt;ul&gt;
       &lt;li&gt;[CLS] Token을 활용하여 Task Specific Parameter와 곱한 후 sigmoid function을 사용하여 Score를 예측&lt;/li&gt;
     &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
   &lt;li&gt;Pairwise Text Classification Ouput
     &lt;ul&gt;
       &lt;li&gt;BERT와 다르게 Stochastic Answer Network(SAN)를 이용함
@@ -118,19 +112,17 @@
 
 &lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_6.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
 &lt;ul&gt;
   &lt;li&gt;각 step을 진행할때마다 linear classifier를 거쳐 각 클래스에 대한 확률 분포 계산&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_7.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_6.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;모든 K-step output을 평균하여 클래스에 대한 최종 확률 분포를 계산, averaging 연산 전에 stochastic prediction droput을 적용&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_8.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_7.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Relevance Ranking Ouput
@@ -138,7 +130,13 @@
       &lt;li&gt;Question과 문장 Pair Input으로 넣어 생성한 [CLS] Token에 Sigmoid를 취하여 문장 별로 점수를 Scoring하고 가장 높은 점수 만 Question에 해당하는 정답이 있다고 예측하는 방식&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...4</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)</title><link href="http://localhost:4000/cs:app/csapp_05/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_05</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_05/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_8.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;training-procedure&quot;&gt;Training Procedure&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/04/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...4</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)</title><link href="http://localhost:4000/cs:app/csapp_05/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_05</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_05/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;컴퓨터는 데이터를 처리하고, 메모리를 관리하고, 저장장치에 데이터를 읽거나 쓰고, 네트워크를 통해 통신하는 등의 하위 동작들을 인코딩한 연속되 바이트인 기계어 코드를 실행한다.&lt;/li&gt;
   &lt;li&gt;컴파일러는 프로그램 언어의 규칙, 대상 컴퓨터의 인스트럭션 집합, 운영체제의 관례 등에 따라 기계어 코드를 생성한다.&lt;/li&gt;
