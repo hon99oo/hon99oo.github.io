@@ -1,0 +1,216 @@
+I"�;<h1 id="part4-클래스와-객체">Part4 클래스와 객체</h1>
+
+<h2 id="클래스-선언">클래스 선언</h2>
+<ul>
+  <li>클래스
+    <ul>
+      <li>자바는 객체를 만들기 위해 반드 클래스를 먼저 만들어야 한다. 클래스는 객체를 만들기 위한 일종의 틀이다.
+        <ul>
+          <li>붕어빵이 객체라면, 붕어빵 틀은 클래스</li>
+          <li>자동차 클래스 생성</li>
+          <li>컴파일하여 디스크에 Car라는 클래스를 생성한다.</li>
+          <li>자동차 클래스가 생성되었다고 해서 자동차가 만들어 진것은 아니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">        <span class="kp">public</span> <span class="k">class</span> <span class="nc">Car</span><span class="p">{</span>
+        <span class="p">}</span></code></pre></figure>
+
+<p><br /></p>
+<ul>
+  <li>Car객체 생성하기 (자동차 만들기)
+    <ul>
+      <li>new 연산자는 new 연산자 뒤에 나오는 생성자를 이용하여 메모리에 객체를 만들라는 명령.</li>
+      <li>메모리에 만들어진 객체를 인스턴스(instance)라고도 한다.</li>
+      <li>이렇게 만들어진 객체를  참조하는 변수가 c1, c2 이다.</li>
+      <li>위의 코드가 실행되면 Car라는 객체가 2개가 만들어지고 각각의 객체를 참조하는 c1과 c2변수가 선언된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">        <span class="kp">public</span> <span class="k">class</span> <span class="nc">CarExam</span><span class="p">{</span> 
+            <span class="kp">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="no">String</span> <span class="n">args</span><span class="p">[]){</span>
+                <span class="no">Car</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">new</span> <span class="no">Car</span><span class="p">();</span>
+                <span class="no">Car</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">new</span> <span class="no">Car</span><span class="p">();</span>
+            <span class="p">}</span> 
+        <span class="p">}</span></code></pre></figure>
+
+<h2 id="참조타입">참조타입</h2>
+<p>참조형 타입은 기본형 타입을 제외한 모든 타입입니다. 앞서 배웠던, 배열도 참조형이고, 클래스도 모두 참조 타입이다.</p>
+<ul>
+  <li>기본형 타입: boolean, char, byte, short, int, long, float, double</li>
+  <li>참조형 타입: 기본형 타입을 제외한 모든 타입</li>
+  <li>참조형 변수
+    <ul>
+      <li>Stirng str = new String(“Hello);
+        <ul>
+          <li>str 변수 앞에 기본형 타입이 아닌 String 클래스가 적혀있다.</li>
+          <li>이퀄(=) 뒤에는 new 다음에 생성자라는 것이 있다.</li>
+          <li>new 라는 키워드는 객체를 메모리에 올려준다. 이렇게 메모리에 올라간 객체를 인스턴스라고 말한다.</li>
+        </ul>
+      </li>
+      <li>메모리에 올라간 인스턴스를 가리키는 변수, 참조하는 변수, 레퍼런스 하는 변수가 str 이다. 레퍼런스 한다라는 것은 변수가 인스턴스를 가지고 있는게 아니라 말 그대로 가리킨다는 의미이다.</li>
+      <li>str이라는 변수에는 메모리의 위치 값이 저장되는 것이다. 메모리의 위치값이 저장된다고 하더라도, 
+어떤 메모리에 저자오디는지 그 정보를 알 수 있는 방법은 없다. 그렇기 때문에 str변수는 String 인스턴스를 참조한다라고만 알면 된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="string-클래스">String 클래스</h2>
+<p>문자열을 표현하는 자바에서 가장 많이 사용하는 클래스
+<br /><br />
+자바 인스턴스 생성 방법</p>
+<ul>
+  <li>new 연산자를 이용하지 않고 인스턴스를 만드는 경우
+    <ul>
+      <li>“hello”라는 문자열이 메모리 중에서 상수가 저장되는 영역에 저장된다. 상수는 변하지 않는 값을 의미.</li>
+      <li>String str2 = “hello”; 이 문장이 실행될 때에 hello 라는 문자열 상수는 이미 만들어져 있으므로 str1이 참조하는 인스턴스를 str2도 참조한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="nc">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"hello"</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="s">"hello"</span><span class="o">;</span> </code></pre></figure>
+
+<ul>
+  <li>new 연산자를 이용해서 인스턴스를 만드는 경우
+    <ul>
+      <li>new연산자를 이용하여 인스턴스를 만들면 인스턴스는 무조건 새롭게 만들어진다.</li>
+      <li>String str4 = new String(“hello”); 이 문장이 실행될때도 새롭게 만들게 되므로, str3 과 str4는 서로 다른 인스턴스를 참조한다.</li>
+      <li>변수끼리 == 로 비교하면 서로 같은 것을 참조하는지 비교한다.</li>
+      <li>String은 다른 클래스와 다르게 new를 사용하지 않고 사용할 수 있다. 메모리를 아끼려면 String은 new를 사용하지 않고 사용하는 것이 좋다.</li>
+      <li>String은 불변 클래스이다. 불변이란 String이 인스턴스가 될때 가지고 있던 값을 나중에 수정할 수 없다.</li>
+      <li>String은 문자열과 관련된 다양한 메소드를 가지고 있다. 메소드를 호출한다 하더라도 String은 내부의 값이 변하지 않는다.</li>
+      <li>String이 가지고 있는 메소드중 String을 반환하는 메소드는 모두 새로운 String을 생성해서 반환한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="nc">String</span> <span class="n">str3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">str4</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span></code></pre></figure>
+
+<h2 id="필드filed-선언">필드(filed) 선언</h2>
+<p>자동차는 자동차 이름, 자동차 번호를 가지고 있고, 자동차는 달리고 멈추는 기능이 있따. 여기에서 가지고 있는 것을 속성이라고 한다.
+자바에서는 이러한 속성을 필드(Field)라는 용어로 사용한다.</p>
+<ul>
+  <li>이름과 번호를 필드로 가지고 있는 Car 클래스 선언</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span><span class="o">{</span>
+        <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>    
+        <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>Car 클래스를 인스턴스화 하기</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="nc">Car</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="o">();</span>
+    <span class="nc">Car</span> <span class="n">c2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="o">();</span>
+    <span class="c1">//Car라는 인스턴스가 메모리에 2개 만들어 진다. 객체별로 name과 number라는 속성을 가진다.</span></code></pre></figure>
+
+<ul>
+  <li>속성 이용하기
+    <ul>
+      <li>참조 변수 다음에 나오는 점(dot)은 참조변수가 참조하는 객체가 가지고 있는 것을 사용할 때 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="c1">//c1.name은  c1이 참조하는 객체의 name 을 의미.</span>
+
+    <span class="n">c1</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"소방차"</span><span class="o">;</span>  <span class="c1">//c1이 참조하는 객체의 name을 소방차로 설정 </span>
+    <span class="n">c1</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">1234</span><span class="o">;</span>   <span class="c1">// c1.number = 1234란 c1이 참조하는 객체의 number를 1234 로 설정 </span>
+
+    <span class="n">c2</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"구급차"</span>  <span class="c1">//c2가 가리키는 객체의name을 구급차로 설정</span>
+    <span class="n">c2</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="mi">1004</span><span class="o">;</span>  <span class="c1">//c2가 가리키는 객체의 number를 1004로 설정</span>
+
+
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>  <span class="c1">//콘솔에 c1이 참조하는 객체의 name 을 출력합니다. </span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">number</span><span class="o">);</span> <span class="c1">//콘솔에 c1이 참조하는 객체의 number 를 출력합니다. </span>
+
+    <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>   <span class="c1">//c2가 참조하는 객체의 name 을 String 타입 변수 name 도 참조하게 합니다.</span></code></pre></figure>
+
+<h2 id="메소드란">메소드란?</h2>
+<ul>
+  <li>필드가 물체의 상태라면, 물체의 행동에 해당하는게 메소드다. car에 이름과 번호가 있기도 하지만, car는 앞으로 전진할 수도 있고 후진하는 행동도 할 수 있다.
+    <ul>
+      <li>메소드는 입력값이 있고, 그 입력값을 받아서 무언가 한 다음 결과를 도출해 내는 수학의 함수와 비슷한 개념이다.</li>
+      <li>이때 입력값을 매개변수라고 하고, 결과값을 리턴값이라고 한다.
+        <ul>
+          <li>인자(Argument)는 어떤 함수를 호출시에 전달되는 값을 의미한다.</li>
+          <li>매개 변수(Parameter)는 그 전달된 인자를 받아들이는 변수를 의미한다.</li>
+        </ul>
+      </li>
+      <li>메소드란 클래스가 가지고 있는 기능이다. 클래스 안에 선언된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="메소드method-선언">메소드(Method) 선언</h2>
+<ul>
+  <li>매개변수도 없고 리턴하는 것도 없는 형태의 메소드
+    <ul>
+      <li>리턴하는 것이 없을 경우 void라고 작성합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClass</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">(){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"method1이 실행됩니다."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    </code></pre></figure>
+
+<ul>
+  <li>정수를 받아들인 후, 리턴하지 않는 메소드
+    <ul>
+      <li>받아 들이는 값은 어떤 타입이라도 상관없다.</li>
+      <li>받아 들이는 값의 수는 여러개 일 수 있다. 여러개일 경우 콤마(,)로 구분한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyClass</span><span class="o">{</span>       
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method2</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="s">" 를 이용하는 method2입니다."</span><span class="o">);</span>
+        <span class="o">}</span>   
+    <span class="o">}</span>
+    </code></pre></figure>
+
+<ul>
+  <li>정수를 받아들인 후, 정수를 반환하는 메소드</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">method3</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">y</span> <span class="o">+</span> <span class="s">" 를 이용하는 method5입니다."</span><span class="o">);</span>
+        <span class="k">return</span> <span class="mi">5</span><span class="o">;</span>
+    <span class="o">}</span>
+    </code></pre></figure>
+
+<h2 id="string-클래스의-메소드">String 클래스의 메소드</h2>
+<ul>
+  <li>문자열 길이 구하기
+    <ul>
+      <li>str.length()는 str이 참조하는 문자열의 길이를 구해서 int 타입으로 리턴해주는 메소드이다.</li>
+    </ul>
+  </li>
+  <li>문자열 붙이기(concat)
+    <ul>
+      <li>str.concat(“world”) 메소드는 str이 참조하는 문자열 hello 에다가 메소드의 인자로 들어온 문자열 world를 붙여서 String 타입으로 리턴하는 메소드다.</li>
+      <li>String Class는 불변 클래스로, 메소드가 수행되면, 새로운 문자열을 만든다. 그러므로, 원래 클래스는 변하지 않는다.</li>
+    </ul>
+  </li>
+  <li>문자열 자르기(subString)
+    <ul>
+      <li>str.subString(1,3)은 str이 참조하는 문자열을 인덱스 1번부터 3번까지 자른 결과이다.</li>
+      <li>str.subString(2)는 str이 참조하는 문자열을 2번 인덱스부터 마지막까지 자른 결과를 의미한다.</li>
+    </ul>
+  </li>
+</ul>
+
+:ET

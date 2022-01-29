@@ -1,0 +1,18 @@
+I"�<h1 id="part4-클래스와-객체">Part4 클래스와 객체</h1>
+
+<h2 id="클래스-선언">클래스 선언</h2>
+<ul>
+  <li>클래스
+    <ul>
+      <li>자바는 객체를 만들기 위해 반드 클래스를 먼저 만들어야 한다. 클래스는 객체를 만들기 위한 일종의 틀이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">      <span class="kp">public</span> <span class="k">class</span> <span class="nc">Car</span><span class="p">{</span>
+      <span class="p">}</span>
+    </code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- 
+</code></pre></div></div>
+:ET
