@@ -1,0 +1,95 @@
+I"<h1 id="part6-클래스-다듬기">Part6 클래스 다듬기</h1>
+
+<h2 id="생성자">생성자</h2>
+<p>모든 클래스는 인스턴스화 될 때 생성자를 사용한다.</p>
+
+<ul>
+  <li>생성자의 특징
+    <ul>
+      <li>생성자는 리턴타입이 없다.</li>
+      <li>생성자를 프로그래머가 만들지 않으면 매개변수가 없는 생성자가 컴파일할 때 자동으로 만들어진다.</li>
+      <li>매개변수가 없는 생성자를 기본생성자라고 한다.</li>
+      <li>생성자를 하나라도 프로그래머가 만들었따면 기본생성자는 자동으로 만들어지지 않는다.</li>
+    </ul>
+  </li>
+  <li>생성자의 역할
+    <ul>
+      <li>생성자가 하는 일은 객체가 될 때 필드를 초기화 하는 역할을 수행한다.</li>
+      <li>자동차가 객체가 될 때 반드시 이름을 가지도록 하려면, Car 클래스를 다음과 같이 만들어야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span><span class="o">{</span>
+        <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
+    
+        <span class="kd">public</span> <span class="nf">Car</span><span class="o">(</span><span class="nc">String</span> <span class="n">n</span><span class="o">){</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+      
+    <span class="c1">// 위의 Car 클래스를 이용하여 Car 인스턴스를 생성하는 방법</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CarExam2</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[]){</span>
+    
+            <span class="nc">Car</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="o">(</span><span class="s">"소방차"</span><span class="o">);</span>
+            <span class="nc">Car</span> <span class="n">c2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Car</span><span class="o">(</span><span class="s">"구급차"</span><span class="o">);</span>
+            <span class="c1">//Car c3 = new Car(); // 컴파일 오류가 발생합니다.</span>
+    
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c1</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+    
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c2</span><span class="o">.</span><span class="na">name</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="c1">// Car클래스는 기본 생성자를 가지지 않는다. 그래서 기본생성자로 Car 객체를 생성할 수 없다.</span>
+    </code></pre></figure>
+
+<h2 id="this">this</h2>
+<p>this는 현재 객체, 자기 자신을 나타낸다.</p>
+
+<ul>
+  <li>this의 사용</li>
+  <li></li>
+</ul>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span><span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">number</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Car</span><span class="o">(</span><span class="nc">String</span> <span class="n">n</span><span class="o">){</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>- Car 클래스의 생성자 매개변수의 이름이 n 이다. n 이라는 변수명은 무엇을 의미하는지 쉽게 알 수 없다.
+- n 으로 쓰기 보다는 name 으로 사용하는 것이 좋다.
+</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">Car</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">){</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>아아</li>
+</ul>
+
+<h2 id="메소드-오버로딩">메소드 오버로딩</h2>
+
+<h2 id="생성자-오버로딩과-this">생성자 오버로딩과 this</h2>
+
+<h2 id="패키지">패키지</h2>
+
+<h1 id="part7-상속">Part7 상속</h1>
+
+<h2 id="상속">상속</h2>
+
+<h2 id="접근제한자">접근제한자</h2>
+
+<h2 id="추상클래스">추상클래스</h2>
+
+<h2 id="super와-부모생성자">super와 부모생성자</h2>
+
+<h2 id="오버라이딩">오버라이딩</h2>
+
+<h2 id="클래스-형변">클래스 형변</h2>
+:ET

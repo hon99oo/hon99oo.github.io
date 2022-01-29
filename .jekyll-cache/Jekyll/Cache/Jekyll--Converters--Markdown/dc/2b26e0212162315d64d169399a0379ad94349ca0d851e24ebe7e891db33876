@@ -1,0 +1,107 @@
+I"<h1 id="part7-상속">Part7 상속</h1>
+
+<h2 id="상속">상속</h2>
+<ul>
+  <li>상속이란? 부모가 가진것을 자식에게 물려주는 것을 의미한다.
+    <ul>
+      <li>노트북은 컴퓨터의 한 종류다.</li>
+      <li>침대는 가구의 한 종류다. 혹은 침대는 가구다.</li>
+      <li>소방차는 자동차다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>이렇게 말할 수 있는 관계를 is a 관계 혹은 kind of 관계라고 한다.</p>
+
+<ul>
+  <li>Car를 상속받은 Bus를 class로 표현하는 방법
+    <ul>
+      <li>자바는 클래스 이름 뒤에 extends 키워드를 적고 부모 클래스 이름을 적게 되면 부모 클래스가 가지고 있는 것을 상속받을 수 있게 된다.</li>
+      <li>상속이란 부모가 가지고 있는 것을 자식이 물려받는 것을 말한다. 즉, 부모가 가지고 있는 것을 자식이 사용할 수 있께 된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span><span class="o">{</span>
+
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bus</span> <span class="kd">extends</span> <span class="nc">Car</span><span class="o">{</span>
+
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>부모 클래스와 자식 클래스의 메소드
+    <ul>
+      <li>자식 클래스는 부모 클래스에 선언된 메소드를 사용할 수 있다.</li>
+      <li>자식 클래스는 부모가 가지고 있는 메소드 외에 추가로 메소드를 선언할 수 있다.
+        <ul>
+          <li>이것을 확장하였다고 표현한다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="접근제한자">접근제한자</h2>
+<p>접근 제한자란 클래스 내에서 멤버의 접근을 제한하는 역할을 한다.</p>
+
+<ul>
+  <li>접근 제한자의 종류
+    <ul>
+      <li>public
+        <ul>
+          <li>어떤 클래스든 접근할 수 있다는 것을 의미</li>
+        </ul>
+      </li>
+      <li>protected
+        <ul>
+          <li>자기 자신, 같은 패키지, 서로 다른 패키지다 하더라도 상속받은 자식 클래스에서는 접근할 수 있다는 것을 의미</li>
+        </ul>
+      </li>
+      <li>private
+        <ul>
+          <li>자기 자신만 접근할 수 있다는 것을 의미</li>
+        </ul>
+      </li>
+      <li>접근제한자를 적지 않으면 default 접근 지정자
+        <ul>
+          <li>자기자신과 같은 패키지에서만 접근할 수 있다는 것을 의미(상속X)</li>
+        </ul>
+      </li>
+      <li>public &gt; protectd &gt; default &gt; private</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="추상클래스">추상클래스</h2>
+<p>추상 클래스란 구체적이지 않은 클래스를 의미한다. 독수리, 타조는 구체적인 새를 지칭하는데 새, 포유류 같은 것은 구체적이지 않다.</p>
+<ul>
+  <li>추상 클래스 정의하기
+    <ul>
+      <li>추상 클래스는 클래스 앞에 abstract 키워드를 이용해서 정의한다.</li>
+      <li>추상 클래스는 미완성의 추상 메소드를 포함할 수 있다.
+        <ul>
+          <li>추상 메소드란, 내용이 없는 메소드이다. 즉 구현이 되지 않은 메소드이다.</li>
+          <li>추상 메소드는 리턴 타입 앞에 abstract라는 키워드를 붙여야 한다.</li>
+        </ul>
+      </li>
+      <li>추상 클래스는 인스턴스를 생성할 수 없다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Bird</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">sing</span><span class="o">();</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fly</span><span class="o">(){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"날다."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="super와-부모생성자">super와 부모생성자</h2>
+
+<h2 id="오버라이딩">오버라이딩</h2>
+
+<h2 id="클래스-형변">클래스 형변</h2>
+:ET
