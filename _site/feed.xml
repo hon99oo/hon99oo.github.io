@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-31T00:42:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[Java/프로그래머스] Part9 예외처리</title><link href="http://localhost:4000/java/java_09/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part9 예외처리" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_09</id><content type="html" xml:base="http://localhost:4000/java/java_09/">&lt;h1 id=&quot;part9-예외처리&quot;&gt;Part9 예외처리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-31T00:46:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)</title><link href="http://localhost:4000/cs:app/csapp_08/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)" /><published>2022-01-31T00:00:00+09:00</published><updated>2022-01-31T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_08</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_08/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
+  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
+  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
+  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
+  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
+  &lt;li&gt;3.6 제어문&lt;/li&gt;
+  &lt;li&gt;3.7 프로시&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 08</summary></entry><entry><title type="html">[Java/프로그래머스] Part9 예외처리</title><link href="http://localhost:4000/java/java_09/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part9 예외처리" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_09</id><content type="html" xml:base="http://localhost:4000/java/java_09/">&lt;h1 id=&quot;part9-예외처리&quot;&gt;Part9 예외처리&lt;/h1&gt;
 
 &lt;h2 id=&quot;exception&quot;&gt;Exception&lt;/h2&gt;
 &lt;p&gt;프로그램 실행중 예기치 못한 사건을 예외라고 한다. 예외 상황을 미리 예측하고 처리할 수 있는데, 이렇게 하는 것을 예외 처리라고 한다.&lt;/p&gt;
@@ -2301,114 +2310,4 @@ BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 �
   &lt;li&gt;스택이 프로그램 코드와 다른 형태의 프로그램 데이터와 동일한 메모리에 저장되기 때문에 프로그램들은 표준 메모리 주소지정 방법을 사용해서 스택 내 임의의 위치에 접근할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 05</summary></entry><entry><title type="html">[NLP/Paper]ELMO - Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_03/" rel="alternate" type="text/html" title="[NLP/Paper]ELMO - Deep contextualized word representations 논문 리뷰" /><published>2022-01-24T00:00:00+09:00</published><updated>2022-01-24T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_03</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_03/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
-  &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
-  &lt;li&gt;We use vectors derived from a bidirectional LSTM that is trained with a coupled language model (LM) objective on a large text corpus.&lt;/li&gt;
-  &lt;li&gt;In many experiments, the ELMo representation has been shown to be very excellent, and the error rate is relatively reduced by 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;related-works&quot;&gt;Related Works&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Pretrained word vector의 활용이 표준화 되었지만, 하나의 단어에 하나의 벡터를 부여하다보니 context-independent한 문제가 있었다.&lt;/li&gt;
-  &lt;li&gt;워드 임베딩을 풍부하게 하기 위해, subword information을 활용하거나 다의어의 경우 의미별로 다른 벡터를 학습시키는 방법이 등장하였다.
-    &lt;ul&gt;
-      &lt;li&gt;context2vec&lt;/li&gt;
-      &lt;li&gt;CoVe&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이전 연구에 의하면 biRNN의 서로 다른 레이어가 다른 형태의 정보를 인코딩하는데, 본 연구에서도 유사한 효과가 나타났다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;model&quot;&gt;Model&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;ELMO
-    &lt;ul&gt;
-      &lt;li&gt;ELMO word representations are functions of the entire input sentence.&lt;/li&gt;
-      &lt;li&gt;They are computed on top of two-layer biLMs with character convolutions, as a linear function of the internal network states.&lt;/li&gt;
-      &lt;li&gt;This setup allows us to do semi-supervised learning, where the biLM is pre-trained at a large scale and easily incorporated into a wide range of existing neural NLP architectures.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Pretrained BiLM&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;
-&lt;img src=&quot;../../assets/img/nlp/03/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Task-specific ELMo Embedding&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Using biLMs for supervised NLP tasks
-    &lt;ul&gt;
-      &lt;li&gt;기존의 임베딩 벡터와 함께 사용된다.&lt;/li&gt;
-      &lt;li&gt;ELMo 표현을 만드는데 사용된 사전 훈련된 언어 모델의 가중치는 고정시키고, 각 층의 가중치와 스칼라 파라미터는 훈련 과정에서 학습된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;6개의 NLP task에서 에러율을 6~20% 줄였다.&lt;/li&gt;
-  &lt;li&gt;6개의 NLP task에서 높은 점수를 기록했다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;analysis&quot;&gt;Analysis&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/03/img_6.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;기존에 top layer output만 사용 한 것 대비 성능 향상을 검증했다.&lt;/li&gt;
-  &lt;li&gt;대부분의 경우 Regularization parameter λ 가 작을수록 성능이 더 좋아지는 경향이 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/nlp/03/img_7.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;일부 task(SNLI, SQuAD) 에서는 ELMo 벡터를 Output에 다시 concat 시키는 것이 효과가 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/nlp/03/img_8.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;GloVe 단어 벡터에서 ‘play’와 비슷한 단어는 품사를 변형한 것 또는 스포츠에 관한 유사 단어만 뜬다.&lt;/li&gt;
-  &lt;li&gt;biLM에서는 문맥을 고려한다는 것을 알 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/nlp/03/img_9.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;biLM의 첫 번째 레이어는 syntactic 정보를, 두 번째 레이어는 semantic 정보를 더 잘 인코딩 하는 것으로 나타난다.&lt;/li&gt;
-  &lt;li&gt;이는 biLM의 모든 레이어를 사용하는 것이 성능향상에 도움이 된다는 것을 증명한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/nlp/03/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ELMo를 활용하면 같은 성능을 내는 데에 있어 훨씬 학습이 효율적임을 알 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks.&lt;/li&gt;
-  &lt;li&gt;Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about words in-context, and that using all layers improves overall task performance.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...3</summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 05</summary></entry></feed>
