@@ -1,15 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-31T01:32:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.8 이기종 자료구조)</title><link href="http://localhost:4000/cs:app/csapp_10/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.8 이기종 자료구조)" /><published>2022-01-31T00:00:00+09:00</published><updated>2022-01-31T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_10</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_10/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
-  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
-  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
-  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
-  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
-  &lt;li&gt;3.6 제어문&lt;/li&gt;
-  &lt;li&gt;3.7 프로시져근&lt;/li&gt;
-  &lt;li&gt;3.8 배열의 할당과 접근&lt;/li&gt;
-  &lt;li&gt;3.9 이기종 자료구조&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 10</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)</title><link href="http://localhost:4000/cs:app/csapp_08/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)" /><published>2022-01-31T00:00:00+09:00</published><updated>2022-01-31T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_08</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_08/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-31T01:49:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)</title><link href="http://localhost:4000/cs:app/csapp_08/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)" /><published>2022-01-31T00:00:00+09:00</published><updated>2022-01-31T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_08</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_08/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
   &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
@@ -18,17 +7,7 @@
   &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
   &lt;li&gt;3.6 제어문&lt;/li&gt;
   &lt;li&gt;3.7 프로시져&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 08</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.8 배열의 할당과 접근)</title><link href="http://localhost:4000/cs:app/csapp_09/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.8 배열의 할당과 접근)" /><published>2022-01-31T00:00:00+09:00</published><updated>2022-01-31T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_09</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_09/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
-  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
-  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
-  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
-  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
-  &lt;li&gt;3.6 제어문&lt;/li&gt;
-  &lt;li&gt;3.7 프로시져근&lt;/li&gt;
-  &lt;li&gt;3.8 배열의 할당과 접근&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 09</summary></entry><entry><title type="html">[Java/프로그래머스] Part9 예외처리</title><link href="http://localhost:4000/java/java_09/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part9 예외처리" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_09</id><content type="html" xml:base="http://localhost:4000/java/java_09/">&lt;h1 id=&quot;part9-예외처리&quot;&gt;Part9 예외처리&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 08</summary></entry><entry><title type="html">[Java/프로그래머스] Part9 예외처리</title><link href="http://localhost:4000/java/java_09/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part9 예외처리" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_09</id><content type="html" xml:base="http://localhost:4000/java/java_09/">&lt;h1 id=&quot;part9-예외처리&quot;&gt;Part9 예외처리&lt;/h1&gt;
 
 &lt;h2 id=&quot;exception&quot;&gt;Exception&lt;/h2&gt;
 &lt;p&gt;프로그램 실행중 예기치 못한 사건을 예외라고 한다. 예외 상황을 미리 예측하고 처리할 수 있는데, 이렇게 하는 것을 예외 처리라고 한다.&lt;/p&gt;
@@ -1009,7 +988,257 @@ BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 �
   &lt;li&gt;괄호 안에는 메소드를 구현하거나 메소드를 추가할 수 있다. 이렇게 생성된 이름 없는 객체를 action이라는 참조변수가 참조하도록 하고, exec() 메소드를 호출한다.&lt;/li&gt;
   &lt;li&gt;익명클래스를 만드는 이유는 Action을 상속받는 클래스를 만들 필요가 없을 경우이다.&lt;/li&gt;
   &lt;li&gt;Action을 상속받는 클래스가 해당 클래스에서만 사용되고 다른 클래스에서는 사용되지 않는 경우이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 07</summary></entry><entry><title type="html">[Java/프로그래머스] Part6 클래스 다듬기</title><link href="http://localhost:4000/java/java_06/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part6 클래스 다듬기" /><published>2022-01-29T00:00:00+09:00</published><updated>2022-01-29T00:00:00+09:00</updated><id>http://localhost:4000/java/java_06</id><content type="html" xml:base="http://localhost:4000/java/java_06/">&lt;h1 id=&quot;part6-클래스-다듬기&quot;&gt;Part6 클래스 다듬기&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 07</summary></entry><entry><title type="html">[Java/프로그래머스] Part7 상속</title><link href="http://localhost:4000/java/java_07/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part7 상속" /><published>2022-01-29T00:00:00+09:00</published><updated>2022-01-29T00:00:00+09:00</updated><id>http://localhost:4000/java/java_07</id><content type="html" xml:base="http://localhost:4000/java/java_07/">&lt;h1 id=&quot;part7-상속&quot;&gt;Part7 상속&lt;/h1&gt;
+
+&lt;h2 id=&quot;상속&quot;&gt;상속&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;상속이란? 부모가 가진것을 자식에게 물려주는 것을 의미한다.
+    &lt;ul&gt;
+      &lt;li&gt;노트북은 컴퓨터의 한 종류다.&lt;/li&gt;
+      &lt;li&gt;침대는 가구의 한 종류다. 혹은 침대는 가구다.&lt;/li&gt;
+      &lt;li&gt;소방차는 자동차다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;이렇게 말할 수 있는 관계를 is a 관계 혹은 kind of 관계라고 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Car를 상속받은 Bus를 class로 표현하는 방법
+    &lt;ul&gt;
+      &lt;li&gt;자바는 클래스 이름 뒤에 extends 키워드를 적고 부모 클래스 이름을 적게 되면 부모 클래스가 가지고 있는 것을 상속받을 수 있게 된다.&lt;/li&gt;
+      &lt;li&gt;상속이란 부모가 가지고 있는 것을 자식이 물려받는 것을 말한다. 즉, 부모가 가지고 있는 것을 자식이 사용할 수 있께 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;부모 클래스와 자식 클래스의 메소드
+    &lt;ul&gt;
+      &lt;li&gt;자식 클래스는 부모 클래스에 선언된 메소드를 사용할 수 있다.&lt;/li&gt;
+      &lt;li&gt;자식 클래스는 부모가 가지고 있는 메소드 외에 추가로 메소드를 선언할 수 있다.
+        &lt;ul&gt;
+          &lt;li&gt;이것을 확장하였다고 표현한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;접근제한자&quot;&gt;접근제한자&lt;/h2&gt;
+&lt;p&gt;접근 제한자란 클래스 내에서 멤버의 접근을 제한하는 역할을 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;접근 제한자의 종류
+    &lt;ul&gt;
+      &lt;li&gt;public
+        &lt;ul&gt;
+          &lt;li&gt;어떤 클래스든 접근할 수 있다는 것을 의미&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;protected
+        &lt;ul&gt;
+          &lt;li&gt;자기 자신, 같은 패키지, 서로 다른 패키지다 하더라도 상속받은 자식 클래스에서는 접근할 수 있다는 것을 의미&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;private
+        &lt;ul&gt;
+          &lt;li&gt;자기 자신만 접근할 수 있다는 것을 의미&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;접근제한자를 적지 않으면 default 접근 지정자
+        &lt;ul&gt;
+          &lt;li&gt;자기자신과 같은 패키지에서만 접근할 수 있다는 것을 의미(상속X)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;public &amp;gt; protectd &amp;gt; default &amp;gt; private&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;추상클래스&quot;&gt;추상클래스&lt;/h2&gt;
+&lt;p&gt;추상 클래스란 구체적이지 않은 클래스를 의미한다. 독수리, 타조는 구체적인 새를 지칭하는데 새, 포유류 같은 것은 구체적이지 않다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;추상 클래스 정의하기
+    &lt;ul&gt;
+      &lt;li&gt;추상 클래스는 클래스 앞에 abstract 키워드를 이용해서 정의한다.&lt;/li&gt;
+      &lt;li&gt;추상 클래스는 미완성의 추상 메소드를 포함할 수 있다.
+        &lt;ul&gt;
+          &lt;li&gt;추상 메소드란, 내용이 없는 메소드이다. 즉 구현이 되지 않은 메소드이다.&lt;/li&gt;
+          &lt;li&gt;추상 메소드는 리턴 타입 앞에 abstract라는 키워드를 붙여야 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;추상 클래스는 인스턴스를 생성할 수 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bird&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;날다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;추상 클래스를 상속받는 클래스 생성하기
+    &lt;ul&gt;
+      &lt;li&gt;추상 클래스를 상속받은 클래스는 추상 클래스가 갖고 있는 추상 메소드를 반드시 구현해야 한다.&lt;/li&gt;
+      &lt;li&gt;추상 클래스를 상속받고, 추상 클래스가 갖고 있는 추상 메소드를 구현하지 않으면 해당 클래스도 추상 클래스가 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;super와-부모생성자&quot;&gt;super와 부모생성자&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;class가 인스턴스화 될 때 생성자가 실행되면서 객체의 초기화를 한다. 그 때 자신의 생성자만 실행이 되는 것이 아니고, 부모의 생성자부터 실행된다.
+    &lt;ul&gt;
+      &lt;li&gt;new 연산자로 자식 객체를 생성하면, 자식객체가 메모리에 올라갈 때 부모인 객체도 함께 메모리에 올라간다.&lt;/li&gt;
+      &lt;li&gt;생성자는 객체를 초기화 하는 일을한다.&lt;/li&gt;
+      &lt;li&gt;생성자가 호출될 때 자동으로 부모의 생성자가 호출되면서 부모객체를 초기화 하게된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;super
+    &lt;ul&gt;
+      &lt;li&gt;자신을 가리키는 키워드가 this 라면, 부모를 가리키는 키워드는 super&lt;/li&gt;
+      &lt;li&gt;super()는 부모의 생성자를 의미한다.&lt;/li&gt;
+      &lt;li&gt;부모의 생성자를 임의로 호출하지 않으면, 부모 class의 기본 생성자가 자동으로 호출된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;부모의 기본생성자가 아닌 다른 생성자를 호출하는 방법
+    &lt;ul&gt;
+      &lt;li&gt;클래스는 기본 생성자가 없는 경우도 존재한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;소방차&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 문자열을 매개변수로 받는 부모 생성자를 호출하였다.&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bus의 기본생성자입니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;super 키워드는 자식에서 부모의 메소드나 필드를 사용할 때도 사용한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;오버라이딩&quot;&gt;오버라이딩&lt;/h2&gt;
+&lt;p&gt;오버라이딩이란 부모가 가지고 있는 메소드와 똑같은 모양의 메소드를 자식이 가지고 있는 것이다. 즉 오버라이딩이란 메소드를 재정의 하는 것이다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;메소드 오버라이딩
+    &lt;ul&gt;
+      &lt;li&gt;메소드를 오버라이드 하면, 항상 자식클래스에서 정의된 메소드가 호출된다.&lt;/li&gt;
+      &lt;li&gt;오버라이딩 한다고 해서 부모의 메소드가 사라지는 것은 아니다.
+        &lt;ul&gt;
+          &lt;li&gt;super 키워드를 이용하면, 부모의 메소드를 호출 할 수 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;//run 메소드를 가지고 있는  Car클래스 &lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Car의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;//Car 를 상속받는 Bus 클래스 &lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;//오버라이딩&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bus의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+    &lt;span class=&quot;c1&quot;&gt;//super 키워드&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();**&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 부모의  run()메소드를 호출 &lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bus의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;오버라이딩 vs 오버로딩&lt;br /&gt;
+오버로딩(Overloading) : 같은 이름의 메소드를 여러개를 가지면서 매개변수의 유형과 개수가 다르도록 하는 기술&lt;br /&gt;
+오버라이딩(Overriding) : 상위 클래스가 가지고 있는 메소드를 하위 클래스가 재정의해서 사용&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;클래스-형변환&quot;&gt;클래스 형변환&lt;/h2&gt;
+&lt;p&gt;부모타입으로 자식객체를 참조하게 되면 부모가 가지고 있는 메소드만 사용할 수 있다. 자식객체가 가지고 있는 메소드나 속성을 사용하고 싶다면 형변환 해야 한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;형변환&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Car의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ppangppang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;빵빵.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;상속 관계란 is a 관계다. “Bus는 Car다.”라는 관계가 성립된다.&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;부모타입으로 자식객체를 참조할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;부모타입으로 자식객체를 참조하게 되면 부모가 있는 메소드만 사용할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BusExam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ppangppang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 컴파일 오류 발생&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ppangppang()메소드를 호출하고 싶다면 Bus 타입의 참조변수로 참조 해야한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BusExam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]){&lt;/span&gt;
+            &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;//car.ppangppang(); // 컴파일 오류 발생&lt;/span&gt;
+
+            &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bus&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//부모타입을 자식타입으로 형변환 &lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ppangppang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;객체들 끼리도 형변환이 가능하다. 단 상속관계에 있었을 때만 가능하다.&lt;/li&gt;
+  &lt;li&gt;부모타입으로 자식타입의 객체를 참조할 때는 묵시적으로 형변환이 일어난다.&lt;/li&gt;
+  &lt;li&gt;부모타입의 객체를 자식타입으로 참조하게 할 때는 명시적으로 형변환 해주어야 한다. 단, 이렇게 형변활 할때에는 부모가 참조하는 인스턴스가 형변환 하려는 자식타입일 때만 가능하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;과연 이 형변환을 왜 언제 사용할까! 라는 의문을 가졌다면,,,, 이런 상황들을 생각해보자&lt;br /&gt;
+첫번째, VIP 회원을 VVIP 회원으로 등급을 올려줄 때&lt;br /&gt;
+두번째, 모험가 직업을 가진 플레이어가 전사 직업을 가지게 되었을 때…&lt;br /&gt;
+보통 다형성을 활용하려고 사용한다고 한다… 코드 한줄만 바꿔도 돌아갈수 있도록…?&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 06</summary></entry><entry><title type="html">[Java/프로그래머스] Part6 클래스 다듬기</title><link href="http://localhost:4000/java/java_06/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part6 클래스 다듬기" /><published>2022-01-29T00:00:00+09:00</published><updated>2022-01-29T00:00:00+09:00</updated><id>http://localhost:4000/java/java_06</id><content type="html" xml:base="http://localhost:4000/java/java_06/">&lt;h1 id=&quot;part6-클래스-다듬기&quot;&gt;Part6 클래스 다듬기&lt;/h1&gt;
 
 &lt;h2 id=&quot;생성자&quot;&gt;생성자&lt;/h2&gt;
 &lt;p&gt;모든 클래스는 인스턴스화 될 때 생성자를 사용한다.&lt;/p&gt;
@@ -1608,257 +1837,119 @@ BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 �
 
 &lt;ul&gt;
   &lt;li&gt;enum에 대해서 좀 더 궁금하다면!! &lt;a href=&quot;https://www.nextree.co.kr/p11686/&quot;&gt;enum의 뿌리&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 04</summary></entry><entry><title type="html">[Java/프로그래머스] Part7 상속</title><link href="http://localhost:4000/java/java_07/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part7 상속" /><published>2022-01-29T00:00:00+09:00</published><updated>2022-01-29T00:00:00+09:00</updated><id>http://localhost:4000/java/java_07</id><content type="html" xml:base="http://localhost:4000/java/java_07/">&lt;h1 id=&quot;part7-상속&quot;&gt;Part7 상속&lt;/h1&gt;
-
-&lt;h2 id=&quot;상속&quot;&gt;상속&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;상속이란? 부모가 가진것을 자식에게 물려주는 것을 의미한다.
-    &lt;ul&gt;
-      &lt;li&gt;노트북은 컴퓨터의 한 종류다.&lt;/li&gt;
-      &lt;li&gt;침대는 가구의 한 종류다. 혹은 침대는 가구다.&lt;/li&gt;
-      &lt;li&gt;소방차는 자동차다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
+  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
+  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
+  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
+  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;이렇게 말할 수 있는 관계를 is a 관계 혹은 kind of 관계라고 한다.&lt;/p&gt;
-
+&lt;h1 id=&quot;35-산술연산과-논리연산&quot;&gt;3.5 산술연산과 논리연산&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Car를 상속받은 Bus를 class로 표현하는 방법
+  &lt;li&gt;위 그림은 x86-64 정수와 논리연산의 리스트를 보여준다. 오퍼랜드의 길이에 따른 다양한 변형이 가능하기 때문에 대부분의 연산을 인스트럭션 클래스에 따라 나열하였다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션 클래스 ADD는 네 개의 덧셈 인스트럭션으로 이루어져 있다.
     &lt;ul&gt;
-      &lt;li&gt;자바는 클래스 이름 뒤에 extends 키워드를 적고 부모 클래스 이름을 적게 되면 부모 클래스가 가지고 있는 것을 상속받을 수 있게 된다.&lt;/li&gt;
-      &lt;li&gt;상속이란 부모가 가지고 있는 것을 자식이 물려받는 것을 말한다. 즉, 부모가 가지고 있는 것을 자식이 사용할 수 있께 된다.&lt;/li&gt;
+      &lt;li&gt;addb, addw, addl, addq로 각각 바이트, 워드, 어블워드, 쿼드워드를 의미한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;부모 클래스와 자식 클래스의 메소드
+  &lt;li&gt;연산들은 네 개의 그룹으로 나누어진다.
     &lt;ul&gt;
-      &lt;li&gt;자식 클래스는 부모 클래스에 선언된 메소드를 사용할 수 있다.&lt;/li&gt;
-      &lt;li&gt;자식 클래스는 부모가 가지고 있는 메소드 외에 추가로 메소드를 선언할 수 있다.
+      &lt;li&gt;유효주소 적재, 단항unary, 이항binary, 쉬프트
         &lt;ul&gt;
-          &lt;li&gt;이것을 확장하였다고 표현한다.&lt;/li&gt;
+          &lt;li&gt;이항 연산은 두 개의 오퍼랜드를 가진다.&lt;/li&gt;
+          &lt;li&gt;단항 연산은 한 개의 오퍼랜드를 가진다.&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;접근제한자&quot;&gt;접근제한자&lt;/h2&gt;
-&lt;p&gt;접근 제한자란 클래스 내에서 멤버의 접근을 제한하는 역할을 한다.&lt;/p&gt;
-
+&lt;h2 id=&quot;351-유효주소-적재-load-effective-address&quot;&gt;3.5.1 유효주소 적재 Load Effective Address&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;접근 제한자의 종류
+  &lt;li&gt;유효주소 적재 인스트럭션 leaq는 실제로는 movq 인스트럭션의 변형이다.&lt;/li&gt;
+  &lt;li&gt;메모리에서 레지스터로 읽어들이는 인스트럭션의 형태를 갖지만, 메모리를 전혀 참조하지 않는다.&lt;/li&gt;
+  &lt;li&gt;가리키는 위치에서 읽기를 수행하는 대신에 유효주소를 목적지에 복사한다.&lt;/li&gt;
+  &lt;li&gt;이 인스트럭션은 나중의 메모리 참조에 사용하게 되는 포인터를 생성하기 위해 사용한다.&lt;/li&gt;
+  &lt;li&gt;또한 일반적인 산술연산을 간결하게 설명하기 위해 사용된다
     &lt;ul&gt;
-      &lt;li&gt;public
-        &lt;ul&gt;
-          &lt;li&gt;어떤 클래스든 접근할 수 있다는 것을 의미&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;protected
-        &lt;ul&gt;
-          &lt;li&gt;자기 자신, 같은 패키지, 서로 다른 패키지다 하더라도 상속받은 자식 클래스에서는 접근할 수 있다는 것을 의미&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;private
-        &lt;ul&gt;
-          &lt;li&gt;자기 자신만 접근할 수 있다는 것을 의미&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;접근제한자를 적지 않으면 default 접근 지정자
-        &lt;ul&gt;
-          &lt;li&gt;자기자신과 같은 패키지에서만 접근할 수 있다는 것을 의미(상속X)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;public &amp;gt; protectd &amp;gt; default &amp;gt; private&lt;/li&gt;
+      &lt;li&gt;ex) %rdx가 x를 가지고 있다면, leaq 7(%rdx, %rdx, 7)은 %rdx에 5x+7을 저장한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;목적 오퍼랜드는 반드시 레지스터만 올 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;352-단항-및-이항-연산&quot;&gt;3.5.2 단항 및 이항 연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;단항 연산
+    &lt;ul&gt;
+      &lt;li&gt;하나의 오퍼랜드가 소스와 목적지로 동시에 사용되는 단항 연산이다.&lt;/li&gt;
+      &lt;li&gt;오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.&lt;/li&gt;
+      &lt;li&gt;ex) incq(%rsp)는 스택 탑의 8바이트 원소의 값을 증가시켜준다. -&amp;gt; C에서의 ++, – 연산자&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이항 연산
+    &lt;ul&gt;
+      &lt;li&gt;첫 번째 오퍼랜드는 상수나 레지스터, 메모리 위치가 올 수 있고 두 번째 오퍼랜드는 소스이면서 목적지로 사용된다.&lt;/li&gt;
+      &lt;li&gt;C에서 x -= y와 유사하다.&lt;/li&gt;
+      &lt;li&gt;두 개의 오퍼랜드가 모두 메모리 위치가 될 수 없다.&lt;/li&gt;
+      &lt;li&gt;두 번째 오퍼랜드가 메모리 위치일 때 프로세서가 메모리에서 값을 읽고, 연산을 하고, 그 결과를 다시 메모리에 써야 한다는 점에 유의해야 한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;추상클래스&quot;&gt;추상클래스&lt;/h2&gt;
-&lt;p&gt;추상 클래스란 구체적이지 않은 클래스를 의미한다. 독수리, 타조는 구체적인 새를 지칭하는데 새, 포유류 같은 것은 구체적이지 않다.&lt;/p&gt;
+&lt;h2 id=&quot;353-쉬프트-연산&quot;&gt;3.5.3 쉬프트 연산&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;추상 클래스 정의하기
+  &lt;li&gt;쉬프트하는 크기를 먼저 주고, 쉬프트할 값을 두 번째로 준다.&lt;/li&gt;
+  &lt;li&gt;산술과 논리형 우측 쉬프트가 모두 가능하다.&lt;/li&gt;
+  &lt;li&gt;쉬프트 인스트럭션들은 쉬프트할 양을 즉시 값이나 단일 바이트 레지스터 %cl로 명시할 수 있다.&lt;/li&gt;
+  &lt;li&gt;좌측 쉬프트 인스트럭션에는 두 가지 이름이 있다.
     &lt;ul&gt;
-      &lt;li&gt;추상 클래스는 클래스 앞에 abstract 키워드를 이용해서 정의한다.&lt;/li&gt;
-      &lt;li&gt;추상 클래스는 미완성의 추상 메소드를 포함할 수 있다.
-        &lt;ul&gt;
-          &lt;li&gt;추상 메소드란, 내용이 없는 메소드이다. 즉 구현이 되지 않은 메소드이다.&lt;/li&gt;
-          &lt;li&gt;추상 메소드는 리턴 타입 앞에 abstract라는 키워드를 붙여야 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;추상 클래스는 인스턴스를 생성할 수 없다.&lt;/li&gt;
+      &lt;li&gt;SAR: 산술 쉬프트, 부호비트를 복사해서 채운다&lt;/li&gt;
+      &lt;li&gt;SHR: 논리 쉬프트, 0으로 채운다&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;쉬프트 연산의 목적 오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bird&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fly&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;날다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
+&lt;h2 id=&quot;354-토의&quot;&gt;3.5.4 토의&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;추상 클래스를 상속받는 클래스 생성하기
+  &lt;li&gt;인스트럭션들은 비부호형과 2의 보수 산술연산에 사용될 수 있다.&lt;/li&gt;
+  &lt;li&gt;오직 우측 쉬프트만이 부호형과 비부호형 데이터를 구분하는 인스트럭션을 요구한다.&lt;/li&gt;
+  &lt;li&gt;이것이 부호형 정수 산술연산을 구현하는 방식으로 2의 보수 산술연산을 선호하는 주요 특징이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;355-특수-산술연산&quot;&gt;3.5.5 특수 산술연산&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;두 개의 64비트 부호형 또는 비부호형 정수들 간의 곱셈 결과값을 표시하기 위해 128비트를 필요로한다.&lt;/li&gt;
+  &lt;li&gt;x86064 인스트럭션 집합은 128비트 숫자와 관련된 연산에 대해서는 제한적인 지원을 제공한다.
     &lt;ul&gt;
-      &lt;li&gt;추상 클래스를 상속받은 클래스는 추상 클래스가 갖고 있는 추상 메소드를 반드시 구현해야 한다.&lt;/li&gt;
-      &lt;li&gt;추상 클래스를 상속받고, 추상 클래스가 갖고 있는 추상 메소드를 구현하지 않으면 해당 클래스도 추상 클래스가 된다.&lt;/li&gt;
+      &lt;li&gt;워드(2바이트), 더블워드(4바이트), 쿼드워드(8바이트), 인텔은 16바이트 워드를 옥트워드oct word라고 명명한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;super와-부모생성자&quot;&gt;super와 부모생성자&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;class가 인스턴스화 될 때 생성자가 실행되면서 객체의 초기화를 한다. 그 때 자신의 생성자만 실행이 되는 것이 아니고, 부모의 생성자부터 실행된다.
+  &lt;li&gt;IMUL 인스트럭션 클래스의 멤버인 형태
     &lt;ul&gt;
-      &lt;li&gt;new 연산자로 자식 객체를 생성하면, 자식객체가 메모리에 올라갈 때 부모인 객체도 함께 메모리에 올라간다.&lt;/li&gt;
-      &lt;li&gt;생성자는 객체를 초기화 하는 일을한다.&lt;/li&gt;
-      &lt;li&gt;생성자가 호출될 때 자동으로 부모의 생성자가 호출되면서 부모객체를 초기화 하게된다.&lt;/li&gt;
+      &lt;li&gt;이 형식은 두 개의 64비트 오퍼랜드로부터 64비트 곱을 생성하는 “2 오퍼랜드” 곱셈 인스트럭션을 제공한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;super
+  &lt;li&gt;추가적으로 x86-64는 두 개의 다른 “단일 오퍼랜드” 곱셈 인스트럭션을 제공하며 64비트 값의 완전한 128비트 곱을 계산한다.
     &lt;ul&gt;
-      &lt;li&gt;자신을 가리키는 키워드가 this 라면, 부모를 가리키는 키워드는 super&lt;/li&gt;
-      &lt;li&gt;super()는 부모의 생성자를 의미한다.&lt;/li&gt;
-      &lt;li&gt;부모의 생성자를 임의로 호출하지 않으면, 부모 class의 기본 생성자가 자동으로 호출된다.&lt;/li&gt;
+      &lt;li&gt;하나는 비부호형(mulq), 다른 하나는 2의 보수(imulq) 곱셈이다.&lt;/li&gt;
+      &lt;li&gt;이들 모두 한 개의 인자는 레지스터 %rax에 보관해야 하고 다른 하나는 인스트럭션 소스 오퍼랜드로 주어진다.&lt;/li&gt;
+      &lt;li&gt;곱은 레지스터 %rdx(상위 64비트)와  %rax(하위 64비트)에 저장된다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;부모의 기본생성자가 아닌 다른 생성자를 호출하는 방법
-    &lt;ul&gt;
-      &lt;li&gt;클래스는 기본 생성자가 없는 경우도 존재한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;소방차&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 문자열을 매개변수로 받는 부모 생성자를 호출하였다.&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bus의 기본생성자입니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;super 키워드는 자식에서 부모의 메소드나 필드를 사용할 때도 사용한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;오버라이딩&quot;&gt;오버라이딩&lt;/h2&gt;
-&lt;p&gt;오버라이딩이란 부모가 가지고 있는 메소드와 똑같은 모양의 메소드를 자식이 가지고 있는 것이다. 즉 오버라이딩이란 메소드를 재정의 하는 것이다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;메소드 오버라이딩
-    &lt;ul&gt;
-      &lt;li&gt;메소드를 오버라이드 하면, 항상 자식클래스에서 정의된 메소드가 호출된다.&lt;/li&gt;
-      &lt;li&gt;오버라이딩 한다고 해서 부모의 메소드가 사라지는 것은 아니다.
-        &lt;ul&gt;
-          &lt;li&gt;super 키워드를 이용하면, 부모의 메소드를 호출 할 수 있다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;//run 메소드를 가지고 있는  Car클래스 &lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Car의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;//Car 를 상속받는 Bus 클래스 &lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;//오버라이딩&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bus의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-    &lt;span class=&quot;c1&quot;&gt;//super 키워드&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();**&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 부모의  run()메소드를 호출 &lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Bus의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;오버라이딩 vs 오버로딩&lt;br /&gt;
-오버로딩(Overloading) : 같은 이름의 메소드를 여러개를 가지면서 매개변수의 유형과 개수가 다르도록 하는 기술&lt;br /&gt;
-오버라이딩(Overriding) : 상위 클래스가 가지고 있는 메소드를 하위 클래스가 재정의해서 사용&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;클래스-형변환&quot;&gt;클래스 형변환&lt;/h2&gt;
-&lt;p&gt;부모타입으로 자식객체를 참조하게 되면 부모가 가지고 있는 메소드만 사용할 수 있다. 자식객체가 가지고 있는 메소드나 속성을 사용하고 싶다면 형변환 해야 한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;형변환&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Car의 run메소드&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ppangppang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;빵빵.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;상속 관계란 is a 관계다. “Bus는 Car다.”라는 관계가 성립된다.&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;부모타입으로 자식객체를 참조할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;부모타입으로 자식객체를 참조하게 되면 부모가 있는 메소드만 사용할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BusExam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ppangppang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 컴파일 오류 발생&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ppangppang()메소드를 호출하고 싶다면 Bus 타입의 참조변수로 참조 해야한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BusExam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Car&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;//car.ppangppang(); // 컴파일 오류 발생&lt;/span&gt;
-
-            &lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bus&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;car&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;//부모타입을 자식타입으로 형변환 &lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;bus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ppangppang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;객체들 끼리도 형변환이 가능하다. 단 상속관계에 있었을 때만 가능하다.&lt;/li&gt;
-  &lt;li&gt;부모타입으로 자식타입의 객체를 참조할 때는 묵시적으로 형변환이 일어난다.&lt;/li&gt;
-  &lt;li&gt;부모타입의 객체를 자식타입으로 참조하게 할 때는 명시적으로 형변환 해주어야 한다. 단, 이렇게 형변활 할때에는 부모가 참조하는 인스턴스가 형변환 하려는 자식타입일 때만 가능하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;과연 이 형변환을 왜 언제 사용할까! 라는 의문을 가졌다면,,,, 이런 상황들을 생각해보자&lt;br /&gt;
-첫번째, VIP 회원을 VVIP 회원으로 등급을 올려줄 때&lt;br /&gt;
-두번째, 모험가 직업을 가진 플레이어가 전사 직업을 가지게 되었을 때…&lt;br /&gt;
-보통 다형성을 활용하려고 사용한다고 한다… 코드 한줄만 바꿔도 돌아갈수 있도록…?&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 06</summary></entry><entry><title type="html">[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_04/" rel="alternate" type="text/html" title="[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_04</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_04/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+  &lt;li&gt;곱을 저장하기 위해서는 아래의 그림처럼 두 개의 movq 인스트럭션이 필요하다.
+&lt;img src=&quot;../../assets/img/csapp/06/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;단일 오퍼랜드 곱셈 인스트럭션과 비슷한 단일 오퍼랜드 나눈셈 인스트럭션으로 제공된다.&lt;/li&gt;
+  &lt;li&gt;나눗셈 인스트럭션 idviq은 피제수dividened를 128비트로 레지스터 %rdx(상위 64비트)와 %rax(하위 64비트)에 저장한다.&lt;/li&gt;
+  &lt;li&gt;제수divisor는 인스트럭션의 오퍼랜드로 주어진다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션은 몫은 레지스터 %rax에, 나머지는 레지스터 %rdx에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 06</summary></entry><entry><title type="html">[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_04/" rel="alternate" type="text/html" title="[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_04</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_04/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Multi-Task Learning(MTL)은 새로운 Task를 학습하는 데 도움이 되도록 이전 작업에서 학습된 지식을 적용하는 인간 학습 활동에서 영감을 받음&lt;/li&gt;
   &lt;li&gt;Deep neural networks(DNN)를 이용한 representation learning에 MTL을 적용하는 것에 대한 관심이 높아지고 있음
@@ -2062,4 +2153,161 @@ BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 �
   &lt;li&gt;MT-DNN은 SNLI, SchiTail 및 GLUE에서 10가 NLU task에 높은 성능 향상 결과를 얻음&lt;/li&gt;
   &lt;li&gt;MT-DNN은 Domain Adaption 실험에서도 탁월한 일반화 기능을 보여줌&lt;/li&gt;
   &lt;li&gt;MT-DNN 개선을 위해 MTL에서의 모델 구조 공유에 더 깊은 이해, fine-tuning과 pre-training을 위한 더 효과적인 훈련 방법을 더 연구해야함&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...4</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...4</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)</title><link href="http://localhost:4000/cs:app/csapp_05/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)" /><published>2022-01-25T00:00:00+09:00</published><updated>2022-01-25T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_05</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_05/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴퓨터는 데이터를 처리하고, 메모리를 관리하고, 저장장치에 데이터를 읽거나 쓰고, 네트워크를 통해 통신하는 등의 하위 동작들을 인코딩한 연속되 바이트인 기계어 코드를 실행한다.&lt;/li&gt;
+  &lt;li&gt;컴파일러는 프로그램 언어의 규칙, 대상 컴퓨터의 인스트럭션 집합, 운영체제의 관례 등에 따라 기계어 코드를 생성한다.&lt;/li&gt;
+  &lt;li&gt;어셈블러 코드로 프로그램을 짤 때는 프로그래머가 계산을 하기 위해 사용해야 하는 저급 인스트럭션들을 명시해야 한다.&lt;/li&gt;
+  &lt;li&gt;기계어 코드를 배우면 컴파일러의 최적화 성능을 알 수 있으며, 코드에 내제된 비효율성을 분석할 수 있다.&lt;/li&gt;
+  &lt;li&gt;이 장은 X86-64에 기초하고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;31-역사적-관점&quot;&gt;3.1 역사적 관점&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;x86이라고 통칭하는 인텔 프로세서 제품군은 오랜 기간 진화를 통한 개발을 해왔다.
+    &lt;blockquote&gt;
+      &lt;p&gt;대충 엄청 많은 프로세서들이 나열 되는데, 팬티엄4E(2004, 125M 트랜지스터) 하이퍼쓰레딩 기법의 추가와 AMD사에서 개발한 IA32의 64비트 확장 구현인 EM64T가
+추가된 해당 모델을 x86-64라고 부른다고 한다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;32-프로그램의-인코딩&quot;&gt;3.2 프로그램의 인코딩&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;C 언어에서 gcc 명령은 소스 코드(test.c)를 실행 코드로 변환하기 위해 일련의 프로그램들을 호출한다.
+    &lt;ol&gt;
+      &lt;li&gt;C 전처리가 #include로 명시된 파일을 코드에 삽입해 주고 #define으로 선언된 매크로를 확장해준다.&lt;/li&gt;
+      &lt;li&gt;컴파일러는 소스파일의 어셈블러 버전(test.s)를 생성한다.&lt;/li&gt;
+      &lt;li&gt;어셈블러는 어셈블리 코드를 바이너리 목적코드인(test.o)로 변환한다.
+        &lt;ul&gt;
+          &lt;li&gt;목적코드는 기계어 코드의 한 유형이다. - 모든 인스트럭션과 바이너리 표현을 포함하고 있지만 전역 값들의 주소는 아직 채워지지 않았다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;마지막으로 링커가 목적코드 파일을 라이브러리 함수들을 구현한 코드와 함께 합쳐서 최종 실행 파일인 p를 생성한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;커맨드 라인 옵션으로 -0g를 주면 C 코드의 전체 구조를 따르는 기계어 코드를 생성하는 최적호 수준을 적용한다.
+    &lt;ul&gt;
+      &lt;li&gt;높은 수준의 최적화를 적용하면 만들어진 코드가 너무 많이 변경되어 본래의 코드와 생성된 기계어 코드 간의 관계를 이해하기 어렵다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;321-기계수준-코드&quot;&gt;3.2.1 기계수준 코드&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴퓨터 시스템은 보다 간단한 추상화 모델을 이용해서 세부 구현내용을 감추면서 추상화의 여러 가지 다른 형태를 사용하고 있다.
+    &lt;ol&gt;
+      &lt;li&gt;기계수준 프로그램의 형식과 동작은 인스트럭션 집합구조 즉 “ISA”에 의해 정의된다.
+        &lt;ul&gt;
+          &lt;li&gt;프로세서의 상태, 인스트럭션의 형식, 프로세서 상태에 대한 각 인스트럭션들의 영향들을 정의한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;기계수준 프로그램이 사용하는 주소는 가상주소이며, 메모리가 매우 큰 바이트 배열인 것처럼 보이게 하는 메모리 모델을 제공한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;컴파일러는 추상화된 실행모델로 표현된 프로그램을 프로세서가 실행하는 매우 기초적인 인스트럭션들로 변환하는 대부분의 일을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;322-코드-예제&quot;&gt;3.2.2 코드 예제&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;기계어 코드의 몇몇 특징과 이들의 역어셈블된 표현에 주목할 필요가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;x86-64 인스트럭션들은 1에서 15바이트 길이를 갖는다.&lt;/li&gt;
+      &lt;li&gt;인스트럭션의 형식은 주어진 시작 위치에서부터 바이트들을 기계어 인스트럭션으로 유일하게 디코딩할 수 있도록 설계한다.&lt;/li&gt;
+      &lt;li&gt;역어셈블러는 기계어 코드 파일의 바이트 순서에만 전적으로 의존한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;33-데이터의-형식&quot;&gt;3.3 데이터의 형식&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;인텔 프로세서들이 근본적으로 16비트 구조를 사용하다가 추후에 32비트로 확장했기 때문에 인텔은 “워드”라는 단어를 16비트 데이터 타입을 말할 때 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;34-정보-접근하기&quot;&gt;3.4 정보 접근하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;x86-64 주처리장치 CPU는 64비트 값을 저장할 수 있는 16개의 범용 레지스터를 보유하고 있다.
+    &lt;ul&gt;
+      &lt;li&gt;이들 레지스터는 정수 데이터와 포인터를 저장하는데 사용한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;341-오퍼랜드-식별자-specifier&quot;&gt;3.4.1 오퍼랜드 식별자 specifier&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;대부분의 인스트럭션은 하나 이상의 오퍼랜드를 가진다.&lt;/li&gt;
+  &lt;li&gt;오퍼랜드는 연산을 수행할 소스 값과 그 결과를 저장할 목적지의 위치를 명시한다.&lt;/li&gt;
+  &lt;li&gt;소스 값은 상수로 주어지거나 레지스터나 메모리로부터 읽을 수 있다. 결과 값은 레지스터나 메모리에 저장된다.&lt;/li&gt;
+  &lt;li&gt;세가지 타입으로 나뉘어짐
+    &lt;ol&gt;
+      &lt;li&gt;immediate로, 상수값을 말한다.&lt;/li&gt;
+      &lt;li&gt;register는 레지스터의 내용을 나타내며&lt;/li&gt;
+      &lt;li&gt;Memory, 메모리 참조로 유효주소라고 부르는 계산된 주소에 의해 메모리 위치에 접근하게 된다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;342-데이터-이동-인스트럭션&quot;&gt;3.4.2 데이터 이동 인스트럭션&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;가장 많이 사용되는 인스트럭션은 데이터를 한 위치에서 다른 위치로 복사하는 명령어다.
+    &lt;ul&gt;
+      &lt;li&gt;MOV 클래스 : 소스 위치에서 데이터를 목적지 위치로 어떤 변환도 하지 않고 복사한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;소스 오퍼랜드는 상수, 레지스터 저장 값, 메모리 저장 값을 표시한다.&lt;/li&gt;
+  &lt;li&gt;목적 오퍼랜드는 레지스터 또는 메모리 주소의 위치를 지정한다.&lt;/li&gt;
+  &lt;li&gt;x86-64는 데이터 이동 인스트럭션에서 두 개의 오퍼랜드 모두가 메모리 위치에 올 수 없도록 제한하고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_6.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;343-코드-예제&quot;&gt;3.4.3 코드 예제&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;C언어에서 “포인터”라고 부르는 것이 어셈블리어에서는 단순히 주소를 나타낸다.&lt;/li&gt;
+    &lt;li&gt;포인터를 역참조하는 것은 포인터를 레지스터에 복사하고, 이 레지스터를 메모리 참조에 사용하는 과정으로 이루어진다.&lt;/li&gt;
+    &lt;li&gt;지역변수들은 메모리에 저장되기보다는 종종 레지스터에 저장된다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;344-스택-데이터의-저장과-추출-pushpop&quot;&gt;3.4.4 스택 데이터의 저장과 추출 push,pop&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;push와 pop은 프로그램 스택에 데이터를 저장(push)하거나 스택에서 데이터를 추출(pop)하기 위해 사용한다.&lt;/li&gt;
+  &lt;li&gt;스택은 프로시저 호출을 처리하는 데 중요한 역할을 한다.&lt;/li&gt;
+  &lt;li&gt;프로그램 스택은 메모리의 특정 영역에 위치한다.&lt;/li&gt;
+  &lt;li&gt;스택의 탑top 원소가 모든 스택 원소 중에서 가장 낮은 주소를 갖는 형태다.&lt;/li&gt;
+  &lt;li&gt;스택은 pop이 되어도 stack의 top을 표현하는 주소가 올라간거지 값은 여전히 pop이 된 위치에 남아있다.&lt;/li&gt;
+  &lt;li&gt;스택이 프로그램 코드와 다른 형태의 프로그램 데이터와 동일한 메모리에 저장되기 때문에 프로그램들은 표준 메모리 주소지정 방법을 사용해서 스택 내 임의의 위치에 접근할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 05</summary></entry></feed>

@@ -150,20 +150,8 @@ var store = [{
         "teaser": null
       },{
         "title": "[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)",
-        "excerpt":"Chapter 03. 프로그램의 기계수준 표현     3.1 역사적 관점   3.2 프로그램의 인코딩   3.3 데이터의 형식   3.4 정보 접근하기   3.5 산술연산과 논리연산   3.6 제어문   3.7 프로시져   ","categories": ["CS:APP"],
+        "excerpt":"Chapter 03. 프로그램의 기계수준 표현     3.1 역사적 관점   3.2 프로그램의 인코딩   3.3 데이터의 형식   3.4 정보 접근하기   3.5 산술연산과 논리연산   3.6 제어문   3.7 프로시져  ","categories": ["CS:APP"],
         "tags": ["CS:APP","CS"],
         "url": "/cs:app/csapp_08/",
-        "teaser": null
-      },{
-        "title": "[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.8 배열의 할당과 접근)",
-        "excerpt":"Chapter 03. 프로그램의 기계수준 표현     3.1 역사적 관점   3.2 프로그램의 인코딩   3.3 데이터의 형식   3.4 정보 접근하기   3.5 산술연산과 논리연산   3.6 제어문   3.7 프로시져근   3.8 배열의 할당과 접근   ","categories": ["CS:APP"],
-        "tags": ["CS:APP","CS"],
-        "url": "/cs:app/csapp_09/",
-        "teaser": null
-      },{
-        "title": "[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.8 이기종 자료구조)",
-        "excerpt":"Chapter 03. 프로그램의 기계수준 표현     3.1 역사적 관점   3.2 프로그램의 인코딩   3.3 데이터의 형식   3.4 정보 접근하기   3.5 산술연산과 논리연산   3.6 제어문   3.7 프로시져근   3.8 배열의 할당과 접근   3.9 이기종 자료구조   ","categories": ["CS:APP"],
-        "tags": ["CS:APP","CS"],
-        "url": "/cs:app/csapp_10/",
         "teaser": null
       }]
