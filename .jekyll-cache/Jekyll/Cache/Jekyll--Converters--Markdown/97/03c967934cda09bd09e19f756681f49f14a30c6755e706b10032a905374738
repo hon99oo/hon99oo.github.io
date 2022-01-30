@@ -1,0 +1,51 @@
+I"�<h1 id="part8-인터페이스와-다른-형식의-클래스">Part8 인터페이스와 다른 형식의 클래스</h1>
+
+<h2 id="인터페이스-만들기">인터페이스 만들기</h2>
+<p>인터페이스: 서로 관계까 없는 물체들이 상호 작용을 하기 위해서 사용하는 장치나 시스템</p>
+<ul>
+  <li>인터페이스 정의하는 바업
+    <ul>
+      <li>추상 메소드와 상수를 정의 할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TV</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="no">MAX_VOLUME</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="kt">int</span> <span class="no">MIN_VOLUME</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOn</span><span class="o">();</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOff</span><span class="o">();</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeVolume</span><span class="o">(</span><span class="kt">int</span> <span class="n">volume</span><span class="o">);</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeChannel</span><span class="o">(</span><span class="kt">int</span> <span class="n">channel</span><span class="o">);</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>인터페이스에서 변수를 선언하면 컴파일시 자동으로 아래와 같이 바뀐다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MAX_VOLUME</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MIN_VOLUME</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span></code></pre></figure>
+
+<ul>
+  <li>인터페이스에서 정의된 메소드는 모두 추상 메소드이다. 위에서 선언된 모든 메소드는 컴파일 시에 다음과 같이 자동으로 변경된다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">on</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">off</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">volume</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">channel</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">);</span></code></pre></figure>
+
+<h2 id="인터페이스-사용하기">인터페이스 사용하기</h2>
+<h2 id="인터페이스의-default-method">인터페이스의 default method</h2>
+<h2 id="내부클래스">내부클래스</h2>
+<h2 id="익명클래스">익명클래스</h2>
+
+<h1 id="part9-예외처리">Part9 예외처리</h1>
+
+<h2 id="exception">Exception</h2>
+<h2 id="throws">Throws</h2>
+<h2 id="exception-발생시키기">Exception 발생시키기</h2>
+<h2 id="사용자-정의-exception">사용자 정의 Exception</h2>
+
+:ET
