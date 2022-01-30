@@ -1,0 +1,997 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Java/프로그래머스] Part9 예외처리 - 홍구의 개발 블로그</title>
+<meta name="description" content="프로그래머스 자바 입문 강의 - 08(END)">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="[Java/프로그래머스] Part9 예외처리">
+<meta property="og:url" content="http://localhost:4000/java/java_09/">
+
+
+  <meta property="og:description" content="프로그래머스 자바 입문 강의 - 08(END)">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-30T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/java/java_09/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          [Java/프로그래머스] Part9 예외처리
+
+        
+      </h1>
+      
+        <p class="page__lead">프로그래머스 자바 입문 강의 - 08(END)
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 분 소요
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Java/프로그래머스] Part9 예외처리">
+    <meta itemprop="description" content="프로그래머스 자바 입문 강의 - 08(END)">
+    <meta itemprop="datePublished" content="2022-01-30T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#part9-예외처리">Part9 예외처리</a><ul><li><a href="#exception">Exception</a></li><li><a href="#throws">Throws</a></li><li><a href="#exception-발생시키기">Exception 발생시키기</a></li><li><a href="#사용자-정의-exception">사용자 정의 Exception</a></li></ul></li><li><a href="#프로그래머스-자바-입문을-마무리하며">프로그래머스 자바 입문을 마무리하며</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="part9-예외처리">Part9 예외처리</h1>
+
+<h2 id="exception">Exception</h2>
+<p>프로그램 실행중 예기치 못한 사건을 예외라고 한다. 예외 상황을 미리 예측하고 처리할 수 있는데, 이렇게 하는 것을 예외 처리라고 한다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">main</span> <span class="n">종료</span><span class="o">!!);</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>위 코드에서 j를 0으로 바꾸면 Exception 발생
+    <ul>
+      <li>j를 0으로 바꾸면 Arithmetic Exception이 발생하면서 프로그램이 종료된다.</li>
+      <li>Java는 정수를 정수로 나눌 때 0으로 나누면 오류가 발생한다.</li>
+    </ul>
+  </li>
+  <li>예외 처리
+    <ul>
+      <li>프로그래머는 j라는 변수에 0이 들어올지도 모르는 예외 상황을 미리 예측하고 처리할 수 있다.</li>
+    </ul>
+  </li>
+  <li>예외 처리하는 문법
+    <ul>
+      <li>오류가 발생할 예상 부분을 try라는 블록으로 감싼 후, 발생할 오류와 관련된 Exception을 catch라는 블록에서 처리한다.</li>
+      <li>오류가 발생했든 안했든 무조건 실행되는 finally라는 블록을 가질 수 있다.</li>
+      <li>finally 블록은 생략가능하다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">try</span><span class="o">{</span>
+                <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+            <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"0으로 나눌 수 없습니다. : "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+            <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"오류가 발생하든 안하든 무조건 실행되는 블록입니다."</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>실행결과
+    <ul>
+      <li>0으로 나눌 수 없습니다. :java.lang.ArithmeticException:/by zero<br /> 오류가 발생하든 안하든 무조건 실행되는 블록입니다.</li>
+    </ul>
+  </li>
+  <li>Exception 처리하지 않았을 때는 프로그램이 강제 종료되었는데 catch라는 블록으로 Exception을 처리하니 강제종료되지 않고 잘 실행되는 것을 알 수 있다.</li>
+  <li>try 블록에서 여러종류의 Exception이 발생한다면 catch라는 블록을 여러개 둘 수 있다.</li>
+  <li>Exception 클래스들은 모두 Exception 클래스를 상속받으므로, 예외 클래스에 Exception을 두게 되면 어떤 오류가 발생하든지 간에 하나의 catch 블록에서 모든 오류를 처리 할 수 있다.</li>
+</ul>
+
+<h2 id="throws">Throws</h2>
+<p>throws는 예외가 발생했을 때 예외를 호출한 쪽에서 처리하도록 던져준다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam2</span> <span class="o">{</span>   
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">){</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<p>정수를 매개변수로 2개를 받아들인 후 나눗셈을 한 후 그 결과를 반환하는 divide 메소드<br />
+main 메소드에서는 divide 메소드를 호출</p>
+
+<p>다음과 같이 divide 메소드를 수정</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam2</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ArithmeticException</span><span class="o">{</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<p>메소드 선언 뒤에 throws ArithmeticException이 적혀있는 것을 알 수 있다. 이렇게 적어놓으면 divide 메소드는 ArithmeticException이 발생하니
+divide 메소드를 호출하는 쪽에서 오류를 처리하라는 뜻이다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kn">package</span> <span class="nn">javaStudy</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam2</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">try</span><span class="o">{</span>
+                <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"0으로 나눌수 없습니다."</span><span class="o">);</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ArithmeticException</span><span class="o">{</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="exception-발생시키기">Exception 발생시키기</h2>
+<p>강제로 오류를 발생시키는 throw</p>
+
+<p>throw는 오류를 떠넘기는 trhows와 보통 같이 사용된다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam3</span> <span class="o">{</span>   
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+
+        <span class="o">}</span>       
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">){</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>divide 메소드는 2번째 파라미터의 값이 0일 경우 나누기를 할 때 Exception이 발생한다.
+<br /><br /></li>
+</ul>
+
+<p>위의 코드를 에러가 발생하지 않게 수정</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam3</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>      
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"2번째 매개변수는 0이면 안됩니다."</span><span class="o">);</span>
+                <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>j가 0일 경우 안된다는 메시지가 출력되도록 수정하고 0을 리턴</li>
+  <li>이렇게 할 경우 main 메소드의 k변수는 0값을 가지게 되고 0을 출력하게 된다.</li>
+  <li>0으로 나눈 결과는 0이 아니다. 0으로 반환하면 더 큰 문제가 발생할 수도 있다.</li>
+</ul>
+
+<p><br /><br />
+에러도 발생하지 않고, 올바르지 않은 결과를 리턴하지 않도록 수정</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam3</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+
+        <span class="o">}</span>       
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IllegalArgumentException</span><span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"0으로 나눌 수 없어요."</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>j가 0일 경우에 new연산자를 통하여 IllegalArgumentException 객체가 만들어 진다.</li>
+  <li>new 앞에 throw는 해당 라인에서 Exception이 발생한다는 의미이다.</li>
+  <li>즉 그 줄에서 오류가 발생했다는 것이다. 0으로 나눌 수 없습니다. 라는 오류가 발생한 것이다.</li>
+  <li>Exception 클래스 이름을 보면 argument가 잘못되었기 때문에 발생한 오류라는 것을 알 수 있다.</li>
+</ul>
+
+<p><br /><br />
+divide 메소드를 호출한 쪽에서의 오류 처리</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ExceptionExam3</span> <span class="o">{</span>   
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="k">try</span><span class="o">{</span>
+                <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">divide</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+            <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">IllegalArgumentException</span> <span class="n">e</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"0으로 나누면 안됩니다."</span><span class="o">);</span>
+            <span class="o">}</span>           
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">divide</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IllegalArgumentException</span><span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"0으로 나눌 수 없어요."</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">j</span><span class="o">;</span>
+            <span class="k">return</span> <span class="n">k</span><span class="o">;</span>
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>divide 메소드 뒤에 throws IllegalArgumentException은 해당 오류는 divide를 호출한 쪽에서 처리를 해야한다는 것을 의미한다.</li>
+</ul>
+
+<h2 id="사용자-정의-exception">사용자 정의 Exception</h2>
+<ul>
+  <li>Exception 클래스를 상속 받아 정의한 checked Exception
+    <ul>
+      <li>반드시 오류를 처리 해야만 하는 Exception</li>
+      <li>예외 처리하지 않으면 컴파일 오류를 발생 시킨다.</li>
+    </ul>
+  </li>
+  <li>RuntimeException 클래스를 상속 받아 정의한 unChecked Exception
+    <ul>
+      <li>예외 처리하지 않아도 컴파일 시에는 오류를 발생시키지 않는다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /><br />
+RuntimeException을 상속받은 BizException 객체</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BizException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="nf">BizException</span><span class="o">(</span><span class="nc">String</span> <span class="n">msg</span><span class="o">){</span>
+            <span class="kd">super</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+        <span class="o">}</span>       
+        <span class="kd">public</span> <span class="nf">BizException</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">){</span>
+            <span class="kd">super</span><span class="o">(</span><span class="n">ex</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<p><br /><br />
+BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 가정한다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BizService</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">bizMethod</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span><span class="kd">throws</span> <span class="nc">BizException</span><span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"비지니스 로직이 시작합니다."</span><span class="o">);</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">){</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">BizException</span><span class="o">(</span><span class="s">"매개변수 i는 0이상이어야 합니다."</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"비지니스 로직이 종료됩니다."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<p><br /><br />
+앞에서 만든 BizService를 이용하는 BizExam 클래스</p>
+<ul>
+  <li>매개변수 값을 -1을 넘길 때는 Exception이 발생하기 때문에 try catch 블록으로 처리한다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">BizExam</span> <span class="o">{</span>  
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">BizService</span> <span class="n">biz</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BizService</span><span class="o">();</span>
+            <span class="n">biz</span><span class="o">.</span><span class="na">bizMethod</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+            <span class="k">try</span><span class="o">{</span>
+                <span class="n">biz</span><span class="o">.</span><span class="na">bizMethod</span><span class="o">(-</span><span class="mi">3</span><span class="o">);</span>
+            <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">){</span>
+                <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<p><br /></p>
+
+<h1 id="프로그래머스-자바-입문을-마무리하며">프로그래머스 자바 입문을 마무리하며</h1>
+<p>강의 자체는 굉장히 깔끔했다. 개념 설명 이후 실습을 진행하고, 해당 개념에 대한 의문점도 강의에서는 미리 지적하여 설명해준다.
+입문 강의를 들으니 대학 2학년 때 들었던 java 강의가 생각났다. 그 때 이정도 수준의 이해도를 얻었다면 어땠을까… 라는 생각이 스쳐 지나갔다.
+이제 입문 강의를 들은 것 뿐이지만, java의 j정도 알게 되었다. 인터페이스나 내부클래스 같은 개념은 실제로 사용해봐야지 더 확실하게 개념이 와닿을 것 같다.</p>
+
+<p>강의를 모두 수강하고도 개념이 조금 헷갈리는 것들을 적어두고 한번 더 복습을 해야할 것 같다.</p>
+<ul>
+  <li>인스턴스를 만들 때 Parents c = new Child(); &lt;- Parents와 Child가 정확히 어떤 역할을 하는지</li>
+  <li>인터페이스와 추상클래스의 차이점</li>
+  <li>내부 클래스들 각각의 쓰임</li>
+  <li>사용자 정의 Exception</li>
+  <li>java의 얕은 복사와 깊은 복사</li>
+  <li>super()</li>
+  <li>클래스 형변환</li>
+</ul>
+
+<p><br />
+해당 강의와 강의 노트는 <a href="https://programmers.co.kr/learn/courses/5">프로그래머스 자바 입문</a>에서 언제든지 다시 들을 수 있다!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%9E%85%EB%AC%B8" class="page__taxonomy-item p-category" rel="tag">프로그래머스 자바 입문</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#java" class="page__taxonomy-item p-category" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-01-30T00:00:00+09:00">January 30, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%2F%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%5D+Part9+%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fjava_09%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fjava_09%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fjava_09%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/java_08/" class="pagination--pager" title="[Java/프로그래머스] Part8 인터페이스와 다른 형식의 클래스
+">이전</a>
+    
+    
+      <a href="/cs:app/csapp_08/" class="pagination--pager" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs:app/csapp_08/" rel="permalink">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 08
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/java_08/" rel="permalink">[Java/프로그래머스] Part8 인터페이스와 다른 형식의 클래스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">프로그래머스 자바 입문 강의 - 07
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs:app/csapp_07/" rel="permalink">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.6 제어문)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 07
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/java_07/" rel="permalink">[Java/프로그래머스] Part7 상속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">프로그래머스 자바 입문 강의 - 06
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/java/java_09/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/java/java_09"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
