@@ -1,0 +1,11 @@
+I"�<h1 id="part9-예외처리">Part9 예외처리</h1>
+
+<h2 id="exception">Exception</h2>
+<p>프로그램 실행중 예기치 못한 사건을 예외라고 한다. 예외 상황을 미리 예측하고 처리할 수 있는데, 이렇게 하는 것을 예외 처리라고 한다.</p>
+
+<h2 id="throws">Throws</h2>
+
+<h2 id="exception-발생시키기">Exception 발생시키기</h2>
+
+<h2 id="사용자-정의-exception">사용자 정의 Exception</h2>
+:ET
