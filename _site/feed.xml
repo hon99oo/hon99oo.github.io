@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-30T18:15:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[Java/프로그래머스] Part9 예외처리</title><link href="http://localhost:4000/java/java_09/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part9 예외처리" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_09</id><content type="html" xml:base="http://localhost:4000/java/java_09/">&lt;h1 id=&quot;part9-예외처리&quot;&gt;Part9 예외처리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-01-31T00:42:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[Java/프로그래머스] Part9 예외처리</title><link href="http://localhost:4000/java/java_09/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part9 예외처리" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_09</id><content type="html" xml:base="http://localhost:4000/java/java_09/">&lt;h1 id=&quot;part9-예외처리&quot;&gt;Part9 예외처리&lt;/h1&gt;
 
 &lt;h2 id=&quot;exception&quot;&gt;Exception&lt;/h2&gt;
 &lt;p&gt;프로그램 실행중 예기치 못한 사건을 예외라고 한다. 예외 상황을 미리 예측하고 처리할 수 있는데, 이렇게 하는 것을 예외 처리라고 한다.&lt;/p&gt;
@@ -304,13 +304,398 @@ BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 �
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;
-해당 강의와 강의 노트는 &lt;a href=&quot;https://programmers.co.kr/learn/courses/5&quot;&gt;프로그래머스 자바 입문&lt;/a&gt;에서 언제든지 다시 들을 수 있다!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 08(END)</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져 ~ 3.9 이기종Heterogeneous 자료구조)</title><link href="http://localhost:4000/cs:app/csapp_07/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져 ~ 3.9 이기종Heterogeneous 자료구조)" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_07</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_07/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
-
-&lt;h1 id=&quot;35-산술연산과-논리연산&quot;&gt;3.5 산술연산과 논리연산&lt;/h1&gt;
+해당 강의와 강의 노트는 &lt;a href=&quot;https://programmers.co.kr/learn/courses/5&quot;&gt;프로그래머스 자바 입문&lt;/a&gt;에서 언제든지 다시 들을 수 있다!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 08(END)</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.6 제어문)</title><link href="http://localhost:4000/cs:app/csapp_07/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.6 제어문)" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_07</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_07/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
+  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
+  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
+  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
+  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
+  &lt;li&gt;3.6 제어문&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&quot;36-제어문&quot;&gt;3.6 제어문&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;일부 구문인 반복문, 스위치문들은 데이터에 적용된 시험결과에 따라 일련의 연산이 실행되는 조건부 실행이 요구된다.&lt;/li&gt;
+  &lt;li&gt;기계어 코드에서는 조건부 동작을 구현하기 위해 두 개의 기본적인 낮은 수준의 방법을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;데이터 값들을 시험해서 이 시험 결과에 따라 데이터흐름이나 제어흐름을 변경한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;기계어 인스트럭션들의 실행 순서는 점프jump 인스트럭션으로 변경할 수 있다.&lt;/li&gt;
+  &lt;li&gt;점프 인스트럭션은 때에 따라서는 어떤 시험의 결과에 따라 프로그램의 다른 일부분으로 제어를 넘겨준다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&quot;37-프로시저&quot;&gt;3.7 프로시저&lt;/h1&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 07</summary></entry><entry><title type="html">[Java/프로그래머스] Part8 인터페이스와 다른 형식의 클래스</title><link href="http://localhost:4000/java/java_08/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part8 인터페이스와 다른 형식의 클래스" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_08</id><content type="html" xml:base="http://localhost:4000/java/java_08/">&lt;h1 id=&quot;part8-인터페이스와-다른-형식의-클래스&quot;&gt;Part8 인터페이스와 다른 형식의 클래스&lt;/h1&gt;
+&lt;h2 id=&quot;361-조건-코드&quot;&gt;3.6.1 조건 코드&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;정수 레지스터들과 함께 CPU는 가장 최근 산술 또는 논리연산의 특성을 설명하는 단일 비트 조건 코드로 구성된 레지스터들을 운영한다.&lt;/li&gt;
+  &lt;li&gt;이 레지스터들은 조건부 분기를 수행하기 위해서 시험될 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;CF: 캐리 플래그Carry flag. 가장 중요한 비트로부터 받아 올림이 발생한 것을 표시. 비부호형 연산에서 오버플로우를 검출할 때 사용&lt;/li&gt;
+      &lt;li&gt;ZF: 영 플래그Zero flag. 연산의 결과가 0인 것을 표시&lt;/li&gt;
+      &lt;li&gt;SF: 부호 플래그Sign flag. 연산이 음수를 생성한 것을 표시&lt;/li&gt;
+      &lt;li&gt;OF: 오버플로우 플래그Overflow flag. 양수/음수의 2의 보수 오버플로우를 발생시킨 것을 표시&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;leaq 인스트럭션은 주소계산에 사용하기 위한 것이므로 조건 코드를 변경하지 않는다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;반면에, 위의 그림에 나열된 모든 인스트럭션들은 조건 코드 값을 변경한다.
+    &lt;ul&gt;
+      &lt;li&gt;XOR 같은 논리연산에서는 캐리와 오버플로우 플래그가 0으로 세팅된다.&lt;/li&gt;
+      &lt;li&gt;쉬프트 연산에서는 캐리 플래그가 쉬프트되어 없어지는 마지막 비트로 설정되며, 오버플로우 플래그는 0으로 세팅된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위의 그림의 인스트럭션들에 의해 조건 코드 값이 변경될 뿐만 아니라, 다른 레지스터들은 변경시키지 않으면서 조건 코드만 변경해 주는 두 개의 인스트럭션 클래스가 있다.(아래의 그림 참조)
+&lt;img src=&quot;../../assets/img/csapp/06/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;CMP 인스트럭션들은 만일 두 오퍼랜드가 같으면 영 플래그르 1로 설정한다. 다른 플래그들은 두 오퍼랜드의 순서관계를 결정하는 데 사용될 수 있다.&lt;/li&gt;
+  &lt;li&gt;TEST 인스트럭션은 목적지 오퍼랜드를 변경하지 않으면서 조건 코드를 설정하는 점만 제외하고는 AND 인스트럭션과 같은 방식으로 동작한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;362-조건-코드-사용하기&quot;&gt;3.6.2 조건 코드 사용하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;조건 코드를 이용하는 보편적인 세 가지 방법이 있다.
+    &lt;ol&gt;
+      &lt;li&gt;조건 코드의 조합에 따라 0 또는 1을 한 개의 바이트에 기록&lt;/li&gt;
+      &lt;li&gt;조건에 따라 프로그램의 다른 부분으로 이동하는 방법&lt;/li&gt;
+      &lt;li&gt;조건에 따라 데이터를 전송하는 방법&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;SET 인스트럭션&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;첫 번째 경우의 인스트럭션의 클래스를 SET 인스트럭션이라고 부른다.&lt;/li&gt;
+  &lt;li&gt;이 인스트럭션들은 접미어를 이용해서 오퍼랜드의 크기를 나타내는 것이 아니라, 조건 코드의 어떤 조합을 사용할 것인지를 나타낸다.
+    &lt;ul&gt;
+      &lt;li&gt;ex) setl, setb -&amp;gt; long word와 byte를 의미하지 않고 less와 below를 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SET 인스트럭션은 목적지로 하위 단일 바이트 레지스터 가운데 한 개나 단일 바이트 메모리 주소를 사용하며, 이 바이트를 0이나 1로 기록한다.
+    &lt;ul&gt;
+      &lt;li&gt;32비트나 64비트 결과를 만드려면, 다른 상위 비트들을 0으로 만들어줘야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;a&amp;lt;b를 계산하는 전형적인 인스트럭션은 아래의 그림과 같이 작성된다.
+&lt;img src=&quot;../../assets/img/csapp/06/img_5.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;363-점프jump-인스트럭션&quot;&gt;3.6.3 점프jump 인스트럭션&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;일반적인 실행의 경우, 인스트럭션들은 나열된 순서에 따라 순차적으로 실행된다.&lt;/li&gt;
+  &lt;li&gt;점프 인스트럭션은 프로그램이 완전히 새로운 위치로 실행을 전환하도록 한다.&lt;/li&gt;
+  &lt;li&gt;점프의 목적지는 일반적으로 어셈블리 코드에서는 레이블label로 표시한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_6.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;인스트럭션 jmp .L1은 프로그램이 movq 인스트럭션을 건너뛰는 대신에 popq로 실행을 다시 시작하게 한다.&lt;/li&gt;
+  &lt;li&gt;어셈블러는 모든 레이블이 붙은 인스트럭션들의 주소를 결정하고, 점프 인스트럭션의 일부분인 “점프 목적지jump target”을 인코딩한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 여러 가지 점프 인스트럭션을 보여준다.&lt;/li&gt;
+  &lt;li&gt;jmp 인스트럭션은 무조건적으로 점프한다.
+    &lt;ul&gt;
+      &lt;li&gt;점프 목적지가 인스트럭션의 일부로 인코딩 되는 경우에는 직접 점프&lt;/li&gt;
+      &lt;li&gt;점프 대상을 레지스터나 메모리 위치로부터 읽어들여야 하는 경우에는 간접 점프&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;364-점프-인스트럭션-인코딩&quot;&gt;3.6.4 점프 인스트럭션 인코딩&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;점프 인스트럭션의 대상이 어떻게 인코딩 되는지 이해하는 것은 7장의 링커를 공부할 때 중요한 역할을 하게 된다.&lt;/li&gt;
+  &lt;li&gt;어셈블리 코드에서, 점프 목적지는 심벌 레이블을 사용해서 작성한다.&lt;/li&gt;
+  &lt;li&gt;점프를 인코딩하는 가장 일반적인 방법은 PC 상대적PC relative 방법이다.
+    &lt;ul&gt;
+      &lt;li&gt;대상 인스트럭션과 점프 인스트럭션 바로 다음에 오는 인스트럭션 주소와의 차이를 인코딩한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_8.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;첫 번째 점프 인스트럭션의 목적지가 0x03으로 인코딩, 다음 인스트럭션의 주소인 0x05에 더하면 점프 목적지 주쇤 0x8을 얻을 수 있다.&lt;/li&gt;
+  &lt;li&gt;PC-상대 주소지정을 수행할 때 프로그램 카운터의 값은 점프 인스트럭션 자신의 주소가 아니라, 점프 다음에 나오는 인스트럭션의 주소가 된다.&lt;/li&gt;
+  &lt;li&gt;PC-상대 방식으로 점프 목적지를 인코딩하면, 인스트럭션들이 간결하게 인코딩(2바이트만 필요)될 수 있고, 목적코드는 수정 없이 메모리 상의 다른 위치로 이동될 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;365-조건부-분기를-조건제어로-구현하기&quot;&gt;3.6.5 조건부 분기를 조건제어로 구현하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;C에서 조건부 수식과 문장을 기계어 코드로 번역하는 가장 일반적인 방법은 조건부 및 무조건 점프를 함께 사용하는 것이다.&lt;/li&gt;
+  &lt;li&gt;어셈블리 코드에서의 무조건 점프와 유사한 C의 goto문을 사용한다.
+    &lt;ul&gt;
+      &lt;li&gt;어셈블리 코드의 제어흐름을 설명하는 C 프로그램을 구성하는 방법으로 사용됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 그림은 조건문의 컴파일이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;if-else&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;컴파일러는 else-문과 then-문에 대해 별도의 코드 블록을 생성한다.&lt;/li&gt;
+      &lt;li&gt;정확한 블록이 실행되도록 조건부와 무조건 분기를 삽입한다.
+&lt;img src=&quot;../../assets/img/csapp/06/img_10.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;
+&lt;img src=&quot;../../assets/img/csapp/06/img_11.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;366-조건부-이동으로-조건부-분기-구현하기&quot;&gt;3.6.6 조건부 이동으로 조건부 분기 구현하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;조건부 동작을 구현하는 전형적인 방법은 조건이 만족되면 프로그램의 한 가지 실행경로를 따르고, 아닌 경우에는 다른 경로를 따라가도록 하는 제어의 조건부 전환을 통해 이루어진다.
+    &lt;ul&gt;
+      &lt;li&gt;이 방법은 간단하고 일반적이지만 최신 프로세서들에서는 매우 비효율적일 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;또 다른 전략은 데이터의 조건부 전송을 이용하는 것이다.
+    &lt;ul&gt;
+      &lt;li&gt;이 방법은 조건부 동작의 산출물 모두를 계싼하고 조건에 따라 하나만 선택하는 방식이다.&lt;/li&gt;
+      &lt;li&gt;최신 프로세서의 성능특성과 잘 일치하는 간단한 조건부 이동move 인스트럭션으로 구현될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_12.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;C버전을 공부하면, 이것이 y-x와 x-y 모두를 계산해서 rval, eval로 명명한다는 것을 알 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;x가 y보다 크거나 같은지 테스트하고, 만일 그렇다면, eval을 Rval로 명명한다는 것을 알 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;조건부 제어 이동 기반 코드보다 조건부 데이터 이동 코드가 성능이 우수한 이유를 이해하기 위해서는 최신 프로세서들이 어떻게 동작하는지 이해해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;프로세서들은 각 인스트럭션을 일련의 단계로 처리하며, 이 단계들은 각각 요구된 동작의 작은 부분만을 실행하는 파이프라인을 통해 높은 성능을 얻는다.&lt;/li&gt;
+      &lt;li&gt;이를 위해서는 파이프라인을 실행할 인스트럭션들로 미리 채우기 위해 실행할 인스트럭션들의 순서를 훨씬 일찍 결정할 수 있어야 한다.&lt;/li&gt;
+      &lt;li&gt;결과적으로 분기의 예측오류 손실이 함수의 성능을 결정한다.
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_13.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 x86-64로 가능한 조건부 이동 move 인스트럭션을 보여준다.&lt;/li&gt;
+  &lt;li&gt;이들 인스트럭션은 두 개의 오퍼랜드를 갖는다.
+    &lt;ul&gt;
+      &lt;li&gt;소스 레지스터 또는 메모리 위치 S, 그리고 목적지 레지스터 R.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인스트럭션들의 결과는 조건 코드 값에 따라 달라진다.&lt;/li&gt;
+  &lt;li&gt;소스 값은 메모리나 소스 레지스터로부터 읽히지만, 목적지에는 명시된 조건이 만족될 때만 복사된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이 이후로 조건부 분기의 “분기의 예측 오류”에 관한 내용이 나온다. &lt;br /&gt;
+조건부 이동은 조건부 점프와는 달리 결과를 예측하지 않고서도 해당 인스트럭션을 실행할 수 있다.&lt;br /&gt;
+조건부 이동을 사용한다고 해서 언제나 코드 효율성을 개선할 수 있는 것은 아니다.&lt;br /&gt;
+컴파일러는 낭비되는 계산량과 분기 예측오류에 의한 잠재적 성능 손실 사이의 상대적 성능을 고려해야 한다.&lt;br /&gt;&lt;br /&gt;
+등의 내용이 담겨져 있는데 이해하기 조금 힘들다…. &lt;br /&gt;
+3.6.6은 뒷부분을 좀 더 읽고 다시 읽으러 돌아오자!!!!!!!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;조건부-분기에-따른-실제-어셈블리-코드&quot;&gt;조건부 분기에 따른 실제 어셈블리 코드&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;조건부 분기를 구하는 방법은 3.6.2에서 세가지 방법이 있다고 했으며, 3.6.5절과 3.6.6절에 조건제어와 조건부이동 두가지로 더욱 자세한 설명으로 풀어냈다.
+두 가지의 방법은 예제코드를 활용하여 설명해줬는데 다음의 예제코드와 같다. (C 언어로 작성 되어있다.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;absdiff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reuslt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이 코드를 가지고 if문의 여러가지 어셈블리어로 표현할 수 있다고 표현하는데, 나는 같은 코드인데 기계는 어떻게 알고 다른 어셈블리어들을 생성해내는지가 너무 긍금했다.&lt;br /&gt;
+다시말해 기계는 언제 조건부 이동을 하여 컴파일을하고, 언제 조건제어를 하여 컴파일을 하는지 너무 궁금했다!!!&lt;br /&gt;
+궁금증을 참지 못하고 윈도우 환경에서 gcc 컴파일을 진행하였다.&lt;br /&gt;&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;tdm-gcc를 설치했다.&lt;/li&gt;
+    &lt;li&gt;터미널에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gcc -v&lt;/code&gt; 명령어를 입력하면 설치 완료를 확인할 수 있다.&lt;/li&gt;
+    &lt;li&gt;위 예제의 코드를 txt 파일로 작성했다.(파일 이름은 p1으로 하였다.)&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gcc -S p1.c&lt;/code&gt; 명령어를 입력하면 어셈블리 코드를 생성할 수 있다.&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gcc -S -Og p1.c&lt;/code&gt; 명령어를 입력하면 컴파일 최적화를 진행한다.&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Og&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-O1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-O2&lt;/code&gt; …으로 설정하면 단계별로 최적화를 적용한다.&lt;br /&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+
+  &lt;p&gt;다음의 그림은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;default&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Og&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-O1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-O2&lt;/code&gt; 의 결과다.&lt;br /&gt;
+가독성을 위해서 main문과 디렉티브문은 삭제하였다.(*디렉티브: 어셈블러와 링커에 지시하기 위한 문장)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_14.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;최적화&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;없음&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;absdiff:
+   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pushq&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;seh_pushreg&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movq&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rsp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;seh_setframe&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subq&lt;/span&gt;   &lt;span class=&quot;vg&quot;&gt;$16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rsp&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;seh_stackalloc&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;
+   &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;seh_endprologue&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cmpl&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;jge&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L2&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;jmp&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L3&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;addq&lt;/span&gt;   &lt;span class=&quot;vg&quot;&gt;$16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rsp&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;popq&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rbp&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+
+&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Og&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;로&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;최적화함&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;absdiff:
+   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmpl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;jge&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L2&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;jmp&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;L1&lt;/span&gt;
+
+
+&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;O1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;으로&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;최적화함&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;absdiff:
+   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r8d&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r8d&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cmpl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cmovl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r8d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;
+
+
+&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;O2&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;으로&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;최적화함&lt;/span&gt;
+&lt;span class=&quot;ss&quot;&gt;absdiff:
+   &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r8d&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;movl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r8d&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;subl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cmpl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ecx&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cmovl&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r8d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eax&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;ret&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Og가 본문의 조건제어, O1이 조건이동에서 설명한 어셈블리어로 표현되어있다.&lt;br /&gt;
+유레카를 발견한 것처럼…. 너무 속이 시원했다….&lt;br /&gt;
+컴파일 명령어에서 최적화의 수준에 따라 어셈블리어 인코딩이 달라진다는 것을 직접 확인할 수 있었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;367-반복문&quot;&gt;3.6.7 반복문&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;C에서는 여러가지 반복문 구문을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;do-while, while, for&lt;/li&gt;
+      &lt;li&gt;기계어에는 반복문에 대응되는 인스트럭션이 없다.&lt;/li&gt;
+      &lt;li&gt;그렇기 때문에 조건부 테스트와 점프를 함께 사용해서 반복문의 효과를 구현한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;do-while
+    &lt;ul&gt;
+      &lt;li&gt;body-statement를 반복적으로 실행하고, test-expr를 계산하여 조건에 따라 반복 수행을 계속한다.&lt;/li&gt;
+      &lt;li&gt;body-statement가 적어도 한 번은 실행되는 점이 특이사항이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;    &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statement&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_15.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;while
+    &lt;ul&gt;
+      &lt;li&gt;while문은 test-expr를 먼저 계산해서, body-statement를 실행하기 전에 종료될 수 있다.&lt;/li&gt;
+      &lt;li&gt;do-while 루프에서 우리가 본 것과 루프 구조가 동일하고, 초기 테스트의 구현방법에서만 다르다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statement&lt;/span&gt;    &lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;while문은 두가지 번역 방법이 있다.
+        &lt;ol&gt;
+          &lt;li&gt;중간으로-점프jump-to-middle
+&lt;img src=&quot;../../assets/img/csapp/06/img_16.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
+          &lt;li&gt;조건부 do 번역 사용guarded-do
+&lt;img src=&quot;../../assets/img/csapp/06/img_17.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/li&gt;
+        &lt;/ol&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;for&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statement&lt;/span&gt;   
+  
+    &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;statement&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;두 반복문이 동일한 동작을 한다.&lt;/li&gt;
+      &lt;li&gt;먼저 초기화 수식인 init-expr를 계산한다.&lt;/li&gt;
+      &lt;li&gt;테스트 조건인 test-expr를 계산하는 곳에서 루프에 들어가며&lt;/li&gt;
+      &lt;li&gt;테스트가 실패하면 루프를 빠져나오고, 반복문 body-statement를 실행한다.&lt;/li&gt;
+      &lt;li&gt;마지막으로 update-expr를 계산한다.&lt;/li&gt;
+      &lt;li&gt;for 루프에 대해 생성된 어셈블리 코드는 최적화 수준에 따라 while 루프의 번역 전략중 하나를 따른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;368-switch문&quot;&gt;3.6.8 Switch문&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Switch문은 정수 인덱스 값에 따라 다중분기 기능을 제공한다.&lt;/li&gt;
+  &lt;li&gt;C 코드를 읽기 쉽게 해줄 뿐만 아니라 점프 테이블이라는 자료구조를 사용해서 효율적인 구현을 간응하게 한다.&lt;/li&gt;
+  &lt;li&gt;switch문을 실행하는 데 걸리는 시간이 case의 수에 관계없다는 점이 장점이다.&lt;/li&gt;
+  &lt;li&gt;switch문을 실행하는 데 있어서 핵심 단계는 점프 테이블을 통해서 코드의 위치로 접근하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_18.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 07</summary></entry><entry><title type="html">[Java/프로그래머스] Part8 인터페이스와 다른 형식의 클래스</title><link href="http://localhost:4000/java/java_08/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part8 인터페이스와 다른 형식의 클래스" /><published>2022-01-30T00:00:00+09:00</published><updated>2022-01-30T00:00:00+09:00</updated><id>http://localhost:4000/java/java_08</id><content type="html" xml:base="http://localhost:4000/java/java_08/">&lt;h1 id=&quot;part8-인터페이스와-다른-형식의-클래스&quot;&gt;Part8 인터페이스와 다른 형식의 클래스&lt;/h1&gt;
 
 &lt;h2 id=&quot;인터페이스-만들기&quot;&gt;인터페이스 만들기&lt;/h2&gt;
 &lt;p&gt;인터페이스: 서로 관계까 없는 물체들이 상호 작용을 하기 위해서 사용하는 장치나 시스템&lt;/p&gt;
@@ -1443,13 +1828,119 @@ BizSerice 클래스는 업무를 처리하는 메소드를 가지고 있다고 �
 
 &lt;ul&gt;
   &lt;li&gt;enum에 대해서 좀 더 궁금하다면!! &lt;a href=&quot;https://www.nextree.co.kr/p11686/&quot;&gt;enum의 뿌리&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.6 제어문)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.6 제어문)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 입문" /><summary type="html">프로그래머스 자바 입문 강의 - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)</title><link href="http://localhost:4000/cs:app/csapp_06/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_06</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_06/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
+  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
+  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
+  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
+  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&quot;35-산술연산과-논리연산&quot;&gt;3.5 산술연산과 논리연산&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 x86-64 정수와 논리연산의 리스트를 보여준다. 오퍼랜드의 길이에 따른 다양한 변형이 가능하기 때문에 대부분의 연산을 인스트럭션 클래스에 따라 나열하였다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션 클래스 ADD는 네 개의 덧셈 인스트럭션으로 이루어져 있다.
+    &lt;ul&gt;
+      &lt;li&gt;addb, addw, addl, addq로 각각 바이트, 워드, 어블워드, 쿼드워드를 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;연산들은 네 개의 그룹으로 나누어진다.
+    &lt;ul&gt;
+      &lt;li&gt;유효주소 적재, 단항unary, 이항binary, 쉬프트
+        &lt;ul&gt;
+          &lt;li&gt;이항 연산은 두 개의 오퍼랜드를 가진다.&lt;/li&gt;
+          &lt;li&gt;단항 연산은 한 개의 오퍼랜드를 가진다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&quot;36-제어문&quot;&gt;3.6 제어문&lt;/h1&gt;
+&lt;h2 id=&quot;351-유효주소-적재-load-effective-address&quot;&gt;3.5.1 유효주소 적재 Load Effective Address&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;유효주소 적재 인스트럭션 leaq는 실제로는 movq 인스트럭션의 변형이다.&lt;/li&gt;
+  &lt;li&gt;메모리에서 레지스터로 읽어들이는 인스트럭션의 형태를 갖지만, 메모리를 전혀 참조하지 않는다.&lt;/li&gt;
+  &lt;li&gt;가리키는 위치에서 읽기를 수행하는 대신에 유효주소를 목적지에 복사한다.&lt;/li&gt;
+  &lt;li&gt;이 인스트럭션은 나중의 메모리 참조에 사용하게 되는 포인터를 생성하기 위해 사용한다.&lt;/li&gt;
+  &lt;li&gt;또한 일반적인 산술연산을 간결하게 설명하기 위해 사용된다
+    &lt;ul&gt;
+      &lt;li&gt;ex) %rdx가 x를 가지고 있다면, leaq 7(%rdx, %rdx, 7)은 %rdx에 5x+7을 저장한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;목적 오퍼랜드는 반드시 레지스터만 올 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&quot;37-프로시저&quot;&gt;3.7 프로시저&lt;/h1&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 06</summary></entry><entry><title type="html">[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_04/" rel="alternate" type="text/html" title="[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_04</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_04/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;h2 id=&quot;352-단항-및-이항-연산&quot;&gt;3.5.2 단항 및 이항 연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;단항 연산
+    &lt;ul&gt;
+      &lt;li&gt;하나의 오퍼랜드가 소스와 목적지로 동시에 사용되는 단항 연산이다.&lt;/li&gt;
+      &lt;li&gt;오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.&lt;/li&gt;
+      &lt;li&gt;ex) incq(%rsp)는 스택 탑의 8바이트 원소의 값을 증가시켜준다. -&amp;gt; C에서의 ++, – 연산자&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이항 연산
+    &lt;ul&gt;
+      &lt;li&gt;첫 번째 오퍼랜드는 상수나 레지스터, 메모리 위치가 올 수 있고 두 번째 오퍼랜드는 소스이면서 목적지로 사용된다.&lt;/li&gt;
+      &lt;li&gt;C에서 x -= y와 유사하다.&lt;/li&gt;
+      &lt;li&gt;두 개의 오퍼랜드가 모두 메모리 위치가 될 수 없다.&lt;/li&gt;
+      &lt;li&gt;두 번째 오퍼랜드가 메모리 위치일 때 프로세서가 메모리에서 값을 읽고, 연산을 하고, 그 결과를 다시 메모리에 써야 한다는 점에 유의해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;353-쉬프트-연산&quot;&gt;3.5.3 쉬프트 연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;쉬프트하는 크기를 먼저 주고, 쉬프트할 값을 두 번째로 준다.&lt;/li&gt;
+  &lt;li&gt;산술과 논리형 우측 쉬프트가 모두 가능하다.&lt;/li&gt;
+  &lt;li&gt;쉬프트 인스트럭션들은 쉬프트할 양을 즉시 값이나 단일 바이트 레지스터 %cl로 명시할 수 있다.&lt;/li&gt;
+  &lt;li&gt;좌측 쉬프트 인스트럭션에는 두 가지 이름이 있다.
+    &lt;ul&gt;
+      &lt;li&gt;SAR: 산술 쉬프트, 부호비트를 복사해서 채운다&lt;/li&gt;
+      &lt;li&gt;SHR: 논리 쉬프트, 0으로 채운다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;쉬프트 연산의 목적 오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;354-토의&quot;&gt;3.5.4 토의&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;인스트럭션들은 비부호형과 2의 보수 산술연산에 사용될 수 있다.&lt;/li&gt;
+  &lt;li&gt;오직 우측 쉬프트만이 부호형과 비부호형 데이터를 구분하는 인스트럭션을 요구한다.&lt;/li&gt;
+  &lt;li&gt;이것이 부호형 정수 산술연산을 구현하는 방식으로 2의 보수 산술연산을 선호하는 주요 특징이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;355-특수-산술연산&quot;&gt;3.5.5 특수 산술연산&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/06/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;두 개의 64비트 부호형 또는 비부호형 정수들 간의 곱셈 결과값을 표시하기 위해 128비트를 필요로한다.&lt;/li&gt;
+  &lt;li&gt;x86064 인스트럭션 집합은 128비트 숫자와 관련된 연산에 대해서는 제한적인 지원을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;워드(2바이트), 더블워드(4바이트), 쿼드워드(8바이트), 인텔은 16바이트 워드를 옥트워드oct word라고 명명한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IMUL 인스트럭션 클래스의 멤버인 형태
+    &lt;ul&gt;
+      &lt;li&gt;이 형식은 두 개의 64비트 오퍼랜드로부터 64비트 곱을 생성하는 “2 오퍼랜드” 곱셈 인스트럭션을 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;추가적으로 x86-64는 두 개의 다른 “단일 오퍼랜드” 곱셈 인스트럭션을 제공하며 64비트 값의 완전한 128비트 곱을 계산한다.
+    &lt;ul&gt;
+      &lt;li&gt;하나는 비부호형(mulq), 다른 하나는 2의 보수(imulq) 곱셈이다.&lt;/li&gt;
+      &lt;li&gt;이들 모두 한 개의 인자는 레지스터 %rax에 보관해야 하고 다른 하나는 인스트럭션 소스 오퍼랜드로 주어진다.&lt;/li&gt;
+      &lt;li&gt;곱은 레지스터 %rdx(상위 64비트)와  %rax(하위 64비트)에 저장된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;곱을 저장하기 위해서는 아래의 그림처럼 두 개의 movq 인스트럭션이 필요하다.
+&lt;img src=&quot;../../assets/img/csapp/06/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;단일 오퍼랜드 곱셈 인스트럭션과 비슷한 단일 오퍼랜드 나눈셈 인스트럭션으로 제공된다.&lt;/li&gt;
+  &lt;li&gt;나눗셈 인스트럭션 idviq은 피제수dividened를 128비트로 레지스터 %rdx(상위 64비트)와 %rax(하위 64비트)에 저장한다.&lt;/li&gt;
+  &lt;li&gt;제수divisor는 인스트럭션의 오퍼랜드로 주어진다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션은 몫은 레지스터 %rax에, 나머지는 레지스터 %rdx에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 06</summary></entry><entry><title type="html">[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_04/" rel="alternate" type="text/html" title="[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰" /><published>2022-01-26T00:00:00+09:00</published><updated>2022-01-26T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_04</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_04/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Multi-Task Learning(MTL)은 새로운 Task를 학습하는 데 도움이 되도록 이전 작업에서 학습된 지식을 적용하는 인간 학습 활동에서 영감을 받음&lt;/li&gt;
   &lt;li&gt;Deep neural networks(DNN)를 이용한 representation learning에 MTL을 적용하는 것에 대한 관심이 높아지고 있음

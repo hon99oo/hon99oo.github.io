@@ -1,0 +1,320 @@
+I"�^<h1 id="chapter-03-프로그램의-기계수준-표현">Chapter 03. 프로그램의 기계수준 표현</h1>
+<ul>
+  <li>3.1 역사적 관점</li>
+  <li>3.2 프로그램의 인코딩</li>
+  <li>3.3 데이터의 형식</li>
+  <li>3.4 정보 접근하기</li>
+  <li>3.5 산술연산과 논리연산</li>
+  <li>3.6 제어문</li>
+</ul>
+
+<h1 id="36-제어문">3.6 제어문</h1>
+<ul>
+  <li>일부 구문인 반복문, 스위치문들은 데이터에 적용된 시험결과에 따라 일련의 연산이 실행되는 조건부 실행이 요구된다.</li>
+  <li>기계어 코드에서는 조건부 동작을 구현하기 위해 두 개의 기본적인 낮은 수준의 방법을 제공한다.
+    <ul>
+      <li>데이터 값들을 시험해서 이 시험 결과에 따라 데이터흐름이나 제어흐름을 변경한다.</li>
+    </ul>
+  </li>
+  <li>기계어 인스트럭션들의 실행 순서는 점프jump 인스트럭션으로 변경할 수 있다.</li>
+  <li>점프 인스트럭션은 때에 따라서는 어떤 시험의 결과에 따라 프로그램의 다른 일부분으로 제어를 넘겨준다.</li>
+</ul>
+
+<h2 id="361-조건-코드">3.6.1 조건 코드</h2>
+<ul>
+  <li>정수 레지스터들과 함께 CPU는 가장 최근 산술 또는 논리연산의 특성을 설명하는 단일 비트 조건 코드로 구성된 레지스터들을 운영한다.</li>
+  <li>이 레지스터들은 조건부 분기를 수행하기 위해서 시험될 수 있다.
+    <ul>
+      <li>CF: 캐리 플래그Carry flag. 가장 중요한 비트로부터 받아 올림이 발생한 것을 표시. 비부호형 연산에서 오버플로우를 검출할 때 사용</li>
+      <li>ZF: 영 플래그Zero flag. 연산의 결과가 0인 것을 표시</li>
+      <li>SF: 부호 플래그Sign flag. 연산이 음수를 생성한 것을 표시</li>
+      <li>OF: 오버플로우 플래그Overflow flag. 양수/음수의 2의 보수 오버플로우를 발생시킨 것을 표시</li>
+    </ul>
+  </li>
+  <li>leaq 인스트럭션은 주소계산에 사용하기 위한 것이므로 조건 코드를 변경하지 않는다.
+<br /><br /></li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img.png" width="80%" height="100%" /></p>
+<ul>
+  <li>반면에, 위의 그림에 나열된 모든 인스트럭션들은 조건 코드 값을 변경한다.
+    <ul>
+      <li>XOR 같은 논리연산에서는 캐리와 오버플로우 플래그가 0으로 세팅된다.</li>
+      <li>쉬프트 연산에서는 캐리 플래그가 쉬프트되어 없어지는 마지막 비트로 설정되며, 오버플로우 플래그는 0으로 세팅된다.</li>
+    </ul>
+  </li>
+  <li>위의 그림의 인스트럭션들에 의해 조건 코드 값이 변경될 뿐만 아니라, 다른 레지스터들은 변경시키지 않으면서 조건 코드만 변경해 주는 두 개의 인스트럭션 클래스가 있다.(아래의 그림 참조)
+<img src="../../assets/img/csapp/06/img_3.png" width="80%" height="100%" /></li>
+  <li>CMP 인스트럭션들은 만일 두 오퍼랜드가 같으면 영 플래그르 1로 설정한다. 다른 플래그들은 두 오퍼랜드의 순서관계를 결정하는 데 사용될 수 있다.</li>
+  <li>TEST 인스트럭션은 목적지 오퍼랜드를 변경하지 않으면서 조건 코드를 설정하는 점만 제외하고는 AND 인스트럭션과 같은 방식으로 동작한다.</li>
+</ul>
+
+<h2 id="362-조건-코드-사용하기">3.6.2 조건 코드 사용하기</h2>
+<ul>
+  <li>조건 코드를 이용하는 보편적인 세 가지 방법이 있다.
+    <ol>
+      <li>조건 코드의 조합에 따라 0 또는 1을 한 개의 바이트에 기록</li>
+      <li>조건에 따라 프로그램의 다른 부분으로 이동하는 방법</li>
+      <li>조건에 따라 데이터를 전송하는 방법</li>
+    </ol>
+  </li>
+</ul>
+
+<ol>
+  <li>SET 인스트럭션</li>
+</ol>
+
+<p><img src="../../assets/img/csapp/06/img_4.png" width="80%" height="100%" /></p>
+
+<ul>
+  <li>첫 번째 경우의 인스트럭션의 클래스를 SET 인스트럭션이라고 부른다.</li>
+  <li>이 인스트럭션들은 접미어를 이용해서 오퍼랜드의 크기를 나타내는 것이 아니라, 조건 코드의 어떤 조합을 사용할 것인지를 나타낸다.
+    <ul>
+      <li>ex) setl, setb -&gt; long word와 byte를 의미하지 않고 less와 below를 의미한다.</li>
+    </ul>
+  </li>
+  <li>SET 인스트럭션은 목적지로 하위 단일 바이트 레지스터 가운데 한 개나 단일 바이트 메모리 주소를 사용하며, 이 바이트를 0이나 1로 기록한다.
+    <ul>
+      <li>32비트나 64비트 결과를 만드려면, 다른 상위 비트들을 0으로 만들어줘야 한다.</li>
+    </ul>
+  </li>
+  <li>a&lt;b를 계산하는 전형적인 인스트럭션은 아래의 그림과 같이 작성된다.
+<img src="../../assets/img/csapp/06/img_5.png" width="80%" height="100%" /></li>
+</ul>
+
+<h2 id="363-점프jump-인스트럭션">3.6.3 점프jump 인스트럭션</h2>
+<ul>
+  <li>일반적인 실행의 경우, 인스트럭션들은 나열된 순서에 따라 순차적으로 실행된다.</li>
+  <li>점프 인스트럭션은 프로그램이 완전히 새로운 위치로 실행을 전환하도록 한다.</li>
+  <li>점프의 목적지는 일반적으로 어셈블리 코드에서는 레이블label로 표시한다.</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_6.png" width="80%" height="100%" /></p>
+<ul>
+  <li>인스트럭션 jmp .L1은 프로그램이 movq 인스트럭션을 건너뛰는 대신에 popq로 실행을 다시 시작하게 한다.</li>
+  <li>어셈블러는 모든 레이블이 붙은 인스트럭션들의 주소를 결정하고, 점프 인스트럭션의 일부분인 “점프 목적지jump target”을 인코딩한다.</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_7.png" width="80%" height="100%" /></p>
+<ul>
+  <li>위 그림은 여러 가지 점프 인스트럭션을 보여준다.</li>
+  <li>jmp 인스트럭션은 무조건적으로 점프한다.
+    <ul>
+      <li>점프 목적지가 인스트럭션의 일부로 인코딩 되는 경우에는 직접 점프</li>
+      <li>점프 대상을 레지스터나 메모리 위치로부터 읽어들여야 하는 경우에는 간접 점프</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="364-점프-인스트럭션-인코딩">3.6.4 점프 인스트럭션 인코딩</h2>
+<ul>
+  <li>점프 인스트럭션의 대상이 어떻게 인코딩 되는지 이해하는 것은 7장의 링커를 공부할 때 중요한 역할을 하게 된다.</li>
+  <li>어셈블리 코드에서, 점프 목적지는 심벌 레이블을 사용해서 작성한다.</li>
+  <li>점프를 인코딩하는 가장 일반적인 방법은 PC 상대적PC relative 방법이다.
+    <ul>
+      <li>대상 인스트럭션과 점프 인스트럭션 바로 다음에 오는 인스트럭션 주소와의 차이를 인코딩한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_8.png" width="80%" height="100%" /></p>
+<ul>
+  <li>첫 번째 점프 인스트럭션의 목적지가 0x03으로 인코딩, 다음 인스트럭션의 주소인 0x05에 더하면 점프 목적지 주쇤 0x8을 얻을 수 있다.</li>
+  <li>PC-상대 주소지정을 수행할 때 프로그램 카운터의 값은 점프 인스트럭션 자신의 주소가 아니라, 점프 다음에 나오는 인스트럭션의 주소가 된다.</li>
+  <li>PC-상대 방식으로 점프 목적지를 인코딩하면, 인스트럭션들이 간결하게 인코딩(2바이트만 필요)될 수 있고, 목적코드는 수정 없이 메모리 상의 다른 위치로 이동될 수 있다.</li>
+</ul>
+
+<h2 id="365-조건부-분기를-조건제어로-구현하기">3.6.5 조건부 분기를 조건제어로 구현하기</h2>
+<ul>
+  <li>C에서 조건부 수식과 문장을 기계어 코드로 번역하는 가장 일반적인 방법은 조건부 및 무조건 점프를 함께 사용하는 것이다.</li>
+  <li>어셈블리 코드에서의 무조건 점프와 유사한 C의 goto문을 사용한다.
+    <ul>
+      <li>어셈블리 코드의 제어흐름을 설명하는 C 프로그램을 구성하는 방법으로 사용됨</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_9.png" width="80%" height="100%" /></p>
+<ul>
+  <li>
+    <p>위의 그림은 조건문의 컴파일이다.</p>
+  </li>
+  <li>
+    <p>if-else</p>
+    <ul>
+      <li>컴파일러는 else-문과 then-문에 대해 별도의 코드 블록을 생성한다.</li>
+      <li>정확한 블록이 실행되도록 조건부와 무조건 분기를 삽입한다.
+<img src="../../assets/img/csapp/06/img_10.png" width="30%" height="100%" />
+<img src="../../assets/img/csapp/06/img_11.png" width="30%" height="100%" /></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="366-조건부-이동으로-조건부-분기-구현하기">3.6.6 조건부 이동으로 조건부 분기 구현하기</h2>
+<ul>
+  <li>조건부 동작을 구현하는 전형적인 방법은 조건이 만족되면 프로그램의 한 가지 실행경로를 따르고, 아닌 경우에는 다른 경로를 따라가도록 하는 제어의 조건부 전환을 통해 이루어진다.
+    <ul>
+      <li>이 방법은 간단하고 일반적이지만 최신 프로세서들에서는 매우 비효율적일 수 있다.</li>
+    </ul>
+  </li>
+  <li>또 다른 전략은 데이터의 조건부 전송을 이용하는 것이다.
+    <ul>
+      <li>이 방법은 조건부 동작의 산출물 모두를 계싼하고 조건에 따라 하나만 선택하는 방식이다.</li>
+      <li>최신 프로세서의 성능특성과 잘 일치하는 간단한 조건부 이동move 인스트럭션으로 구현될 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_12.png" width="80%" height="100%" /></p>
+<ul>
+  <li>C버전을 공부하면, 이것이 y-x와 x-y 모두를 계산해서 rval, eval로 명명한다는 것을 알 수 있다.
+    <ul>
+      <li>x가 y보다 크거나 같은지 테스트하고, 만일 그렇다면, eval을 Rval로 명명한다는 것을 알 수 있다.</li>
+    </ul>
+  </li>
+  <li>조건부 제어 이동 기반 코드보다 조건부 데이터 이동 코드가 성능이 우수한 이유를 이해하기 위해서는 최신 프로세서들이 어떻게 동작하는지 이해해야 한다.
+    <ul>
+      <li>프로세서들은 각 인스트럭션을 일련의 단계로 처리하며, 이 단계들은 각각 요구된 동작의 작은 부분만을 실행하는 파이프라인을 통해 높은 성능을 얻는다.</li>
+      <li>이를 위해서는 파이프라인을 실행할 인스트럭션들로 미리 채우기 위해 실행할 인스트럭션들의 순서를 훨씬 일찍 결정할 수 있어야 한다.</li>
+      <li>결과적으로 분기의 예측오류 손실이 함수의 성능을 결정한다.
+<br /><br /><br /></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_13.png" width="80%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 x86-64로 가능한 조건부 이동 move 인스트럭션을 보여준다.</li>
+  <li>이들 인스트럭션은 두 개의 오퍼랜드를 갖는다.
+    <ul>
+      <li>소스 레지스터 또는 메모리 위치 S, 그리고 목적지 레지스터 R.</li>
+    </ul>
+  </li>
+  <li>인스트럭션들의 결과는 조건 코드 값에 따라 달라진다.</li>
+  <li>소스 값은 메모리나 소스 레지스터로부터 읽히지만, 목적지에는 명시된 조건이 만족될 때만 복사된다.</li>
+</ul>
+
+<blockquote>
+  <p>이 이후로 조건부 분기의 “분기의 예측 오류”에 관한 내용이 나온다. <br />
+조건부 이동은 조건부 점프와는 달리 결과를 예측하지 않고서도 해당 인스트럭션을 실행할 수 있다.<br />
+조건부 이동을 사용한다고 해서 언제나 코드 효율성을 개선할 수 있는 것은 아니다.<br />
+컴파일러는 낭비되는 계산량과 분기 예측오류에 의한 잠재적 성능 손실 사이의 상대적 성능을 고려해야 한다.<br /><br />
+등의 내용이 담겨져 있는데 이해하기 조금 힘들다…. <br />
+3.6.6은 뒷부분을 좀 더 읽고 다시 읽으러 돌아오자!!!!!!!</p>
+</blockquote>
+
+<h3 id="조건부-분기에-따른-실제-어셈블리-코드">조건부 분기에 따른 실제 어셈블리 코드</h3>
+<blockquote>
+  <p>조건부 분기를 구하는 방법은 3.6.2에서 세가지 방법이 있다고 했으며, 3.6.5절과 3.6.6절에 조건제어와 조건부이동 두가지로 더욱 자세한 설명으로 풀어냈다.
+두 가지의 방법은 예제코드를 활용하여 설명해줬는데 다음의 예제코드와 같다. (C 언어로 작성 되어있다.)</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">long</span> <span class="n">absdiff</span><span class="p">(</span><span class="n">long</span> <span class="n">x</span><span class="p">,</span> <span class="n">long</span> <span class="n">y</span><span class="p">){</span>
+  <span class="n">long</span> <span class="n">result</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">y</span><span class="p">)</span> <span class="n">result</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="p">;</span>
+  <span class="k">else</span> <span class="n">reuslt</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+<blockquote>
+  <p>이 코드를 가지고 if문의 여러가지 어셈블리어로 표현할 수 있다고 표현하는데, 나는 같은 코드인데 기계는 어떻게 알고 다른 어셈블리어들을 생성해내는지가 너무 긍금했다.<br />
+다시말해 기계는 언제 조건부 이동을 하여 컴파일을하고, 언제 조건제어를 하여 컴파일을 하는지 너무 궁금했다!!!<br />
+궁금증을 참지 못하고 윈도우 환경에서 gcc 컴파일을 진행하였다.<br /></p>
+  <ol>
+    <li>tdm-gcc를 설치했다.</li>
+    <li>터미널에 <code class="language-plaintext highlighter-rouge">gcc -v</code> 명령어를 입력하면 설치 완료를 확인할 수 있다.</li>
+    <li>위 예제의 코드를 txt 파일로 작성했다.(파일 이름은 p1으로 하였다.)</li>
+    <li><code class="language-plaintext highlighter-rouge">gcc -S p1.c</code> 명령어를 입력하면 어셈블리 코드를 생성할 수 있다.</li>
+    <li><code class="language-plaintext highlighter-rouge">gcc -S -Og p1.c</code> 명령어를 입력하면 컴파일 최적화를 진행한다.</li>
+    <li><code class="language-plaintext highlighter-rouge">-Og</code>, <code class="language-plaintext highlighter-rouge">-O1</code>, <code class="language-plaintext highlighter-rouge">-O2</code> …으로 설정하면 단계별로 최적화를 적용한다.<br /></li>
+  </ol>
+
+  <p>다음의 그림은 <code class="language-plaintext highlighter-rouge">default</code>, <code class="language-plaintext highlighter-rouge">-Og</code>, <code class="language-plaintext highlighter-rouge">-O1</code>, <code class="language-plaintext highlighter-rouge">-O2</code> 의 결과다.<br />
+가독성을 위해서 main문과 디렉티브문은 삭제하였다.(*디렉티브: 어셈블러와 링커에 지시하기 위한 문장)</p>
+</blockquote>
+
+<p><img src="../../assets/img/csapp/06/img_14.png" width="100%" height="100%" /></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="sr">//</span><span class="err">최적화</span> <span class="err">없음</span>
+<span class="ss">absdiff:
+   </span><span class="n">pushq</span>   <span class="o">%</span><span class="n">rbp</span>
+   <span class="p">.</span><span class="nf">seh_pushreg</span>   <span class="o">%</span><span class="n">rbp</span>
+   <span class="n">movq</span>   <span class="o">%</span><span class="n">rsp</span><span class="p">,</span> <span class="o">%</span><span class="n">rbp</span>
+   <span class="p">.</span><span class="nf">seh_setframe</span>   <span class="o">%</span><span class="n">rbp</span><span class="p">,</span> <span class="mi">0</span>
+   <span class="n">subq</span>   <span class="vg">$16</span><span class="p">,</span> <span class="o">%</span><span class="n">rsp</span>
+   <span class="p">.</span><span class="nf">seh_stackalloc</span>   <span class="mi">16</span>
+   <span class="p">.</span><span class="nf">seh_endprologue</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="mi">24</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+   <span class="n">movl</span>   <span class="mi">16</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">cmpl</span>   <span class="mi">24</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">jge</span>   <span class="o">.</span><span class="no">L2</span>
+   <span class="n">movl</span>   <span class="mi">24</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">subl</span>   <span class="mi">16</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+   <span class="n">jmp</span>   <span class="o">.</span><span class="no">L3</span>
+<span class="o">.</span><span class="no">L2</span><span class="p">:</span>
+   <span class="n">movl</span>   <span class="mi">16</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">subl</span>   <span class="mi">24</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">eax</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+<span class="o">.</span><span class="no">L3</span><span class="p">:</span>
+   <span class="n">movl</span>   <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">addq</span>   <span class="vg">$16</span><span class="p">,</span> <span class="o">%</span><span class="n">rsp</span>
+   <span class="n">popq</span>   <span class="o">%</span><span class="n">rbp</span>
+   <span class="n">ret</span>
+
+<span class="sr">//</span><span class="no">Og</span><span class="err">로</span> <span class="err">최적화함</span>
+<span class="ss">absdiff:
+   </span><span class="n">cmpl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">ecx</span>
+   <span class="n">jge</span>   <span class="o">.</span><span class="no">L2</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">subl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+<span class="o">.</span><span class="no">L1</span><span class="p">:</span>
+   <span class="n">ret</span>
+<span class="o">.</span><span class="no">L2</span><span class="p">:</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">subl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">jmp</span>   <span class="o">.</span><span class="no">L1</span>
+
+
+<span class="sr">//</span><span class="no">O1</span><span class="err">으로</span> <span class="err">최적화함</span>
+<span class="ss">absdiff:
+   </span><span class="n">movl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">r8d</span>
+   <span class="n">subl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">%</span><span class="n">r8d</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">subl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">cmpl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">ecx</span>
+   <span class="n">cmovl</span>   <span class="o">%</span><span class="n">r8d</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">ret</span>
+
+
+<span class="sr">//</span><span class="no">O2</span><span class="err">으로</span> <span class="err">최적화함</span>
+<span class="ss">absdiff:
+   </span><span class="n">movl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">r8d</span>
+   <span class="n">movl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">subl</span>   <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">%</span><span class="n">r8d</span>
+   <span class="n">subl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">cmpl</span>   <span class="o">%</span><span class="n">edx</span><span class="p">,</span> <span class="o">%</span><span class="n">ecx</span>
+   <span class="n">cmovl</span>   <span class="o">%</span><span class="n">r8d</span><span class="p">,</span> <span class="o">%</span><span class="n">eax</span>
+   <span class="n">ret</span></code></pre></figure>
+
+<blockquote>
+  <p>Og가 본문의 조건제어, O1이 조건이동에서 설명한 어셈블리어로 표현되어있다.<br />
+유레카를 발견한 것처럼…. 너무 속이 시원했다….<br />
+컴파일 명령어에서 최적화의 수준에 따라 어셈블리어 인코딩이 달라진다는 것을 직접 확인할 수 있었다.</p>
+</blockquote>
+
+<h2 id="367-반복문">3.6.7 반복문</h2>
+<ul>
+  <li>C에서는 여러가지 반복문 구문을 제공한다.
+    <ul>
+      <li>do-while, while, for</li>
+      <li>기계어에는 반복문에 대응되는 인스트럭션이 없다.</li>
+      <li>그렇기 때문에 조건부 테스트와 점프를 함께 사용해서 반복문의 효과를 구현한다.</li>
+    </ul>
+  </li>
+  <li>do-while</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/06/img_15.png" width="100%" height="100%" /></p>
+:ET

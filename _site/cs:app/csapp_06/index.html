@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.6 제어문) - 홍구의 개발 블로그</title>
+<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산) - 홍구의 개발 블로그</title>
 <meta name="description" content="CS:APP - 06">
 
 
@@ -22,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="홍구의 개발 블로그">
-<meta property="og:title" content="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.6 제어문)">
+<meta property="og:title" content="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)">
 <meta property="og:url" content="http://localhost:4000/cs:app/csapp_06/">
 
 
@@ -165,7 +165,7 @@
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
         
-          [CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.6 제어문)
+          [CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)
 
         
       </h1>
@@ -187,7 +187,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          2 분 소요
         
       </span>
     
@@ -328,7 +328,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산 ~ 3.6 제어문)">
+    <meta itemprop="headline" content="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)">
     <meta itemprop="description" content="CS:APP - 06">
     <meta itemprop="datePublished" content="2022-01-26T00:00:00+09:00">
     
@@ -341,18 +341,125 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#chapter-03-프로그램의-기계수준-표현">Chapter 03. 프로그램의 기계수준 표현</a></li><li><a href="#35-산술연산과-논리연산">3.5 산술연산과 논리연산</a></li><li><a href="#36-제어문">3.6 제어문</a></li><li><a href="#37-프로시저">3.7 프로시저</a></li></ul>
+              <ul class="toc__menu"><li><a href="#chapter-03-프로그램의-기계수준-표현">Chapter 03. 프로그램의 기계수준 표현</a></li><li><a href="#35-산술연산과-논리연산">3.5 산술연산과 논리연산</a><ul><li><a href="#351-유효주소-적재-load-effective-address">3.5.1 유효주소 적재 Load Effective Address</a></li><li><a href="#352-단항-및-이항-연산">3.5.2 단항 및 이항 연산</a></li><li><a href="#353-쉬프트-연산">3.5.3 쉬프트 연산</a></li><li><a href="#354-토의">3.5.4 토의</a></li><li><a href="#355-특수-산술연산">3.5.5 특수 산술연산</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
         <h1 id="chapter-03-프로그램의-기계수준-표현">Chapter 03. 프로그램의 기계수준 표현</h1>
+<ul>
+  <li>3.1 역사적 관점</li>
+  <li>3.2 프로그램의 인코딩</li>
+  <li>3.3 데이터의 형식</li>
+  <li>3.4 정보 접근하기</li>
+  <li>3.5 산술연산과 논리연산</li>
+</ul>
 
 <h1 id="35-산술연산과-논리연산">3.5 산술연산과 논리연산</h1>
+<p><img src="../../assets/img/csapp/06/img.png" width="80%" height="100%" /></p>
+<ul>
+  <li>위 그림은 x86-64 정수와 논리연산의 리스트를 보여준다. 오퍼랜드의 길이에 따른 다양한 변형이 가능하기 때문에 대부분의 연산을 인스트럭션 클래스에 따라 나열하였다.</li>
+  <li>인스트럭션 클래스 ADD는 네 개의 덧셈 인스트럭션으로 이루어져 있다.
+    <ul>
+      <li>addb, addw, addl, addq로 각각 바이트, 워드, 어블워드, 쿼드워드를 의미한다.</li>
+    </ul>
+  </li>
+  <li>연산들은 네 개의 그룹으로 나누어진다.
+    <ul>
+      <li>유효주소 적재, 단항unary, 이항binary, 쉬프트
+        <ul>
+          <li>이항 연산은 두 개의 오퍼랜드를 가진다.</li>
+          <li>단항 연산은 한 개의 오퍼랜드를 가진다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-<h1 id="36-제어문">3.6 제어문</h1>
+<h2 id="351-유효주소-적재-load-effective-address">3.5.1 유효주소 적재 Load Effective Address</h2>
+<ul>
+  <li>유효주소 적재 인스트럭션 leaq는 실제로는 movq 인스트럭션의 변형이다.</li>
+  <li>메모리에서 레지스터로 읽어들이는 인스트럭션의 형태를 갖지만, 메모리를 전혀 참조하지 않는다.</li>
+  <li>가리키는 위치에서 읽기를 수행하는 대신에 유효주소를 목적지에 복사한다.</li>
+  <li>이 인스트럭션은 나중의 메모리 참조에 사용하게 되는 포인터를 생성하기 위해 사용한다.</li>
+  <li>또한 일반적인 산술연산을 간결하게 설명하기 위해 사용된다
+    <ul>
+      <li>ex) %rdx가 x를 가지고 있다면, leaq 7(%rdx, %rdx, 7)은 %rdx에 5x+7을 저장한다.</li>
+    </ul>
+  </li>
+  <li>목적 오퍼랜드는 반드시 레지스터만 올 수 있다.</li>
+</ul>
 
-<h1 id="37-프로시저">3.7 프로시저</h1>
+<h2 id="352-단항-및-이항-연산">3.5.2 단항 및 이항 연산</h2>
+<ul>
+  <li>단항 연산
+    <ul>
+      <li>하나의 오퍼랜드가 소스와 목적지로 동시에 사용되는 단항 연산이다.</li>
+      <li>오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.</li>
+      <li>ex) incq(%rsp)는 스택 탑의 8바이트 원소의 값을 증가시켜준다. -&gt; C에서의 ++, – 연산자</li>
+    </ul>
+  </li>
+  <li>이항 연산
+    <ul>
+      <li>첫 번째 오퍼랜드는 상수나 레지스터, 메모리 위치가 올 수 있고 두 번째 오퍼랜드는 소스이면서 목적지로 사용된다.</li>
+      <li>C에서 x -= y와 유사하다.</li>
+      <li>두 개의 오퍼랜드가 모두 메모리 위치가 될 수 없다.</li>
+      <li>두 번째 오퍼랜드가 메모리 위치일 때 프로세서가 메모리에서 값을 읽고, 연산을 하고, 그 결과를 다시 메모리에 써야 한다는 점에 유의해야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="353-쉬프트-연산">3.5.3 쉬프트 연산</h2>
+<ul>
+  <li>쉬프트하는 크기를 먼저 주고, 쉬프트할 값을 두 번째로 준다.</li>
+  <li>산술과 논리형 우측 쉬프트가 모두 가능하다.</li>
+  <li>쉬프트 인스트럭션들은 쉬프트할 양을 즉시 값이나 단일 바이트 레지스터 %cl로 명시할 수 있다.</li>
+  <li>좌측 쉬프트 인스트럭션에는 두 가지 이름이 있다.
+    <ul>
+      <li>SAR: 산술 쉬프트, 부호비트를 복사해서 채운다</li>
+      <li>SHR: 논리 쉬프트, 0으로 채운다</li>
+    </ul>
+  </li>
+  <li>쉬프트 연산의 목적 오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.</li>
+</ul>
+
+<h2 id="354-토의">3.5.4 토의</h2>
+<ul>
+  <li>인스트럭션들은 비부호형과 2의 보수 산술연산에 사용될 수 있다.</li>
+  <li>오직 우측 쉬프트만이 부호형과 비부호형 데이터를 구분하는 인스트럭션을 요구한다.</li>
+  <li>이것이 부호형 정수 산술연산을 구현하는 방식으로 2의 보수 산술연산을 선호하는 주요 특징이다.</li>
+</ul>
+
+<h2 id="355-특수-산술연산">3.5.5 특수 산술연산</h2>
+<p><img src="../../assets/img/csapp/06/img_2.png" width="80%" height="100%" /></p>
+<ul>
+  <li>두 개의 64비트 부호형 또는 비부호형 정수들 간의 곱셈 결과값을 표시하기 위해 128비트를 필요로한다.</li>
+  <li>x86064 인스트럭션 집합은 128비트 숫자와 관련된 연산에 대해서는 제한적인 지원을 제공한다.
+    <ul>
+      <li>워드(2바이트), 더블워드(4바이트), 쿼드워드(8바이트), 인텔은 16바이트 워드를 옥트워드oct word라고 명명한다.</li>
+    </ul>
+  </li>
+  <li>IMUL 인스트럭션 클래스의 멤버인 형태
+    <ul>
+      <li>이 형식은 두 개의 64비트 오퍼랜드로부터 64비트 곱을 생성하는 “2 오퍼랜드” 곱셈 인스트럭션을 제공한다.</li>
+    </ul>
+  </li>
+  <li>추가적으로 x86-64는 두 개의 다른 “단일 오퍼랜드” 곱셈 인스트럭션을 제공하며 64비트 값의 완전한 128비트 곱을 계산한다.
+    <ul>
+      <li>하나는 비부호형(mulq), 다른 하나는 2의 보수(imulq) 곱셈이다.</li>
+      <li>이들 모두 한 개의 인자는 레지스터 %rax에 보관해야 하고 다른 하나는 인스트럭션 소스 오퍼랜드로 주어진다.</li>
+      <li>곱은 레지스터 %rdx(상위 64비트)와  %rax(하위 64비트)에 저장된다.</li>
+    </ul>
+  </li>
+  <li>곱을 저장하기 위해서는 아래의 그림처럼 두 개의 movq 인스트럭션이 필요하다.
+<img src="../../assets/img/csapp/06/img_1.png" width="80%" height="100%" />
+<br /><br /><br /></li>
+  <li>단일 오퍼랜드 곱셈 인스트럭션과 비슷한 단일 오퍼랜드 나눈셈 인스트럭션으로 제공된다.</li>
+  <li>나눗셈 인스트럭션 idviq은 피제수dividened를 128비트로 레지스터 %rdx(상위 64비트)와 %rax(하위 64비트)에 저장한다.</li>
+  <li>제수divisor는 인스트럭션의 오퍼랜드로 주어진다.</li>
+  <li>인스트럭션은 몫은 레지스터 %rax에, 나머지는 레지스터 %rdx에 저장한다.</li>
+</ul>
+
 
         
       </section>
@@ -405,7 +512,7 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+03.+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98+%EA%B8%B0%EA%B3%84%EC%88%98%EC%A4%80+%ED%91%9C%ED%98%84+%283.5+%EC%82%B0%EC%88%A0%EC%97%B0%EC%82%B0%EA%B3%BC+%EB%85%BC%EB%A6%AC%EC%97%B0%EC%82%B0+~+3.6+%EC%A0%9C%EC%96%B4%EB%AC%B8%29%20http%3A%2F%2Flocalhost%3A4000%2Fcs%3Aapp%2Fcsapp_06%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+03.+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98+%EA%B8%B0%EA%B3%84%EC%88%98%EC%A4%80+%ED%91%9C%ED%98%84+%283.5+%EC%82%B0%EC%88%A0%EC%97%B0%EC%82%B0%EA%B3%BC+%EB%85%BC%EB%A6%AC%EC%97%B0%EC%82%B0%29%20http%3A%2F%2Flocalhost%3A4000%2Fcs%3Aapp%2Fcsapp_06%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%3Aapp%2Fcsapp_06%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -525,7 +632,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/cs:app/csapp_07/" rel="permalink">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.7 프로시져 ~ 3.9 이기종Heterogeneous 자료구조)
+        <a href="/cs:app/csapp_07/" rel="permalink">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.6 제어문)
 </a>
       
     </h2>
@@ -543,7 +650,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          7 분 소요
         
       </span>
     
