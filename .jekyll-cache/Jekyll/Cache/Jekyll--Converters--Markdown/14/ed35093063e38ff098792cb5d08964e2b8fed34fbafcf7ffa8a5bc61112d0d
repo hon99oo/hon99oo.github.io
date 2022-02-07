@@ -1,0 +1,105 @@
+I"7<h1 id="part1-object-클래스">Part1 Object 클래스</h1>
+
+<h2 id="object와-오버라이딩">Object와 오버라이딩</h2>
+<ul>
+  <li>Object 클래스는 모든 클래스의 최상위 클래스</li>
+  <li>아무것도 상속받지 않으면 자동으로 Object를 상속</li>
+  <li>Object가 가지고 있는 메소드는 모든 클래스에서 다 사용할 수 있다는 것을 의미</li>
+  <li>대표적인 예
+    <ol>
+      <li>equals : 객체가 가진 값을 비교할 때 사용</li>
+      <li>toString : 객체가 가진 값을 문자열로 반환</li>
+      <li>hashCode : 객체의 해시코드 값 반환</li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="part2-javalang-패키지">Part2 java.lang 패키지</h1>
+
+<h2 id="javalang-패키지오토박싱">java.lang 패키지/오토박싱</h2>
+<p>자바는 기본적으로 다양한 패키지를 지원 그중에서 가장 중요한 패키지</p>
+<ul>
+  <li>java.lang 패키지의 클래스는 import를 하지 않고도 사용할 수 있다.</li>
+  <li>java.lang 패키지에는 기본형 타입을 객체로 변환시킬 때 사용하는 Wrapper 클래스가 있다.
+    <ul>
+      <li>Boolean, Byte, Short, Integer, Long, Double 클래스</li>
+    </ul>
+  </li>
+  <li>모든 클래스의 최상위 클래스인 Object도 java.lang 패키지</li>
+  <li>문자열과 관련된 String StringBuffer, StringBuilder도 모두 java.lang 패키지</li>
+  <li>화면에 값을 출력할 때 사용했던 System 클래스도 java.lang 패키지</li>
+  <li>수학과 관련된 Math 클래스도 java.lang 패키지</li>
+  <li>Thread와 관련된 중요 클래스들이 java.lang 패키지</li>
+  <li>이외에도 다양한 클래스와 인터페이스가 java.lang 패키지에 속해 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WrapperExam</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span> 
+        <span class="nc">Integer</span> <span class="n">i2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+        <span class="nc">Integer</span> <span class="n">i3</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>     <span class="c1">//오토박싱</span>
+        <span class="kt">int</span> <span class="n">i4</span> <span class="o">=</span> <span class="n">i2</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">i5</span> <span class="o">=</span> <span class="n">i2</span><span class="o">;</span>       <span class="c1">//오토언박싱</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>오토박싱(Auto Boxing)
+    <ul>
+      <li>Integer i3 = 5; 숫자 5는 원래 기본형이지만 자동으로 Integer 형태로 변환된다.</li>
+    </ul>
+  </li>
+  <li>오토 언박싱(Auto Unboxing)
+    <ul>
+      <li>int i5 = i2; Integer 객체타입의 값을 기본형 int로 자동으로 변환되어 값을 할당한다.</li>
+    </ul>
+  </li>
+  <li>오토박싱, 오토 언박싱은 JAVA 5부터 지원한다. 이 때 내부적으로 Wrapper 클래스들이 사용된다.</li>
+</ul>
+
+<h2 id="스트링버퍼">스트링버퍼</h2>
+<p>아무 값도 가지고 있지 않은 StringBuffer 객체를 생성</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">StringBuffer</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="c1">// 해당 스트링 버퍼에 "hello", 공백, "world"를 차례대로 추가</span>
+
+<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"world"</span><span class="o">);</span>
+<span class="c1">// StringBuffer에 추가된 값을 toString()메소드를 이용하여 반환</span>
+
+<span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span></code></pre></figure>
+
+<ul>
+  <li>출력결과 : hello world</li>
+</ul>
+
+<p>StringBuffer가 가지고 있는 메소드들은 대부분 자기 자신, this를 반환</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">StringBuffer</span> <span class="n">sb2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="nc">StringBuffer</span> <span class="n">sb3</span> <span class="o">=</span> <span class="n">sb2</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="k">if</span><span class="o">(</span><span class="n">sb2</span> <span class="o">==</span> <span class="n">sb3</span><span class="o">){</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"sb2 == sb3"</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>자기 자신의 메소드를 호출하여 자기 자신의 값을 바꿔나가는 것을 메소드체이닝 이라고 한다.</li>
+  <li>StringBuffer 클래스는 메소드 체인 방식으로 사용할 수 있도록 만들어져 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">StringBuffer</span> <span class="n">sb2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="nc">StringBuffer</span> <span class="n">sb3</span> <span class="o">=</span> <span class="n">sb2</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="k">if</span><span class="o">(</span><span class="n">sb2</span> <span class="o">==</span> <span class="n">sb3</span><span class="o">){</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"sb2 == sb3"</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>앞에서 5줄로 작성했던 코드를 위와 같이 한 줄로 수정할 수 있다.</li>
+  <li>StringBuffer는 append 메소드 외에도 길이를 구하거나, 자르거나 등의 다양한 메소드들을 가지고 있다.</li>
+</ul>
+
+<h2 id="스트링-클래스의-문제점">스트링 클래스의 문제점</h2>
+<p>String 클래스는 문자열을 다룰 때 사용하는 클래스</p>
+
+<p>String 클래스는 불변클래스이다.</p>
+:ET
