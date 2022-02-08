@@ -1,0 +1,200 @@
+I"�B<h1 id="part5-io">Part5 IO</h1>
+
+<h2 id="자바io">자바IO</h2>
+<p>입출력을 위한 인터페이스와 클래스들</p>
+<ul>
+  <li>자바 IO는 크게 byte단위 입출력과 문자 단위 이출력 클래스로 나뉜다.
+    <ul>
+      <li>byte단위 입출력클래스는 모두 InputStream과 OutputStream이라는 추상클래스를 상속받아 만들어진다.</li>
+      <li>문자(char)단위 입출력클래스는 모두 Reader와 Writer라는 추상클래스를 상속받아 만들어진다.</li>
+    </ul>
+  </li>
+  <li>4가지 추상클래스(InputStream, OutputStreamReader,Reader,Writer)를 받아들이는 생성자가 있다면, 다양한 입출력방법을 제공하는 클래스다.</li>
+  <li>4가지 클래스를 받아들이는 생성자가 없다면, 어디로부터 입력받을 것인지, 어디에 쓸것인지를 나타내는 클래스다.</li>
+  <li>파일로부터 입력받고 쓰기 위한 클래스 : FileInputStream, FileOutputStream, FileReader, FileWriter</li>
+  <li>배열로부터 입력받고 쓰기 위한 클래스 : ByteArrayInputStream, ByteArrayOutputStream, CharReader, CharWriter
+    <ul>
+      <li>해당 클래스들은 어디로부터, 어디에라는 대상을 지정할 수 있는 IO클래스다. 이런 클래스를 장식대상 클래스라고 한다.</li>
+    </ul>
+  </li>
+  <li>DataInputStream, DataOutputStream같은 클래스를 보면 다양한 데이터 형을 입력받고 출력한다.</li>
+  <li>PrintWriter는 다양하게 한줄 입력받는 readLine() 메소드를 가진다.</li>
+  <li>BufferedReader는 한줄 입력받는 readLine() 메소드를 가진다.
+    <ul>
+      <li>이런 클래스들은 다양한 방식으로 입력하고, 출력하는 기능을 제공한다. 이런 클래스를 장식하는 클래스라고 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/java/13/img.png" width="100%" height="100%" /></p>
+
+<p><img src="../../assets/img/java/13/img_1.png" width="100%" height="100%" /></p>
+
+<blockquote>
+  <p>데코레이터 패턴(Decorator Pattern) : 하나의 클래스를 장식 하는 것처럼 생성자에서 감싸서 새로운 기능을 계쏙 추가 할 수 있도록 클래스를 만드는 방식</p>
+</blockquote>
+
+<h2 id="byte-단위-입출력">Byte 단위 입출력</h2>
+<p>Byte 단위 입출력 클래스는 클래스의 이름이 InputStream 이나 OutputStream으로 끝난다.</p>
+<ul>
+  <li>파일로부터 1byte씩 읽어들여 파일에 1byte씩 저장하는 프로그램을 작성
+    <ul>
+      <li>파일로부터 읽어오기 위한 객체 - FileInputStream</li>
+      <li>파일에 쓸 수 있게 해주는 객체 - FileOutputStream</li>
+    </ul>
+  </li>
+  <li>read() 메소드
+    <ul>
+      <li>byte를 리턴한다면 끝을 나타내는 값을 표현할 수가 없기때문에, byte가 아닌 int를 리턴한다.</li>
+      <li>음수의 경우 맨 좌측 비트가 1이 된다. 읽어들일 것이 있다면 항상 양수를 리턴한다고 볼 수 있다.</li>
+    </ul>
+  </li>
+  <li>FileInputStream과 FileOutputStream을 이용하여, 1바이트씩 읽어들여 1바이트씩 저장
+    <ul>
+      <li>read()메소드가 리턴하는 타입은 정수인데, 정수 4바이트중 마지막 바이트에 읽어들인 1바이트를 저장한다.</li>
+      <li>read()메소드는 더이상 읽어들일 것이 없을 때 -1을 리턴한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ByteIOExam1</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>     
+            <span class="nc">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+            <span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>        
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"src/javaIO/exam/ByteExam1.java"</span><span class="o">);</span>
+                <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"byte.txt"</span><span class="o">);</span>
+
+                <span class="kt">int</span> <span class="n">readData</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> 
+                <span class="k">while</span><span class="o">((</span><span class="n">readData</span> <span class="o">=</span> <span class="n">fis</span><span class="o">.</span><span class="na">read</span><span class="o">())!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+                    <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">readData</span><span class="o">);</span>
+                <span class="o">}</span>           
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// TODO Auto-generated catch block</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// TODO Auto-generated catch block</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">fis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// TODO Auto-generated catch block</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="byte-단위-입출력-심화">Byte 단위 입출력 심화</h2>
+<p>Byte단위 입출력 클래스는 클래스의 이름이 InputStream이나 OutputStream으로 끝난다.</p>
+
+<ul>
+  <li>파일로부터 512byte씩 읽어들여 파일에 512byte씩 저장하는 프로그램을 작성
+    <ul>
+      <li>byte[] buffer = new byte[512];</li>
+      <li>512byte만큼 읽어 들이기 위해 byte배열을 사용</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ByteIOExam1</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>     
+            <span class="c1">//메소드가 시작된 시간을 구하기 위함</span>
+            <span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>        
+            <span class="nc">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> 
+            <span class="nc">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>        
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="s">"src/javaIO/exam/ByteExam1.java"</span><span class="o">);</span>
+                <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"byte.txt"</span><span class="o">);</span>
+
+                <span class="kt">int</span> <span class="n">readCount</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> 
+                <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">512</span><span class="o">];</span>
+                <span class="k">while</span><span class="o">((</span><span class="n">readCount</span> <span class="o">=</span> <span class="n">fis</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">){</span>
+                    <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="n">readCount</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// TODO Auto-generated catch block</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// TODO Auto-generated catch block</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">fis</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// TODO Auto-generated catch block</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="c1">//메소드가 끝났을때 시간을 구하기 위함. </span>
+        <span class="kt">long</span> <span class="n">endTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="c1">//메소드를 수행하는데 걸린 시간을 구할 수 있음. </span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">endTime</span><span class="o">-</span><span class="n">startTime</span><span class="o">);</span> 
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="다양한-타입의-출력">다양한 타입의 출력</h2>
+<ul>
+  <li>try-with-resources 블럭 선언
+    <ul>
+      <li>java io 객체는 인스턴스를 만들고, 모두 사용하면 close()메소드를 호출해야 한다.</li>
+      <li>close() 메소드를 사용자가 호출하지 않더라도, Exxception이 발생하지 않았다면 자동으로 close()가 되게 할 수 있는 방법</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">        <span class="k">try</span><span class="o">(</span>
+                <span class="c1">//io객체 선언</span>
+        <span class="o">){</span>
+                <span class="c1">//io객체 사용</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">ex</span><span class="o">){</span>
+            <span class="n">ex</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>다양한 타입으로 저장할 수 있는 DataOutputStream
+    <ul>
+      <li>writeInt() - 정수값으로 저장</li>
+      <li>writeBoolean() - boolean값으로 저장</li>
+      <li>writeDouble() - double값으로 저장</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kn">import</span> <span class="nn">java.io.DataOutputStream</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.io.FileOutputStream</span><span class="o">;</span>    
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ByteExam3</span> <span class="o">{</span>    
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span><span class="o">(</span>
+                    <span class="nc">DataOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataOutputStream</span><span class="o">(</span><span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="s">"data.txt"</span><span class="o">));</span>
+            <span class="o">){</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">writeInt</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">writeBoolean</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+                <span class="n">out</span><span class="o">.</span><span class="na">writeDouble</span><span class="o">(</span><span class="mf">50.5</span><span class="o">);</span>
+            <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="다양한-타입의-입력">다양한 타입의 입력</h2>
+<ul>
+  <li>data.dat로부터 값을 읽어들여 화면에 출력하는 클래스</li>
+  <li>다양한 타입의 데이터를 읽어낼 수 있는</li>
+</ul>
+
+<h2 id="char-단위-입출력console">Char 단위 입출력(Console)</h2>
+
+<h2 id="char-단위-입출력file">Char 단위 입출력(File)</h2>
+
+<h1 id="part6-어노테이션">Part6 어노테이션</h1>
+
+<h2 id="어노테이션">어노테이션</h2>
+:ET
