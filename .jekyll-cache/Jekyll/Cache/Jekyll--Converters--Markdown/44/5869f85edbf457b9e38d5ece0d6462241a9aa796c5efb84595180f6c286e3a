@@ -1,0 +1,63 @@
+I"�<h1 id="프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</h1>
+
+<h2 id="level1-정렬-k번째수-자바java-풀이">Level1 정렬 K번째수 자바(Java) 풀이</h2>
+
+<ul>
+  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/42748?language=java">풀이로 이동!</a></li>
+</ul>
+
+<h2 id="문제풀이">문제풀이</h2>
+<blockquote>
+  <p>java 알고리즘 문제 풀이의 첫 문제였다. 배열 생성도 어색하고 디버깅 하는 것도 너무 어려웠다. 몇가지 문법은 구글링을 해가면서 풀었다.
+나는 지금까지 python으로만 알고리즘 문제를 해결했었다. python과 java는 너무나도 다르다… 우선 변수들간의 전송과 출력 모두 python과 달랐다.
+여튼 java는 거의 모든 기능을 모듈을 import하여 사용한다는 것이다. 예를들어 Arrays 모듈을 import하여 배열을 한번에 출력하고, ArrayList를 import하여 연결리스트를 만든다.</p>
+</blockquote>
+
+<ol>
+  <li>2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.</li>
+  <li>commands에 포함된 1차원 배열에서 index 0,1에 위치한 value로 Arrays.copyOfRange(arr,startIndex,endIndex)를 사용하여 array를 slicing 한다.
+    <ul>
+      <li>ex) arr = {10,20,30,40,50}<br />Arrays.copyOfRange(arr, 2, 4) -&gt; returns {20,30,40}</li>
+    </ul>
+  </li>
+  <li>Arrays.sort()를 사용하여 slicing된 배열을 정렬한다.</li>
+  <li>정렬된 배열에서 commands index 2에 위치한 value에 해당하는 위치를 answer arrayList에 add한다.</li>
+  <li>return answer</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<p><img src="../../assets/img/algorithm/java/img.png" width="80%" height="100%" /></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">array</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">2</span><span class="o">,</span><span class="mi">6</span><span class="o">,</span><span class="mi">3</span><span class="o">,</span><span class="mi">7</span><span class="o">,</span><span class="mi">4</span><span class="o">};</span>
+            <span class="kt">int</span><span class="o">[][]</span> <span class="n">commands</span> <span class="o">=</span>  <span class="o">{{</span><span class="mi">2</span><span class="o">,</span><span class="mi">5</span><span class="o">,</span><span class="mi">3</span><span class="o">},{</span><span class="mi">4</span><span class="o">,</span><span class="mi">4</span><span class="o">,</span><span class="mi">1</span><span class="o">},{</span><span class="mi">1</span><span class="o">,</span><span class="mi">7</span><span class="o">,</span><span class="mi">3</span><span class="o">/</span><span class="err">\</span><span class="o">}};</span>
+    
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">solution</span><span class="o">(</span><span class="n">array</span><span class="o">,</span><span class="n">commands</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">answer</span><span class="o">));</span>
+        <span class="o">}</span>
+    
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">solution</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">commands</span><span class="o">){</span>
+            <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">arrList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">commands</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="kt">int</span><span class="o">[]</span> <span class="n">k</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">copyOfRange</span><span class="o">(</span><span class="n">array</span><span class="o">,</span><span class="n">commands</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]-</span><span class="mi">1</span><span class="o">,</span><span class="n">commands</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">]);</span>
+                <span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">k</span><span class="o">);</span>
+                <span class="n">arrList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">k</span><span class="o">[</span><span class="n">commands</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">2</span><span class="o">]-</span><span class="mi">1</span><span class="o">]);</span>
+            <span class="o">}</span>
+    
+            <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">arrList</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+            <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+    
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arrList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="o">}</span>
+    
+            <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+:ET

@@ -187,7 +187,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -371,7 +371,47 @@
 
 <h2 id="코드">코드</h2>
 
-<p><img src="../../assets/img/algorithm/java/img_2.png" width="80%" height="100%" /></p>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+            <span class="nc">String</span><span class="o">[]</span> <span class="n">participant</span> <span class="o">=</span> <span class="o">{</span><span class="s">"mislav"</span><span class="o">,</span> <span class="s">"stanko"</span><span class="o">,</span> <span class="s">"mislav"</span><span class="o">,</span> <span class="s">"ana"</span><span class="o">};</span>
+            <span class="nc">String</span><span class="o">[]</span> <span class="n">completion</span> <span class="o">=</span> <span class="o">{</span><span class="s">"stanko"</span><span class="o">,</span> <span class="s">"ana"</span><span class="o">,</span> <span class="s">"mislav"</span><span class="o">};</span>
+    
+            <span class="nc">String</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">solution</span><span class="o">(</span><span class="n">participant</span><span class="o">,</span> <span class="n">completion</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">answer</span><span class="o">);</span>
+        <span class="o">}</span>
+    
+        <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">solution</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">participant</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">completion</span><span class="o">){</span>
+            <span class="c1">//정답 문자열 변수 선언</span>
+            <span class="nc">String</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+            <span class="c1">//해쉬맵(딕셔너리) 변수 선언 -&gt; participant 키값으로 넣고 value 값에 Integer 선언해서 completion이랑 비교할거임</span>
+            <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span><span class="n">ht</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+            <span class="c1">//해쉬맵에 participant를 키값으로 밸류는 default로 0씩, 키값 중복되면 1씩 추가</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">participant</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">ht</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">])){</span>
+                    <span class="n">ht</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">],</span><span class="n">ht</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">])+</span><span class="mi">1</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="k">else</span><span class="o">{</span>
+                    <span class="n">ht</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">],</span><span class="mi">1</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="c1">//completion을 키값으로 찾아서 밸류값 1씩 감소</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">completion</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">ht</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">completion</span><span class="o">[</span><span class="n">i</span><span class="o">])){</span>
+                    <span class="n">ht</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">completion</span><span class="o">[</span><span class="n">i</span><span class="o">],</span><span class="n">ht</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">completion</span><span class="o">[</span><span class="n">i</span><span class="o">])-</span><span class="mi">1</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="c1">//해쉬맵 모든 키를 순회하면서 0보다 큰거 answer에 저장</span>
+            <span class="k">for</span><span class="o">(</span><span class="nc">String</span> <span class="nl">key:</span><span class="n">ht</span><span class="o">.</span><span class="na">keySet</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">ht</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">)&gt;</span><span class="mi">0</span><span class="o">){</span>
+                    <span class="n">answer</span><span class="o">=</span><span class="n">key</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+    
+            <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
 
 
         
