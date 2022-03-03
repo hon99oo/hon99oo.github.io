@@ -1,0 +1,83 @@
+I"�<blockquote>
+  <p>lecture 5, 7, 13 ,17 을 리뷰 했는데,,, 17강 밖에 안남아있다…T.T</p>
+</blockquote>
+
+<h1 id="the-limits-of-single-task-learning">The Limits of Single-task Learning</h1>
+<ul>
+  <li>Great performance improvements in recent years given
+    <ul>
+      <li>dataset</li>
+      <li>task</li>
+      <li>model</li>
+      <li>metric</li>
+    </ul>
+  </li>
+  <li>Models typically start from ranbdom or are only partly pre-trained</li>
+</ul>
+
+<h1 id="pre-training-and-sharing-knowledge-is-great">Pre-training and sharing knowledge is great!</h1>
+<ul>
+  <li>Computer Vision
+    <ul>
+      <li>ImageNet + CNN이 큰 성공을 거두었음</li>
+      <li>Classification task가 과거에 큰 장벽이었음</li>
+      <li>이 문제가 해결되고 많은 문제들을 푸는 것이 가능해짐</li>
+    </ul>
+  </li>
+  <li>Natural Language Processing
+    <ul>
+      <li>Word2Vec, Glove</li>
+      <li>최근 CoVe, ELMo, BERT 성공을 거두기 시작함</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="why-has-weightmodel-sharing-not-happened-as-much-in-nlp">Why has weight&amp;model sharing not happened as much in NLP?</h1>
+<ul>
+  <li>NLP는 많은 종류의 추론이 요구됨
+    <ul>
+      <li>logical, linguistic, emotional, visual</li>
+    </ul>
+  </li>
+  <li>Short and long term memory가 요구됨</li>
+  <li>NLP는 중간 단계 또는 분리된 Task로 많이 나누어져 있음</li>
+  <li>하나의 Unsupervised Task가 전체 문제를 해결할 수 없음</li>
+  <li>언어는 현실적으로 분명한 Supervision이 필요함</li>
+</ul>
+
+<h1 id="why-a-unified-multi-task-model-for-nlp">Why a unified multi-task model for NLP</h1>
+<ul>
+  <li>Multi-task learning은 General NLP system이 넘어야할 장벽임</li>
+  <li>하나의 통합된 모델은 지식을 어떻게 전달할지 결정 가능
+    <ul>
+      <li>Domain adaptation, weight sharing, transfer and zero shot learning</li>
+    </ul>
+  </li>
+  <li>하나의 통합된 Multi-task 모델은
+    <ul>
+      <li>새로운 task가 주어졌을 때 쉽게 적응할 수 있음</li>
+      <li>실제 production을 위해 deploy하는 것이 매우 간단해짐</li>
+      <li>더 많은 사람들이 새로운 task를 해결할 수 있도록 도와줌</li>
+      <li>잠재적으로 Continual learning으로 나아갈 수 있음</li>
+      <li>모든 프로젝트를 계속 다시 시작하게 된다면 자연 언어의 복잡성을 점점 더 많이 포함하는 하나의 모델에 도달하지 못함</li>
+    </ul>
+  </li>
+  <li>인공지능이 대화를 가능하게 하는 task를 진행할 때 사람의 언어처럼 순차적으로 처리하는 것 만큼 비효율적인 것은 없음. 컴퓨터가 인간의 언어를 supervision하지 않다면 훨씬 더많은 언어로 의사소통 가능.</li>
+</ul>
+
+<h1 id="how-to-express-many-nlp-tasks-in-the-same-framework">How to express many NLP tasks in the same framework?</h1>
+
+<h1 id="three-equivalent-supertasks-of-nlp">Three equivalent Supertasks of NLP</h1>
+
+<h1 id="the-natural-language-decathlondecanlp">The Natural Language Decathlon(decaNLP)</h1>
+
+<h1 id="multitask-question-answering-networkmqan">Multitask Question Answering Network(MQAN)</h1>
+
+<h1 id="training-strategies-fully-joint">Training Strategies: Fully Joint</h1>
+
+<h1 id="training-strategies-anti-curriculum-pre-training">Training Strategies: Anti-Curriculum Pre-training</h1>
+
+<h1 id="training-strategies-cove">Training Strategies: CoVe</h1>
+
+<h1 id="whats-next-for-nlp">What’s next for NLP?</h1>
+:ET

@@ -1,0 +1,29 @@
+I"<blockquote>
+  <p>lecture 5, 7, 13 ,17 을 리뷰 했는데,,, 17강 밖에 안남아있다…T.T</p>
+</blockquote>
+
+<h1 id="the-limits-of-single-task-learning">The Limits of Single-task Learning</h1>
+
+<p><img src="img.png" alt="img.png" /></p>
+<h1 id="pre-training-and-sharing-knowledge-is-great">Pre-training and sharing knowledge is great!</h1>
+
+<h1 id="why-has-weightmodel-sharing-not-happened-as-much-in-nlp">Why has weight&amp;model sharing not happened as much in NLP?</h1>
+
+<h1 id="why-a-unified-multi-task-model-for-nlp">Why a unified multi-task model for NLP</h1>
+
+<h1 id="how-to-express-many-nlp-tasks-in-the-same-framework">How to express many NLP tasks in the same framework?</h1>
+
+<h1 id="three-equivalent-supertasks-of-nlp">Three equivalent Supertasks of NLP</h1>
+
+<h1 id="the-natural-language-decathlondecanlp">The Natural Language Decathlon(decaNLP)</h1>
+
+<h1 id="multitask-question-answering-networkmqan">Multitask Question Answering Network(MQAN)</h1>
+
+<h1 id="training-strategies-fully-joint">Training Strategies: Fully Joint</h1>
+
+<h1 id="training-strategies-anti-curriculum-pre-training">Training Strategies: Anti-Curriculum Pre-training</h1>
+
+<h1 id="training-strategies-cove">Training Strategies: CoVe</h1>
+
+<h1 id="whats-next-for-nlp">What’s next for NLP?</h1>
+:ET

@@ -1,0 +1,65 @@
+I"E	<blockquote>
+  <p>lecture 5, 7, 13 ,17 을 리뷰 했는데,,, 17강 밖에 안남아있다…T.T</p>
+</blockquote>
+
+<h1 id="the-limits-of-single-task-learning">The Limits of Single-task Learning</h1>
+<ul>
+  <li>Great performance improvements in recent years given
+    <ul>
+      <li>dataset</li>
+      <li>task</li>
+      <li>model</li>
+      <li>metric</li>
+    </ul>
+  </li>
+  <li>Models typically start from ranbdom or are only partly pre-trained</li>
+</ul>
+
+<h1 id="pre-training-and-sharing-knowledge-is-great">Pre-training and sharing knowledge is great!</h1>
+<ul>
+  <li>Computer Vision
+    <ul>
+      <li>ImageNet + CNN이 큰 성공을 거두었음</li>
+      <li>Classification task가 과거에 큰 장벽이었음</li>
+      <li>이 문제가 해결되고 많은 문제들을 푸는 것이 가능해짐</li>
+    </ul>
+  </li>
+  <li>Natural Language Processing
+    <ul>
+      <li>Word2Vec, Glove</li>
+      <li>최근 CoVe, ELMo, BERT 성공을 거두기 시작함</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="why-has-weightmodel-sharing-not-happened-as-much-in-nlp">Why has weight&amp;model sharing not happened as much in NLP?</h1>
+<ul>
+  <li>NLP는 많은 종류의 추론이 요구됨
+    <ul>
+      <li>logical, linguistic, emotional, visual</li>
+    </ul>
+  </li>
+  <li>Short and long term memory가 요구됨</li>
+  <li>NLP는 중간 단계 또는 분리된 Task로 많이 나누어져 있음</li>
+  <li>하나의 Unsupervised Task가 전체 문제를 해결할 수 없음</li>
+  <li>언어는 현실적으로 분명한 Supervision이 필요함</li>
+</ul>
+
+<h1 id="why-a-unified-multi-task-model-for-nlp">Why a unified multi-task model for NLP</h1>
+
+<h1 id="how-to-express-many-nlp-tasks-in-the-same-framework">How to express many NLP tasks in the same framework?</h1>
+
+<h1 id="three-equivalent-supertasks-of-nlp">Three equivalent Supertasks of NLP</h1>
+
+<h1 id="the-natural-language-decathlondecanlp">The Natural Language Decathlon(decaNLP)</h1>
+
+<h1 id="multitask-question-answering-networkmqan">Multitask Question Answering Network(MQAN)</h1>
+
+<h1 id="training-strategies-fully-joint">Training Strategies: Fully Joint</h1>
+
+<h1 id="training-strategies-anti-curriculum-pre-training">Training Strategies: Anti-Curriculum Pre-training</h1>
+
+<h1 id="training-strategies-cove">Training Strategies: CoVe</h1>
+
+<h1 id="whats-next-for-nlp">What’s next for NLP?</h1>
+:ET
