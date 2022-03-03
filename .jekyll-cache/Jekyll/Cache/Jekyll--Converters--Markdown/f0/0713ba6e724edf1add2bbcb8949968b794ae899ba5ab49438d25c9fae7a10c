@@ -1,0 +1,127 @@
+I"
+<h1 id="cheat-sheet-왜-필요할까">Cheat Sheet! 왜 필요할까?</h1>
+
+<p>Data Engineering 인턴을 경험하면서 나는 ETL 작성을 주업무로 맡게 되었다. R 코드로 작성된 레거시 파일을 Python 코드로 마이그레이션 하는 업무인데, 가끔씩
+data 요청사항이 있으면 직접 로직을 구현하는 경우도 있었다. 보통 data 가공을 DataFrame으로 만들어 Pandas 문법을 사용하는데, 자주 사용했던 문법도 기억이 안나서
+구글링으로 시간을 낭비했던 경험이 꽤 있다. 그래서! “구글링의 속도를 높여줄 혹은 구글링이 필요 없을 정도의 Cheat Sheet을 만들어두면 굉장히 편할 것 같다!” 라고 생각한다.
+약 8개월간의 인턴생활중 자주 사용했던 Pandas 문법을 정리해보겠다.</p>
+
+<p>우선 Pandas 문법을 크게 세가지로 분류하겠다.</p>
+<ol>
+  <li>Input/output
+    <ul>
+      <li>pandas의 input output 관련 문법</li>
+      <li>ex) read_csv,to_json…</li>
+    </ul>
+  </li>
+  <li>General functions
+    <ul>
+      <li>DataFrame 자체를 가공하는 문법..?</li>
+      <li>ex) pd.merge(), pd.concat()…</li>
+    </ul>
+  </li>
+  <li>DataFrame
+    <ul>
+      <li>DataFrame 이 갖고있는 메소드..?</li>
+      <li>ex) DataFrame.astype, DataFrame.pop…</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="inputoutput">Input/output</h2>
+
+<ul>
+  <li>read_csv</li>
+  <li>to_csv</li>
+</ul>
+
+<h2 id="general-functinons">General functinons</h2>
+
+<h3 id="dataframe-합치기-관련">DataFrame 합치기 관련</h3>
+
+<h4 id="pandasmerge">pandas.merge</h4>
+
+<h4 id="pandasconcat">pandas.concat</h4>
+
+<h3 id="dataframe-중복제거-관련">DataFrame 중복제거 관련</h3>
+
+<h4 id="pandasunique">pandas.unique</h4>
+
+<h3 id="dataframe-nan값-관련">DataFrame Nan값 관련</h3>
+
+<h4 id="pandasisna">pandas.isna</h4>
+
+<h4 id="pandasnotna">pandas.notna</h4>
+
+<h2 id="dataframe">DataFrame</h2>
+
+<h3 id="dataframe-info-관련">DataFrame Info 관련</h3>
+
+<h4 id="pandasdataframedtypes">pandas.DataFrame.dtypes</h4>
+
+<h4 id="pandasdataframeshape">pandas.DataFrame.shape</h4>
+
+<h4 id="pandasdataframehead">pandas.DataFrame.head</h4>
+
+<h3 id="dataframe-value-관련">DataFrame value 관련</h3>
+
+<h4 id="pandasdataframevalues">pandas.DataFrame.values</h4>
+
+<h4 id="pandasdataframevalue_counts">pandas.DataFrame.value_counts</h4>
+
+<h4 id="pandasdataframesort_values">pandas.DataFrame.sort_values</h4>
+
+<h3 id="dataframe-index-관련">DataFrame index 관련</h3>
+
+<h4 id="pandasdataframereset_index">pandas.DataFrame.reset_index</h4>
+
+<h4 id="pandasdataframeset_index">pandas.DataFrame.set_index</h4>
+
+<h3 id="dataframe-column-관련">DataFrame column 관련</h3>
+
+<h4 id="pandasdataframerename">pandas.DataFrame.rename</h4>
+
+<h4 id="pandasdataframeastype">pandas.DataFrame.astype</h4>
+
+<h3 id="dataframe-조건-추출-관련">DataFrame 조건 추출 관련</h3>
+
+<h4 id="pandasdataframewhere">pandas.DataFrame.where</h4>
+
+<h4 id="pandasdataframemask">pandas.DataFrame.mask</h4>
+
+<h4 id="pandasdataframeequals">pandas.DataFrame.equals</h4>
+
+<h3 id="dataframe-nan-관련">DataFrame Nan 관련</h3>
+
+<h4 id="pandasdataframedropna">pandas.DataFrame.dropna</h4>
+
+<h3 id="dataframe-중복제거-관련-1">DataFrame 중복제거 관련</h3>
+
+<h4 id="pandasdataframedrop_duplicates">pandas.DataFrame.drop_duplicates</h4>
+
+<h3 id="dataframe-groupby-관련">DataFrame groupby 관련</h3>
+
+<ul>
+  <li>
+    <h4 id="pandasdataframegroupby">pandas.DataFrame.groupby</h4>
+  </li>
+</ul>
+
+<h4 id="pandasdataframeagg">pandas.DataFrame.agg</h4>
+
+<h3 id="dataframe-특정-함수-적용-관련">DataFrame 특정 함수 적용 관련</h3>
+
+<h4 id="pandasdataframeapply">pandas.DataFrame.apply</h4>
+
+<h3 id="dataframe-col---row-변형-관련">DataFrame col &lt;-&gt; row 변형 관련</h3>
+
+<h4 id="pandasdataframestack">pandas.DataFrame.stack</h4>
+
+<h4 id="pandasdataframet">pandas.DataFrame.T</h4>
+
+<h2 id="etc">ETC…</h2>
+
+<h4 id="dataframe의-간단한-조건-추출">DataFrame의 간단한 조건 추출</h4>
+
+<h4 id="dataframe과-series의-차이">DataFrame과 Series의 차이</h4>
+:ET
