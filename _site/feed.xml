@@ -1,4 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-04T01:52:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">DataEngineer가 되기 위한 기술 스택 정리</title><link href="http://localhost:4000/dataengineering/de_01/" rel="alternate" type="text/html" title="DataEngineer가 되기 위한 기술 스택 정리" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_01</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_01/">&lt;h1 id=&quot;data-development&quot;&gt;Data Development&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-04T02:17:45+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
+  &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
+  &lt;li&gt;We use vectors derived from a bidirectional LSTM that is trained with a coupled language model (LM) objective on a large text corpus.&lt;/li&gt;
+  &lt;li&gt;In many experiments, the ELMo representation has been shown to be very excellent, and the error rate is relatively reduced by 20%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;related-work&quot;&gt;Related Work&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pretrained word vector의 활용이 표준화 되었지만, 하나의 단어에 하나의 벡터를 부여하다보니 context-independent한 문제가 있었다.&lt;/li&gt;
+  &lt;li&gt;워드 임베딩을 풍부하게 하기 위해, subword information을 활용하거나 다의어의 경우 의미별로 다른 벡터를 학습시키는 방법이 등장하였다.
+    &lt;ul&gt;
+      &lt;li&gt;context2vec&lt;/li&gt;
+      &lt;li&gt;CoVe&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이전 연구에 의하면 biRNN의 서로 다른 레이어가 다른 형태의 정보를 인코딩하는데, 본 연구에서도 유사한 효과가 나타났다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;model&quot;&gt;Model&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELMo
+    &lt;ul&gt;
+      &lt;li&gt;ELMo word representations are functions of the entire input sentence.&lt;/li&gt;
+      &lt;li&gt;They are computed on top of two-layer biLMs with character convolutions, as a linear function of the internal network states.&lt;/li&gt;
+      &lt;li&gt;This setup allows us to do semi-supervised learning, where the biLM is pre-trained at a large scale and easily incorporated into a wide range of existing neural NLP architectures.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Pretrained BiLM&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Task-specific ELMo Embedding&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Using biLMs for supervised NLP tasks
+    &lt;ul&gt;
+      &lt;li&gt;기존의 임베딩 벡터와 함께 사용된다.&lt;/li&gt;
+      &lt;li&gt;ELMo 표현을 만드는데 사용된 사전 훈련된 언어 모델의 가중치는 고정시키고, 각 층의 가중치와 스칼라 파라미터는 훈련 과정에서 학습된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_5.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_6.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;6개의 NLP task에서 에러율을 6~20% 줄였다.&lt;/li&gt;
+  &lt;li&gt;6개의 NLP task에서 높은 점수를 기록했다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;analysis&quot;&gt;Analysis&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;일부 task(SNLI, SQuAD) 에서는 ELMo 벡터를 Output에 다시 concat 시키는 것이 효과가 있다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_8.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GloVe 단어 벡터에서 ‘play’와 비슷한 단어는 품사를 변형한 것 또는 스포츠에 관한 유사 단어만 뜬다.&lt;/li&gt;
+  &lt;li&gt;biLM에서는 문맥을 고려한다는 것을 알 수 있다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;biLM의 첫 번째 레이어는 syntactic 정보를, 두 번째 레이어는 semantic 정보를 더 잘 인코딩 하는 것으로 나타난다.&lt;/li&gt;
+  &lt;li&gt;이는 biLM의 모든 레이어를 사용하는 것이 성능향상에 도움이 된다는 것을 증명한다
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELMo를 활용하면 같은 성능을 내는 데에 있어 훨씬 학습이 효율적임을 알 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks.&lt;/li&gt;
+  &lt;li&gt;Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about words in-context, and that using all layers improves overall task performance.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...5</summary></entry><entry><title type="html">DataEngineer가 되기 위한 기술 스택 정리</title><link href="http://localhost:4000/dataengineering/de_01/" rel="alternate" type="text/html" title="DataEngineer가 되기 위한 기술 스택 정리" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_01</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_01/">&lt;h1 id=&quot;data-development&quot;&gt;Data Development&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Crawler&lt;/li&gt;
@@ -1605,183 +1704,4 @@ Chapter2~3은 Chapter4의 빌드업이라고도 한다. 확실히 이해하고 C
     
             &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Algorithm" /><category term="Algorithm" /><category term="Java" /><category term="프로그래머스 코테" /><summary type="html">Java Algorithm Study - 02</summary></entry><entry><title type="html">[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.9 이기종 자료구조 ~ 3.10 기계수준 프로그램에서 제어와 데이터의 결합)</title><link href="http://localhost:4000/cs:app/csapp_10/" rel="alternate" type="text/html" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.9 이기종 자료구조 ~ 3.10 기계수준 프로그램에서 제어와 데이터의 결합)" /><published>2022-02-11T00:00:00+09:00</published><updated>2022-02-11T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_10</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_10/">&lt;h1 id=&quot;chapter-03-프로그램의-기계수준-표현&quot;&gt;Chapter 03. 프로그램의 기계수준 표현&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;3.1 역사적 관점&lt;/li&gt;
-  &lt;li&gt;3.2 프로그램의 인코딩&lt;/li&gt;
-  &lt;li&gt;3.3 데이터의 형식&lt;/li&gt;
-  &lt;li&gt;3.4 정보 접근하기&lt;/li&gt;
-  &lt;li&gt;3.5 산술연산과 논리연산&lt;/li&gt;
-  &lt;li&gt;3.6 제어문&lt;/li&gt;
-  &lt;li&gt;3.7 프로시져&lt;/li&gt;
-  &lt;li&gt;3.8 배열의 할당과 접근&lt;/li&gt;
-  &lt;li&gt;3.9 이기종 자료구조&lt;/li&gt;
-  &lt;li&gt;3.10 기계수준 프로그램에서 제어와 데이터의 결합&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;39-이기종-자료구조&quot;&gt;3.9 이기종 자료구조&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;C는 서로 다른 유형의 객체를 연결해서 자료형을 만드는 두 가지 방법을 제공한다.
-    &lt;ul&gt;
-      &lt;li&gt;struct 키워드를 사용해서 선언하는 구조체
-        &lt;ul&gt;
-          &lt;li&gt;다수의 객체를 하나의 단위로 연결한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;union으로 선언하는 공용체
-        &lt;ul&gt;
-          &lt;li&gt;하나의 객체를 여러 개의 다른 자료형으로 참조될 수 있도록 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;391-구조체&quot;&gt;3.9.1 구조체&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;서로 다른 유형의 객체들을 하나의 객체로 묶어주는 자료형을 생성한다.&lt;/li&gt;
-  &lt;li&gt;구조체의 구현은 구조체의 모든 컴포넌트들이 메모리의 연속된 영역에 저장된다.&lt;/li&gt;
-  &lt;li&gt;구조체의 포인터가 첫 번째 바이트의 주소라는 점에서 배열과 유사하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/10/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;392-공용체&quot;&gt;3.9.2 공용체&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;C언어의 자료형 체제를 회피해서 하나의 객체가 다수의 자료형에 따라 참조될 수 있도록 해준다.&lt;/li&gt;
-  &lt;li&gt;공용체를 선언하는 문법은 구조체와 동일하나 그 의미는 매우 다르다.
-    &lt;ul&gt;
-      &lt;li&gt;다른 필드들이 메모리의 다른 블록을 참조하는 것이 아니라 동일한 블록을 참조한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;393-데이터의-정렬&quot;&gt;3.9.3 데이터의 정렬&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;많은 컴퓨터 시스템들은 기본 자료형들에 대해 사용 가능한 주소를 제한하고 있어서 어떤 객체의 주소는 어떤 값 K의 배수가 되도록 요구한다.&lt;/li&gt;
-  &lt;li&gt;이러한 정렬제한은 프로세서와 메모리 시스템 간의 인터페이스를 구성하는 하드웨어의 설계를 단순화한다.&lt;/li&gt;
-  &lt;li&gt;이들의 정렬 규칙은 모든 K의 원시 객체들은 K의 배수를 주소로 가져야 한다는 원칙에 기초한다.&lt;/li&gt;
-  &lt;li&gt;정렬은 자료형 내의 모든 객체들이 각각의 정렬 제한사항을 만족하는 방법으로 조직되고 할당되도록 강요된다.&lt;/li&gt;
-  &lt;li&gt;아래의 그림처럼 컴파일러는 c와 j 사이에 3바이트 공간을 삽입한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/10/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/10/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;추가로, 컴파일러는 구조체의 마지막에 0을 채워서 구조체 배열에서 각 원소가 각각의 정렬 요건을 만족하도록 해준다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;310-기계수준-프로그램에서-제어와-데이터의-결합&quot;&gt;3.10 기계수준 프로그램에서 제어와 데이터의 결합&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;데이터와 자료가 상호작용 하는 방식을 살펴본다.&lt;/li&gt;
-  &lt;li&gt;C 프로그래밍 언어에서 가장 심오한 개념인 포인터를 자세히 살펴본다.&lt;/li&gt;
-  &lt;li&gt;기계수준 프로그램의 상세한 동작을 심벌 디버거인 GDB를 사용해서 검토한다.&lt;/li&gt;
-  &lt;li&gt;실제 시스템에서 중요한 보안취약성인 버퍼 오브펄로우를 어떻게 이해할 수 있는지 살펴본다.&lt;/li&gt;
-  &lt;li&gt;함수가 요구하는 스택 저장공간의 양이 실행때마다 달라지는 경우를 기계수준 프로그램이 어떻게 구현하는지 살펴본다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3101-포인터-이해하기&quot;&gt;3.10.1 포인터 이해하기&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;다른 자료구조 내 원소들에 대한 참조를 생성하는 통일된 방법으로서의 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;포인터의 일부 주요 원리
-    &lt;ul&gt;
-      &lt;li&gt;포인터는 연관된 자료형을 갖는다.&lt;/li&gt;
-      &lt;li&gt;모든 포인터는 특정 값을 가진다.&lt;/li&gt;
-      &lt;li&gt;포인터는 &amp;amp;연산자를 사용해서 만든다.&lt;/li&gt;
-      &lt;li&gt;ㅍ포인터는 *연산자를 사용해서 역참조한다.&lt;/li&gt;
-      &lt;li&gt;배열과 포인터는 밀접한 관련이 있다. 배열의 이름은 마치 포인터 변수처럼 참조될 수 있다.&lt;/li&gt;
-      &lt;li&gt;한 종류의 포인터에서 다른 종류로의 자료형 변환은 그 종류만 바뀔 뿐 값은 변화가 없다.&lt;/li&gt;
-      &lt;li&gt;포인터는 함수를 가리킬 수도 있. 이것은 프로그램의 다른 부분에서 호출할 수 있는 코드에 대한 참조를 저장하거나 넘겨줄 수 있는 강력한 기능을 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3102-실제-적용하기-gdb-디버거-사용하기&quot;&gt;3.10.2 실제 적용하기: GDB 디버거 사용하기&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;GNU 디버거인 GDB는 기계어 프로그램의 런타임 평가 및 분석에 유용한 기능을 제공한다.
-    &lt;blockquote&gt;
-      &lt;p&gt;GNU는 운영체제의 하나이자 컴퓨터 소프트웨어의 모음집이다.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-  &lt;li&gt;GDB를 사용하면, 프로그램의 실행을 정교하게 제어하면서 실행되는 프로그램을 관찰하여 프로그램의 동작을 분석할 수 있다.&lt;/li&gt;
-  &lt;li&gt;일반적인 방법은 브레이크포인트를 프로그램에서 관심이 있는 부분 근처에 설정하는 것이다.&lt;/li&gt;
-  &lt;li&gt;프로그램 실행중에 브레이크포인트를 만나게 되면, 프로그램은 실행을 중단하고, 제어를 사용자에게 넘긴다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3103-범위를-벗어난-메모리-참조와-버퍼-오버플로우&quot;&gt;3.10.3 범위를 벗어난 메모리 참조와 버퍼 오버플로우&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;C에서는 배열참조 시 범위를 체크하지 않으며, 지역변수들이 스택에 보존용 레지스터들과 리턴 주소 같은 상태정보와 함께 스택에 저장된다는 것을 배웠다.&lt;/li&gt;
-  &lt;li&gt;에를들어 배열에 문자열이 저장될 때 stack top인 return address 범위까지 저장이 되면 심각한 오류를 발생시킨다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/10/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;버퍼 오버플로우의 보다 치명적인 사용은 일반적으로 프로그램이 하지 않을 기능들을 실행하도록 하는 것이다.&lt;/li&gt;
-  &lt;li&gt;일반적으로 탐색코드exploit code 라고 하는 실행코드를 바이트 인코딩한 탐색코드를 가리키는 포인터 리턴 주소를 덮어쓰는 약간의 추가적인 바이트들을 포함하는 스트링을 입력한다. ret 인스트럭션을 실행하면 탐색코드로 점프하게된다.
-    &lt;ul&gt;
-      &lt;li&gt;인터넷 상의 많은 컴퓨터에 접속을 획득한 FINGER 데몬인 fingerd로의 버퍼 오버플로우 공격이 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3104-버퍼-오버플로우-공격-대응-기법&quot;&gt;3.10.4 버퍼 오버플로우 공격 대응 기법&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;이들 공격이 실행되기 어렵게 하는 방법과 침입자가 버퍼 오버플로우 공격을 통해서 시스템의 제어권을 획득할 수 있는 방법을 제한하는 방법을 구현하였다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;스택 랜덤화
-    &lt;ul&gt;
-      &lt;li&gt;공격자는 탐색코드를 시스템에 삽입하기 위해서 공격 스트링 내에 코드뿐만 아니라 코드로의 포인터까지 집어넣어야한다.
-이 포인터를 만들기 위해서는 스트링이 위치하게 될 스택의 주소를 알아야 한다.
-역사적으로 프로그램의 스택 주소는 쉽게 에측할 수 있었다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스택 랜덤화의 아이디어는 스택의 위치를 프로그램의 매 실행마다 다르게 해주는 것이다.&lt;/li&gt;
-  &lt;li&gt;ASLR을 사용하면 프로그램 코드, 라이브러리 코드, 스택, 전역변수, 힙 데이터를 포함하는 여러 프로그램의 부분들이 프로그램이 매번 실행할 때마다 메모리의 다른 지역에 로딩된다.&lt;/li&gt;
-  &lt;li&gt;하지만, 이런 방법은 공격자가 반복적으로 주소를 바꿔가며 무지막지한 공격을 하면 랜덤화를 극복할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;스택 손상 검출
-    &lt;ul&gt;
-      &lt;li&gt;두번째 방법은 스택이 손상되는 것을 감지하는 것이다.&lt;/li&gt;
-      &lt;li&gt;아래의 그림은 스택 보호기가 작동될 때 해당 함수의 스택 구성이다. 특별 “canary” 값이 배열 buf와 저장된 상태 값 사이에 위치한다. 코드는 스택 상태가 손상되었는지 여부를 결정하기 위해 canary 값을 체크한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/10/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;실행코드 영역 제한하기
-    &lt;ul&gt;
-      &lt;li&gt;마지막 방법은 공격자가 실행코드를 시스템에 추가할 가능성을 제거하는 것이다.&lt;/li&gt;
-      &lt;li&gt;어느 메모리 영역이 실행코드를 저장할지를 제한하는 거시앋. 다른 부분들은 읽기와 쓰기만 허용하도록 제한할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;3105-가변크기-스택-프레임-지원하기&quot;&gt;3.10.5 가변크기 스택 프레임 지원하기&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;공통적으로 할당되어야 하는 스택 프레임의 크기를 컴파일러가 미리 결정할 수 있다는 특징이 있었다. 하지만 일부 함수들은 가변적인 지역저장공간 크기를 필요로 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/10/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 10</summary></entry></feed>
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Algorithm" /><category term="Algorithm" /><category term="Java" /><category term="프로그래머스 코테" /><summary type="html">Java Algorithm Study - 02</summary></entry></feed>
