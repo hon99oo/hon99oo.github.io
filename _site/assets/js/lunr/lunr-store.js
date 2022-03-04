@@ -251,6 +251,12 @@ var store = [{
         "url": "/python/python_01/",
         "teaser": null
       },{
+        "title": "[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)",
+        "excerpt":" ","categories": ["CS:APP"],
+        "tags": ["CS:APP","CS"],
+        "url": "/cs:app/csapp_14/",
+        "teaser": null
+      },{
         "title": "[DataEngineering]DataEngineer가 되기 위한 기술 스택 정리",
         "excerpt":"Data Development      Crawler   ETL   Docker   k8s   airflow      Data Platform     Data Orchestration   Data Storage            Data Lake       Data Warehouse           Data Catalog   Data Monitoring            Data Validation       Data Notification              Data Governance         하둡 스파크 카프카 스칼라…? 알아야할게 산더미군..!  ","categories": ["DataEngineering"],
         "tags": ["DataEngineering"],
