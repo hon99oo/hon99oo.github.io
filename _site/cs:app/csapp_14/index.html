@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현) - 홍구의 개발 블로그</title>
+<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기) - 홍구의 개발 블로그</title>
 <meta name="description" content="CS:APP - 14">
 
 
@@ -22,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="홍구의 개발 블로그">
-<meta property="og:title" content="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)">
+<meta property="og:title" content="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)">
 <meta property="og:url" content="http://localhost:4000/cs:app/csapp_14/">
 
 
@@ -165,7 +165,7 @@
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
         
-          [CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)
+          [CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)
 
         
       </h1>
@@ -187,7 +187,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          2 분 소요
         
       </span>
     
@@ -328,7 +328,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)">
+    <meta itemprop="headline" content="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)">
     <meta itemprop="description" content="CS:APP - 14">
     <meta itemprop="datePublished" content="2022-03-03T00:00:00+09:00">
     
@@ -418,12 +418,55 @@
 
 <h3 id="y86-64-인스트럭션-처리과정">Y86-64 인스트럭션 처리과정</h3>
 
-<p><img src="../../assets/img/csapp/13/img.png" width="60%" height="100%" /></p>
+<p><img src="../../assets/img/csapp/14/img.png" width="100%" height="100%" /></p>
 <ul>
   <li>위의 그림은 Y86-64 인스트럭션 예제이다. 해당 코드를 사용해서 여러가지 Y86-64 인스트럭션들의 처리과정을 그림으로 나타낸다.</li>
 </ul>
 
-<p>₩</p>
+<p><br /><br />
+<img src="../../assets/img/csapp/14/img_1.png" width="100%" height="100%" /></p>
+<ul>
+  <li><strong>OPq 인스트럭션 타입(정수와 논리연산), rrmovq(레지스터-레지스터 이동), irmovq(상수-레지스터 이동)에 대해 요구되는 작업을 보여준다.</strong></li>
+  <li>선입 단계에서 상수 워드는 필요하지 않기 때문에 valP는 PC+2로 계산된다.</li>
+  <li>해석 단계에서 두 개의 오퍼랜드를 읽어들인다.</li>
+  <li>실행단계에서 함수 지시자 ifun과 함께 ALU에 제공된다.</li>
+  <li>valE는 인스트럭션 결과가 된다.</li>
+  <li>rrmovq인스트럭션을 실행하면 산술연산과 매우 비슷하게 진행한다.</li>
+  <li>irmovq의 경우에도 첫 번째 ALU 입력 대신에 상수 값 valC를 사용한다는 점을 제외하고는 유사한 처리가 발생한다.
+    <ul>
+      <li>프로그램 카운터를 10 증가시켜야 하는데, 그 이유는 irmovq가 긴 인스트럭션 형식을 가지기 때문이다.
+<br /><br /></li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/14/img_2.png" width="100%" height="100%" /></p>
+<ul>
+  <li><strong>메모리 쓰기와 읽기 인스트럭션인 rmmovq와 mrmovq를 위해 필요한 처리작업을 보여준다.</strong></li>
+  <li>valC를 valB에 더하기 위해 ALU를 사용해서 메모리 연산을 위한 유효주소를 만들어 낸다.</li>
+</ul>
+
+<p><br /><br />
+<img src="../../assets/img/csapp/14/img_3.png" width="100%" height="100%" /></p>
+<ul>
+  <li><strong>pushq와 popq 인스트럭션을 처리하기 위해 요구되는 단계들을 보여준다.</strong></li>
+  <li>메모리에 접근 하면서 동시에 스택 포인터를 변경한다.</li>
+  <li>pushq 인스트럭션은 해석단계에서 %rsp를 두 번째 레지스터 오퍼랜드의 식별자로 사용해서 스택 포인터를 valB로 만든다.</li>
+</ul>
+
+<p><br /><br />
+<img src="../../assets/img/csapp/14/img_4.png" width="100%" height="100%" /></p>
+<ul>
+  <li><strong>세 개의 제어 전환 인스트럭션에서의 처리과정을 나타낸다: jump, call, ret</strong></li>
+  <li>정수연산에서처럼 분기를 할지 말지 결정할 때에만 이들이 다르기 때문에 모든 점프를 통합된 방법으로 처리할 수 있다.</li>
+  <li>점프 인스트럭션은 선입에서 해독까지는 레지스터 명시자를 필요로 하지 않는다.</li>
+  <li>실행단계에서 조건코드와 점프 조건을 체크해서 분기를 할지 말지 결정하고, 1비트 신호 Cnd를 만든다.</li>
+  <li>PC갱신단계 동안에 이 플래그를 시험하고, 만일 플래그가 1이면 PC를 valC(점프 목적지)로 설정하고, 만일 0이면 valP(다음 인스트럭션의 주소)로 설정한다.</li>
+  <li>인스트럭션 call과 ret은 프로그램 카운터 값을 push, pop한다는점 외에는 pushq, popq와 약간의 유사성을 갖는다.</li>
+  <li>call할 때는 call 인스트럭션의 다음 인스트럭션의 주소인 valP를 push한다.</li>
+  <li>PC 갱신 단계 동안에 PC를 call 목적지인 valC로 설정한다.</li>
+  <li>ret 인스트럭션에서 스택에서 pop한 값인 valM을 PC 갱신 단계에서 PC에 저장한다.</li>
+</ul>
 
 
         
@@ -477,7 +520,7 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+04.+%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C+%EA%B5%AC%EC%A1%B0+%284.3+%EC%88%9C%EC%B0%A8%EC%A0%81+Y86-64+%EA%B5%AC%ED%98%84%29%20http%3A%2F%2Flocalhost%3A4000%2Fcs%3Aapp%2Fcsapp_14%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+04.+%ED%94%84%EB%A1%9C%EC%84%B8%EC%84%9C+%EA%B5%AC%EC%A1%B0+%284.3+%EC%88%9C%EC%B0%A8%EC%A0%81+Y86-64+%EA%B5%AC%ED%98%84+-+4.3.1+%EC%9E%91%EC%97%85%EC%9D%84+%EB%8B%A8%EA%B3%84%EB%A1%9C+%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0%29%20http%3A%2F%2Flocalhost%3A4000%2Fcs%3Aapp%2Fcsapp_14%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%3Aapp%2Fcsapp_14%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
