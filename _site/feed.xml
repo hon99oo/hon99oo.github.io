@@ -1,4 +1,395 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-18T14:19:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[NLP/CS224n]CS224n Lecture 17: Multitask Learning</title><link href="http://localhost:4000/nlp/NLP_06/" rel="alternate" type="text/html" title="[NLP/CS224n]CS224n Lecture 17: Multitask Learning" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_06</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_06/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-18T14:57:23+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)</title><link href="http://localhost:4000/cs:app/csapp_15/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)" /><published>2022-03-17T00:00:00+09:00</published><updated>2022-03-17T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_15</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_15/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
+  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
+  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
+  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
+  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;432-seq-하드웨어-구조&quot;&gt;4.3.2 SEQ 하드웨어 구조&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;인스트럭션을 구현하는 데 필요한 계산들은 여섯 개의 순차적인 기본 단계로 구성될 수 있다.
+    &lt;ol&gt;
+      &lt;li&gt;선입&lt;/li&gt;
+      &lt;li&gt;해독&lt;/li&gt;
+      &lt;li&gt;실행&lt;/li&gt;
+      &lt;li&gt;메모리&lt;/li&gt;
+      &lt;li&gt;재기록&lt;/li&gt;
+      &lt;li&gt;PC 갱신&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SEQ에서는 하드웨어 유닛에 처리되는 모든 일들은 하나의 클럭 사이클 내에서 일어난다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/15/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 순차적인 구현인 SEQ의 추상적인 모습이다.
+    &lt;ul&gt;
+      &lt;li&gt;인스트럭션을 실행하는 동안 처리된 정보는 그림의 좌측 하단 구석에 있는 PC를 사용해서 인스트럭션 선입으로 시작해서 시계방향을 따라 진행한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;하드웨어 유닛들은 여러가지 처리 단계들과 연계되어있다.
+    &lt;ul&gt;
+      &lt;li&gt;선입
+        &lt;ul&gt;
+          &lt;li&gt;프로그램 카운터 레지스터를 주소로 사용해서 인스트럭션 메모리는 인스트럭션의 바이트들을 읽어들인다.&lt;/li&gt;
+          &lt;li&gt;PC 가산기는 valP, 증가된 프로그램 카운터를 계산한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;해독
+        &lt;ul&gt;
+          &lt;li&gt;레지스터 파일은 두 개의 읽기 포트 A,B를 가지고 있다.&lt;/li&gt;
+          &lt;li&gt;이를 통해서 레지스터 값 valA, valB를 동시에 읽어들일 수 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;실행
+        &lt;ul&gt;
+          &lt;li&gt;인스트럭션의 종류에 따라 여러 가지 목적을 위해 산술/유닛 유닛(ALU)을 사용한다.&lt;/li&gt;
+          &lt;li&gt;조건코드 레지스터(CC)는 세 개의 조건코드 비트를 저장한다. 목적지 레지스터를 갱신할지 여부를 결정하는 조건코드와 이동 조건에 의해 계산된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;메모리
+        &lt;ul&gt;
+          &lt;li&gt;메모리 인스트럭션을 실행할 때 메모리 워드를 읽거나 쓴다.&lt;/li&gt;
+          &lt;li&gt;인스트럭션과 데이터 메모리는 같은 메모리 위치에 접근하지만, 목적은 서로 다르다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;재기록
+        &lt;ul&gt;
+          &lt;li&gt;레지스터 파일은 두 개의 쓰기 포트를 가지고 있다.&lt;/li&gt;
+          &lt;li&gt;E 포트는 ALU가 계산한 값을 기록하기 위해 사용된다.&lt;/li&gt;
+          &lt;li&gt;M 포트는 데이터 메모리에서 읽어온 값을 기록할 때 사용한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;PC 갱신
+        &lt;ul&gt;
+          &lt;li&gt;프로그램 카운터의 새로운 값은 다음 인스트럭션의 주소 valP, call이나 점프 인스트럭션에 의해 지정된 목적지 주소, 또는 메모리에서 읽어온 리턴주소 valM 중에서 선택된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/15/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 SEQ, 순차적 구현의 하드웨어 구조이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/15/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 표는 순차적 구현에서 여러가지 계산 단계 식별 표이다.
+    &lt;ul&gt;
+      &lt;li&gt;두번째 열은 SEQ의 단계에서 계산되는 값 또는 수행되는 연산을 나타낸다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;433-seq-타이밍&quot;&gt;4.3.3 SEQ 타이밍&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ는 조합논리회로와 두 가지 형태의 메모리 장치로 이루어진다.
+    &lt;ul&gt;
+      &lt;li&gt;레지스터(프로그램 카운터와 조건코드 레지스터)&lt;/li&gt;
+      &lt;li&gt;랜덤 액세스 메모리(레지스터 파일, 인스트럭션 메모리, 데이터 메모리)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;조합논리회로는 순차처리나 제어를 필요로 하지 않는다.
+    &lt;ul&gt;
+      &lt;li&gt;입력이 바뀔 때마다 논리 게이트의 네트워크를 통해 값들이 전파된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;랜덤 액세스 메모리를 읽는 것은 출력 워드가 주소 입력에 따라 생성되는 방식으로 조합논리회로와 매우 유사하게 동작한다.&lt;/li&gt;
+  &lt;li&gt;순차실행을 위해 명시적인 제어를 필요로 하는 네 개의 하드웨어 유닛
+    &lt;ul&gt;
+      &lt;li&gt;프로그램 카운터, 조건코드 레지스터, 데이터 메모리, 레지스터 파일&lt;/li&gt;
+      &lt;li&gt;이들은 새로운 값을 레지스터에 로딩하는 것과 값들을 랜덤 액세스 메모리에 기록하는 작업을 만드는 한 개의 클럭 신호를 통해서 제어된다.&lt;/li&gt;
+      &lt;li&gt;프로그램 카운터 : 매 클럭 사이클마다 새로운 인스트럭션 주소를 적재한다.&lt;/li&gt;
+      &lt;li&gt;조건코드 레지스터 : 정수연산 인스트럭션이 실행될 때에만 값이 적재된다.&lt;/li&gt;
+      &lt;li&gt;데이터 메모리 : rmmovq, pushq, call 인스트럭션이 실행될 때에만 값이 기록된다.&lt;/li&gt;
+      &lt;li&gt;레지스터 파일 : 두 개의 쓰기 포트를 통해서 두 개의 프로그램 레지스터가 매 사이클마다 갱신될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위와 같이 레지스터들과 메모리에 클럭을 공급하는 것은 프로세서에서 여러 동작들을 순서대로 제어하기 위해 필요한 모든 거싱다.&lt;/li&gt;
+  &lt;li&gt;프로세서는 인스트럭션의 처리를 완료하기 위해 어떤 인스트럭션에 의해 갱신된 상태를 다시 읽을 필요는 절대 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/15/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 SEQ의 두 실행 사이클 추적이다.
+    &lt;ul&gt;
+      &lt;li&gt;각 사이클은 이전 인스트럭션에 의해 설정된 상태 원소들(프로그램 카운터, 조건코드 레지스터, 레지스터 파일, 데이터 메모리)을 가지고 시작된다.&lt;/li&gt;
+      &lt;li&gt;신호들은 이 상태 원소들을 위한 새로운 값을 만들면서 조합회로를 지나면서 전파된다.&lt;/li&gt;
+      &lt;li&gt;이 값들은 다음 사이클을 시작하기 위해 상태 원소들에 적재된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;상태 원소들의 갱신을 제어하기 위해서 조합회로를 통한 값들의 전파와 함께 클럭을 사용하면 SEQ에서 각 인스트럭션을 위해 수행한 계산들을 충분히 제어할 수 있다.&lt;/li&gt;
+  &lt;li&gt;클럭이 low에서 high로 전환이 이루어지는 매 시점마다 프로세서는 새 인스트럭션의 실행을 시작한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 15</summary></entry><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
+  &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
+  &lt;li&gt;We use vectors derived from a bidirectional LSTM that is trained with a coupled language model (LM) objective on a large text corpus.&lt;/li&gt;
+  &lt;li&gt;In many experiments, the ELMo representation has been shown to be very excellent, and the error rate is relatively reduced by 20%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;related-work&quot;&gt;Related Work&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pretrained word vector의 활용이 표준화 되었지만, 하나의 단어에 하나의 벡터를 부여하다보니 context-independent한 문제가 있었다.&lt;/li&gt;
+  &lt;li&gt;워드 임베딩을 풍부하게 하기 위해, subword information을 활용하거나 다의어의 경우 의미별로 다른 벡터를 학습시키는 방법이 등장하였다.
+    &lt;ul&gt;
+      &lt;li&gt;context2vec&lt;/li&gt;
+      &lt;li&gt;CoVe&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이전 연구에 의하면 biRNN의 서로 다른 레이어가 다른 형태의 정보를 인코딩하는데, 본 연구에서도 유사한 효과가 나타났다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;model&quot;&gt;Model&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELMo
+    &lt;ul&gt;
+      &lt;li&gt;ELMo word representations are functions of the entire input sentence.&lt;/li&gt;
+      &lt;li&gt;They are computed on top of two-layer biLMs with character convolutions, as a linear function of the internal network states.&lt;/li&gt;
+      &lt;li&gt;This setup allows us to do semi-supervised learning, where the biLM is pre-trained at a large scale and easily incorporated into a wide range of existing neural NLP architectures.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Pretrained BiLM&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Task-specific ELMo Embedding&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Using biLMs for supervised NLP tasks
+    &lt;ul&gt;
+      &lt;li&gt;기존의 임베딩 벡터와 함께 사용된다.&lt;/li&gt;
+      &lt;li&gt;ELMo 표현을 만드는데 사용된 사전 훈련된 언어 모델의 가중치는 고정시키고, 각 층의 가중치와 스칼라 파라미터는 훈련 과정에서 학습된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_5.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_6.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;6개의 NLP task에서 에러율을 6~20% 줄였다.&lt;/li&gt;
+  &lt;li&gt;6개의 NLP task에서 높은 점수를 기록했다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;analysis&quot;&gt;Analysis&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;일부 task(SNLI, SQuAD) 에서는 ELMo 벡터를 Output에 다시 concat 시키는 것이 효과가 있다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_8.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;GloVe 단어 벡터에서 ‘play’와 비슷한 단어는 품사를 변형한 것 또는 스포츠에 관한 유사 단어만 뜬다.&lt;/li&gt;
+  &lt;li&gt;biLM에서는 문맥을 고려한다는 것을 알 수 있다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;biLM의 첫 번째 레이어는 syntactic 정보를, 두 번째 레이어는 semantic 정보를 더 잘 인코딩 하는 것으로 나타난다.&lt;/li&gt;
+  &lt;li&gt;이는 biLM의 모든 레이어를 사용하는 것이 성능향상에 도움이 된다는 것을 증명한다
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;ELMo를 활용하면 같은 성능을 내는 데에 있어 훨씬 학습이 효율적임을 알 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks.&lt;/li&gt;
+  &lt;li&gt;Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about words in-context, and that using all layers improves overall task performance.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...5</summary></entry><entry><title type="html">[DataEngineering]DataEngineer가 되기 위한 기술 스택 정리</title><link href="http://localhost:4000/dataengineering/de_01/" rel="alternate" type="text/html" title="[DataEngineering]DataEngineer가 되기 위한 기술 스택 정리" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_01</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_01/">&lt;h1 id=&quot;data-development&quot;&gt;Data Development&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Crawler&lt;/li&gt;
+  &lt;li&gt;ETL&lt;/li&gt;
+  &lt;li&gt;Docker&lt;/li&gt;
+  &lt;li&gt;k8s&lt;/li&gt;
+  &lt;li&gt;airflow
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;data-platform&quot;&gt;Data Platform&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Data Orchestration&lt;/li&gt;
+  &lt;li&gt;Data Storage
+    &lt;ul&gt;
+      &lt;li&gt;Data Lake&lt;/li&gt;
+      &lt;li&gt;Data Warehouse&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Data Catalog&lt;/li&gt;
+  &lt;li&gt;Data Monitoring
+    &lt;ul&gt;
+      &lt;li&gt;Data Validation&lt;/li&gt;
+      &lt;li&gt;Data Notification
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;data-governance&quot;&gt;Data Governance&lt;/h1&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;하둡 스파크 카프카 스칼라…? 알아야할게 산더미군..!!!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="DataEngineering" /><category term="DataEngineering" /><summary type="html">인턴 하면서 끄적였던 것들...4</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)</title><link href="http://localhost:4000/cs:app/csapp_14/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_14</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_14/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
+  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
+  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
+  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
+  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;431-작업을-단계로-구성하기&quot;&gt;4.3.1 작업을 단계로 구성하기&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인스트럭션을 처리하는 데는 다수의 연산이 관련되어 있다.&lt;/li&gt;
+  &lt;li&gt;이들은 특정한 단계들Stages로 구성해서 비록 인스트럭션들의 동작은 다를지라도 모든 인스트럭션들이 일정한 순서를 따르도록 한다.&lt;/li&gt;
+  &lt;li&gt;각 단계에서의 세부 처리내용은 실행하는 인스트럭션에 따라 달라진다.
+    &lt;ul&gt;
+      &lt;li&gt;선입 fetch
+        &lt;ul&gt;
+          &lt;li&gt;프로그램 카운터 PC를 메모리주소로 사용해서 메모리로부터 인스트럭션 바이트들을 읽어들인다.&lt;/li&gt;
+          &lt;li&gt;icode(인스트럭션 코드)와 ifun(instruction function)을 추출한다.&lt;/li&gt;
+          &lt;li&gt;한 개의 레지스터 지시자 바이트를 선입해서 한 개 또는 두 개의 레지스터 오퍼랜드 지시자 rA와 rB를 얻어내는 경우도 있다. 또한 8바이트 상수 워드 valC를 선입할 수도 있다.&lt;/li&gt;
+          &lt;li&gt;이것은 지금 실행 중인 인스트럭션의 순차적인 다음 인시트럭션의 주소가 되는 valP를 계산한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;해독 decode
+        &lt;ul&gt;
+          &lt;li&gt;레지스터 파일에서 최대 두 개의 오퍼랜드를 읽어서 valA, valB를 얻어온다.&lt;/li&gt;
+          &lt;li&gt;일부 인스트럭션에 대해서는 레지스터 %rsp를 읽어온다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;실행 excution
+        &lt;ul&gt;
+          &lt;li&gt;산술/논리 연산 유닛(ALU)이 인스트럭션이 지시하는 연산을 수행하거나(ifun 값에 따라), 메모리 참조 시 유효주소를 계산하거나, 스택 포인터 값을 변경한다. 이 결과를 valE라고 부른다.&lt;/li&gt;
+          &lt;li&gt;조건 코드들은 이 경우에 설정될 수 있다. 조건부 이동 인스트럭션에 대해서 조건코드와 분기 조건(ifun에서 주어진)을 평가하고 조건이 참이 되는 경우에만 목적지 레지스터를 갱신한다. 점프 인스트럭션도 마찬가지이다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;메모리
+        &lt;ul&gt;
+          &lt;li&gt;데이터를 메모리에 쓰거나 메모리에서 데이터를 읽어올 수 있다. 이 값을 valM이라고 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;재기록 write back
+        &lt;ul&gt;
+          &lt;li&gt;두 결과를 레지스터 파일에 기록한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;PC 갱신
+        &lt;ul&gt;
+          &lt;li&gt;PC는 다음 인스트럭션의 주소로 설정된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로세서는 위의 사항들을 무한히 반복하면서 이 단계들을 실행한다.&lt;/li&gt;
+  &lt;li&gt;한 개의 인스트럭션을 실행하는 데는 놀라운 양의 작업을 요구한다.
+    &lt;ul&gt;
+      &lt;li&gt;각 인스트럭션에 대해 기술한 연산을 싫애해야하고&lt;/li&gt;
+      &lt;li&gt;주소를 계산하고&lt;/li&gt;
+      &lt;li&gt;스택 포인터를 갱신하고&lt;/li&gt;
+      &lt;li&gt;다음 인스트럭션을 결정해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;y86-64-인스트럭션-처리과정&quot;&gt;Y86-64 인스트럭션 처리과정&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/14/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 Y86-64 인스트럭션 예제이다. 해당 코드를 사용해서 여러가지 Y86-64 인스트럭션들의 처리과정을 그림으로 나타낸다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/14/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;OPq 인스트럭션 타입(정수와 논리연산), rrmovq(레지스터-레지스터 이동), irmovq(상수-레지스터 이동)에 대해 요구되는 작업을 보여준다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;선입 단계에서 상수 워드는 필요하지 않기 때문에 valP는 PC+2로 계산된다.&lt;/li&gt;
+  &lt;li&gt;해석 단계에서 두 개의 오퍼랜드를 읽어들인다.&lt;/li&gt;
+  &lt;li&gt;실행단계에서 함수 지시자 ifun과 함께 ALU에 제공된다.&lt;/li&gt;
+  &lt;li&gt;valE는 인스트럭션 결과가 된다.&lt;/li&gt;
+  &lt;li&gt;rrmovq인스트럭션을 실행하면 산술연산과 매우 비슷하게 진행한다.&lt;/li&gt;
+  &lt;li&gt;irmovq의 경우에도 첫 번째 ALU 입력 대신에 상수 값 valC를 사용한다는 점을 제외하고는 유사한 처리가 발생한다.
+    &lt;ul&gt;
+      &lt;li&gt;프로그램 카운터를 10 증가시켜야 하는데, 그 이유는 irmovq가 긴 인스트럭션 형식을 가지기 때문이다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/14/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;메모리 쓰기와 읽기 인스트럭션인 rmmovq와 mrmovq를 위해 필요한 처리작업을 보여준다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;valC를 valB에 더하기 위해 ALU를 사용해서 메모리 연산을 위한 유효주소를 만들어 낸다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/14/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;pushq와 popq 인스트럭션을 처리하기 위해 요구되는 단계들을 보여준다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;메모리에 접근 하면서 동시에 스택 포인터를 변경한다.&lt;/li&gt;
+  &lt;li&gt;pushq 인스트럭션은 해석단계에서 %rsp를 두 번째 레지스터 오퍼랜드의 식별자로 사용해서 스택 포인터를 valB로 만든다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/14/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;세 개의 제어 전환 인스트럭션에서의 처리과정을 나타낸다: jump, call, ret&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;정수연산에서처럼 분기를 할지 말지 결정할 때에만 이들이 다르기 때문에 모든 점프를 통합된 방법으로 처리할 수 있다.&lt;/li&gt;
+  &lt;li&gt;점프 인스트럭션은 선입에서 해독까지는 레지스터 명시자를 필요로 하지 않는다.&lt;/li&gt;
+  &lt;li&gt;실행단계에서 조건코드와 점프 조건을 체크해서 분기를 할지 말지 결정하고, 1비트 신호 Cnd를 만든다.&lt;/li&gt;
+  &lt;li&gt;PC갱신단계 동안에 이 플래그를 시험하고, 만일 플래그가 1이면 PC를 valC(점프 목적지)로 설정하고, 만일 0이면 valP(다음 인스트럭션의 주소)로 설정한다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션 call과 ret은 프로그램 카운터 값을 push, pop한다는점 외에는 pushq, popq와 약간의 유사성을 갖는다.&lt;/li&gt;
+  &lt;li&gt;call할 때는 call 인스트럭션의 다음 인스트럭션의 주소인 valP를 push한다.&lt;/li&gt;
+  &lt;li&gt;PC 갱신 단계 동안에 PC를 call 목적지인 valC로 설정한다.&lt;/li&gt;
+  &lt;li&gt;ret 인스트럭션에서 스택에서 pop한 값인 valM을 PC 갱신 단계에서 PC에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 14</summary></entry><entry><title type="html">[NLP/CS224n]CS224n Lecture 17: Multitask Learning</title><link href="http://localhost:4000/nlp/NLP_06/" rel="alternate" type="text/html" title="[NLP/CS224n]CS224n Lecture 17: Multitask Learning" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_06</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_06/">&lt;blockquote&gt;
   &lt;p&gt;lecture 5, 7, 13 ,17 을 리뷰 했는데,,, 17강 밖에 안남아있다…T.T&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -169,261 +560,7 @@
 
 &lt;h1 id=&quot;whats-next-for-nlp&quot;&gt;What’s next for NLP?&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_15.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="cs224n" /><category term="nlp" /><summary type="html">NLP 랩실에서의 CS224n 강의 리뷰이었던 것...</summary></entry><entry><title type="html">[DataEngineering]DataEngineer가 되기 위한 기술 스택 정리</title><link href="http://localhost:4000/dataengineering/de_01/" rel="alternate" type="text/html" title="[DataEngineering]DataEngineer가 되기 위한 기술 스택 정리" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_01</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_01/">&lt;h1 id=&quot;data-development&quot;&gt;Data Development&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Crawler&lt;/li&gt;
-  &lt;li&gt;ETL&lt;/li&gt;
-  &lt;li&gt;Docker&lt;/li&gt;
-  &lt;li&gt;k8s&lt;/li&gt;
-  &lt;li&gt;airflow
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;data-platform&quot;&gt;Data Platform&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Data Orchestration&lt;/li&gt;
-  &lt;li&gt;Data Storage
-    &lt;ul&gt;
-      &lt;li&gt;Data Lake&lt;/li&gt;
-      &lt;li&gt;Data Warehouse&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Data Catalog&lt;/li&gt;
-  &lt;li&gt;Data Monitoring
-    &lt;ul&gt;
-      &lt;li&gt;Data Validation&lt;/li&gt;
-      &lt;li&gt;Data Notification
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;data-governance&quot;&gt;Data Governance&lt;/h1&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;하둡 스파크 카프카 스칼라…? 알아야할게 산더미군..!!!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="DataEngineering" /><category term="DataEngineering" /><summary type="html">인턴 하면서 끄적였던 것들...4</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)</title><link href="http://localhost:4000/cs:app/csapp_14/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.1 작업을 단계로 구성하기)" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_14</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_14/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
-  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
-  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
-  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
-  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;431-작업을-단계로-구성하기&quot;&gt;4.3.1 작업을 단계로 구성하기&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인스트럭션을 처리하는 데는 다수의 연산이 관련되어 있다.&lt;/li&gt;
-  &lt;li&gt;이들은 특정한 단계들Stages로 구성해서 비록 인스트럭션들의 동작은 다를지라도 모든 인스트럭션들이 일정한 순서를 따르도록 한다.&lt;/li&gt;
-  &lt;li&gt;각 단계에서의 세부 처리내용은 실행하는 인스트럭션에 따라 달라진다.
-    &lt;ul&gt;
-      &lt;li&gt;선입 fetch
-        &lt;ul&gt;
-          &lt;li&gt;프로그램 카운터 PC를 메모리주소로 사용해서 메모리로부터 인스트럭션 바이트들을 읽어들인다.&lt;/li&gt;
-          &lt;li&gt;icode(인스트럭션 코드)와 ifun(instruction function)을 추출한다.&lt;/li&gt;
-          &lt;li&gt;한 개의 레지스터 지시자 바이트를 선입해서 한 개 또는 두 개의 레지스터 오퍼랜드 지시자 rA와 rB를 얻어내는 경우도 있다. 또한 8바이트 상수 워드 valC를 선입할 수도 있다.&lt;/li&gt;
-          &lt;li&gt;이것은 지금 실행 중인 인스트럭션의 순차적인 다음 인시트럭션의 주소가 되는 valP를 계산한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;해독 decode
-        &lt;ul&gt;
-          &lt;li&gt;레지스터 파일에서 최대 두 개의 오퍼랜드를 읽어서 valA, valB를 얻어온다.&lt;/li&gt;
-          &lt;li&gt;일부 인스트럭션에 대해서는 레지스터 %rsp를 읽어온다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;실행 excution
-        &lt;ul&gt;
-          &lt;li&gt;산술/논리 연산 유닛(ALU)이 인스트럭션이 지시하는 연산을 수행하거나(ifun 값에 따라), 메모리 참조 시 유효주소를 계산하거나, 스택 포인터 값을 변경한다. 이 결과를 valE라고 부른다.&lt;/li&gt;
-          &lt;li&gt;조건 코드들은 이 경우에 설정될 수 있다. 조건부 이동 인스트럭션에 대해서 조건코드와 분기 조건(ifun에서 주어진)을 평가하고 조건이 참이 되는 경우에만 목적지 레지스터를 갱신한다. 점프 인스트럭션도 마찬가지이다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;메모리
-        &lt;ul&gt;
-          &lt;li&gt;데이터를 메모리에 쓰거나 메모리에서 데이터를 읽어올 수 있다. 이 값을 valM이라고 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;재기록 write back
-        &lt;ul&gt;
-          &lt;li&gt;두 결과를 레지스터 파일에 기록한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;PC 갱신
-        &lt;ul&gt;
-          &lt;li&gt;PC는 다음 인스트럭션의 주소로 설정된다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프로세서는 위의 사항들을 무한히 반복하면서 이 단계들을 실행한다.&lt;/li&gt;
-  &lt;li&gt;한 개의 인스트럭션을 실행하는 데는 놀라운 양의 작업을 요구한다.
-    &lt;ul&gt;
-      &lt;li&gt;각 인스트럭션에 대해 기술한 연산을 싫애해야하고&lt;/li&gt;
-      &lt;li&gt;주소를 계산하고&lt;/li&gt;
-      &lt;li&gt;스택 포인터를 갱신하고&lt;/li&gt;
-      &lt;li&gt;다음 인스트럭션을 결정해야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;y86-64-인스트럭션-처리과정&quot;&gt;Y86-64 인스트럭션 처리과정&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/14/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 Y86-64 인스트럭션 예제이다. 해당 코드를 사용해서 여러가지 Y86-64 인스트럭션들의 처리과정을 그림으로 나타낸다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/14/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;OPq 인스트럭션 타입(정수와 논리연산), rrmovq(레지스터-레지스터 이동), irmovq(상수-레지스터 이동)에 대해 요구되는 작업을 보여준다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;선입 단계에서 상수 워드는 필요하지 않기 때문에 valP는 PC+2로 계산된다.&lt;/li&gt;
-  &lt;li&gt;해석 단계에서 두 개의 오퍼랜드를 읽어들인다.&lt;/li&gt;
-  &lt;li&gt;실행단계에서 함수 지시자 ifun과 함께 ALU에 제공된다.&lt;/li&gt;
-  &lt;li&gt;valE는 인스트럭션 결과가 된다.&lt;/li&gt;
-  &lt;li&gt;rrmovq인스트럭션을 실행하면 산술연산과 매우 비슷하게 진행한다.&lt;/li&gt;
-  &lt;li&gt;irmovq의 경우에도 첫 번째 ALU 입력 대신에 상수 값 valC를 사용한다는 점을 제외하고는 유사한 처리가 발생한다.
-    &lt;ul&gt;
-      &lt;li&gt;프로그램 카운터를 10 증가시켜야 하는데, 그 이유는 irmovq가 긴 인스트럭션 형식을 가지기 때문이다.
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/14/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;메모리 쓰기와 읽기 인스트럭션인 rmmovq와 mrmovq를 위해 필요한 처리작업을 보여준다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;valC를 valB에 더하기 위해 ALU를 사용해서 메모리 연산을 위한 유효주소를 만들어 낸다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/14/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;pushq와 popq 인스트럭션을 처리하기 위해 요구되는 단계들을 보여준다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;메모리에 접근 하면서 동시에 스택 포인터를 변경한다.&lt;/li&gt;
-  &lt;li&gt;pushq 인스트럭션은 해석단계에서 %rsp를 두 번째 레지스터 오퍼랜드의 식별자로 사용해서 스택 포인터를 valB로 만든다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/14/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;세 개의 제어 전환 인스트럭션에서의 처리과정을 나타낸다: jump, call, ret&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;정수연산에서처럼 분기를 할지 말지 결정할 때에만 이들이 다르기 때문에 모든 점프를 통합된 방법으로 처리할 수 있다.&lt;/li&gt;
-  &lt;li&gt;점프 인스트럭션은 선입에서 해독까지는 레지스터 명시자를 필요로 하지 않는다.&lt;/li&gt;
-  &lt;li&gt;실행단계에서 조건코드와 점프 조건을 체크해서 분기를 할지 말지 결정하고, 1비트 신호 Cnd를 만든다.&lt;/li&gt;
-  &lt;li&gt;PC갱신단계 동안에 이 플래그를 시험하고, 만일 플래그가 1이면 PC를 valC(점프 목적지)로 설정하고, 만일 0이면 valP(다음 인스트럭션의 주소)로 설정한다.&lt;/li&gt;
-  &lt;li&gt;인스트럭션 call과 ret은 프로그램 카운터 값을 push, pop한다는점 외에는 pushq, popq와 약간의 유사성을 갖는다.&lt;/li&gt;
-  &lt;li&gt;call할 때는 call 인스트럭션의 다음 인스트럭션의 주소인 valP를 push한다.&lt;/li&gt;
-  &lt;li&gt;PC 갱신 단계 동안에 PC를 call 목적지인 valC로 설정한다.&lt;/li&gt;
-  &lt;li&gt;ret 인스트럭션에서 스택에서 pop한 값인 valM을 PC 갱신 단계에서 PC에 저장한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 14</summary></entry><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
-  &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
-  &lt;li&gt;We use vectors derived from a bidirectional LSTM that is trained with a coupled language model (LM) objective on a large text corpus.&lt;/li&gt;
-  &lt;li&gt;In many experiments, the ELMo representation has been shown to be very excellent, and the error rate is relatively reduced by 20%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;related-work&quot;&gt;Related Work&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Pretrained word vector의 활용이 표준화 되었지만, 하나의 단어에 하나의 벡터를 부여하다보니 context-independent한 문제가 있었다.&lt;/li&gt;
-  &lt;li&gt;워드 임베딩을 풍부하게 하기 위해, subword information을 활용하거나 다의어의 경우 의미별로 다른 벡터를 학습시키는 방법이 등장하였다.
-    &lt;ul&gt;
-      &lt;li&gt;context2vec&lt;/li&gt;
-      &lt;li&gt;CoVe&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이전 연구에 의하면 biRNN의 서로 다른 레이어가 다른 형태의 정보를 인코딩하는데, 본 연구에서도 유사한 효과가 나타났다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;model&quot;&gt;Model&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;ELMo
-    &lt;ul&gt;
-      &lt;li&gt;ELMo word representations are functions of the entire input sentence.&lt;/li&gt;
-      &lt;li&gt;They are computed on top of two-layer biLMs with character convolutions, as a linear function of the internal network states.&lt;/li&gt;
-      &lt;li&gt;This setup allows us to do semi-supervised learning, where the biLM is pre-trained at a large scale and easily incorporated into a wide range of existing neural NLP architectures.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Pretrained BiLM&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Task-specific ELMo Embedding&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Using biLMs for supervised NLP tasks
-    &lt;ul&gt;
-      &lt;li&gt;기존의 임베딩 벡터와 함께 사용된다.&lt;/li&gt;
-      &lt;li&gt;ELMo 표현을 만드는데 사용된 사전 훈련된 언어 모델의 가중치는 고정시키고, 각 층의 가중치와 스칼라 파라미터는 훈련 과정에서 학습된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_5.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_6.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;6개의 NLP task에서 에러율을 6~20% 줄였다.&lt;/li&gt;
-  &lt;li&gt;6개의 NLP task에서 높은 점수를 기록했다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;analysis&quot;&gt;Analysis&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_7.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;일부 task(SNLI, SQuAD) 에서는 ELMo 벡터를 Output에 다시 concat 시키는 것이 효과가 있다.
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_8.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;GloVe 단어 벡터에서 ‘play’와 비슷한 단어는 품사를 변형한 것 또는 스포츠에 관한 유사 단어만 뜬다.&lt;/li&gt;
-  &lt;li&gt;biLM에서는 문맥을 고려한다는 것을 알 수 있다.
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;biLM의 첫 번째 레이어는 syntactic 정보를, 두 번째 레이어는 semantic 정보를 더 잘 인코딩 하는 것으로 나타난다.&lt;/li&gt;
-  &lt;li&gt;이는 biLM의 모든 레이어를 사용하는 것이 성능향상에 도움이 된다는 것을 증명한다
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/05/img_9.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;ELMo를 활용하면 같은 성능을 내는 데에 있어 훨씬 학습이 효율적임을 알 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks.&lt;/li&gt;
-  &lt;li&gt;Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about words in-context, and that using all layers improves overall task performance.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="paper review" /><category term="nlp" /><summary type="html">NLP 랩실에서의 논문 리딩이었던 것...5</summary></entry><entry><title type="html">[Python/Pandas] Python Pandas Cheat Sheet!을 한번 만들어 보겠습니다.</title><link href="http://localhost:4000/python/python_01/" rel="alternate" type="text/html" title="[Python/Pandas] Python Pandas Cheat Sheet!을 한번 만들어 보겠습니다." /><published>2022-03-02T00:00:00+09:00</published><updated>2022-03-02T00:00:00+09:00</updated><id>http://localhost:4000/python/python_01</id><content type="html" xml:base="http://localhost:4000/python/python_01/">&lt;h1 id=&quot;cheat-sheet-왜-필요할까&quot;&gt;Cheat Sheet! 왜 필요할까?&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_15.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="cs224n" /><category term="nlp" /><summary type="html">NLP 랩실에서의 CS224n 강의 리뷰이었던 것...</summary></entry><entry><title type="html">[Python/Pandas] Python Pandas Cheat Sheet!을 한번 만들어 보겠습니다.</title><link href="http://localhost:4000/python/python_01/" rel="alternate" type="text/html" title="[Python/Pandas] Python Pandas Cheat Sheet!을 한번 만들어 보겠습니다." /><published>2022-03-02T00:00:00+09:00</published><updated>2022-03-02T00:00:00+09:00</updated><id>http://localhost:4000/python/python_01</id><content type="html" xml:base="http://localhost:4000/python/python_01/">&lt;h1 id=&quot;cheat-sheet-왜-필요할까&quot;&gt;Cheat Sheet! 왜 필요할까?&lt;/h1&gt;
 
 &lt;p&gt;Data Engineering 인턴을 경험하면서 나는 ETL 작성을 주업무로 맡게 되었다. R 코드로 작성된 레거시 파일을 Python 코드로 마이그레이션 하는 업무인데, 가끔씩
 data 요청사항이 있으면 직접 로직을 구현하는 경우도 있었다. 보통 data 가공을 DataFrame으로 만들어 Pandas 문법을 사용하는데, 자주 사용했던 문법도 기억이 안나서
@@ -1359,445 +1496,4 @@ Chapter2~3은 Chapter4의 빌드업이라고도 한다. 확실히 이해하고 C
 해당 기능들을 사용할 때 이해가 되지 않는다면, 이번에 포스팅한 프로그래머스 자바 중급 강의를 사용하면 좋을 것 같다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
-해당 강의와 강의 노트는 &lt;a href=&quot;https://programmers.co.kr/learn/courses/9&quot;&gt;프로그래머스 자바 중급&lt;/a&gt;에서 언제든지 다시 들을 수 있다!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 중급" /><summary type="html">프로그래머스 자바 중급 강의 - 06(END)</summary></entry><entry><title type="html">[Java/프로그래머스] Part7 쓰레드</title><link href="http://localhost:4000/java/java_14/" rel="alternate" type="text/html" title="[Java/프로그래머스] Part7 쓰레드" /><published>2022-02-15T00:00:00+09:00</published><updated>2022-02-15T00:00:00+09:00</updated><id>http://localhost:4000/java/java_14</id><content type="html" xml:base="http://localhost:4000/java/java_14/">&lt;h1 id=&quot;part7-쓰레드&quot;&gt;Part7 쓰레드&lt;/h1&gt;
-
-&lt;h2 id=&quot;쓰레드란&quot;&gt;쓰레드란&lt;/h2&gt;
-
-&lt;p&gt;동시에 여러가지 작업을 동시에 수행할 수 있게 하는것&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;동시에 여러가지 작업을 수행할 수 있다.&lt;/li&gt;
-  &lt;li&gt;프로세스란 현재 실행되고 있는 프로그램을 말한다.&lt;/li&gt;
-  &lt;li&gt;자바 프로그램은 JVM에 위해 실행된다. 이 JVM도 프로그램중에 하나이다.&lt;/li&gt;
-  &lt;li&gt;운영체제 입장으로 보면 자바도 하나의 프로세스로 실행 하는 것이다.&lt;/li&gt;
-  &lt;li&gt;워드프로세서가 하나의 프로세스라면, 하나의 프로세스 안에서도 여러개의 흐름이 동작할 수 있다. 이것은 Thread라고 말한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;쓰레드-만들기&quot;&gt;쓰레드 만들기&lt;/h2&gt;
-
-&lt;p&gt;자바에서 Thread를 만드는 방법은 크게 Thread 클래스를 상속받는 방법과 Runnable 인터페이스를 구현하는 방법이 있다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Thread를 상속 받아서 쓰레드를 생성하는 방법
-    &lt;ul&gt;
-      &lt;li&gt;java.lang.Thread 클래스를 상속받는다. 그리고 Thread가 가지고 있는 run() 메소드를 오버라이딩한다.&lt;/li&gt;
-      &lt;li&gt;10번 반복하면서 str를 찍는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MyThread1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;//컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 &lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;//쉬었다가 출력할 수 있게한다. &lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Thread 클래스를 상속받은 MyThread1을 사용하는 클래스
-    &lt;ul&gt;
-      &lt;li&gt;Thread를 상속 받았으므로 MyThread1은 Thread 이다.&lt;/li&gt;
-      &lt;li&gt;쓰레드를 생성하고, Thread 클래스가 가지고 있는 start() 메소드를 호출 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadExam1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// MyThread인스턴스를 2개 만듭니다. &lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MyThread1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MyThread1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;!!!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Runnable 인터페이스를 구현해서 쓰레드를 만드는 방법
-    &lt;ul&gt;
-      &lt;li&gt;Runnable 인터페이스가 가지고 있는 run() 메소드를 구현한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread2&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MyThread2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Runnable 인터페이스를 구현한 MyYhread2 사용하는 방법
-    &lt;ul&gt;
-      &lt;li&gt;MyThread2는 Thread를 상속받지 않았기 때문에 Thread가 아니다.&lt;/li&gt;
-      &lt;li&gt;Thread를 생성하고, 해당 생성자에 MyThread2를 넣어서 Thread를 생성한다.&lt;/li&gt;
-      &lt;li&gt;Thread 클래스가 가진  start() 메소드를 호출한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadExam2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MyThread2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;*&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MyThread2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;n&quot;&gt;t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;t2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;!!!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;  
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;쓰레드와-공유객체&quot;&gt;쓰레드와 공유객체&lt;/h2&gt;
-
-&lt;p&gt;하나의 객체를 여러개의 Thread가 사용한다는 것을 의미&lt;/p&gt;
-
-&lt;p&gt;MusicBox 라는 클래스가 있다고 가정한다. 해당 클래스는 3개의 메소드를 가지고 있다. 각각의 메소드는 1초 이하의 시간동안 10번 반복하면서, 
-어떤 음악을 출력한다. 이러한 MusicBox를 사용하는 MusicPlayer를 3명 만들어 보겠다.&lt;/p&gt;
-
-&lt;p&gt;MusicPlayer 3명은 하나의 MusicBox를 사용할 것이다. 이 때 어떤 일이 발생하는지 살펴보겠다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;공유객체 MusicBox&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicBox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
-        &lt;span class=&quot;c1&quot;&gt;//신나는 음악!!! 이란 메시지가 1초이하로 쉬면서 10번 반복출력&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMusicA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;신나는 음악!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for        &lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//playMusicA&lt;/span&gt;
-
-        &lt;span class=&quot;c1&quot;&gt;//슬픈 음악!!!이란 메시지가 1초이하로 쉬면서 10번 반복출력&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMusicB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;슬픈 음악!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for        &lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//playMusicB&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;//카페 음악!!! 이란 메시지가 1초이하로 쉬면서 10번 반복출력&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMusicC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;카페 음악!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for        &lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//playMusicC  &lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MusicBox를 가지는 Thread 객체 MusicPlayer&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;MusicBox&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;musicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-        &lt;span class=&quot;c1&quot;&gt;// 생성자로 부터 musicBox와 정수를 하나 받아들여서 필드를 초기화&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicBox&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;musicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;musicBox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;musicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;       
-        &lt;span class=&quot;c1&quot;&gt;// type이 무엇이냐에 따라서 musicBox가 가지고 있는 메소드가 다르게 호출&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;musicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playMusicA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;musicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playMusicB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;musicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playMusicC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;       
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MusicBox와 MusicPlayer를 이용하는 MusicBoxExam1 클래스&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicBoxExam1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// MusicBox 인스턴스&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MusicBox&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicBox&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-            &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kim&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lee&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kang&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;box&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-            &lt;span class=&quot;c1&quot;&gt;// MusicPlayer쓰레드를 실행합니다. &lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;kim&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;lee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;kang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;           
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;동기화-메소드와-동기화-블록&quot;&gt;동기화 메소드와 동기화 블록&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;고유객체가 가진 메소드를 동시에 호출 되지 않돚록 하는 방법
-    &lt;ul&gt;
-      &lt;li&gt;메소드 앞에 synchronized 를 붙힌다.&lt;/li&gt;
-      &lt;li&gt;여러개의 Thread 들이 공유객체의 메소드를 사용할 때 메소드에 synchronized가 붙어 있을 경우 먼저 호출한 메소드가 객체의 사용권(Monitoring Lock)을 얻는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMusicA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;신나는 음악!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for        &lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//playMusicA&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;메소드 앞에 synchronized 를 붙혀서 실행해 보면, 메소드 하나가 모두 실행된 후에 다음 메소드가 실행된다.&lt;/li&gt;
-  &lt;li&gt;해당 모니터링 락은 메소드 실행이 종료되거나, wait() 와 같은 메소드를 만나기 전까지 유지된다.&lt;/li&gt;
-  &lt;li&gt;다른 쓰레드들은 모니터링 락을 놓을 때 까지 대기한다.&lt;/li&gt;
-  &lt;li&gt;synchronized를 붙히지 않은 메소드는 다른 쓰레드들이 synchronized메소드를실행하면서 모니터링 락을 획득했다 하더라도, 그것과 상관없이 실행된다.&lt;/li&gt;
-  &lt;li&gt;synchronized를 메소드에 붙혀서 사용 할 경우, 메소드의 코드가 길어지면, 마지막에 대기하는 쓰레드가 너무 오래 ㅣㄱ다리는 것을 막기 위해서 메소드에 synchronized를 붙이지 않고,
-문제가 있을 것 같은 부분만 synchronized 블록을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMusicB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;슬픈 음악!!!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// for        &lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//playMusicB&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;쓰레드와-상태제어&quot;&gt;쓰레드와 상태제어&lt;/h2&gt;
-
-&lt;p&gt;쓰레드가 3개가 있다면 JVM은 시간을 잘게 쪼갠 후에 한번은 쓰레드1을, 한번은 쓰레드 2를, 한번은 쓰레드3을 실행한다. 이것을 빠르게 일어나다 보니 쓰레드가 모두 동작하는 것처럼 보이는 것이다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;쓰레드는 실행가능상태인 Runnable과 실행상태인 Running상태로 나뉜다.&lt;/li&gt;
-  &lt;li&gt;실행되는 쓰레드 안에서 Thread.sleep() 이나 Object가 가지고 있는 wait() 메소드가 호출이 되면 쓰레드는 블록상태가 된다.&lt;/li&gt;
-  &lt;li&gt;Thread.sleep() 은 특정시간이 지나면 자신 스스로 블록상태에서 빠져나와 Runnable 이나 Running상태가 된다.&lt;/li&gt;
-  &lt;li&gt;Object가 가지고 있는 wait() 메소드는 다른 쓰레드가 notify()나 notifyAll() 메소드를 호출하기 전에는 블록상태에서 해체되지 않는다.&lt;/li&gt;
-  &lt;li&gt;wait()메소드는 호출이 되면 모니터링 락을 놓게 된다. 그래서 대기중인 다른 메소드가 실행한다.&lt;/li&gt;
-  &lt;li&gt;쓰레드의 run메소드가 종료되면, 쓰레드는 종료된다. 즉 Dead상태가 된다.&lt;/li&gt;
-  &lt;li&gt;Thread의 yeild메소드가 호출되면 해당 쓰레드는 다른 쓰레드에게 자원을 양보하게 된다.&lt;/li&gt;
-  &lt;li&gt;Thread가 가지고 있는 join메소드를 호출하게 되면 해당 쓰레드가 종료될 때까지 대기하게 된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;쓰레드와-상태제어-join&quot;&gt;쓰레드와 상태제어 (join)&lt;/h2&gt;
-
-&lt;p&gt;join() 메소드는 쓰레드가 멈출 때까지 기다리게 한다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;일단 0.5초씩 쉬면서 숫자를 출력하는 MyThread5를 작성해 보겠다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MyThread5 : &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// run&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;해당 쓰레드를 실행하고, 해당 쓰레드가 종료될 때 까지 기다린 후, 내용을 출력하는 joinExam 클래스&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;JoinExam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;thread&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// Thread 시작 &lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Thread가 종료될때까지 기다립니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;c1&quot;&gt;// 해당 쓰레드가 멈출때까지 멈춤&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Thread가 종료되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; 
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;실행 결과&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;        &lt;span class=&quot;nc&quot;&gt;Thread가&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;종료될때까지&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;기다립니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;MyThread5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;Thread가&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;종료되었습니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;쓰레드와-상태제어-wait-notify&quot;&gt;쓰레드와 상태제어 (wait, notify)&lt;/h2&gt;
-
-&lt;p&gt;wait과 notify는 동기화된 블록 안에서 사용해야 한다. wait를 만나게 되면 해당 쓰레드는 해당 객체의 모니터링 락에 대한 권한을 가지고 있다면 모니터링 락의 권한을 놓고 대기한다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Thread를 상속받는 ThreadB 클래스 작성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadB&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-       &lt;span class=&quot;c1&quot;&gt;// 해당 쓰레드가 실행되면 자기 자신의 모니터링 락을 획득&lt;/span&gt;
-       &lt;span class=&quot;c1&quot;&gt;// 5번 반복하면서 0.5초씩 쉬면서 total에 값을 누적&lt;/span&gt;
-       &lt;span class=&quot;c1&quot;&gt;// 그후에 notify()메소드를 호출하여 wiat하고 있는 쓰레드를 깨움 &lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;를 더합니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                        &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                        &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;이번에는 ThreadB 를 사용하며 wait 하는 클래스 작성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// 앞에서 만든 쓰레드 B를 만든 후 start &lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// 해당 쓰레드가 실행되면, 해당 쓰레드는 run메소드 안에서 자신의 모니터링 락을 획득&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;ThreadB&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThreadB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-            &lt;span class=&quot;c1&quot;&gt;// b에 대하여 동기화 블럭을 설정&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// 만약 main쓰레드가 아래의 블록을 위의 Thread보다 먼저 실행되었다면 wait를 하게 되면서 모니터링 락을 놓고 대기       &lt;/span&gt;
-            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;// b.wait()메소드를 호출.&lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;// 메인쓰레드는 정지&lt;/span&gt;
-                    &lt;span class=&quot;c1&quot;&gt;// ThreadB가 5번 값을 더한 후 notify를 호출하게 되면 wait에서 깨어남&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;b가 완료될때까지 기다립니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-                &lt;span class=&quot;c1&quot;&gt;//깨어난 후 결과를 출력&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Total is: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;total&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;실행 결과&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;        &lt;span class=&quot;n&quot;&gt;b가&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;완료될때까지&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;기다립니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;를&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;더합니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;를&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;더합니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;를&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;더합니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;를&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;더합니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;를&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;더합니다&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;Total&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;is:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;데몬-쓰레드&quot;&gt;데몬 쓰레드&lt;/h2&gt;
-
-&lt;p&gt;데몬(Daemon)이란 보통 리눅스와 같은 유닉스계열의 운영체제에서 백그라운드로 동작하는 프로그램을 말한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;데몬쓰레드를 만뜨는 방법은 쓰레드에 데몬 설정을 하면 된다.
-    &lt;ul&gt;
-      &lt;li&gt;이런 쓰레드는 자바프로그램을 만들 때 백그라운드에서 특별한 작업을 처리하게 하는 용도로 만든다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;데몬쓰레드는 일반 쓰레드(main 등)가 모두 종료되면 강저젝으로 종료되는 특징을 가지고 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;// Runnable을 구현하는 DaemonThread클래스를 작성&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DaemonThread&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-
-        &lt;span class=&quot;c1&quot;&gt;// 무한루프안에서 0.5초씩 쉬면서 데몬쓰레드가 실행중입니다를 출력하도록 run()메소드를 작성&lt;/span&gt;
-        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;데몬 쓰레드가 실행중입니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-                &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Exception발생시 while 문 빠찌도록 &lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// Runnable을 구현하는 DaemonThread를 실행하기 위하여 Thread 생성&lt;/span&gt;
-            &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;th&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DaemonThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// 데몬쓰레드로 설정&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;th&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setDaemon&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// 쓰레드를 실행&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;th&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-            &lt;span class=&quot;c1&quot;&gt;// 메인 쓰레드가 1초뒤에 종료되도록 설정. &lt;/span&gt;
-            &lt;span class=&quot;c1&quot;&gt;// 데몬쓰레드는 다른 쓰레드가 모두 종료되면 자동종료.&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;nc&quot;&gt;Thread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sleep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;InterruptedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-            &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;메인 쓰레드가 종료됩니다. &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;    
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 중급" /><summary type="html">프로그래머스 자바 중급 강의 - 05</summary></entry></feed>
+해당 강의와 강의 노트는 &lt;a href=&quot;https://programmers.co.kr/learn/courses/9&quot;&gt;프로그래머스 자바 중급&lt;/a&gt;에서 언제든지 다시 들을 수 있다!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="Java" /><category term="Java" /><category term="프로그래머스 자바 중급" /><summary type="html">프로그래머스 자바 중급 강의 - 06(END)</summary></entry></feed>
