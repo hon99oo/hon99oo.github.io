@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-05T00:33:24+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[NLP/CS224n]CS224n Lecture 17: Multitask Learning</title><link href="http://localhost:4000/nlp/NLP_06/" rel="alternate" type="text/html" title="[NLP/CS224n]CS224n Lecture 17: Multitask Learning" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_06</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_06/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-18T14:04:54+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[NLP/CS224n]CS224n Lecture 17: Multitask Learning</title><link href="http://localhost:4000/nlp/NLP_06/" rel="alternate" type="text/html" title="[NLP/CS224n]CS224n Lecture 17: Multitask Learning" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_06</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_06/">&lt;blockquote&gt;
   &lt;p&gt;lecture 5, 7, 13 ,17 을 리뷰 했는데,,, 17강 밖에 안남아있다…T.T&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -204,7 +204,84 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;하둡 스파크 카프카 스칼라…? 알아야할게 산더미군..!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="DataEngineering" /><category term="DataEngineering" /><summary type="html">인턴 하면서 끄적였던 것들...4</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)</title><link href="http://localhost:4000/cs:app/csapp_14/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_14</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_14/"></content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 14</summary></entry><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;하둡 스파크 카프카 스칼라…? 알아야할게 산더미군..!!!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="DataEngineering" /><category term="DataEngineering" /><summary type="html">인턴 하면서 끄적였던 것들...4</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)</title><link href="http://localhost:4000/cs:app/csapp_14/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현)" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_14</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_14/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
+  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
+  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
+  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
+  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;431-작업을-단계로-구성하기&quot;&gt;4.3.1 작업을 단계로 구성하기&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인스트럭션을 처리하는 데는 다수의 연산이 관련되어 있다.&lt;/li&gt;
+  &lt;li&gt;이들은 특정한 단계들Stages로 구성해서 비록 인스트럭션들의 동작은 다를지라도 모든 인스트럭션들이 일정한 순서를 따르도록 한다.&lt;/li&gt;
+  &lt;li&gt;각 단계에서의 세부 처리내용은 실행하는 인스트럭션에 따라 달라진다.
+    &lt;ul&gt;
+      &lt;li&gt;선입 fetch
+        &lt;ul&gt;
+          &lt;li&gt;프로그램 카운터 PC를 메모리주소로 사용해서 메모리로부터 인스트럭션 바이트들을 읽어들인다.&lt;/li&gt;
+          &lt;li&gt;icode(인스트럭션 코드)와 ifun(instruction function)을 추출한다.&lt;/li&gt;
+          &lt;li&gt;한 개의 레지스터 지시자 바이트를 선입해서 한 개 또는 두 개의 레지스터 오퍼랜드 지시자 rA와 rB를 얻어내는 경우도 있다. 또한 8바이트 상수 워드 valC를 선입할 수도 있다.&lt;/li&gt;
+          &lt;li&gt;이것은 지금 실행 중인 인스트럭션의 순차적인 다음 인시트럭션의 주소가 되는 valP를 계산한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;해독 decode
+        &lt;ul&gt;
+          &lt;li&gt;레지스터 파일에서 최대 두 개의 오퍼랜드를 읽어서 valA, valB를 얻어온다.&lt;/li&gt;
+          &lt;li&gt;일부 인스트럭션에 대해서는 레지스터 %rsp를 읽어온다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;실행 excution
+        &lt;ul&gt;
+          &lt;li&gt;산술/논리 연산 유닛(ALU)이 인스트럭션이 지시하는 연산을 수행하거나(ifun 값에 따라), 메모리 참조 시 유효주소를 계산하거나, 스택 포인터 값을 변경한다. 이 결과를 valE라고 부른다.&lt;/li&gt;
+          &lt;li&gt;조건 코드들은 이 경우에 설정될 수 있다. 조건부 이동 인스트럭션에 대해서 조건코드와 분기 조건(ifun에서 주어진)을 평가하고 조건이 참이 되는 경우에만 목적지 레지스터를 갱신한다. 점프 인스트럭션도 마찬가지이다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;메모리
+        &lt;ul&gt;
+          &lt;li&gt;데이터를 메모리에 쓰거나 메모리에서 데이터를 읽어올 수 있다. 이 값을 valM이라고 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;재기록 write back
+        &lt;ul&gt;
+          &lt;li&gt;두 결과를 레지스터 파일에 기록한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;PC 갱신
+        &lt;ul&gt;
+          &lt;li&gt;PC는 다음 인스트럭션의 주소로 설정된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로세서는 위의 사항들을 무한히 반복하면서 이 단계들을 실행한다.&lt;/li&gt;
+  &lt;li&gt;한 개의 인스트럭션을 실행하는 데는 놀라운 양의 작업을 요구한다.
+    &lt;ul&gt;
+      &lt;li&gt;각 인스트럭션에 대해 기술한 연산을 싫애해야하고&lt;/li&gt;
+      &lt;li&gt;주소를 계산하고&lt;/li&gt;
+      &lt;li&gt;스택 포인터를 갱신하고&lt;/li&gt;
+      &lt;li&gt;다음 인스트럭션을 결정해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;y86-64-인스트럭션-처리과정&quot;&gt;Y86-64 인스트럭션 처리과정&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/13/img.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 Y86-64 인스트럭션 예제이다. 해당 코드를 사용해서 여러가지 Y86-64 인스트럭션들의 처리과정을 그림으로 나타낸다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;₩&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 14</summary></entry><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
   &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
