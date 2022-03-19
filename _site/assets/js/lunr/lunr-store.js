@@ -298,4 +298,10 @@ var store = [{
         "tags": ["CS:APP","CS"],
         "url": "/cs:app/csapp_18/",
         "teaser": null
+      },{
+        "title": "[CS:APP] Chapter 05 프로그램 성능 최적화하기",
+        "excerpt":" ","categories": ["CS:APP"],
+        "tags": ["CS:APP","CS"],
+        "url": "/cs:app/csapp_19/",
+        "teaser": null
       }]
