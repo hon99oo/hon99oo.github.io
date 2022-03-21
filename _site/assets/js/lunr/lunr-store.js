@@ -300,7 +300,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[CS:APP] Chapter 05 프로그램 성능 최적화하기",
-        "excerpt":" ","categories": ["CS:APP"],
+        "excerpt":"Chapter 05. 프로그램 성능 최적화하기     프로그램을 작성하는 주목적은 모든 가능한 조건에서 프로그램이 정확하게 동작하도록 하는 것이다.   프로그래머는 명확하고 간결한 코드를 작성해야하고, 이해하기 쉽고, 코드를 검토할 때와 수정할 때 다른사람들도 코드를 읽고 이해할 수 있어야 한다.   ","categories": ["CS:APP"],
         "tags": ["CS:APP","CS"],
         "url": "/cs:app/csapp_19/",
         "teaser": null
