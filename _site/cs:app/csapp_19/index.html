@@ -187,7 +187,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          5 분 소요
+          6 분 소요
         
       </span>
     
@@ -341,7 +341,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#chapter-05-프로그램-성능-최적화하기">Chapter 05. 프로그램 성능 최적화하기</a></li><li><a href="#51-최적화-컴파일러의-능력과-한계">5.1 최적화 컴파일러의 능력과 한계</a></li><li><a href="#52-프로그램-성능의-표현">5.2 프로그램 성능의 표현</a></li><li><a href="#53-프로그램-예제">5.3 프로그램 예제</a></li><li><a href="#54-루프-비효율성-제거하기">5.4 루프 비효율성 제거하기</a></li><li><a href="#55-프로시저-호출-줄이기">5.5 프로시저 호출 줄이기</a></li><li><a href="#56-불필요한-메모리-참조의-제거">5.6 불필요한 메모리 참조의 제거</a></li><li><a href="#57-최신-프로세서-이해하기">5.7 최신 프로세서 이해하기</a><ul><li><a href="#571-전체적인-동작">5.7.1 전체적인 동작</a></li><li><a href="#572-함수유닛의-성능">5.7.2 함수유닛의 성능</a><ul><li><a href="#기계수준-코드로부터-데이터흐름-그래프로의-변환">기계수준 코드로부터 데이터흐름 그래프로의 변환</a></li></ul></li><li><a href="#58-루프풀기">5.8 루프풀기</a></li><li><a href="#59-병렬성-높이기">5.9 병렬성 높이기</a><ul><li><a href="#다수의-누산기-사용">다수의 누산기 사용</a></li><li><a href="#재결합-변환">재결합 변환</a></li></ul></li><li><a href="#511-일부-제한-요인들">5.11 일부 제한 요인들</a><ul><li><a href="#5111-레지스터-넘기기">5.11.1 레지스터 넘기기</a></li><li><a href="#5112-분기예측과-예측비용">5.11.2 분기예측과 예측비용</a></li></ul></li><li><a href="#512-메모리-성능의-이해">5.12 메모리 성능의 이해</a></li><li><a href="#513-실제상황-성능개선-기술">5.13 실제상황: 성능개선 기술</a></li><li><a href="#마무리">마무리</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#chapter-05-프로그램-성능-최적화하기">Chapter 05. 프로그램 성능 최적화하기</a></li><li><a href="#51-최적화-컴파일러의-능력과-한계">5.1 최적화 컴파일러의 능력과 한계</a></li><li><a href="#52-프로그램-성능의-표현">5.2 프로그램 성능의 표현</a></li><li><a href="#53-프로그램-예제">5.3 프로그램 예제</a></li><li><a href="#54-루프-비효율성-제거하기">5.4 루프 비효율성 제거하기</a></li><li><a href="#55-프로시저-호출-줄이기">5.5 프로시저 호출 줄이기</a></li><li><a href="#56-불필요한-메모리-참조의-제거">5.6 불필요한 메모리 참조의 제거</a></li><li><a href="#57-최신-프로세서-이해하기">5.7 최신 프로세서 이해하기</a><ul><li><a href="#571-전체적인-동작">5.7.1 전체적인 동작</a></li><li><a href="#572-함수유닛의-성능">5.7.2 함수유닛의 성능</a><ul><li><a href="#기계수준-코드로부터-데이터흐름-그래프로의-변환">기계수준 코드로부터 데이터흐름 그래프로의 변환</a></li></ul></li></ul></li><li><a href="#58-루프풀기">5.8 루프풀기</a></li><li><a href="#59-병렬성-높이기">5.9 병렬성 높이기</a><ul><li><a href="#다수의-누산기-사용">다수의 누산기 사용</a></li><li><a href="#재결합-변환">재결합 변환</a></li></ul></li><li><a href="#511-일부-제한-요인들">5.11 일부 제한 요인들</a><ul><li><a href="#5111-레지스터-넘기기">5.11.1 레지스터 넘기기</a></li><li><a href="#5112-분기예측과-예측비용">5.11.2 분기예측과 예측비용</a></li></ul></li><li><a href="#512-메모리-성능의-이해">5.12 메모리 성능의 이해</a></li><li><a href="#513-실제상황-성능개선-기술">5.13 실제상황: 성능개선 기술</a></li><li><a href="#마무리">마무리</a></li></ul>
 
             </nav>
           </aside>
@@ -559,7 +559,7 @@
   </li>
 </ul>
 
-<h2 id="58-루프풀기">5.8 루프풀기</h2>
+<h1 id="58-루프풀기">5.8 루프풀기</h1>
 <ul>
   <li>루프 풀기는 루프의 매 반복실행마다 계산되는 원소의 수를 증가시켜 루프에서의 반복 실행 횟수를 줄이는 방법이다.</li>
   <li>루프 풀기는 두가지 측면에서 성능을 개선할 수 있다.
@@ -588,12 +588,12 @@
   </li>
 </ul>
 
-<h2 id="59-병렬성-높이기">5.9 병렬성 높이기</h2>
+<h1 id="59-병렬성-높이기">5.9 병렬성 높이기</h1>
 <ul>
   <li>데이터 의존성을 줄이고자 병렬성을 높이는 방법이다.</li>
 </ul>
 
-<h3 id="다수의-누산기-사용">다수의 누산기 사용</h3>
+<h2 id="다수의-누산기-사용">다수의 누산기 사용</h2>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/* default */</span>
 <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">1</span><span class="p">){</span>
@@ -610,7 +610,7 @@
   <li>위 코드와 같이 홀수와 짝수를 나누면 데이터 의존성이 사라진다.</li>
 </ul>
 
-<h3 id="재결합-변환">재결합 변환</h3>
+<h2 id="재결합-변환">재결합 변환</h2>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/* default */</span>
 <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
@@ -618,12 +618,12 @@
 <span class="cm">/* reassociation transform (2X1a 루프풀기) */</span>
 <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="nf">OP</span> <span class="p">(</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">);</span></code></pre></figure>
 
-<h2 id="511-일부-제한-요인들">5.11 일부 제한 요인들</h2>
+<h1 id="511-일부-제한-요인들">5.11 일부 제한 요인들</h1>
 <ul>
   <li>최적화중 프로그램의 성능을 제한하는 다른 요소들이 존재한다.</li>
 </ul>
 
-<h3 id="5111-레지스터-넘기기">5.11.1 레지스터 넘기기</h3>
+<h2 id="5111-레지스터-넘기기">5.11.1 레지스터 넘기기</h2>
 <ul>
   <li>프로그램이 사용 가능한 레지스터의 수를 넘어가는 병렬성을 가지면, 메모리에 저장하게 되는 <strong>레지스터 넘기기 spilling</strong> 방법이 사용된다.
     <ul>
@@ -632,7 +632,7 @@
   </li>
 </ul>
 
-<h3 id="5112-분기예측과-예측비용">5.11.2 분기예측과 예측비용</h3>
+<h2 id="5112-분기예측과-예측비용">5.11.2 분기예측과 예측비용</h2>
 <ul>
   <li>if문보다 삼항연산자가 더 빠르다.
     <blockquote>
@@ -641,7 +641,7 @@
   </li>
 </ul>
 
-<h2 id="512-메모리-성능의-이해">5.12 메모리 성능의 이해</h2>
+<h1 id="512-메모리-성능의-이해">5.12 메모리 성능의 이해</h1>
 <ul>
   <li>Load의 성능
     <ul>
@@ -657,7 +657,7 @@
   <li>load 연산만이 store 연산의 결과에 영향을 받는다.</li>
 </ul>
 
-<h2 id="513-실제상황-성능개선-기술">5.13 실제상황: 성능개선 기술</h2>
+<h1 id="513-실제상황-성능개선-기술">5.13 실제상황: 성능개선 기술</h1>
 <ul>
   <li>프로그램 성능의 최적화하는 기본적인 전략들
     <ul>
@@ -682,12 +682,16 @@
   </li>
 </ul>
 
-<h2 id="마무리">마무리</h2>
+<h1 id="마무리">마무리</h1>
 <blockquote>
   <p>2장부터 4장까지 컴퓨터가 해석할 수 있는 언어들과 해당 언어들을 컴퓨터가 어떻게 해석하는지를 공부했다.
 해당 방법들을 통해서 5장에서는 프로그래머들이 어떻게 코드를 작성해야 하는지를 배웠다. 
 만약 컴퓨터가 코드를 해석하는 방법을 몰랐더라면, 코드 최적화 방법을 공부할 때 정확히 이해할 수 없었을 것이다.
 작성한 코드에서 인스트럭션 조합과 기계어가 어떻게 동작하는지를 항상 생각하자.</p>
+
+  <p>추가적으로, CSAPP 포스팅 방식을 조금 변경해야할 것 같다. 4장 초반까지는 솔직히 굉장히 어려웠다. “무슨 말을 하는지 이걸 도대체 컴퓨터가 어떻게 해석한다는거지?”
+라고 생각하며 의문으로 가득차 거의 모든 내용을 포스팅한 것 같다. 하지만, 4장 후반 SEQ와 파이프라이닝을 공부하고 “아! 이래서 지금까지 이런 내용들을 공부했구나!”
+그리고 5장을 공부하면서 뭔가 “득도”를 하게 된 것 같다. 다양한 부분들의 이해가 빨라졌다. 앞으로 챕터를 공부하고 나의 방식으로 녹인 후 포스팅을 하는 것으로 포스팅 방향을 바꿀 것이다.</p>
 
   <p>6장은 드디어 메모리 파트이다. 너무 기대된다!!</p>
 </blockquote>
@@ -758,7 +762,8 @@
 ">이전</a>
     
     
-      <a href="#" class="pagination--pager disabled">다음</a>
+      <a href="/cs:app/csapp_20/" class="pagination--pager" title="[CS:APP] Chapter 06 메모리 계층구조
+">다음</a>
     
   </nav>
 
@@ -772,6 +777,46 @@
     <div class="page__related">
       <h2 class="page__related-title">참고</h2>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs:app/csapp_20/" rel="permalink">[CS:APP] Chapter 06 메모리 계층구조
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 20
+</p>
+  </article>
+</div>
+
         
           
 
@@ -888,46 +933,6 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">CS:APP - 16
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/cs:app/csapp_15/" rel="permalink">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          2 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">CS:APP - 15
 </p>
   </article>
 </div>
