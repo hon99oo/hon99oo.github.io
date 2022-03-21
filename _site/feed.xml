@@ -1,7 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-21T23:02:00+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 05 프로그램 성능 최적화하기</title><link href="http://localhost:4000/cs:app/csapp_19/" rel="alternate" type="text/html" title="[CS:APP] Chapter 05 프로그램 성능 최적화하기" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_19</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_19/">&lt;h1 id=&quot;chapter-05-프로그램-성능-최적화하기&quot;&gt;Chapter 05. 프로그램 성능 최적화하기&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-21T23:48:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 05 프로그램 성능 최적화하기</title><link href="http://localhost:4000/cs:app/csapp_19/" rel="alternate" type="text/html" title="[CS:APP] Chapter 05 프로그램 성능 최적화하기" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_19</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_19/">&lt;h1 id=&quot;chapter-05-프로그램-성능-최적화하기&quot;&gt;Chapter 05. 프로그램 성능 최적화하기&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;프로그램을 작성하는 주목적은 모든 가능한 조건에서 프로그램이 정확하게 동작하도록 하는 것이다.&lt;/li&gt;
   &lt;li&gt;프로그래머는 명확하고 간결한 코드를 작성해야하고, 이해하기 쉽고, 코드를 검토할 때와 수정할 때 다른사람들도 코드를 읽고 이해할 수 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;효율적인 프로그램을 작성하는 방법
+    &lt;ol&gt;
+      &lt;li&gt;적절한 알고리즘과 자료구조를 선택해야한다.&lt;/li&gt;
+      &lt;li&gt;컴파일러가 효과적으로 최적화해서 효율적인 실행코드로 바꿀 수 있는 소스코드를 작성해야 한다.&lt;/li&gt;
+      &lt;li&gt;작업을 부분으로 나누어 멀티코어와 멀티프로세서의 조합을 갖는 컴퓨터에서 병렬로 계산한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로그래머는 컴파일러를 도와서 쉽게 최적화될 수 있는 코드를 작성해야한다.
+    &lt;ol&gt;
+      &lt;li&gt;불필요한 작업 제거
+        &lt;ul&gt;
+          &lt;li&gt;불필요한 함수호출 제거&lt;/li&gt;
+          &lt;li&gt;조건 테스트 제거&lt;/li&gt;
+          &lt;li&gt;메모리 참조 제거&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;인스트럭션-수준 병렬성을 제공&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;51-최적화-컴파일러의-능력과-한계&quot;&gt;5.1 최적화 컴파일러의 능력과 한계&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴파일러는 프로그래머의 코드를 자동으로 최적화 해준다.&lt;/li&gt;
+  &lt;li&gt;하지만 특정 코드는 컴파일러가 자동으로 최적화해줄 수 없다.
+    &lt;ul&gt;
+      &lt;li&gt;두 개의 포인터가 같은 메모리 위치를 가리킬 수 있는 경우(메모리 연결memory aliasing)&lt;/li&gt;
+      &lt;li&gt;함수 호출
+        &lt;ul&gt;
+          &lt;li&gt;ex) 호출되는 횟수에 따라 프로그램의 동작이 변경 되는 경우(부가효과 side effect)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위 항목들이 ‘최적화 장애물blocker’이 되는데, 이것은 컴파일러가 최적화된 코드를 생성하기 위한 기회를 제한한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;52-프로그램-성능의-표현&quot;&gt;5.2 프로그램 성능의 표현&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;CPE : 요소당 측정 사이클metric cycle&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;53-프로그램-예제&quot;&gt;5.3 프로그램 예제&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;코드를 최적화하는 방법은 다음과 같은 방법들이 존재한다.
+    &lt;ul&gt;
+      &lt;li&gt;타깃 머신의 특징을 고려하지 않은 최적화 기법
+        &lt;ul&gt;
+          &lt;li&gt;루프 비효율성 제거하기&lt;/li&gt;
+          &lt;li&gt;프로시저 호출 줄이기&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;최신 프로세서의 인스트럭션 수준 병렬성을 고려한 최적화 기법
+        &lt;ul&gt;
+          &lt;li&gt;루프풀기&lt;/li&gt;
+          &lt;li&gt;병렬성 높이기&lt;/li&gt;
+          &lt;li&gt;재결합 변환&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;54-루프-비효율성-제거하기&quot;&gt;5.4 루프 비효율성 제거하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;테스트 조건이 루프의 매 실행마다 평가된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_1.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;lower1은 n^2&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;lower2는 n&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;겉보기에는 의미 없는 코드가 감춰진 잠재적 비효율성을 갖고 있다.&lt;/li&gt;
+  &lt;li&gt;적은 데이터 셋으로 시험하고 분석되지만, 프로그램이 궁극적으로 배포되면, 프로시저가 백만 개 문자들의 스트리에 적용될 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;이러한 상황에 안전했던 코드조각이 주요 성능 병목이 되게된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;경쟁력 있는 프로그래머 역할의 한 부분은 지속적으로 소개되는 그러한 잠재적 비효율성을 피하는것이다&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 19</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)</title><link href="http://localhost:4000/cs:app/csapp_17/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_17</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_17/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
