@@ -1,0 +1,234 @@
+I"�3<h1 id="chapter-05-프로그램-성능-최적화하기">Chapter 05. 프로그램 성능 최적화하기</h1>
+<ul>
+  <li>프로그램을 작성하는 주목적은 모든 가능한 조건에서 프로그램이 정확하게 동작하도록 하는 것이다.</li>
+  <li>프로그래머는 명확하고 간결한 코드를 작성해야하고, 이해하기 쉽고, 코드를 검토할 때와 수정할 때 다른사람들도 코드를 읽고 이해할 수 있어야 한다.</li>
+  <li>효율적인 프로그램을 작성하는 방법
+    <ol>
+      <li>적절한 알고리즘과 자료구조를 선택해야한다.</li>
+      <li>컴파일러가 효과적으로 최적화해서 효율적인 실행코드로 바꿀 수 있는 소스코드를 작성해야 한다.</li>
+      <li>작업을 부분으로 나누어 멀티코어와 멀티프로세서의 조합을 갖는 컴퓨터에서 병렬로 계산한다.</li>
+    </ol>
+  </li>
+  <li>프로그래머는 컴파일러를 도와서 쉽게 최적화될 수 있는 코드를 작성해야한다.
+    <ol>
+      <li>불필요한 작업 제거
+        <ul>
+          <li>불필요한 함수호출 제거</li>
+          <li>조건 테스트 제거</li>
+          <li>메모리 참조 제거</li>
+        </ul>
+      </li>
+      <li>인스트럭션-수준 병렬성을 제공</li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="51-최적화-컴파일러의-능력과-한계">5.1 최적화 컴파일러의 능력과 한계</h1>
+<ul>
+  <li>컴파일러는 프로그래머의 코드를 자동으로 최적화 해준다.</li>
+  <li>하지만 특정 코드는 컴파일러가 자동으로 최적화해줄 수 없다.
+    <ul>
+      <li>두 개의 포인터가 같은 메모리 위치를 가리킬 수 있는 경우(메모리 연결memory aliasing)</li>
+      <li>함수 호출
+        <ul>
+          <li>ex) 호출되는 횟수에 따라 프로그램의 동작이 변경 되는 경우(부가효과 side effect)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>위 항목들이 ‘최적화 장애물blocker’이 되는데, 이것은 컴파일러가 최적화된 코드를 생성하기 위한 기회를 제한한다.</li>
+</ul>
+
+<h1 id="52-프로그램-성능의-표현">5.2 프로그램 성능의 표현</h1>
+<ul>
+  <li>CPE : 요소당 측정 사이클metric cycle</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/19/img.png" width="90%" height="100%" /></p>
+
+<h1 id="53-프로그램-예제">5.3 프로그램 예제</h1>
+<ul>
+  <li>코드를 최적화하는 방법은 다음과 같은 방법들이 존재한다.
+    <ul>
+      <li>타깃 머신의 특징을 고려하지 않은 최적화 기법
+        <ul>
+          <li>루프 비효율성 제거하기</li>
+          <li>프로시저 호출 줄이기</li>
+          <li>불필요한 메모리 참조 제거</li>
+        </ul>
+      </li>
+      <li>최신 프로세서의 인스트럭션 수준 병렬성을 고려한 최적화 기법
+        <ul>
+          <li>루프풀기</li>
+          <li>병렬성 높이기</li>
+          <li>재결합 변환</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>최신프로세서의 인스트럭션 수준 병렬성을 고려하기 위해 5.7절에서 최신프로세서에 대해서 조금 다루고 넘어간다.</p>
+</blockquote>
+
+<h1 id="54-루프-비효율성-제거하기">5.4 루프 비효율성 제거하기</h1>
+<ul>
+  <li>테스트 조건이 루프의 매 실행마다 평가된다.</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/19/img_1.png" width="60%" height="100%" /></p>
+
+<p><img src="../../assets/img/csapp/19/img_2.png" width="60%" height="100%" /></p>
+<ul>
+  <li>lower1은 n^2</li>
+  <li>
+    <p>lower2는 n</p>
+  </li>
+  <li>겉보기에는 의미 없는 코드가 감춰진 잠재적 비효율성을 갖고 있다.</li>
+  <li>적은 데이터 셋으로 시험하고 분석되지만, 프로그램이 궁극적으로 배포되면, 프로시저가 백만 개 문자들의 스트리에 적용될 수 있다.
+    <ul>
+      <li>이러한 상황에 안전했던 코드조각이 주요 성능 병목이 되게된다.</li>
+    </ul>
+  </li>
+  <li><strong>경쟁력 있는 프로그래머 역할의 한 부분은 지속적으로 소개되는 그러한 잠재적 비효율성을 피하는것이다</strong></li>
+</ul>
+
+<h1 id="55-프로시저-호출-줄이기">5.5 프로시저 호출 줄이기</h1>
+<ul>
+  <li>프로시저 호출은 오버헤드를 발생시키고 대부분의 프로그램 최적화 작업을 방해할 수 있다.</li>
+  <li>경계값을 체크하는 것은 배열의 임의로 접근하는 경우를 처리할 때에는 유용할 수 있지만, 특정 경우에는 모든 참조 시도가 유효하다.</li>
+  <li>예제에서 각 벡터의 원소를 가져오기 위해서 작성된 함수(벡터 경계값 체크 함수)를 매번 호출하는 대신 배열에 직접 접근한다.
+    <ul>
+      <li>결벽주의자들은 이렇게 변환하는 것이 프로그램 모듈성을 심각하게 훼손한다고 말할 수 있다.</li>
+      <li><strong>실용적인 프로그래머라면 이러한 변환과정이 고성능 결과를 얻기 위해서 필요한 단계라고 주장할 것이다.</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="56-불필요한-메모리-참조의-제거">5.6 불필요한 메모리 참조의 제거</h1>
+<p><img src="../../assets/img/csapp/19/img_3.png" width="60%" height="100%" /></p>
+
+<p><img src="../../assets/img/csapp/19/img_4.png" width="60%" height="100%" /></p>
+
+<ul>
+  <li>결과값을 임시로 누적한다.
+    <ul>
+      <li>누적값을 지역변수 acc에 저장하면 매 루프 반복실행마다 메모리에서 가져오고 갱신된 값을 다시 기록할 필요가 없어진다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="57-최신-프로세서-이해하기">5.7 최신 프로세서 이해하기</h1>
+<ul>
+  <li>코드의 성능을 더 개선하기 위해서는 프로세서의 마이크로구조, 즉 프로세서가 인스트럭션을 실행하도록 하는 하부 시스템 설계를 활용하는 최적화 기법을 고려해야한다.</li>
+  <li>실제 프로세서에서 많은 인스트럭션들이 동시에 처리된다.
+    <ul>
+      <li>이것을 인스트럭션 수준 병렬성이라고 부른다.</li>
+      <li>두 개의 서로 다른 하위 경계값lower bounds가 프로그램의 최대 성능을 결정한다.
+        <ul>
+          <li>지연시간 경계값 : 일련의 연산들이 엄격하게 순서를 준수하여 수행되어야 할 때 발생</li>
+          <li>처리량 경계값: 프로세서의 기능 유닛들의 기본 계산 능력을 결정한다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="571-전체적인-동작">5.7.1 전체적인 동작</h2>
+<ul>
+  <li>최신 프로세서는 인스트럭션이 실행되는 순서가 기계어 수준 프로그램에서의 순서와 일치할 필요가 없다.
+    <ul>
+      <li>무순서 out-of-order라고 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/19/img_5.png" width="60%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 최신 프로세서의 블록 다이어그램이다.
+    <ul>
+      <li>인스트럭션 제어 유닛(ICU)은 인스트럭션들을 메모리에서 읽고 일련의 기본연산들을 생성하는 역할을 수행한다.</li>
+      <li>그 이후 실행 유닛(EU)은 연산을 수행하여 분기가 정확히 예측되었는지 여부를 나타낸다.</li>
+    </ul>
+  </li>
+  <li>최신 프로세서들은 ‘분기 예측branch prediction’이라는 기술을 사용한다.</li>
+  <li>‘추정 실행speculative execution’이라는 기술을 사용해서 분기가 이동해야 하는 위치에 있는 인스트럭션을 선입하고 해독한다.</li>
+  <li>Fetch control 블록은 분기예측과 연동해서 어떤 인스트럭션을 선입할지를 결정한다.</li>
+  <li>추정 실행을 사용해서 연산들이 계산되지만, 확실할 때까지 최종 결과값들은 데이터 메모리나 레지스터에 저장되지 않는다.</li>
+</ul>
+
+<blockquote>
+  <p>결국 최신 프로세서들은 ‘무순서로 연산들을 병렬로 진행한다.’라고 말하는 것 같다. 하지만, 데이터 의존성이 있는 경우에는 병렬로 진행할 수 없기 때문에 지연이 발생하고,
+이런 데이터 의존성은 컴파일러가 최적화를 할 수 없다.(다른 코드로 변경시 무조건적으로 무결성하다는 것을 입증할 수 없어서) 그렇기 때문에 우리는 데이터 의존성을 줄일 수 있는 코드를 작성하여
+최적화를 한다.</p>
+</blockquote>
+
+<h2 id="572-함수유닛의-성능">5.7.2 함수유닛의 성능</h2>
+<ul>
+  <li>발급시간 issue time: 두 연산 사이에 소요되는 최소 사이클 수</li>
+  <li>용량 capacity: 해당 연산을 수행할 수 있는 함수 유닛의 수</li>
+  <li>지연 latency: 실제 연산을 수행하는 데 걸린 클럭 사이클 수</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/19/img_6.png" width="60%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 인텔 코어 i7의 지연시간과 발급시간 특성이다.</li>
+</ul>
+
+<h3 id="기계수준-코드로부터-데이터흐름-그래프로의-변환">기계수준 코드로부터 데이터흐름 그래프로의 변환</h3>
+<p><img src="../../assets/img/csapp/19/img_4.png" width="60%" height="100%" /></p>
+
+<p><img src="../../assets/img/csapp/19/img_7.png" width="60%" height="100%" /></p>
+<ul>
+  <li>combine4에 대한 내부 루프의 그림
+    <ul>
+      <li>인스트럭션들은 동적으로 하나 또는 두 개의 연산으로 번역된다.</li>
+      <li>각각은 다른 연산들 또는 레지스터들로부터 값들을 받고 다른 연산과 레지스터를 위한 값들을 생성한다.</li>
+    </ul>
+  </li>
+  <li>루프를 구성하는 코드부분에 대해서 접근하게 되는 레지스터들을 다음의 네 종류로 구분할 수 있다.
+    <ul>
+      <li>읽기전용 Read-only : 데이터 또는 메모리 주소를 계산하기 위한 소스 값들로 사용된다.</li>
+      <li>쓰기전용 Write-only : 데이터 이동 연산의 목적지로 사용된다.</li>
+      <li>지역적 Local : 루프 내에서 사용되고 갱신되지만, 한 번의 반복 실행에서 다른 실행으로의 의존성은 없다.
+        <ul>
+          <li>ex) cmp에 의해 갱신되며 jne 연산에 의해 사용된다.</li>
+        </ul>
+      </li>
+      <li>루프 Loop : 한 번의 반복실행에서 생성된 값은 다른 실행에서 사용되는 방식으로 소스 값들로 사용되며 루프의 목적지로도 사용된다.</li>
+    </ul>
+  </li>
+  <li><strong>루프 레지스터들 간의 연산들의 연결이 성능을 제한하는 데이터 의존성을 결정한다.</strong></li>
+</ul>
+
+<p><img src="../../assets/img/csapp/19/img_9.png" width="60%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 combine4 연산들을 데이터 흐름 그래프로 추상화하였다.
+    <ul>
+      <li>(b)를 보면 데이터의존성을 확인할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="58-루프풀기">5.8 루프풀기</h2>
+<ul>
+  <li>루프 풀기는 루프의 매 반복실행마다 계산되는 원소의 수를 증가시켜 루프에서의 반복 실행 횟수를 줄이는 방법이다.</li>
+  <li>루프 풀기는 두가지 측면에서 성능을 개선할 수 있다.
+    <ul>
+      <li>루프 인덱스 계산과 조건부 분기와 같이 프로그램의 결과와는 직접적으로 관련 없는 연산들의 수를 줄인다.</li>
+      <li>전체 계산의 핵심 경로에 있는 연산의 수를 줄이기 위한 추가적인 코드변환을 할 수 있는 방법들을 적용할 수 있게 된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/* default */</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">1</span><span class="p">){</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="cm">/* Combine 2 elements at a time (2X1 루프풀기)*/</span>
+<span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">limit</span><span class="p">;</span> <span class="n">i</span><span class="o">+=</span><span class="mi">2</span><span class="p">){</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="n">OP</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">}</span></code></pre></figure>
+:ET
