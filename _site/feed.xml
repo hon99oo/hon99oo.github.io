@@ -1,133 +1,287 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-22T23:44:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조</title><link href="http://localhost:4000/cs:app/csapp_20/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조" /><published>2022-03-21T00:00:00+09:00</published><updated>2022-03-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_20</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_20/"></content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 20</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)</title><link href="http://localhost:4000/cs:app/csapp_17/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_17</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_17/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
-  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
-  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
-&lt;/ul&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-25T12:26:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조(캐시)</title><link href="http://localhost:4000/cs:app/csapp_21/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조(캐시)" /><published>2022-03-24T00:00:00+09:00</published><updated>2022-03-24T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_21</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_21/">&lt;h1 id=&quot;chapter-06-메모리-계층구조&quot;&gt;Chapter 06 메모리 계층구조&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;저장장치 기술&lt;/li&gt;
+  &lt;li&gt;지역성&lt;/li&gt;
+  &lt;li&gt;메모리 계층구조&lt;/li&gt;
+  &lt;li&gt;캐시메모리&lt;/li&gt;
+  &lt;li&gt;캐시 친화적 코드 작성하기&lt;/li&gt;
+  &lt;li&gt;프로그램 성능에 대한 캐시의 영향&lt;/li&gt;
+  &lt;li&gt;요약&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h1 id=&quot;44-파이프라이닝의-일반-원리&quot;&gt;4.4 파이프라이닝의 일반 원리&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;파이프라인 시스템의 일반적인 특징과 원리들을 생각해보자.
-    &lt;ul&gt;
-      &lt;li&gt;파이프라인 시스템에서 수행해야 할 일은 여러 개의 일련의 단계뜰로 나누어진다.&lt;/li&gt;
-      &lt;li&gt;식당의 예를들면, 샐러드를 먼저 제공하고, 메인 음식, 디저트 그리고 음료의 순으로 제공하는 것과 비슷하다.&lt;/li&gt;
-      &lt;li&gt;컨베이어 벨트와 비슷하게 여러 고객이 동시에 시스템을 진행하도록 한다.&lt;/li&gt;
-      &lt;li&gt;비록 어떤 사람은 일부 음식만을 원할지라도 모든 단계를 통과해 간다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;파이프라이닝의 주요 특징
-    &lt;ul&gt;
-      &lt;li&gt;시스템 처리량(단위시간당 처리하는 고객의 수)을 증가시킨다.&lt;/li&gt;
-      &lt;li&gt;지연시간(고객을 지원하는 데 걸리는 시간)을 증가시킨다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;h1 id=&quot;64-캐시-메모리&quot;&gt;6.4 캐시 메모리&lt;/h1&gt;
 
-&lt;h2 id=&quot;441-계산용-파이프라인&quot;&gt;4.4.1 계산용 파이프라인&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 식당의 예를 계산용 파이프라인으로 초점을 옮기면
-    &lt;ul&gt;
-      &lt;li&gt;“고객들”은 인스트럭션&lt;/li&gt;
-      &lt;li&gt;단계들은 인스트럭션 실행의 일부분을 수행한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;h1 id=&quot;65-캐시-친화적-코드-작성하기&quot;&gt;6.5 캐시 친화적 코드 작성하기&lt;/h1&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;66-프로그램-성능에-대한-캐시의-영향&quot;&gt;6.6 프로그램 성능에 대한 캐시의 영향&lt;/h1&gt;
+
+&lt;h1 id=&quot;67-요약&quot;&gt;6.7 요약&lt;/h1&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 21</summary></entry><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조(메모리 계층구조와 지역성)</title><link href="http://localhost:4000/cs:app/csapp_20/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조(메모리 계층구조와 지역성)" /><published>2022-03-21T00:00:00+09:00</published><updated>2022-03-21T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_20</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_20/">&lt;h1 id=&quot;chapter-06-메모리-계층구조&quot;&gt;Chapter 06. 메모리 계층구조&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;위의 그림은 간단한 비파이프라인 하드웨어 시스템의 예이다.
+  &lt;li&gt;메모리 시스템은 용량, 비용, 접근시간을 갖는 저장장치들의 계층구조다.
     &lt;ul&gt;
-      &lt;li&gt;계산을 수행하는 일부 로직으로 이루어진다.&lt;/li&gt;
-      &lt;li&gt;계산 결과를 저장하는 레지스터가 따라온다.&lt;/li&gt;
-      &lt;li&gt;클럭 신호는 규칙적인 시간간격으로 레지스터에 로딩되는 것을 제어한다.&lt;/li&gt;
+      &lt;li&gt;캐시메모리는 CPU 부근에서 비교적 느린 메인메모리에 대한 준비장소&lt;/li&gt;
+      &lt;li&gt;메인메모리는 크고 느린 디스크들에 대한 준비장소&lt;/li&gt;
+      &lt;li&gt;디스크들은 네트워크로 연결된 다른 머신들의 준비장소&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;이 예제에서는 조합로직은 300ps를 필요로하고 레지스터 로딩은 20ps를 필요로 한다.
+  &lt;li&gt;메모리의 계층별로 접근 속도가 상이하다.
     &lt;ul&gt;
-      &lt;li&gt;이 시스템에서 처리량은 1/320 * 1,000 = 3.12&lt;/li&gt;
-      &lt;li&gt;이 시스템에서 지연시간은 320ps&lt;/li&gt;
+      &lt;li&gt;레지스터가 가장 빠르고, 그 다음은 메인메모리, 그 다음은 디스크이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;데이터를 계층의 상부에 저장시켜서 CPU가 보다 빨리 접근할 수 있도록 프로그램을 작성해야한다.
+    &lt;ul&gt;
+      &lt;li&gt;이 개념은 지역성locality라고 알려진 컴퓨터 프로그램의 근본특징에 근거를 두고 있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위 그림은 3단계 파이프라인 계산 하드웨어이다.
-    &lt;ul&gt;
-      &lt;li&gt;시스템에서 수행하는 계산을 세 단계 A,B,C로 나눌 수 있다고 가정한다.&lt;/li&gt;
-      &lt;li&gt;파이프라인 레지스터들을 단계 사이에 배치해서 각 인스트럭션이 3단계로 시스템을 통해 이동한다.&lt;/li&gt;
-      &lt;li&gt;시작부토 종료할 때까지 세 개의 클럭 사이클이 소요된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이 예제에서는 클럭을 매 100+20=120ps이고 한 개의 인스트럭션을 처리하는 데 3클럭 사이클이 필요하다.
-    &lt;ul&gt;
-      &lt;li&gt;이 시스템에서 처리량은 1/120 * 1,000 = 8.33&lt;/li&gt;
-      &lt;li&gt;이 시스템에서 지연시간은 360ps&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;비파이프라인 보다 처리량은 빠르지만 지연시간이 증가한 이유는 추가된 파이프라인 레지스터에 의한 오버헤드 때문이다.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h1 id=&quot;61-저장장치-기술&quot;&gt;6.1 저장장치 기술&lt;/h1&gt;
 
-&lt;h2 id=&quot;442-파이프라인-연산의-상세한-고찰&quot;&gt;4.4.2 파이프라인 연산의 상세한 고찰&lt;/h2&gt;
+&lt;h2 id=&quot;611-랜덤-접근-메모리&quot;&gt;6.1.1 랜덤-접근 메모리&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;파이프라인 단계들 간에 인스트럭션의 이동은 위의 파이프라인 다이어그램에 나타낸 것과 같이 클럭 신호에 의해 제어된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위 그림은 한 사이클 동안의 파이프라인 동작이다.
+  &lt;li&gt;랜덤-접근 메모리(RAM)은 두 종류를 가진다.
     &lt;ul&gt;
-      &lt;li&gt;신호들은 파이프라인 레지스터 입력들로 전달되지만, 클럭이 상승할 때까지 레지스터의 상태는 바뀌지 않는다.&lt;/li&gt;
-      &lt;li&gt;클럭을 늦추는 것이 파이프라인의 동작을 변화시키지 않는다는 것을 알 수 있다.&lt;/li&gt;
+      &lt;li&gt;정적 SRAM : 동적램 DRAM 보다 더 빠르고 훨 씬 비싸다. 캐시메모리로 사용된다.&lt;/li&gt;
+      &lt;li&gt;동적 DRAM : 메인메모리와 그래픽 시스템의 프레임 버퍼로도 사용된다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;443-파이프라이닝의-한계&quot;&gt;4.4.3 파이프라이닝의 한계&lt;/h2&gt;
+&lt;h3 id=&quot;정적-sram&quot;&gt;정적 SRAM&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;파이프라인의 효과를 축소시키는 여러 요소들이 종종 발생한다.&lt;/li&gt;
+  &lt;li&gt;SRAM은 각 비트를 이중안정bistable 메모리 셀cell에 저장한다.&lt;/li&gt;
+  &lt;li&gt;SRAM은 전원이 공급되는 한 지속성을 갖는다.&lt;/li&gt;
+  &lt;li&gt;리프레시가 필요없다.&lt;/li&gt;
+  &lt;li&gt;DRAM보다 트랜지스터를 더 많이 사용하여 밀도가 낮으며 비싸고 전력을 많이 사용한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;비균일-분리-nonuniform-partitioning&quot;&gt;비균일 분리 Nonuniform Partitioning&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;동적-dram&quot;&gt;동적 DRAM&lt;/h3&gt;
 &lt;ul&gt;
-  &lt;li&gt;위의 그림은 계산을 이전처럼 세 단계로 나눈 시스템이지만 각 단계에서 발생하는 지연시간은 50에서 150 ps까지 변화한다.&lt;/li&gt;
-  &lt;li&gt;우리가 구동할 수 있는 클럭의 속도는 가장 늦은 단계의 시간지연 값에 의해 결정된다.&lt;/li&gt;
-  &lt;li&gt;실제 시스템 설계에서는 타이밍을 최적화하는 것이 중요하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;줄어드는-깊은-파이프라이닝의-효과&quot;&gt;줄어드는 깊은 파이프라이닝의 효과&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 계산을 여섯 단계로 나누었고, 각각은 50ps를 소모한다.&lt;/li&gt;
-  &lt;li&gt;이 시스템의 클럭 주기는 50+20=70ps, 처리량은 14.29, 지연시간은 480이다.&lt;/li&gt;
-  &lt;li&gt;각 계산 블록에서 소요되는 시간을 2분의 1로 줄였지만 파이프라인 레지스터를 통과하는 시간지연으로 인해 처리량은 두 배를 얻지 못했다.&lt;/li&gt;
-  &lt;li&gt;이 지연시간은 파이프라인의 처리량에 있어서 제한요소가 된다.&lt;/li&gt;
-  &lt;li&gt;최신 프로세서들은 프로세서의 클럭속도를 최대로 올리기 위해 매우 깊은(15단계 이상) 파이프라인을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;444-피드백을-갖는-파이프라인-시스템&quot;&gt;4.4.4 피드백을 갖는 파이프라인 시스템&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;기계어 프로그램을 실행하는 시스템에서는 연속적인 인스트럭션들 간에는 잠재적인 의존성이 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_5.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;예를들어 위의 코드 배열은 각각의 연속되는 인스트럭션들 간에 원으로 표시한 레지스터 이름에 데이터 의존성이 존재한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 피드백을 갖는 시스템에 파이프라인을 추가할 때의 위험을 보여준다.
+  &lt;li&gt;DRAM은 각 비트를 전하로 캐패시터에 저장한다.&lt;/li&gt;
+  &lt;li&gt;리프레시가 필요하다.
     &lt;ul&gt;
-      &lt;li&gt;피드백이 있는 파이프라인을 사용하지 않는 시스템(a)에서 파이프라인 시스템(c)으로 전환하기 위해서 두 파이프라인 다이어그램에서 보는 바와 같이 계산적인 동작을 변경한다(b와d)&lt;/li&gt;
+      &lt;li&gt;메모리 시스템은 주기적으로 메모리의 모든 비트를 읽었다가 다시 써 주는 방식&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 17</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)</title><link href="http://localhost:4000/cs:app/csapp_18/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_18</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_18/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;일반-dram&quot;&gt;일반 DRAM&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 DRAM 칩의 구조이다.&lt;/li&gt;
+  &lt;li&gt;DRAM 칩 내의 셀들은 d 슈퍼셀들로 나누어지며, 각각은 w DRAM 셀들로 이루어진다.&lt;/li&gt;
+  &lt;li&gt;슈퍼셀 (i,j)의 내용을 읽으려면 메모리 컨트롤러는 행 주소 i를 DRAM에 보내고, 다음에 열 주소 j를 보낸다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_1.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 DRAM 슈퍼셀의 내용을 읽는 과정이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;메모리-모듈&quot;&gt;메모리 모듈&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;DRAM 칩은 메인 시스템(머더보드)의 확상슬롯에 꽂을 수 있는 메모리 모듈 형태로 패키징 된다.&lt;/li&gt;
+  &lt;li&gt;DRAM을 여러개 추가하여 바이트를 순서대로 저장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;비휘발성-메모리&quot;&gt;비휘발성 메모리&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;DRAM과 SRAM은 전원이 꺼지면 정보도 잃어버리기 때문에 휘발성이다.&lt;/li&gt;
+  &lt;li&gt;비휘발성 메모리는 이들의 전원 꺼져도 정보를 유지한다.&lt;/li&gt;
+  &lt;li&gt;Read-only memory : ROM 이라고 부른다.&lt;/li&gt;
+  &lt;li&gt;ROM 디바이스에 저장된 프로그램들은 종종 펌웨어firmware라고 부른다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;메모리에-접근하기&quot;&gt;메모리에 접근하기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;데이터는 ‘버스’라고 하는 공유된 전기회로를 통해서 프로세서와 DRAM메인메모리간에 앞뒤로 교환한다.&lt;/li&gt;
+  &lt;li&gt;CPU와 메모리 간의 매 전송은 버스 트랜잭션bus transaction이라고 부르는 일련의 단계들을 통해 이뤄진다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 그림은 CPU와 메인메모리를 연결하는 버스 구조다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;읽기 트랜잭션(movq A,%rax)
+    &lt;ol&gt;
+      &lt;li&gt;CPU는 주소 A를 시스템 버스에 보낸다. I/O브릿지는 신호를 메모리 버스를 따라 보낸다.&lt;/li&gt;
+      &lt;li&gt;메인메모리는 메모리 버스에서 주소 신호를 감지하고, 메모리 버스로부터 주소를 읽고 DRAM에서 데이터 워드를 선입, 데이터를 메모리 버스에 쓴다.&lt;/li&gt;
+      &lt;li&gt;I/O 브릿지는 신호를 시스템 버스 신호로 변환해서 시스템 버스를 따라 보낸다. CPU는 시스템 버스에서 데이터를 감지하고 %rax에 복사한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;쓰기 트랜잭션(movq %rax,A)
+    &lt;ol&gt;
+      &lt;li&gt;CPU는 주소를 시스템 버스에 보낸다. 메모리는 메모리 버스에서 주소를 읽고 데이터가 도착하기를 기다린다.&lt;/li&gt;
+      &lt;li&gt;CPU는 %rax에 있는 데이터를 시스템 버스에 복사한다.&lt;/li&gt;
+      &lt;li&gt;메인메모리는 데이터를 메모리 버스에서 읽고 비트들을 저장한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;612-디스크-저장장치&quot;&gt;6.1.2 디스크 저장장치&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;디스크는 RAM 메모리의 수천 메가바이트 단위에 비해 수백에서 수천 기가비이트 단위의 엄청난 양의 데이터를 저장하는 대표적인 저장장치다.&lt;/li&gt;
+  &lt;li&gt;디스크 용량
+    &lt;ul&gt;
+      &lt;li&gt;기록밀도: 1인치의 트랙에 집어넣을 수 있는 비트의 수&lt;/li&gt;
+      &lt;li&gt;트랙밀도: 원판 중심에서 반지름의 1인치 길이에 넣을 수 있는 트랙의 수&lt;/li&gt;
+      &lt;li&gt;면적밀도: 기록밀도와 트랙밀도의 곱&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;디스크의 동작
+    &lt;ul&gt;
+      &lt;li&gt;탐색시간: 섹터의 내용을 읽기위해 헤드를 타깃 섹터를 보유한 트랙 위로 위치시키는 시간&lt;/li&gt;
+      &lt;li&gt;회전 지연시간: 헤드가 트랙 위에 위치하면 타깃 섹터의 첫번째 비트가 헤드 아래로 지나가는 것을 기다리는 시간.(헤드의 위치와 디스크의 회전 속도 모두 관련됨)&lt;/li&gt;
+      &lt;li&gt;전송시간: 하나의 섹터를 전송하는 시간(회전속도와 트랙당 섹터 수에 관련됨)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;디스크 접근하기(디스크 섹터 읽기)
+    &lt;ol&gt;
+      &lt;li&gt;CPU는 명령어, 논리블록 번호, 목적지 메모리 주소를 디스크와 관련된 메모리 매핑한 주소에 써주어서 디스크 읽기를 개시한다.&lt;/li&gt;
+      &lt;li&gt;디스크 컨트롤러는 이 섹터를 읽고 메인메모리로 DMA 전송을 수행한다.&lt;/li&gt;
+      &lt;li&gt;DMA 전송이 완료될 때, 디스크 컨트롤러는 CPU에 인터럽트로 알려준다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;62-지역성&quot;&gt;6.2 지역성&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;잘 작성한 컴퓨터 프로그램은 좋은 지역성locality를 보여준다.
+    &lt;ul&gt;
+      &lt;li&gt;최근에 참조했던 데이터 아이템 근처의 데이터 아이템이나 최근에 자신을 참조했던 데이터 아이템을 참조하려는 경향이 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;지역성은 두가지 형태가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;시간 지역성 : 한번 참조된 메모리 위치는 여러 번 참조될 가능성이 높다.&lt;/li&gt;
+      &lt;li&gt;공간 지역성 : 한번 참조된 메모리는 근처의 메모리 위치를 참조할 가능성이 높다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;캐시 메모리 : 가장 최근에 참조한 인스트럭션과 데이터 아이템의 블록을 저장
+    &lt;ul&gt;
+      &lt;li&gt;캐시 메모리라는 작고 빠른 메모리를 도입하여 메인메모리를 빠르게 돌릴 수 있게 됐다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;621-프로그램-데이터-참조의-지역성&quot;&gt;6.2.1 프로그램 데이터 참조의 지역성&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 코드는 좋은 지역성을 갖는다.
+    &lt;ul&gt;
+      &lt;li&gt;행 우선 순서로 접근되기 때문이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 코드는 나쁜 지역성을 갖는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sum1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 코드도 썩 좋은 지역성을 갖고 있지는 않다.
+    &lt;ul&gt;
+      &lt;li&gt;보폭이 존재하기 때문&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;622-지역성-요약&quot;&gt;6.2.2 지역성 요약&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;동일한 변수들을 반복적으로 참조하는 프로그램은 좋은 시간 지역성&lt;/li&gt;
+  &lt;li&gt;Stride-k참조 패턴에서 stride가 적으면 적을수록 공간 지역성도 좋아진다.&lt;/li&gt;
+  &lt;li&gt;루프는 인스트럭션 선입에 대해 좋은 시간 및 공간 지역성을 갖는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;63-메모리-계층구조&quot;&gt;6.3 메모리 계층구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;아래 두가지를 보완하기 위해 ‘메모리 계층구조’라고 알려진 메모리 시스템 조직을 위한 접근 방법을 사용한다.
+    &lt;ul&gt;
+      &lt;li&gt;저장장치 기술 : 다양한 저장장치 기술들은 매우 광범위한 접근시간을 갖는다.&lt;/li&gt;
+      &lt;li&gt;컴퓨터 소프트웨어 : 잘 작성한 프로그램들은 좋은 지역성을 나타내는 경향이 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 메모리 계층구조이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;631-메모리-계층구조에서의-캐시&quot;&gt;6.3.1 메모리 계층구조에서의 캐시&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;캐시는 보다 크고 느린 디바이스에 저장된 데이터 객체를 위한 준비 영역으로 사용하는 작고 빠른 저장장치다.&lt;/li&gt;
+  &lt;li&gt;메모리 계층구조의 중심 개념은, 레벨 k에 있는 보다 빠르고 더 작은 장치가 레벨 k+1을 위한 캐시 서비스를 제공한다는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_5.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 메모리 계층구조에서 캐싱의 기본 원리이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;캐시-적중&quot;&gt;캐시 적중&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;레벨 k+1로부터 특정 데이터 객체 d를 필요로 한다.&lt;/li&gt;
+  &lt;li&gt;현재 레벨 k에 저장된 블록들 중의 하나에서 d를 찾는다.&lt;/li&gt;
+  &lt;li&gt;만일 d가 레벨 k에서 우연히 캐시되어 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;캐시-미스&quot;&gt;캐시 미스&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;만일 d가 레벨 k에서 캐시되지 않는다면 ‘캐시 미스’가 발생한 것이다.&lt;/li&gt;
+  &lt;li&gt;k+1에 있는 캐시로부터 d를 포함하는 블록을 가져온다.&lt;/li&gt;
+  &lt;li&gt;만일 레벨 k 캐시가 이미 꽉 찬 상태full라면 기존 블록에 덮어쓴다.
+    &lt;ul&gt;
+      &lt;li&gt;축출 : 기존 블록을 덮어쓰는 과정&lt;/li&gt;
+      &lt;li&gt;희생블록 : 축출되는 블록&lt;/li&gt;
+      &lt;li&gt;교체정책 : 어떤 블록을 교체할지에 관한 결정&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;캐시-미스-종류&quot;&gt;캐시 미스 종류&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;cold cache : 캐시가 비어있을 때&lt;/li&gt;
+  &lt;li&gt;충돌미스conflict miss : 캐시의 배치 정책으로 인한 캐시 미스&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;캐시-관리&quot;&gt;캐시 관리&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리 계층 구조의 핵심은 각 레벨에 있는 저장장치가 다음 낮은 레벨을 위한 캐시&lt;/li&gt;
+  &lt;li&gt;레벨 L1,L2,L3의 캐시들은 캐시에 구현된 하드웨어 로직으로 전적으로 관리된다.&lt;/li&gt;
+  &lt;li&gt;가상모메리를 사용하는 시스템에서 DRAM메인메모리는디스크에 저장된 데이터 블록에 대한 캐시 서비스를 제공한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 20</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)</title><link href="http://localhost:4000/cs:app/csapp_18/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_18</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_18/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
   &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
@@ -555,7 +709,136 @@
 
 &lt;blockquote&gt;
   &lt;p&gt;2장부터 4장이 하드웨어까지의 모든 부분들을 살펴본 것 같다. 4장은 꼭 한번 더 읽어보자.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 18</summary></entry><entry><title type="html">[CS:APP] Chapter 05 프로그램 성능 최적화하기</title><link href="http://localhost:4000/cs:app/csapp_19/" rel="alternate" type="text/html" title="[CS:APP] Chapter 05 프로그램 성능 최적화하기" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_19</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_19/">&lt;h1 id=&quot;chapter-05-프로그램-성능-최적화하기&quot;&gt;Chapter 05. 프로그램 성능 최적화하기&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 18</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)</title><link href="http://localhost:4000/cs:app/csapp_17/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_17</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_17/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
+  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
+  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;44-파이프라이닝의-일반-원리&quot;&gt;4.4 파이프라이닝의 일반 원리&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;파이프라인 시스템의 일반적인 특징과 원리들을 생각해보자.
+    &lt;ul&gt;
+      &lt;li&gt;파이프라인 시스템에서 수행해야 할 일은 여러 개의 일련의 단계뜰로 나누어진다.&lt;/li&gt;
+      &lt;li&gt;식당의 예를들면, 샐러드를 먼저 제공하고, 메인 음식, 디저트 그리고 음료의 순으로 제공하는 것과 비슷하다.&lt;/li&gt;
+      &lt;li&gt;컨베이어 벨트와 비슷하게 여러 고객이 동시에 시스템을 진행하도록 한다.&lt;/li&gt;
+      &lt;li&gt;비록 어떤 사람은 일부 음식만을 원할지라도 모든 단계를 통과해 간다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;파이프라이닝의 주요 특징
+    &lt;ul&gt;
+      &lt;li&gt;시스템 처리량(단위시간당 처리하는 고객의 수)을 증가시킨다.&lt;/li&gt;
+      &lt;li&gt;지연시간(고객을 지원하는 데 걸리는 시간)을 증가시킨다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;441-계산용-파이프라인&quot;&gt;4.4.1 계산용 파이프라인&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 식당의 예를 계산용 파이프라인으로 초점을 옮기면
+    &lt;ul&gt;
+      &lt;li&gt;“고객들”은 인스트럭션&lt;/li&gt;
+      &lt;li&gt;단계들은 인스트럭션 실행의 일부분을 수행한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 간단한 비파이프라인 하드웨어 시스템의 예이다.
+    &lt;ul&gt;
+      &lt;li&gt;계산을 수행하는 일부 로직으로 이루어진다.&lt;/li&gt;
+      &lt;li&gt;계산 결과를 저장하는 레지스터가 따라온다.&lt;/li&gt;
+      &lt;li&gt;클럭 신호는 규칙적인 시간간격으로 레지스터에 로딩되는 것을 제어한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 예제에서는 조합로직은 300ps를 필요로하고 레지스터 로딩은 20ps를 필요로 한다.
+    &lt;ul&gt;
+      &lt;li&gt;이 시스템에서 처리량은 1/320 * 1,000 = 3.12&lt;/li&gt;
+      &lt;li&gt;이 시스템에서 지연시간은 320ps&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 3단계 파이프라인 계산 하드웨어이다.
+    &lt;ul&gt;
+      &lt;li&gt;시스템에서 수행하는 계산을 세 단계 A,B,C로 나눌 수 있다고 가정한다.&lt;/li&gt;
+      &lt;li&gt;파이프라인 레지스터들을 단계 사이에 배치해서 각 인스트럭션이 3단계로 시스템을 통해 이동한다.&lt;/li&gt;
+      &lt;li&gt;시작부토 종료할 때까지 세 개의 클럭 사이클이 소요된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 예제에서는 클럭을 매 100+20=120ps이고 한 개의 인스트럭션을 처리하는 데 3클럭 사이클이 필요하다.
+    &lt;ul&gt;
+      &lt;li&gt;이 시스템에서 처리량은 1/120 * 1,000 = 8.33&lt;/li&gt;
+      &lt;li&gt;이 시스템에서 지연시간은 360ps&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비파이프라인 보다 처리량은 빠르지만 지연시간이 증가한 이유는 추가된 파이프라인 레지스터에 의한 오버헤드 때문이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;442-파이프라인-연산의-상세한-고찰&quot;&gt;4.4.2 파이프라인 연산의 상세한 고찰&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;파이프라인 단계들 간에 인스트럭션의 이동은 위의 파이프라인 다이어그램에 나타낸 것과 같이 클럭 신호에 의해 제어된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 한 사이클 동안의 파이프라인 동작이다.
+    &lt;ul&gt;
+      &lt;li&gt;신호들은 파이프라인 레지스터 입력들로 전달되지만, 클럭이 상승할 때까지 레지스터의 상태는 바뀌지 않는다.&lt;/li&gt;
+      &lt;li&gt;클럭을 늦추는 것이 파이프라인의 동작을 변화시키지 않는다는 것을 알 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;443-파이프라이닝의-한계&quot;&gt;4.4.3 파이프라이닝의 한계&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;파이프라인의 효과를 축소시키는 여러 요소들이 종종 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;비균일-분리-nonuniform-partitioning&quot;&gt;비균일 분리 Nonuniform Partitioning&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 계산을 이전처럼 세 단계로 나눈 시스템이지만 각 단계에서 발생하는 지연시간은 50에서 150 ps까지 변화한다.&lt;/li&gt;
+  &lt;li&gt;우리가 구동할 수 있는 클럭의 속도는 가장 늦은 단계의 시간지연 값에 의해 결정된다.&lt;/li&gt;
+  &lt;li&gt;실제 시스템 설계에서는 타이밍을 최적화하는 것이 중요하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;줄어드는-깊은-파이프라이닝의-효과&quot;&gt;줄어드는 깊은 파이프라이닝의 효과&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 계산을 여섯 단계로 나누었고, 각각은 50ps를 소모한다.&lt;/li&gt;
+  &lt;li&gt;이 시스템의 클럭 주기는 50+20=70ps, 처리량은 14.29, 지연시간은 480이다.&lt;/li&gt;
+  &lt;li&gt;각 계산 블록에서 소요되는 시간을 2분의 1로 줄였지만 파이프라인 레지스터를 통과하는 시간지연으로 인해 처리량은 두 배를 얻지 못했다.&lt;/li&gt;
+  &lt;li&gt;이 지연시간은 파이프라인의 처리량에 있어서 제한요소가 된다.&lt;/li&gt;
+  &lt;li&gt;최신 프로세서들은 프로세서의 클럭속도를 최대로 올리기 위해 매우 깊은(15단계 이상) 파이프라인을 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;444-피드백을-갖는-파이프라인-시스템&quot;&gt;4.4.4 피드백을 갖는 파이프라인 시스템&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;기계어 프로그램을 실행하는 시스템에서는 연속적인 인스트럭션들 간에는 잠재적인 의존성이 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_5.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;예를들어 위의 코드 배열은 각각의 연속되는 인스트럭션들 간에 원으로 표시한 레지스터 이름에 데이터 의존성이 존재한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 피드백을 갖는 시스템에 파이프라인을 추가할 때의 위험을 보여준다.
+    &lt;ul&gt;
+      &lt;li&gt;피드백이 있는 파이프라인을 사용하지 않는 시스템(a)에서 파이프라인 시스템(c)으로 전환하기 위해서 두 파이프라인 다이어그램에서 보는 바와 같이 계산적인 동작을 변경한다(b와d)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 17</summary></entry><entry><title type="html">[CS:APP] Chapter 05 프로그램 성능 최적화하기</title><link href="http://localhost:4000/cs:app/csapp_19/" rel="alternate" type="text/html" title="[CS:APP] Chapter 05 프로그램 성능 최적화하기" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_19</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_19/">&lt;h1 id=&quot;chapter-05-프로그램-성능-최적화하기&quot;&gt;Chapter 05. 프로그램 성능 최적화하기&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;프로그램을 작성하는 주목적은 모든 가능한 조건에서 프로그램이 정확하게 동작하도록 하는 것이다.&lt;/li&gt;
   &lt;li&gt;프로그래머는 명확하고 간결한 코드를 작성해야하고, 이해하기 쉽고, 코드를 검토할 때와 수정할 때 다른사람들도 코드를 읽고 이해할 수 있어야 한다.&lt;/li&gt;
@@ -903,7 +1186,140 @@
 그리고 5장을 공부하면서 뭔가 “득도”를 하게 된 것 같다. 다양한 부분들의 이해가 빨라졌다. 앞으로 챕터를 공부하고 나의 방식으로 녹인 후 포스팅을 하는 것으로 포스팅 방향을 바꿀 것이다.&lt;/p&gt;
 
   &lt;p&gt;6장은 드디어 메모리 파트이다. 너무 기대된다!&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 19</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)</title><link href="http://localhost:4000/cs:app/csapp_15/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)" /><published>2022-03-17T00:00:00+09:00</published><updated>2022-03-17T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_15</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_15/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 19</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.4 SEQ 단계의 구현)</title><link href="http://localhost:4000/cs:app/csapp_16/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.4 SEQ 단계의 구현)" /><published>2022-03-17T00:00:00+09:00</published><updated>2022-03-17T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_16</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_16/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
+  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
+  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
+  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
+  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;434-seq-단계의-구현&quot;&gt;4.3.4 SEQ 단계의 구현&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ를 구현하는 데 필요한 제어로직 블록을 위한 HCL작성방법을 설명한다.&lt;/li&gt;
+  &lt;li&gt;여러가지 인스트럭션 코드, 함수코드, 레지스트 이름, ALU 연산, 상태코드 등을 위한 상수 값뿐만 아니라 여러가지 하드웨어 신호의 이름이 포함된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 표는 HCL 문장에 사용된 상수 값들이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;선입-단계&quot;&gt;선입 단계&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;선입 단계는 인스트럭션 메모리 하드웨어 유닛을 포함한다.&lt;/li&gt;
+  &lt;li&gt;유닛은 PC를 첫 바이트(0번 바이트)의 주소로 사용해서 메모리로부터 한 번에 10바이트를 읽어들인다.&lt;/li&gt;
+  &lt;li&gt;이 바이트는 인스트럭션 바이트로 해석되고, 두 개의 4비트 값으로 나누어진다.(“Split”이라고 표시된 유닛에 의해 icode와 ifun으로 나뉜다.)&lt;/li&gt;
+  &lt;li&gt;icode 값에 따라 세 개의 1비트 신호를 계산할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;instr_valid: 이 신호는 부정 인스트럭션을 검출하기 위해 사용된다.&lt;/li&gt;
+      &lt;li&gt;need_regids: 레지스터 지정 바이트를 포함하는가&lt;/li&gt;
+      &lt;li&gt;need_valC: 상수 워드를 포함하는가&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;instr_valid, imem_error 신호(인스트럭션 주소가 범위를 벗어날 때 만들어지는)는 메모리 단계에서 상태코드를 만들기 위해 사용된다.&lt;/li&gt;
+  &lt;li&gt;need_regids를 위한 HCL 표현은 icode 값이 레지스터 지정자 바이트를 갖는 인스트럭션인지를 결정한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;need_regids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;icode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IRRMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IOPQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IPUSHQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IPOPQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                     &lt;span class=&quot;no&quot;&gt;IIRMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IRMMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IMRMOVQ&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인스트럭션 메모리에서 읽은 나머지 바이트는 레지스터 지정자와 상수 워드들이다.
+    &lt;ul&gt;
+      &lt;li&gt;Align 이라고 이름 붙인 하드웨어 유닛이 레지스터 필드들과 상수 워드에 대해 처리작업을 수행한다.&lt;/li&gt;
+      &lt;li&gt;계산된 need_regids가 1이면, 레지스터 지정자 rA와 rB로 나누어진다.&lt;/li&gt;
+      &lt;li&gt;상수 워드 valC도 만든다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PC 증가 하드웨어 유닛은 현재의 PC 값, need_regids, need_ValC에 따라 valP를 만든다. (p+1+r+8i)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;해동과-재기록-단계&quot;&gt;해동과 재기록 단계&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEQ에서 해독과 재기록 단계 모두를 구현하는 로직의 상세한 모습을 보여준다.
+    &lt;ul&gt;
+      &lt;li&gt;해동과 재기록 단계 모두 레지스터 파일에 접근하기 때문이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;레지스터 파일은 네 개의 포트를 가지고 있다.
+    &lt;ul&gt;
+      &lt;li&gt;두 개의 동시 읽기(포트 A와 B), 두 개의 동시 쓰기(포트 E와 M)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;각 포트는 한 개의 주소 연결과 데이터 연결을 모두 갖는다.
+    &lt;ul&gt;
+      &lt;li&gt;주소 연결은 레지스터 ID, 데이터 연결은 레지스터 파일의 출력 워드 이거나 입력워드로 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;두 개의 읽기 포트는 주소 입력 srcA와 srcB를 가진다.&lt;/li&gt;
+  &lt;li&gt;두 개의 쓰기 포트는 dstE와 dstM을 주소 입력으로 갖느다.&lt;/li&gt;
+  &lt;li&gt;네 개의 블록은 인스트럭션 코드 icode, 레지스터 지정자 rA, rB, 실행 단계에서 계산된 조건신호 Cnd에 기초하여 네 개의 레지스터 ID를 만들어 낸다.&lt;/li&gt;
+  &lt;li&gt;레지스터 ID dstE는 쓰기 포트 E를 위한 목적지 레지스터를 나타내며 계싼된 valE가 저장된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;실행-단계&quot;&gt;실행 단계&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;실행 단계는 산술/논리 유닛(ALU)을 포함한다.&lt;/li&gt;
+  &lt;li&gt;이 유닛은 ADD, SUBTRACT, AND, EXCLUSIVE-OR를 입력 aluA, aluB에 alufun 신호의 설정에 따라 실행한다.&lt;/li&gt;
+  &lt;li&gt;ALU가 대부분의 경우에 덧셈기로 사용된다.
+    &lt;ul&gt;
+      &lt;li&gt;OPq 인스트럭션에 대해서는 인스트럭션의 ifun 필드에 인코딩된 연산을 사용해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;실행 단계는 조건코드 레지스터를 포함한다.
+    &lt;ul&gt;
+      &lt;li&gt;조건코드 레지스터가 갱신되어야 할지 여부는 제어하는 set_cc 신호를 생성한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“cond”로 명명된 하드웨어 유닛은 조건부 분기나 데이터 이동이 일어나야 할지를 결정하기 위한 조건코드들과 함수코드의 조합을 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;메모리-단계&quot;&gt;메모리 단계&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리 단계는 프로그램 데이터를 읽거나 쓰는 일을 수행한다.&lt;/li&gt;
+  &lt;li&gt;두 개의 제어 블록이 메모리주소와 메모리 입력 데이터(쓰기 연산을 위한)를 위한 값을 만들어낸다.&lt;/li&gt;
+  &lt;li&gt;메모리 단계에서 마지막 기능은 icode, imem_error, 선입 단계에서 만들어진 instr_valid, 데이터 메모리에서 만든 dmem_error 신호에 따라 인스트럭션 실행에서 결정되는 상태코드 Stat을 계산하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pc-갱신-단계&quot;&gt;PC 갱신 단계&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;SEQ의 최종 단계는 새로운 프로그램 카운터 값을 생성하는 것이다.&lt;/li&gt;
+  &lt;li&gt;새로운 PC 값은 인스트럭션 타입과 분기를 택할지 여부에 따라 valC, valM, valP가 될 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;seq-현황-조사&quot;&gt;SEQ 현황 조사&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;여러 인스트럭션을 통일된 흐름으로 실행하기 위해 필요한 단계를 구성하면서 프로세서 전체를 적은 수의 여러 하드웨어 유닛들과 계산을 순서화하기 위한 한 개이의 클럭으로 구현할 수 있다.&lt;/li&gt;
+  &lt;li&gt;SEQ에서 유일한 문제는 매우 느리다.
+    &lt;ul&gt;
+      &lt;li&gt;그 이유는 각 유닛들이 전체 클럭 사이클의 일부 동안만 사용되기 때문이다.&lt;/li&gt;
+      &lt;li&gt;그렇기 때문에 파이프라인을 사용해서 보다 좋은 성능을 얻을 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;프로세서의 구조를 자세히 살펴보았는데, 굉장히 이해하기 어려운 부분이 많았다. 이번 챕터는 자주 보고 다른 자료도 더 찾아봐야겠다.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 16</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)</title><link href="http://localhost:4000/cs:app/csapp_15/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.2 SEQ 하드웨어 구조)" /><published>2022-03-17T00:00:00+09:00</published><updated>2022-03-17T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_15</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_15/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
   &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
@@ -1040,140 +1456,7 @@
   &lt;/li&gt;
   &lt;li&gt;상태 원소들의 갱신을 제어하기 위해서 조합회로를 통한 값들의 전파와 함께 클럭을 사용하면 SEQ에서 각 인스트럭션을 위해 수행한 계산들을 충분히 제어할 수 있다.&lt;/li&gt;
   &lt;li&gt;클럭이 low에서 high로 전환이 이루어지는 매 시점마다 프로세서는 새 인스트럭션의 실행을 시작한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 15</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.4 SEQ 단계의 구현)</title><link href="http://localhost:4000/cs:app/csapp_16/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.4 SEQ 단계의 구현)" /><published>2022-03-17T00:00:00+09:00</published><updated>2022-03-17T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_16</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_16/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
-  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
-  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
-  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
-  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;434-seq-단계의-구현&quot;&gt;4.3.4 SEQ 단계의 구현&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SEQ를 구현하는 데 필요한 제어로직 블록을 위한 HCL작성방법을 설명한다.&lt;/li&gt;
-  &lt;li&gt;여러가지 인스트럭션 코드, 함수코드, 레지스트 이름, ALU 연산, 상태코드 등을 위한 상수 값뿐만 아니라 여러가지 하드웨어 신호의 이름이 포함된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 표는 HCL 문장에 사용된 상수 값들이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;선입-단계&quot;&gt;선입 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;선입 단계는 인스트럭션 메모리 하드웨어 유닛을 포함한다.&lt;/li&gt;
-  &lt;li&gt;유닛은 PC를 첫 바이트(0번 바이트)의 주소로 사용해서 메모리로부터 한 번에 10바이트를 읽어들인다.&lt;/li&gt;
-  &lt;li&gt;이 바이트는 인스트럭션 바이트로 해석되고, 두 개의 4비트 값으로 나누어진다.(“Split”이라고 표시된 유닛에 의해 icode와 ifun으로 나뉜다.)&lt;/li&gt;
-  &lt;li&gt;icode 값에 따라 세 개의 1비트 신호를 계산할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;instr_valid: 이 신호는 부정 인스트럭션을 검출하기 위해 사용된다.&lt;/li&gt;
-      &lt;li&gt;need_regids: 레지스터 지정 바이트를 포함하는가&lt;/li&gt;
-      &lt;li&gt;need_valC: 상수 워드를 포함하는가&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;instr_valid, imem_error 신호(인스트럭션 주소가 범위를 벗어날 때 만들어지는)는 메모리 단계에서 상태코드를 만들기 위해 사용된다.&lt;/li&gt;
-  &lt;li&gt;need_regids를 위한 HCL 표현은 icode 값이 레지스터 지정자 바이트를 갖는 인스트럭션인지를 결정한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;need_regids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;icode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IRRMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IOPQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IPUSHQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IPOPQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                     &lt;span class=&quot;no&quot;&gt;IIRMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IRMMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IMRMOVQ&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인스트럭션 메모리에서 읽은 나머지 바이트는 레지스터 지정자와 상수 워드들이다.
-    &lt;ul&gt;
-      &lt;li&gt;Align 이라고 이름 붙인 하드웨어 유닛이 레지스터 필드들과 상수 워드에 대해 처리작업을 수행한다.&lt;/li&gt;
-      &lt;li&gt;계산된 need_regids가 1이면, 레지스터 지정자 rA와 rB로 나누어진다.&lt;/li&gt;
-      &lt;li&gt;상수 워드 valC도 만든다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PC 증가 하드웨어 유닛은 현재의 PC 값, need_regids, need_ValC에 따라 valP를 만든다. (p+1+r+8i)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;해동과-재기록-단계&quot;&gt;해동과 재기록 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SEQ에서 해독과 재기록 단계 모두를 구현하는 로직의 상세한 모습을 보여준다.
-    &lt;ul&gt;
-      &lt;li&gt;해동과 재기록 단계 모두 레지스터 파일에 접근하기 때문이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;레지스터 파일은 네 개의 포트를 가지고 있다.
-    &lt;ul&gt;
-      &lt;li&gt;두 개의 동시 읽기(포트 A와 B), 두 개의 동시 쓰기(포트 E와 M)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;각 포트는 한 개의 주소 연결과 데이터 연결을 모두 갖는다.
-    &lt;ul&gt;
-      &lt;li&gt;주소 연결은 레지스터 ID, 데이터 연결은 레지스터 파일의 출력 워드 이거나 입력워드로 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;두 개의 읽기 포트는 주소 입력 srcA와 srcB를 가진다.&lt;/li&gt;
-  &lt;li&gt;두 개의 쓰기 포트는 dstE와 dstM을 주소 입력으로 갖느다.&lt;/li&gt;
-  &lt;li&gt;네 개의 블록은 인스트럭션 코드 icode, 레지스터 지정자 rA, rB, 실행 단계에서 계산된 조건신호 Cnd에 기초하여 네 개의 레지스터 ID를 만들어 낸다.&lt;/li&gt;
-  &lt;li&gt;레지스터 ID dstE는 쓰기 포트 E를 위한 목적지 레지스터를 나타내며 계싼된 valE가 저장된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;실행-단계&quot;&gt;실행 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;실행 단계는 산술/논리 유닛(ALU)을 포함한다.&lt;/li&gt;
-  &lt;li&gt;이 유닛은 ADD, SUBTRACT, AND, EXCLUSIVE-OR를 입력 aluA, aluB에 alufun 신호의 설정에 따라 실행한다.&lt;/li&gt;
-  &lt;li&gt;ALU가 대부분의 경우에 덧셈기로 사용된다.
-    &lt;ul&gt;
-      &lt;li&gt;OPq 인스트럭션에 대해서는 인스트럭션의 ifun 필드에 인코딩된 연산을 사용해야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;실행 단계는 조건코드 레지스터를 포함한다.
-    &lt;ul&gt;
-      &lt;li&gt;조건코드 레지스터가 갱신되어야 할지 여부는 제어하는 set_cc 신호를 생성한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;“cond”로 명명된 하드웨어 유닛은 조건부 분기나 데이터 이동이 일어나야 할지를 결정하기 위한 조건코드들과 함수코드의 조합을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;메모리-단계&quot;&gt;메모리 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리 단계는 프로그램 데이터를 읽거나 쓰는 일을 수행한다.&lt;/li&gt;
-  &lt;li&gt;두 개의 제어 블록이 메모리주소와 메모리 입력 데이터(쓰기 연산을 위한)를 위한 값을 만들어낸다.&lt;/li&gt;
-  &lt;li&gt;메모리 단계에서 마지막 기능은 icode, imem_error, 선입 단계에서 만들어진 instr_valid, 데이터 메모리에서 만든 dmem_error 신호에 따라 인스트럭션 실행에서 결정되는 상태코드 Stat을 계산하는 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;pc-갱신-단계&quot;&gt;PC 갱신 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;SEQ의 최종 단계는 새로운 프로그램 카운터 값을 생성하는 것이다.&lt;/li&gt;
-  &lt;li&gt;새로운 PC 값은 인스트럭션 타입과 분기를 택할지 여부에 따라 valC, valM, valP가 될 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;seq-현황-조사&quot;&gt;SEQ 현황 조사&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;여러 인스트럭션을 통일된 흐름으로 실행하기 위해 필요한 단계를 구성하면서 프로세서 전체를 적은 수의 여러 하드웨어 유닛들과 계산을 순서화하기 위한 한 개이의 클럭으로 구현할 수 있다.&lt;/li&gt;
-  &lt;li&gt;SEQ에서 유일한 문제는 매우 느리다.
-    &lt;ul&gt;
-      &lt;li&gt;그 이유는 각 유닛들이 전체 클럭 사이클의 일부 동안만 사용되기 때문이다.&lt;/li&gt;
-      &lt;li&gt;그렇기 때문에 파이프라인을 사용해서 보다 좋은 성능을 얻을 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;프로세서의 구조를 자세히 살펴보았는데, 굉장히 이해하기 어려운 부분이 많았다. 이번 챕터는 자주 보고 다른 자료도 더 찾아봐야겠다.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 16</summary></entry><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 15</summary></entry><entry><title type="html">[NLP/Paper]Deep contextualized word representations 논문 리뷰</title><link href="http://localhost:4000/nlp/NLP_05/" rel="alternate" type="text/html" title="[NLP/Paper]Deep contextualized word representations 논문 리뷰" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_05</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_05/">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;Pre-trained word representations are a key component in many neural language understanding models.&lt;/li&gt;
   &lt;li&gt;Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence.&lt;/li&gt;
@@ -1427,175 +1710,4 @@
   &lt;li&gt;call할 때는 call 인스트럭션의 다음 인스트럭션의 주소인 valP를 push한다.&lt;/li&gt;
   &lt;li&gt;PC 갱신 단계 동안에 PC를 call 목적지인 valC로 설정한다.&lt;/li&gt;
   &lt;li&gt;ret 인스트럭션에서 스택에서 pop한 값인 valM을 PC 갱신 단계에서 PC에 저장한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 14</summary></entry><entry><title type="html">[NLP/CS224n]CS224n Lecture 17: Multitask Learning</title><link href="http://localhost:4000/nlp/NLP_06/" rel="alternate" type="text/html" title="[NLP/CS224n]CS224n Lecture 17: Multitask Learning" /><published>2022-03-03T00:00:00+09:00</published><updated>2022-03-03T00:00:00+09:00</updated><id>http://localhost:4000/nlp/NLP_06</id><content type="html" xml:base="http://localhost:4000/nlp/NLP_06/">&lt;blockquote&gt;
-  &lt;p&gt;lecture 5, 7, 13 ,17 을 리뷰 했는데,,, 17강 밖에 안남아있다…T.T&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;the-limits-of-single-task-learning&quot;&gt;The Limits of Single-task Learning&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Great performance improvements in recent years given
-    &lt;ul&gt;
-      &lt;li&gt;dataset&lt;/li&gt;
-      &lt;li&gt;task&lt;/li&gt;
-      &lt;li&gt;model&lt;/li&gt;
-      &lt;li&gt;metric&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Models typically start from ranbdom or are only partly pre-trained&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;pre-training-and-sharing-knowledge-is-great&quot;&gt;Pre-training and sharing knowledge is great!&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Computer Vision
-    &lt;ul&gt;
-      &lt;li&gt;ImageNet + CNN이 큰 성공을 거두었음&lt;/li&gt;
-      &lt;li&gt;Classification task가 과거에 큰 장벽이었음&lt;/li&gt;
-      &lt;li&gt;이 문제가 해결되고 많은 문제들을 푸는 것이 가능해짐&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Natural Language Processing
-    &lt;ul&gt;
-      &lt;li&gt;Word2Vec, Glove&lt;/li&gt;
-      &lt;li&gt;최근 CoVe, ELMo, BERT 성공을 거두기 시작함&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;why-has-weightmodel-sharing-not-happened-as-much-in-nlp&quot;&gt;Why has weight&amp;amp;model sharing not happened as much in NLP?&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;NLP는 많은 종류의 추론이 요구됨
-    &lt;ul&gt;
-      &lt;li&gt;logical, linguistic, emotional, visual&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Short and long term memory가 요구됨&lt;/li&gt;
-  &lt;li&gt;NLP는 중간 단계 또는 분리된 Task로 많이 나누어져 있음&lt;/li&gt;
-  &lt;li&gt;하나의 Unsupervised Task가 전체 문제를 해결할 수 없음&lt;/li&gt;
-  &lt;li&gt;언어는 현실적으로 분명한 Supervision이 필요함&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;why-a-unified-multi-task-model-for-nlp&quot;&gt;Why a unified multi-task model for NLP&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Multi-task learning은 General NLP system이 넘어야할 장벽임&lt;/li&gt;
-  &lt;li&gt;하나의 통합된 모델은 지식을 어떻게 전달할지 결정 가능
-    &lt;ul&gt;
-      &lt;li&gt;Domain adaptation, weight sharing, transfer and zero shot learning&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;하나의 통합된 Multi-task 모델은
-    &lt;ul&gt;
-      &lt;li&gt;새로운 task가 주어졌을 때 쉽게 적응할 수 있음&lt;/li&gt;
-      &lt;li&gt;실제 production을 위해 deploy하는 것이 매우 간단해짐&lt;/li&gt;
-      &lt;li&gt;더 많은 사람들이 새로운 task를 해결할 수 있도록 도와줌&lt;/li&gt;
-      &lt;li&gt;잠재적으로 Continual learning으로 나아갈 수 있음&lt;/li&gt;
-      &lt;li&gt;모든 프로젝트를 계속 다시 시작하게 된다면 자연 언어의 복잡성을 점점 더 많이 포함하는 하나의 모델에 도달하지 못함&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;인공지능이 대화를 가능하게 하는 task를 진행할 때 사람의 언어처럼 순차적으로 처리하는 것 만큼 비효율적인 것은 없음. 컴퓨터가 인간의 언어를 supervision하지 않다면 훨씬 더많은 언어로 의사소통 가능.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;how-to-express-many-nlp-tasks-in-the-same-framework&quot;&gt;How to express many NLP tasks in the same framework?&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Sequence tagging
-    &lt;ul&gt;
-      &lt;li&gt;Named Entity Recognition, aspect specific sentiment&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Text classification
-    &lt;ul&gt;
-      &lt;li&gt;Dialogue state tracking, sentiment classification&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Seq2seq
-    &lt;ul&gt;
-      &lt;li&gt;Machine Translation, Summarization, Question Answering&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;three-equivalent-supertasks-of-nlp&quot;&gt;Three equivalent Supertasks of NLP&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Language Modeling
-    &lt;ul&gt;
-      &lt;li&gt;다음 단어를 예측하는 것은 질문의 일종이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Question Answering
-    &lt;ul&gt;
-      &lt;li&gt;말 그대로 Question &amp;amp; Answering 이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Dialogue System
-    &lt;ul&gt;
-      &lt;li&gt;질문 답변, 답변에 대한 답변 형태이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img.png&quot; width=&quot;40%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;the-natural-language-decathlondecanlp&quot;&gt;The Natural Language Decathlon(decaNLP)&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;The Natural Language Decathlon : Multitask Learning as Question Answering
-    &lt;ul&gt;
-      &lt;li&gt;10개의 NLP Task를 하나의 Question Answering모델 학습만으로 풀 수 있도록 디자인&lt;/li&gt;
-      &lt;li&gt;이를 위해 모든 데이터 셋에 대하여 question, context, answer 형태로 전처리&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;multitask-question-answering-networkmqan&quot;&gt;Multitask Question Answering Network(MQAN)&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Fixed Glove+Character n-gram embeddings -&amp;gt; Linear -&amp;gt; Shared BiLSTM with skip connection&lt;/li&gt;
-  &lt;li&gt;Attention summations from one sequence to the other and back again with skip connections&lt;/li&gt;
-  &lt;li&gt;Separate BiLSTMs to reduce dimensionality, two transformer layers, another BiLSTM&lt;/li&gt;
-  &lt;li&gt;Auto-regressive decoder :
-    &lt;ul&gt;
-      &lt;li&gt;Fixed GloVe, character n-gram embeddings&lt;/li&gt;
-      &lt;li&gt;Two transformer layers&lt;/li&gt;
-      &lt;li&gt;LSTM Layers (attend last 3 layers of encoder)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_6.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_7.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_8.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_9.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_10.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;training-strategies-fully-joint&quot;&gt;Training Strategies: Fully Joint&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_11.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Curriculum learning : 모델 학습시 전체 데이터를 한번에 학습시키지 않고 쉬운것-&amp;gt;어려운 것 순서로 학습함&lt;/li&gt;
-  &lt;li&gt;Batch를 Sampling할 때, Fixed order로 계속 Round Robin하여 수집함&lt;/li&gt;
-  &lt;li&gt;많은 양이 돌아 Converge되는 Task들은 잘 동작하지 않음&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;training-strategies-anti-curriculum-pre-training&quot;&gt;Training Strategies: Anti-Curriculum Pre-training&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_12.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_13.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;training-strategies-cove&quot;&gt;Training Strategies: CoVe&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_14.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;whats-next-for-nlp&quot;&gt;What’s next for NLP?&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/nlp/06/img_15.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="NLP" /><category term="cs224n" /><category term="nlp" /><summary type="html">NLP 랩실에서의 CS224n 강의 리뷰이었던 것...</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 14</summary></entry></feed>
