@@ -341,12 +341,45 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              
+              <ul class="toc__menu"><li><a href="#프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</a><ul><li><a href="#level2-정렬-가증-큰-수-파이썬python-풀이">Level2 정렬 가증 큰 수 파이썬(Python) 풀이</a></li><li><a href="#문제풀이">문제풀이</a></li><li><a href="#코드">코드</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        
+        <h1 id="프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</h1>
+
+<h2 id="level2-정렬-가증-큰-수-파이썬python-풀이">Level2 정렬 가증 큰 수 파이썬(Python) 풀이</h2>
+
+<ul>
+  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/42746?language=python3">풀이로 이동!</a></li>
+</ul>
+
+<h2 id="문제풀이">문제풀이</h2>
+<blockquote>
+  <p>가장 큰 수를 만드려면, 예를 들어 9와 91이 있을 때 991이 919보다 더 큰 수가 된다. 수의 가장 큰 값이 1000이기 때문에, ‘9’<em>3, ‘91’</em>3을 해서 비교를 하면,
+‘999’ &gt; ‘919191’ 이다. 그렇기 때문에 int-&gt;str-&gt;*3을 하여 비교를 하여 정렬을 하고 해당 숫자들을 원래 숫자로 변경하여 return 해준다.</p>
+</blockquote>
+
+<ol>
+  <li>배열의 값들을 str type으로 변경해준뒤 *3을 해준다.</li>
+  <li>이후 sorted 함수를 사용하여 정렬한다.(내림차순으로 정렬하기 위해 reverse=True로 설정해준다.)</li>
+  <li>다시 배열의 값들의 길이를 1/4로 나누어 slicing해준다.</li>
+  <li>해당 배열들을 ‘‘로 join해준다.</li>
+  <li>return answer</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">'0'</span>
+    <span class="n">numbers</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="o">*</span><span class="mi">3</span> <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">],</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">([</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="mi">4</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">))])</span>
+    <span class="k">return</span> <span class="n">answer</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span></code></pre></figure>
 
         
       </section>
