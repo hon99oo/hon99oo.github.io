@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Algorithm/Java] 프로그래머스 Level1 완주하지 못한 선수 풀이 - 홍구의 개발 블로그</title>
-<meta name="description" content="Java Algorithm Study - 02">
+<!-- begin _includes/seo.html --><title>[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이 - 홍구의 개발 블로그</title>
+<meta name="description" content="Python CodingTest Study - 01">
 
 
   <meta name="author" content="honggoo">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="홍구의 개발 블로그">
-<meta property="og:title" content="[Algorithm/Java] 프로그래머스 Level1 완주하지 못한 선수 풀이">
-<meta property="og:url" content="http://localhost:4000/algorithm/java_02/">
+<meta property="og:title" content="[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이">
+<meta property="og:url" content="http://localhost:4000/codingtest/python_01/">
 
 
-  <meta property="og:description" content="Java Algorithm Study - 02">
+  <meta property="og:description" content="Python CodingTest Study - 01">
 
 
 
@@ -36,7 +36,7 @@
 
 
 
-  <meta property="article:published_time" content="2022-02-15T00:00:00+09:00">
+  <meta property="article:published_time" content="2022-03-26T00:00:00+09:00">
 
 
 
@@ -47,7 +47,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/algorithm/java_02/">
+<link rel="canonical" href="http://localhost:4000/codingtest/python_01/">
 
 
 
@@ -165,12 +165,12 @@
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
         
-          [Algorithm/Java] 프로그래머스 Level1 완주하지 못한 선수 풀이
+          [CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이
 
         
       </h1>
       
-        <p class="page__lead">Java Algorithm Study - 02
+        <p class="page__lead">Python CodingTest Study - 01
 </p>
       
       
@@ -187,7 +187,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          최대 1 분 소요
         
       </span>
     
@@ -328,9 +328,9 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Algorithm/Java] 프로그래머스 Level1 완주하지 못한 선수 풀이">
-    <meta itemprop="description" content="Java Algorithm Study - 02">
-    <meta itemprop="datePublished" content="2022-02-15T00:00:00+09:00">
+    <meta itemprop="headline" content="[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이">
+    <meta itemprop="description" content="Python CodingTest Study - 01">
+    <meta itemprop="datePublished" content="2022-03-26T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
@@ -341,78 +341,44 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</a><ul><li><a href="#level1-해시-완주하지-못한-선수-자바java-풀이">Level1 해시 완주하지 못한 선수 자바(Java) 풀이</a></li><li><a href="#문제풀이">문제풀이</a></li><li><a href="#코드">코드</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</a><ul><li><a href="#level1-정렬-k번째수-자바java-풀이">Level1 정렬 K번째수 자바(Java) 풀이</a></li><li><a href="#문제풀이">문제풀이</a></li><li><a href="#코드">코드</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
         <h1 id="프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</h1>
 
-<h2 id="level1-해시-완주하지-못한-선수-자바java-풀이">Level1 해시 완주하지 못한 선수 자바(Java) 풀이</h2>
+<h2 id="level1-정렬-k번째수-자바java-풀이">Level1 정렬 K번째수 자바(Java) 풀이</h2>
 
 <ul>
-  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/42576?language=java">풀이로 이동!</a></li>
+  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/42748?language=python">풀이로 이동!</a></li>
 </ul>
 
 <h2 id="문제풀이">문제풀이</h2>
 <blockquote>
-  <p>java 알고리즘 문제 풀이의 두번째 문제이다. 처음 풀어본 문제보다는 자바 문법이 조금 익숙했다. 하지만, 해시를 어떻게 선언하는지 조차 모르고 있어서, 이 부분은 구글링을 하며 풀었다.
-이번 문제를 통해서 자바의 해쉬맵을 사용할 수 있게 되었다. 해쉬맵의 여러가지 method들을 숙지하고 있으면 코테에 많은 도움이 될 것 같다.</p>
+  <p>반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.</p>
 </blockquote>
 
 <ol>
-  <li>참가자들이 저장되어 있는 String 배열을 HashMap에 옮겨 담는다.</li>
-  <li>이 때 참가자들의 이름은 Key값으로 Value는 참가자들의 중복의 유무를 포함하기 위해 default 값을 0으로, 중복된 참가자가 있으면 value를 1씩 증가시킨다.</li>
-  <li>완주한 참가자들의 이름을 containsKey를 사용하여 해당 Key값의 Value를 1씩 감소시킨다.</li>
-  <li>해쉬맵의 모든 키를 순회하면서 value값이 0보다 큰 값을 찾는다.</li>
-  <li>해당 키값을 answer에 저장한다.</li>
+  <li>2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.</li>
+  <li>1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.</li>
+  <li>slicing된 배열을 정렬한다.</li>
+  <li>정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.</li>
   <li>return answer</li>
 </ol>
 
 <h2 id="코드">코드</h2>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
-    
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
-            <span class="nc">String</span><span class="o">[]</span> <span class="n">participant</span> <span class="o">=</span> <span class="o">{</span><span class="s">"mislav"</span><span class="o">,</span> <span class="s">"stanko"</span><span class="o">,</span> <span class="s">"mislav"</span><span class="o">,</span> <span class="s">"ana"</span><span class="o">};</span>
-            <span class="nc">String</span><span class="o">[]</span> <span class="n">completion</span> <span class="o">=</span> <span class="o">{</span><span class="s">"stanko"</span><span class="o">,</span> <span class="s">"ana"</span><span class="o">,</span> <span class="s">"mislav"</span><span class="o">};</span>
-    
-            <span class="nc">String</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">solution</span><span class="o">(</span><span class="n">participant</span><span class="o">,</span> <span class="n">completion</span><span class="o">);</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">answer</span><span class="o">);</span>
-        <span class="o">}</span>
-    
-        <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">solution</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">participant</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">completion</span><span class="o">){</span>
-            <span class="c1">//정답 문자열 변수 선언</span>
-            <span class="nc">String</span> <span class="n">answer</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-            <span class="c1">//해쉬맵(딕셔너리) 변수 선언 -&gt; participant 키값으로 넣고 value 값에 Integer 선언해서 completion이랑 비교할거임</span>
-            <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span><span class="n">ht</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span><span class="nc">Integer</span><span class="o">&gt;();</span>
-            <span class="c1">//해쉬맵에 participant를 키값으로 밸류는 default로 0씩, 키값 중복되면 1씩 추가</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">participant</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">ht</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">])){</span>
-                    <span class="n">ht</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">],</span><span class="n">ht</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">])+</span><span class="mi">1</span><span class="o">);</span>
-                <span class="o">}</span>
-                <span class="k">else</span><span class="o">{</span>
-                    <span class="n">ht</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">participant</span><span class="o">[</span><span class="n">i</span><span class="o">],</span><span class="mi">1</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="c1">//completion을 키값으로 찾아서 밸류값 1씩 감소</span>
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">completion</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">ht</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">completion</span><span class="o">[</span><span class="n">i</span><span class="o">])){</span>
-                    <span class="n">ht</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">completion</span><span class="o">[</span><span class="n">i</span><span class="o">],</span><span class="n">ht</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">completion</span><span class="o">[</span><span class="n">i</span><span class="o">])-</span><span class="mi">1</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="c1">//해쉬맵 모든 키를 순회하면서 0보다 큰거 answer에 저장</span>
-            <span class="k">for</span><span class="o">(</span><span class="nc">String</span> <span class="nl">key:</span><span class="n">ht</span><span class="o">.</span><span class="na">keySet</span><span class="o">())</span> <span class="o">{</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">ht</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">key</span><span class="o">)&gt;</span><span class="mi">0</span><span class="o">){</span>
-                    <span class="n">answer</span><span class="o">=</span><span class="n">key</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-    
-            <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span></code></pre></figure>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">commands</span><span class="p">):</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">command</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
+        <span class="n">answer</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">array</span><span class="p">[</span><span class="n">command</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="n">command</span><span class="p">[</span><span class="mi">1</span><span class="p">]])[</span><span class="n">command</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">answer</span>
 
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="n">commands</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">commands</span><span class="p">))</span></code></pre></figure>
 
         
       </section>
@@ -450,7 +416,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a>
+      <a href="/categories/#codingtest" class="page__taxonomy-item p-category" rel="tag">CodingTest</a>
     
     </span>
   </p>
@@ -458,7 +424,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-02-15T00:00:00+09:00">February 15, 2022</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-03-26T00:00:00+09:00">March 26, 2022</time></p>
 
       </footer>
 
@@ -467,22 +433,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BAlgorithm%2FJava%5D+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4+Level1+%EC%99%84%EC%A3%BC%ED%95%98%EC%A7%80+%EB%AA%BB%ED%95%9C+%EC%84%A0%EC%88%98+%ED%92%80%EC%9D%B4%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2Fjava_02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BCodingTest%2FPython%5D+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4+Level1+K%EB%B2%88%EC%A7%B8%EC%88%98+Python+%ED%92%80%EC%9D%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcodingtest%2Fpython_01%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2Fjava_02%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcodingtest%2Fpython_01%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2Fjava_02%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcodingtest%2Fpython_01%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/cs:app/csapp_10/" class="pagination--pager" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.9 이기종 자료구조 ~ 3.10 기계수준 프로그램에서 제어와 데이터의 결합)
+      <a href="/cs:app/csapp_21/" class="pagination--pager" title="[CS:APP] Chapter 06 메모리 계층구조(캐시)
 ">이전</a>
     
     
-      <a href="/algorithm/java_03/" class="pagination--pager" title="[Algorithm/Java] 프로그래머스 Level1 모의고사 풀이
+      <a href="/codingtest/python_02/" class="pagination--pager" title="[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이
 ">다음</a>
     
   </nav>
@@ -507,7 +473,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/cs:app/csapp_22/" rel="permalink">[CS:APP] Part 1 프로그램의 구조와 실행
+        <a href="/cs:app/csapp_22/" rel="permalink">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰
 </a>
       
     </h2>
@@ -533,6 +499,86 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">CS:APP - 22
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/codingtest/python_03/" rel="permalink">[CodingTest/Python] 프로그래머스 Level2 가장 큰 수 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python CodingTest Study - 03
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/codingtest/python_02/" rel="permalink">[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python CodingTest Study - 02
 </p>
   </article>
 </div>
@@ -573,86 +619,6 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">CS:APP - 21
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/cs:app/csapp_20/" rel="permalink">[CS:APP] Chapter 06 메모리 계층구조(메모리 계층구조와 지역성)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          4 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">CS:APP - 20
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/cs:app/csapp_19/" rel="permalink">[CS:APP] Chapter 05 프로그램 성능 최적화하기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          5 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">CS:APP - 19
 </p>
   </article>
 </div>
@@ -736,8 +702,8 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "http://localhost:4000/algorithm/java_02/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/algorithm/java_02"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "http://localhost:4000/codingtest/python_01/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/codingtest/python_01"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
