@@ -319,19 +319,19 @@ var store = [{
       },{
         "title": "[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이",
         "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 정렬 K번째수 파이썬(Python) 풀이      풀이로 이동!   문제풀이     반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.       2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.   1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.   slicing된 배열을 정렬한다.   정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.   return answer   코드   def solution(array, commands):     answer = []     for command in commands:         answer.append(sorted(array[command[0]-1:command[1]])[command[2]-1])     return answer  if __name__ == \"__main__\":     array = [1, 5, 2, 6, 3, 7, 4]     commands = [[2, 5, 3], [4, 4, 1], [1, 7, 3]]     print(solution(array, commands)) ","categories": ["CodingTest"],
-        "tags": ["Algorithm","Java","프로그래머스 코테"],
+        "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/codingtest/python_01/",
         "teaser": null
       },{
         "title": "[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이",
         "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 완전탐색 모의고사 파이썬(Python) 풀이      풀이로 이동!   문제풀이     반복문의 횟수를 줄이는 것이 핵심인 문제인 것 같다. 반복문의 횟수를 줄이기 위해 접근하는 index를 학생들의 정답 패턴의 길이로 나누는 아이디어를 채택하였다.       정답의 길이로 반복문을 돌린다.   학생 a,b,c의 정답 패턴의 길이로 현재 반복문의 index를 나누어 각 학생의 정답 패턴에 접근한다.   정답이 각각 일치하면, answer_list의 a-&gt;0, b-&gt;1, c-&gt;2 인덱스에 맞게 +1을 해준다.   answer_list를 enumerate를 사용하여 인덱스와 밸류값으로 함께 반복문을 돌린다.   answer_list의 max값을 찾아 해당 max값과 밸류값이 같은 인덱스값을 answer배열에 저장한다.   return answer   코드   def solution(answers):     answer = []     answer_list = [0,0,0]     a = [1, 2, 3, 4, 5]     b = [2, 1, 2, 3, 2, 4, 2, 5]     c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]     for i in range(len(answers)):         if a[i%len(a)]==answers[i]:             answer_list[0]+=1         if b[i%len(b)]==answers[i]:             answer_list[1]+=1         if c[i%len(c)]==answers[i]:             answer_list[2]+=1      for i,val in enumerate(answer_list):         if val == max(answer_list):             answer.append(i+1)     return answer  if __name__ == \"__main__\":     answers = [5, 5, 4, 2, 3]     print(solution(answers)) ","categories": ["CodingTest"],
-        "tags": ["Algorithm","Java","프로그래머스 코테"],
+        "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/codingtest/python_02/",
         "teaser": null
       },{
         "title": "[CodingTest/Python] 프로그래머스 Level2 가장 큰 수 Python 풀이",
         "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level2 정렬 가증 큰 수 파이썬(Python) 풀이      풀이로 이동!   문제풀이     가장 큰 수를 만드려면, 예를 들어 9와 91이 있을 때 991이 919보다 더 큰 수가 된다. 수의 가장 큰 값이 1000이기 때문에, ‘9’3, ‘91’3을 해서 비교를 하면, ‘999’ &gt; ‘919191’ 이다. 그렇기 때문에 int-&gt;str-&gt;*3을 하여 비교를 하여 정렬을 하고 해당 숫자들을 원래 숫자로 변경하여 return 해준다.       배열의 값들을 str type으로 변경해준뒤 *3을 해준다.   이후 sorted 함수를 사용하여 정렬한다.(내림차순으로 정렬하기 위해 reverse=True로 설정해준다.)   다시 배열의 값들의 길이를 1/4로 나누어 slicing해준다.   해당 배열들을 ‘‘로 join해준다.   return answer   코드   def solution(numbers):     if sum(numbers)==0:         return '0'     numbers = sorted([str(number)*3 for number in numbers],reverse=True)     answer = ''.join([numbers[i][:int(len(numbers[i])/4)] for i in range(len(numbers))])     return answer  if __name__ == \"__main__\":     numbers = [6,2,10]     print(solution(numbers)) ","categories": ["CodingTest"],
-        "tags": ["Algorithm","Java","프로그래머스 코테"],
+        "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/codingtest/python_03/",
         "teaser": null
       },{
