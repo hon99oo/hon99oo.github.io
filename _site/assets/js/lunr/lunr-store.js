@@ -318,13 +318,13 @@ var store = [{
         "teaser": null
       },{
         "title": "[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이",
-        "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 정렬 K번째수 자바(Java) 풀이      풀이로 이동!   문제풀이     반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.       2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.   1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.   slicing된 배열을 정렬한다.   정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.   return answer   코드   def solution(array, commands):     answer = []     for command in commands:         answer.append(sorted(array[command[0]-1:command[1]])[command[2]-1])     return answer  if __name__ == \"__main__\":     array = [1, 5, 2, 6, 3, 7, 4]     commands = [[2, 5, 3], [4, 4, 1], [1, 7, 3]]     print(solution(array, commands)) ","categories": ["CodingTest"],
+        "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 정렬 K번째수 파이썬(Python) 풀이      풀이로 이동!   문제풀이     반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.       2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.   1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.   slicing된 배열을 정렬한다.   정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.   return answer   코드   def solution(array, commands):     answer = []     for command in commands:         answer.append(sorted(array[command[0]-1:command[1]])[command[2]-1])     return answer  if __name__ == \"__main__\":     array = [1, 5, 2, 6, 3, 7, 4]     commands = [[2, 5, 3], [4, 4, 1], [1, 7, 3]]     print(solution(array, commands)) ","categories": ["CodingTest"],
         "tags": ["Algorithm","Java","프로그래머스 코테"],
         "url": "/codingtest/python_01/",
         "teaser": null
       },{
         "title": "[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이",
-        "excerpt":" ","categories": ["CodingTest"],
+        "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 완전탐색 모의고사 파이썬(Python) 풀이      풀이로 이동!   문제풀이     반복문의 횟수를 줄이는 것이 핵심인 문제인 것 같다. 반복문의 횟수를 줄이기 위해 접근하는 index를 학생들의 정답 패턴의 길이로 나누는 아이디어를 채택하였다.       정답의 길이로 반복문을 돌린다.   학생 a,b,c의 정답 패턴의 길이로 현재 반복문의 index를 나누어 각 학생의 정답 패턴에 접근한다.   정답이 각각 일치하면, answer_list의 a-&gt;0, b-&gt;1, c-&gt;2 인덱스에 맞게 +1을 해준다.   answer_list를 enumerate를 사용하여 인덱스와 밸류값으로 함께 반복문을 돌린다.   answer_list의 max값을 찾아 해당 max값과 밸류값이 같은 인덱스값을 answer배열에 저장한다.   return answer   코드   def solution(answers):     answer = []     answer_list = [0,0,0]     a = [1, 2, 3, 4, 5]     b = [2, 1, 2, 3, 2, 4, 2, 5]     c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]     for i in range(len(answers)):         if a[i%len(a)]==answers[i]:             answer_list[0]+=1         if b[i%len(b)]==answers[i]:             answer_list[1]+=1         if c[i%len(c)]==answers[i]:             answer_list[2]+=1      for i,val in enumerate(answer_list):         if val == max(answer_list):             answer.append(i+1)     return answer  if __name__ == \"__main__\":     answers = [5, 5, 4, 2, 3]     print(solution(answers)) ","categories": ["CodingTest"],
         "tags": ["Algorithm","Java","프로그래머스 코테"],
         "url": "/codingtest/python_02/",
         "teaser": null
