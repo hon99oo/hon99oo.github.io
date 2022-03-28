@@ -316,4 +316,10 @@ var store = [{
         "tags": ["CS:APP","CS"],
         "url": "/cs:app/csapp_21/",
         "teaser": null
+      },{
+        "title": "[CS:APP] Part 1 프로그램의 구조와 실행",
+        "excerpt":"정보의 표현과 처리  프로그램의 기계수준 표현  프로세서 구조  프로그램 성능 최적화하기  메모리 계층구조  ","categories": ["CS:APP"],
+        "tags": ["CS:APP","CS"],
+        "url": "/cs:app/csapp_22/",
+        "teaser": null
       }]
