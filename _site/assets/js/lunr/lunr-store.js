@@ -340,4 +340,10 @@ var store = [{
         "tags": ["CS:APP","CS"],
         "url": "/cs:app/csapp_22/",
         "teaser": null
+      },{
+        "title": "[CS:APP] Chapter 07 링커",
+        "excerpt":" ","categories": ["CS:APP"],
+        "tags": ["CS:APP","CS"],
+        "url": "/cs:app/csapp_23/",
+        "teaser": null
       }]

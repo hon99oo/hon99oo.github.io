@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-29T23:33:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰</title><link href="http://localhost:4000/cs:app/csapp_22/" rel="alternate" type="text/html" title="[CS:APP] Part 1 프로그램의 구조와 실행 리뷰" /><published>2022-03-28T00:00:00+09:00</published><updated>2022-03-28T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_22</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_22/">&lt;h1 id=&quot;2-정보의-표현과-처리&quot;&gt;2 정보의 표현과 처리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-29T23:35:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/cs:app/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-03-29T00:00:00+09:00</published><updated>2022-03-29T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_23</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_23/"></content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰</title><link href="http://localhost:4000/cs:app/csapp_22/" rel="alternate" type="text/html" title="[CS:APP] Part 1 프로그램의 구조와 실행 리뷰" /><published>2022-03-28T00:00:00+09:00</published><updated>2022-03-28T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_22</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_22/">&lt;h1 id=&quot;2-정보의-표현과-처리&quot;&gt;2 정보의 표현과 처리&lt;/h1&gt;
 &lt;blockquote&gt;
   &lt;p&gt;컴퓨터가 실제로 해석하는 비트들과 연산들이 무엇이 있는지 배운다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -536,39 +536,7 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="CodingTest" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python CodingTest Study - 02</summary></entry><entry><title type="html">[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이</title><link href="http://localhost:4000/codingtest/python_01/" rel="alternate" type="text/html" title="[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/codingtest/python_01</id><content type="html" xml:base="http://localhost:4000/codingtest/python_01/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
-
-&lt;h2 id=&quot;level1-정렬-k번째수-파이썬python-풀이&quot;&gt;Level1 정렬 K번째수 파이썬(Python) 풀이&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42748?language=python3&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.&lt;/li&gt;
-  &lt;li&gt;1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.&lt;/li&gt;
-  &lt;li&gt;slicing된 배열을 정렬한다.&lt;/li&gt;
-  &lt;li&gt;정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.&lt;/li&gt;
-  &lt;li&gt;return answer&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="CodingTest" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python CodingTest Study - 01</summary></entry><entry><title type="html">[CodingTest/Python] 프로그래머스 Level2 가장 큰 수 Python 풀이</title><link href="http://localhost:4000/codingtest/python_03/" rel="alternate" type="text/html" title="[CodingTest/Python] 프로그래머스 Level2 가장 큰 수 Python 풀이" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/codingtest/python_03</id><content type="html" xml:base="http://localhost:4000/codingtest/python_03/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="CodingTest" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python CodingTest Study - 02</summary></entry><entry><title type="html">[CodingTest/Python] 프로그래머스 Level2 가장 큰 수 Python 풀이</title><link href="http://localhost:4000/codingtest/python_03/" rel="alternate" type="text/html" title="[CodingTest/Python] 프로그래머스 Level2 가장 큰 수 Python 풀이" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/codingtest/python_03</id><content type="html" xml:base="http://localhost:4000/codingtest/python_03/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
 
 &lt;h2 id=&quot;level2-정렬-가증-큰-수-파이썬python-풀이&quot;&gt;Level2 정렬 가증 큰 수 파이썬(Python) 풀이&lt;/h2&gt;
 
@@ -601,7 +569,39 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="CodingTest" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python CodingTest Study - 03</summary></entry><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조(캐시)</title><link href="http://localhost:4000/cs:app/csapp_21/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조(캐시)" /><published>2022-03-24T00:00:00+09:00</published><updated>2022-03-24T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_21</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_21/">&lt;h1 id=&quot;chapter-06-메모리-계층구조&quot;&gt;Chapter 06 메모리 계층구조&lt;/h1&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="CodingTest" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python CodingTest Study - 03</summary></entry><entry><title type="html">[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이</title><link href="http://localhost:4000/codingtest/python_01/" rel="alternate" type="text/html" title="[CodingTest/Python] 프로그래머스 Level1 K번째수 Python 풀이" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/codingtest/python_01</id><content type="html" xml:base="http://localhost:4000/codingtest/python_01/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+
+&lt;h2 id=&quot;level1-정렬-k번째수-파이썬python-풀이&quot;&gt;Level1 정렬 K번째수 파이썬(Python) 풀이&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42748?language=python3&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.&lt;/li&gt;
+  &lt;li&gt;1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.&lt;/li&gt;
+  &lt;li&gt;slicing된 배열을 정렬한다.&lt;/li&gt;
+  &lt;li&gt;정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.&lt;/li&gt;
+  &lt;li&gt;return answer&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="CodingTest" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python CodingTest Study - 01</summary></entry><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조(캐시)</title><link href="http://localhost:4000/cs:app/csapp_21/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조(캐시)" /><published>2022-03-24T00:00:00+09:00</published><updated>2022-03-24T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_21</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_21/">&lt;h1 id=&quot;chapter-06-메모리-계층구조&quot;&gt;Chapter 06 메모리 계층구조&lt;/h1&gt;
 &lt;ol&gt;
   &lt;li&gt;저장장치 기술&lt;/li&gt;
   &lt;li&gt;지역성&lt;/li&gt;
@@ -1423,136 +1423,7 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 그리고 5장을 공부하면서 뭔가 “득도”를 하게 된 것 같다. 다양한 부분들의 이해가 빨라졌다. 앞으로 챕터를 공부하고 나의 방식으로 녹인 후 포스팅을 하는 것으로 포스팅 방향을 바꿀 것이다.&lt;/p&gt;
 
   &lt;p&gt;6장은 드디어 메모리 파트이다. 너무 기대된다!&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 19</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)</title><link href="http://localhost:4000/cs:app/csapp_17/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_17</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_17/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
-  &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
-  &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;44-파이프라이닝의-일반-원리&quot;&gt;4.4 파이프라이닝의 일반 원리&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;파이프라인 시스템의 일반적인 특징과 원리들을 생각해보자.
-    &lt;ul&gt;
-      &lt;li&gt;파이프라인 시스템에서 수행해야 할 일은 여러 개의 일련의 단계뜰로 나누어진다.&lt;/li&gt;
-      &lt;li&gt;식당의 예를들면, 샐러드를 먼저 제공하고, 메인 음식, 디저트 그리고 음료의 순으로 제공하는 것과 비슷하다.&lt;/li&gt;
-      &lt;li&gt;컨베이어 벨트와 비슷하게 여러 고객이 동시에 시스템을 진행하도록 한다.&lt;/li&gt;
-      &lt;li&gt;비록 어떤 사람은 일부 음식만을 원할지라도 모든 단계를 통과해 간다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;파이프라이닝의 주요 특징
-    &lt;ul&gt;
-      &lt;li&gt;시스템 처리량(단위시간당 처리하는 고객의 수)을 증가시킨다.&lt;/li&gt;
-      &lt;li&gt;지연시간(고객을 지원하는 데 걸리는 시간)을 증가시킨다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;441-계산용-파이프라인&quot;&gt;4.4.1 계산용 파이프라인&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 식당의 예를 계산용 파이프라인으로 초점을 옮기면
-    &lt;ul&gt;
-      &lt;li&gt;“고객들”은 인스트럭션&lt;/li&gt;
-      &lt;li&gt;단계들은 인스트럭션 실행의 일부분을 수행한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 간단한 비파이프라인 하드웨어 시스템의 예이다.
-    &lt;ul&gt;
-      &lt;li&gt;계산을 수행하는 일부 로직으로 이루어진다.&lt;/li&gt;
-      &lt;li&gt;계산 결과를 저장하는 레지스터가 따라온다.&lt;/li&gt;
-      &lt;li&gt;클럭 신호는 규칙적인 시간간격으로 레지스터에 로딩되는 것을 제어한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이 예제에서는 조합로직은 300ps를 필요로하고 레지스터 로딩은 20ps를 필요로 한다.
-    &lt;ul&gt;
-      &lt;li&gt;이 시스템에서 처리량은 1/320 * 1,000 = 3.12&lt;/li&gt;
-      &lt;li&gt;이 시스템에서 지연시간은 320ps&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위 그림은 3단계 파이프라인 계산 하드웨어이다.
-    &lt;ul&gt;
-      &lt;li&gt;시스템에서 수행하는 계산을 세 단계 A,B,C로 나눌 수 있다고 가정한다.&lt;/li&gt;
-      &lt;li&gt;파이프라인 레지스터들을 단계 사이에 배치해서 각 인스트럭션이 3단계로 시스템을 통해 이동한다.&lt;/li&gt;
-      &lt;li&gt;시작부토 종료할 때까지 세 개의 클럭 사이클이 소요된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이 예제에서는 클럭을 매 100+20=120ps이고 한 개의 인스트럭션을 처리하는 데 3클럭 사이클이 필요하다.
-    &lt;ul&gt;
-      &lt;li&gt;이 시스템에서 처리량은 1/120 * 1,000 = 8.33&lt;/li&gt;
-      &lt;li&gt;이 시스템에서 지연시간은 360ps&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;비파이프라인 보다 처리량은 빠르지만 지연시간이 증가한 이유는 추가된 파이프라인 레지스터에 의한 오버헤드 때문이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;442-파이프라인-연산의-상세한-고찰&quot;&gt;4.4.2 파이프라인 연산의 상세한 고찰&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;파이프라인 단계들 간에 인스트럭션의 이동은 위의 파이프라인 다이어그램에 나타낸 것과 같이 클럭 신호에 의해 제어된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위 그림은 한 사이클 동안의 파이프라인 동작이다.
-    &lt;ul&gt;
-      &lt;li&gt;신호들은 파이프라인 레지스터 입력들로 전달되지만, 클럭이 상승할 때까지 레지스터의 상태는 바뀌지 않는다.&lt;/li&gt;
-      &lt;li&gt;클럭을 늦추는 것이 파이프라인의 동작을 변화시키지 않는다는 것을 알 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;443-파이프라이닝의-한계&quot;&gt;4.4.3 파이프라이닝의 한계&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;파이프라인의 효과를 축소시키는 여러 요소들이 종종 발생한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;비균일-분리-nonuniform-partitioning&quot;&gt;비균일 분리 Nonuniform Partitioning&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 계산을 이전처럼 세 단계로 나눈 시스템이지만 각 단계에서 발생하는 지연시간은 50에서 150 ps까지 변화한다.&lt;/li&gt;
-  &lt;li&gt;우리가 구동할 수 있는 클럭의 속도는 가장 늦은 단계의 시간지연 값에 의해 결정된다.&lt;/li&gt;
-  &lt;li&gt;실제 시스템 설계에서는 타이밍을 최적화하는 것이 중요하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;줄어드는-깊은-파이프라이닝의-효과&quot;&gt;줄어드는 깊은 파이프라이닝의 효과&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 계산을 여섯 단계로 나누었고, 각각은 50ps를 소모한다.&lt;/li&gt;
-  &lt;li&gt;이 시스템의 클럭 주기는 50+20=70ps, 처리량은 14.29, 지연시간은 480이다.&lt;/li&gt;
-  &lt;li&gt;각 계산 블록에서 소요되는 시간을 2분의 1로 줄였지만 파이프라인 레지스터를 통과하는 시간지연으로 인해 처리량은 두 배를 얻지 못했다.&lt;/li&gt;
-  &lt;li&gt;이 지연시간은 파이프라인의 처리량에 있어서 제한요소가 된다.&lt;/li&gt;
-  &lt;li&gt;최신 프로세서들은 프로세서의 클럭속도를 최대로 올리기 위해 매우 깊은(15단계 이상) 파이프라인을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;444-피드백을-갖는-파이프라인-시스템&quot;&gt;4.4.4 피드백을 갖는 파이프라인 시스템&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;기계어 프로그램을 실행하는 시스템에서는 연속적인 인스트럭션들 간에는 잠재적인 의존성이 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_5.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;예를들어 위의 코드 배열은 각각의 연속되는 인스트럭션들 간에 원으로 표시한 레지스터 이름에 데이터 의존성이 존재한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;../../assets/img/csapp/17/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 피드백을 갖는 시스템에 파이프라인을 추가할 때의 위험을 보여준다.
-    &lt;ul&gt;
-      &lt;li&gt;피드백이 있는 파이프라인을 사용하지 않는 시스템(a)에서 파이프라인 시스템(c)으로 전환하기 위해서 두 파이프라인 다이어그램에서 보는 바와 같이 계산적인 동작을 변경한다(b와d)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 17</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)</title><link href="http://localhost:4000/cs:app/csapp_18/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_18</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_18/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 19</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)</title><link href="http://localhost:4000/cs:app/csapp_18/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.5 파이프라인형 Y86-64의 구현)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_18</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_18/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
   &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
@@ -1980,137 +1851,133 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 
 &lt;blockquote&gt;
   &lt;p&gt;2장부터 4장이 하드웨어까지의 모든 부분들을 살펴본 것 같다. 4장은 꼭 한번 더 읽어보자.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 18</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.4 SEQ 단계의 구현)</title><link href="http://localhost:4000/cs:app/csapp_16/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.3 순차적 Y86-64 구현 - 4.3.4 SEQ 단계의 구현)" /><published>2022-03-17T00:00:00+09:00</published><updated>2022-03-17T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_16</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_16/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 18</summary></entry><entry><title type="html">[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)</title><link href="http://localhost:4000/cs:app/csapp_17/" rel="alternate" type="text/html" title="[CS:APP] Chapter 04. 프로세서 구조 (4.4 파이프라이닝의 일반 원리)" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_17</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_17/">&lt;h1 id=&quot;chapter-04-프로세서-구조&quot;&gt;Chapter 04. 프로세서 구조&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;4.1 Y86-64 인스트럭션 집합 구조&lt;/li&gt;
   &lt;li&gt;4.2 논리 설계와 하드웨어 제어 언어 HCL&lt;/li&gt;
   &lt;li&gt;4.3 순차적sequential Y86-64 구현&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;43-순차적sequential-y86-64-구현&quot;&gt;4.3 순차적sequential Y86-64 구현&lt;/h1&gt;
-
+&lt;h1 id=&quot;44-파이프라이닝의-일반-원리&quot;&gt;4.4 파이프라이닝의 일반 원리&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;SEQ : sequential 프로세서를 의미&lt;/li&gt;
-  &lt;li&gt;매 클럭 사이클에 SEQ는 한 개의 완전한 인스트럭션을 처리하는 데 필요한 모든 단계를 수행한다.&lt;/li&gt;
-  &lt;li&gt;SEQ를 개발하는 목적은 효율적인 파이프라인 프로세서를 만들려는 우리의 최종목표로 가는 첫 단계이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;434-seq-단계의-구현&quot;&gt;4.3.4 SEQ 단계의 구현&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SEQ를 구현하는 데 필요한 제어로직 블록을 위한 HCL작성방법을 설명한다.&lt;/li&gt;
-  &lt;li&gt;여러가지 인스트럭션 코드, 함수코드, 레지스트 이름, ALU 연산, 상태코드 등을 위한 상수 값뿐만 아니라 여러가지 하드웨어 신호의 이름이 포함된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 표는 HCL 문장에 사용된 상수 값들이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;선입-단계&quot;&gt;선입 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;선입 단계는 인스트럭션 메모리 하드웨어 유닛을 포함한다.&lt;/li&gt;
-  &lt;li&gt;유닛은 PC를 첫 바이트(0번 바이트)의 주소로 사용해서 메모리로부터 한 번에 10바이트를 읽어들인다.&lt;/li&gt;
-  &lt;li&gt;이 바이트는 인스트럭션 바이트로 해석되고, 두 개의 4비트 값으로 나누어진다.(“Split”이라고 표시된 유닛에 의해 icode와 ifun으로 나뉜다.)&lt;/li&gt;
-  &lt;li&gt;icode 값에 따라 세 개의 1비트 신호를 계산할 수 있다.
+  &lt;li&gt;파이프라인 시스템의 일반적인 특징과 원리들을 생각해보자.
     &lt;ul&gt;
-      &lt;li&gt;instr_valid: 이 신호는 부정 인스트럭션을 검출하기 위해 사용된다.&lt;/li&gt;
-      &lt;li&gt;need_regids: 레지스터 지정 바이트를 포함하는가&lt;/li&gt;
-      &lt;li&gt;need_valC: 상수 워드를 포함하는가&lt;/li&gt;
+      &lt;li&gt;파이프라인 시스템에서 수행해야 할 일은 여러 개의 일련의 단계뜰로 나누어진다.&lt;/li&gt;
+      &lt;li&gt;식당의 예를들면, 샐러드를 먼저 제공하고, 메인 음식, 디저트 그리고 음료의 순으로 제공하는 것과 비슷하다.&lt;/li&gt;
+      &lt;li&gt;컨베이어 벨트와 비슷하게 여러 고객이 동시에 시스템을 진행하도록 한다.&lt;/li&gt;
+      &lt;li&gt;비록 어떤 사람은 일부 음식만을 원할지라도 모든 단계를 통과해 간다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;instr_valid, imem_error 신호(인스트럭션 주소가 범위를 벗어날 때 만들어지는)는 메모리 단계에서 상태코드를 만들기 위해 사용된다.&lt;/li&gt;
-  &lt;li&gt;need_regids를 위한 HCL 표현은 icode 값이 레지스터 지정자 바이트를 갖는 인스트럭션인지를 결정한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;  &lt;span class=&quot;n&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;need_regids&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-          &lt;span class=&quot;n&quot;&gt;icode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IRRMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IOPQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IPUSHQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IPOPQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                     &lt;span class=&quot;no&quot;&gt;IIRMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IRMMOVQ&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IMRMOVQ&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인스트럭션 메모리에서 읽은 나머지 바이트는 레지스터 지정자와 상수 워드들이다.
+  &lt;li&gt;파이프라이닝의 주요 특징
     &lt;ul&gt;
-      &lt;li&gt;Align 이라고 이름 붙인 하드웨어 유닛이 레지스터 필드들과 상수 워드에 대해 처리작업을 수행한다.&lt;/li&gt;
-      &lt;li&gt;계산된 need_regids가 1이면, 레지스터 지정자 rA와 rB로 나누어진다.&lt;/li&gt;
-      &lt;li&gt;상수 워드 valC도 만든다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PC 증가 하드웨어 유닛은 현재의 PC 값, need_regids, need_ValC에 따라 valP를 만든다. (p+1+r+8i)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;해동과-재기록-단계&quot;&gt;해동과 재기록 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SEQ에서 해독과 재기록 단계 모두를 구현하는 로직의 상세한 모습을 보여준다.
-    &lt;ul&gt;
-      &lt;li&gt;해동과 재기록 단계 모두 레지스터 파일에 접근하기 때문이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;레지스터 파일은 네 개의 포트를 가지고 있다.
-    &lt;ul&gt;
-      &lt;li&gt;두 개의 동시 읽기(포트 A와 B), 두 개의 동시 쓰기(포트 E와 M)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;각 포트는 한 개의 주소 연결과 데이터 연결을 모두 갖는다.
-    &lt;ul&gt;
-      &lt;li&gt;주소 연결은 레지스터 ID, 데이터 연결은 레지스터 파일의 출력 워드 이거나 입력워드로 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;두 개의 읽기 포트는 주소 입력 srcA와 srcB를 가진다.&lt;/li&gt;
-  &lt;li&gt;두 개의 쓰기 포트는 dstE와 dstM을 주소 입력으로 갖느다.&lt;/li&gt;
-  &lt;li&gt;네 개의 블록은 인스트럭션 코드 icode, 레지스터 지정자 rA, rB, 실행 단계에서 계산된 조건신호 Cnd에 기초하여 네 개의 레지스터 ID를 만들어 낸다.&lt;/li&gt;
-  &lt;li&gt;레지스터 ID dstE는 쓰기 포트 E를 위한 목적지 레지스터를 나타내며 계싼된 valE가 저장된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;실행-단계&quot;&gt;실행 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;실행 단계는 산술/논리 유닛(ALU)을 포함한다.&lt;/li&gt;
-  &lt;li&gt;이 유닛은 ADD, SUBTRACT, AND, EXCLUSIVE-OR를 입력 aluA, aluB에 alufun 신호의 설정에 따라 실행한다.&lt;/li&gt;
-  &lt;li&gt;ALU가 대부분의 경우에 덧셈기로 사용된다.
-    &lt;ul&gt;
-      &lt;li&gt;OPq 인스트럭션에 대해서는 인스트럭션의 ifun 필드에 인코딩된 연산을 사용해야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;실행 단계는 조건코드 레지스터를 포함한다.
-    &lt;ul&gt;
-      &lt;li&gt;조건코드 레지스터가 갱신되어야 할지 여부는 제어하는 set_cc 신호를 생성한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;“cond”로 명명된 하드웨어 유닛은 조건부 분기나 데이터 이동이 일어나야 할지를 결정하기 위한 조건코드들과 함수코드의 조합을 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;메모리-단계&quot;&gt;메모리 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리 단계는 프로그램 데이터를 읽거나 쓰는 일을 수행한다.&lt;/li&gt;
-  &lt;li&gt;두 개의 제어 블록이 메모리주소와 메모리 입력 데이터(쓰기 연산을 위한)를 위한 값을 만들어낸다.&lt;/li&gt;
-  &lt;li&gt;메모리 단계에서 마지막 기능은 icode, imem_error, 선입 단계에서 만들어진 instr_valid, 데이터 메모리에서 만든 dmem_error 신호에 따라 인스트럭션 실행에서 결정되는 상태코드 Stat을 계산하는 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;pc-갱신-단계&quot;&gt;PC 갱신 단계&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/16/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;SEQ의 최종 단계는 새로운 프로그램 카운터 값을 생성하는 것이다.&lt;/li&gt;
-  &lt;li&gt;새로운 PC 값은 인스트럭션 타입과 분기를 택할지 여부에 따라 valC, valM, valP가 될 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;seq-현황-조사&quot;&gt;SEQ 현황 조사&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;여러 인스트럭션을 통일된 흐름으로 실행하기 위해 필요한 단계를 구성하면서 프로세서 전체를 적은 수의 여러 하드웨어 유닛들과 계산을 순서화하기 위한 한 개이의 클럭으로 구현할 수 있다.&lt;/li&gt;
-  &lt;li&gt;SEQ에서 유일한 문제는 매우 느리다.
-    &lt;ul&gt;
-      &lt;li&gt;그 이유는 각 유닛들이 전체 클럭 사이클의 일부 동안만 사용되기 때문이다.&lt;/li&gt;
-      &lt;li&gt;그렇기 때문에 파이프라인을 사용해서 보다 좋은 성능을 얻을 수 있다.&lt;/li&gt;
+      &lt;li&gt;시스템 처리량(단위시간당 처리하는 고객의 수)을 증가시킨다.&lt;/li&gt;
+      &lt;li&gt;지연시간(고객을 지원하는 데 걸리는 시간)을 증가시킨다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;프로세서의 구조를 자세히 살펴보았는데, 굉장히 이해하기 어려운 부분이 많았다. 이번 챕터는 자주 보고 다른 자료도 더 찾아봐야겠다.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 16</summary></entry></feed>
+&lt;h2 id=&quot;441-계산용-파이프라인&quot;&gt;4.4.1 계산용 파이프라인&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 식당의 예를 계산용 파이프라인으로 초점을 옮기면
+    &lt;ul&gt;
+      &lt;li&gt;“고객들”은 인스트럭션&lt;/li&gt;
+      &lt;li&gt;단계들은 인스트럭션 실행의 일부분을 수행한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 간단한 비파이프라인 하드웨어 시스템의 예이다.
+    &lt;ul&gt;
+      &lt;li&gt;계산을 수행하는 일부 로직으로 이루어진다.&lt;/li&gt;
+      &lt;li&gt;계산 결과를 저장하는 레지스터가 따라온다.&lt;/li&gt;
+      &lt;li&gt;클럭 신호는 규칙적인 시간간격으로 레지스터에 로딩되는 것을 제어한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 예제에서는 조합로직은 300ps를 필요로하고 레지스터 로딩은 20ps를 필요로 한다.
+    &lt;ul&gt;
+      &lt;li&gt;이 시스템에서 처리량은 1/320 * 1,000 = 3.12&lt;/li&gt;
+      &lt;li&gt;이 시스템에서 지연시간은 320ps&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 3단계 파이프라인 계산 하드웨어이다.
+    &lt;ul&gt;
+      &lt;li&gt;시스템에서 수행하는 계산을 세 단계 A,B,C로 나눌 수 있다고 가정한다.&lt;/li&gt;
+      &lt;li&gt;파이프라인 레지스터들을 단계 사이에 배치해서 각 인스트럭션이 3단계로 시스템을 통해 이동한다.&lt;/li&gt;
+      &lt;li&gt;시작부토 종료할 때까지 세 개의 클럭 사이클이 소요된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 예제에서는 클럭을 매 100+20=120ps이고 한 개의 인스트럭션을 처리하는 데 3클럭 사이클이 필요하다.
+    &lt;ul&gt;
+      &lt;li&gt;이 시스템에서 처리량은 1/120 * 1,000 = 8.33&lt;/li&gt;
+      &lt;li&gt;이 시스템에서 지연시간은 360ps&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비파이프라인 보다 처리량은 빠르지만 지연시간이 증가한 이유는 추가된 파이프라인 레지스터에 의한 오버헤드 때문이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;442-파이프라인-연산의-상세한-고찰&quot;&gt;4.4.2 파이프라인 연산의 상세한 고찰&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;파이프라인 단계들 간에 인스트럭션의 이동은 위의 파이프라인 다이어그램에 나타낸 것과 같이 클럭 신호에 의해 제어된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 한 사이클 동안의 파이프라인 동작이다.
+    &lt;ul&gt;
+      &lt;li&gt;신호들은 파이프라인 레지스터 입력들로 전달되지만, 클럭이 상승할 때까지 레지스터의 상태는 바뀌지 않는다.&lt;/li&gt;
+      &lt;li&gt;클럭을 늦추는 것이 파이프라인의 동작을 변화시키지 않는다는 것을 알 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;443-파이프라이닝의-한계&quot;&gt;4.4.3 파이프라이닝의 한계&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;파이프라인의 효과를 축소시키는 여러 요소들이 종종 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;비균일-분리-nonuniform-partitioning&quot;&gt;비균일 분리 Nonuniform Partitioning&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 계산을 이전처럼 세 단계로 나눈 시스템이지만 각 단계에서 발생하는 지연시간은 50에서 150 ps까지 변화한다.&lt;/li&gt;
+  &lt;li&gt;우리가 구동할 수 있는 클럭의 속도는 가장 늦은 단계의 시간지연 값에 의해 결정된다.&lt;/li&gt;
+  &lt;li&gt;실제 시스템 설계에서는 타이밍을 최적화하는 것이 중요하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;줄어드는-깊은-파이프라이닝의-효과&quot;&gt;줄어드는 깊은 파이프라이닝의 효과&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 계산을 여섯 단계로 나누었고, 각각은 50ps를 소모한다.&lt;/li&gt;
+  &lt;li&gt;이 시스템의 클럭 주기는 50+20=70ps, 처리량은 14.29, 지연시간은 480이다.&lt;/li&gt;
+  &lt;li&gt;각 계산 블록에서 소요되는 시간을 2분의 1로 줄였지만 파이프라인 레지스터를 통과하는 시간지연으로 인해 처리량은 두 배를 얻지 못했다.&lt;/li&gt;
+  &lt;li&gt;이 지연시간은 파이프라인의 처리량에 있어서 제한요소가 된다.&lt;/li&gt;
+  &lt;li&gt;최신 프로세서들은 프로세서의 클럭속도를 최대로 올리기 위해 매우 깊은(15단계 이상) 파이프라인을 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;444-피드백을-갖는-파이프라인-시스템&quot;&gt;4.4.4 피드백을 갖는 파이프라인 시스템&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;기계어 프로그램을 실행하는 시스템에서는 연속적인 인스트럭션들 간에는 잠재적인 의존성이 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/17/img_5.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;예를들어 위의 코드 배열은 각각의 연속되는 인스트럭션들 간에 원으로 표시한 레지스터 이름에 데이터 의존성이 존재한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;../../assets/img/csapp/17/img_6.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 피드백을 갖는 시스템에 파이프라인을 추가할 때의 위험을 보여준다.
+    &lt;ul&gt;
+      &lt;li&gt;피드백이 있는 파이프라인을 사용하지 않는 시스템(a)에서 파이프라인 시스템(c)으로 전환하기 위해서 두 파이프라인 다이어그램에서 보는 바와 같이 계산적인 동작을 변경한다(b와d)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 17</summary></entry></feed>
