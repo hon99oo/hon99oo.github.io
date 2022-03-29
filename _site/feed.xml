@@ -1,8 +1,497 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-29T19:33:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰</title><link href="http://localhost:4000/cs:app/csapp_22/" rel="alternate" type="text/html" title="[CS:APP] Part 1 프로그램의 구조와 실행 리뷰" /><published>2022-03-28T00:00:00+09:00</published><updated>2022-03-28T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_22</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_22/">&lt;h1 id=&quot;정보의-표현과-처리&quot;&gt;정보의 표현과 처리&lt;/h1&gt;
-&lt;h1 id=&quot;프로그램의-기계수준-표현&quot;&gt;프로그램의 기계수준 표현&lt;/h1&gt;
-&lt;h1 id=&quot;프로세서-구조&quot;&gt;프로세서 구조&lt;/h1&gt;
-&lt;h1 id=&quot;프로그램-성능-최적화하기&quot;&gt;프로그램 성능 최적화하기&lt;/h1&gt;
-&lt;h1 id=&quot;메모리-계층구조&quot;&gt;메모리 계층구조&lt;/h1&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 22</summary></entry><entry><title type="html">[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이</title><link href="http://localhost:4000/codingtest/python_02/" rel="alternate" type="text/html" title="[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/codingtest/python_02</id><content type="html" xml:base="http://localhost:4000/codingtest/python_02/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-29T23:33:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰</title><link href="http://localhost:4000/cs:app/csapp_22/" rel="alternate" type="text/html" title="[CS:APP] Part 1 프로그램의 구조와 실행 리뷰" /><published>2022-03-28T00:00:00+09:00</published><updated>2022-03-28T00:00:00+09:00</updated><id>http://localhost:4000/cs:app/csapp_22</id><content type="html" xml:base="http://localhost:4000/cs:app/csapp_22/">&lt;h1 id=&quot;2-정보의-표현과-처리&quot;&gt;2 정보의 표현과 처리&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;컴퓨터가 실제로 해석하는 비트들과 연산들이 무엇이 있는지 배운다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;컴퓨터는 두 개의 값을 갖는 신호로 정보를 처리한다.&lt;/li&gt;
+  &lt;li&gt;이러한 비트를 이진수 체계를 사용해서 양수들로 인코딩하여 사용한다.
+    &lt;ul&gt;
+      &lt;li&gt;비부호형&lt;/li&gt;
+      &lt;li&gt;부호형(2의 보수)&lt;/li&gt;
+      &lt;li&gt;부동소수점&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정보의-저장&quot;&gt;정보의 저장&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;2진수: 컴퓨터의 비트 표현&lt;/li&gt;
+  &lt;li&gt;16진수: 비트 패턴을 표시하는데 사용됨(2진수와 10진수는 불편함)&lt;/li&gt;
+  &lt;li&gt;비트 표시 방법(xw-1,xw-2,…,x1,x0)
+    &lt;ul&gt;
+      &lt;li&gt;리틀 엔디안: 가장 덜 중요한 바이트가 먼저 온다.(x0,x1…)&lt;/li&gt;
+      &lt;li&gt;빅 엔디안: 가장 중요한 바이트가 먼저 온다.(xw-1,xw-2…)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비트 수준 연산
+    &lt;ul&gt;
+      &lt;li&gt;부울 대수: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;~&lt;/code&gt;(not),&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;&lt;/code&gt;(and),&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;|&lt;/code&gt;(or),&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;^&lt;/code&gt;(exclusive-or)&lt;/li&gt;
+      &lt;li&gt;쉬프트
+        &lt;ul&gt;
+          &lt;li&gt;좌측 쉬프트: « 우측에는 k개의 0 채워짐&lt;/li&gt;
+          &lt;li&gt;논리 우측 쉬프트 » 좌측에는 k개의 0 채워짐&lt;/li&gt;
+          &lt;li&gt;산술 우측 쉬프트 » 좌측에는 k개의 중요한 비트들이 채워짐&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정수의-표시&quot;&gt;정수의 표시&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;비부호형과 부호형(2의보수)의 표현 방법에 차이점에 포인트를 두어야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;부호형(2의 보수) : 맨 앞자리의 비트가 0이면 양수, 1이면 음수로 표현한다.
+    &lt;ul&gt;
+      &lt;li&gt;ex) 1101 -&amp;gt; 앞자리가 1이므로 -8, 앞자리를 제외한 값이 5 -&amp;gt; -8+5=-3 이렇게 계산한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비부호형과 부호형 간의 변환과 확장, 절삭에서 부호형의 오버플로우가 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정수의-계산&quot;&gt;정수의 계산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;부호형의 덧셈, 곱셈에서 음의 오버플로우와 양의 오버플로우가 발생한다.&lt;/li&gt;
+  &lt;li&gt;쉬프트를 사용해서 곱셈이 가능하다.(비용이 훨씬 적게 듬)
+    &lt;ul&gt;
+      &lt;li&gt;ex) 11(1011[2])*4 = 44(101100[2])&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;부동소수점&quot;&gt;부동소수점&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;부동소수점 V = x*2^y 형태로 인코딩한다. y는 1/2, 1/4… 와 같은 값&lt;/li&gt;
+  &lt;li&gt;근사법 rounding
+    &lt;ul&gt;
+      &lt;li&gt;부동소수점은 정확한 값을 얻을 수 없다. 그렇기 때문에 근사 연산을 한다.
+        &lt;ul&gt;
+          &lt;li&gt;짝수근사법, 영방향근사, 하향근사, 상향근사 모드가 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;3-프로그램의-기계수준-표현&quot;&gt;3 프로그램의 기계수준 표현&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;우리가 코드를 작성하면 컴파일러는 소스파일의 어셈블러 버전을 생성한다. 어셈블러는 해당 어셈블리 코드를 바이너리 목적코드로 변환한다. 이후 목적코드를 컴퓨터가 해석한다.
+이번 챕터에서는 어셈블리 코드에 대해 배운다. 이것을 배우게 되면 컴파일러의 최적화 방법을 알 수 있고 코드의 비효율성을 분석할 수 있게된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;프로그램의-인코딩&quot;&gt;프로그램의 인코딩&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로그램 호출방법(c언어 기)
+    &lt;ol&gt;
+      &lt;li&gt;C 전처리가 #include와 #define을 확장해준다.&lt;/li&gt;
+      &lt;li&gt;컴파일러는 소스파일의 어셈블리 코드를 생성한다.(test.c -&amp;gt; test.s)&lt;/li&gt;
+      &lt;li&gt;어셈블러는 어셈블리 코드를 바이너리 목적코드로 변환한다.(test.s -&amp;gt; test.o)&lt;/li&gt;
+      &lt;li&gt;링커가 목적코드를 라이브러리 함수와 함꼐 최종 실행 파일인 test.p를 생성한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ISA(Instruction Set Architecture): 인스트럭션 집합구조, 프로세서의 상태 및 인스트럭션 형식과 영향을 정의한다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션 특성 요약
+    &lt;ul&gt;
+      &lt;li&gt;오퍼랜드: 데이터와 목적지 위치를 명시한다.&lt;/li&gt;
+      &lt;li&gt;레지스터나 메모리로부터 읽고 저장한다.&lt;/li&gt;
+      &lt;li&gt;immediate(상수값), register, memory 세가지 타입이 존재한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;인스트럭션-종류&quot;&gt;인스트럭션 종류&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;데이터 이동: mov
+    &lt;ul&gt;
+      &lt;li&gt;두 개의 오퍼랜드 모두 메모리 위치에 올 수 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스택의 저장과 추출: push, pop&lt;/li&gt;
+  &lt;li&gt;산술연산: add, sub, imul, idiv, sal(left shift), inc(++1), or, and…&lt;/li&gt;
+  &lt;li&gt;유효주소 적재: leaq
+    &lt;ul&gt;
+      &lt;li&gt;포인터 생성하기 위한 인스트럭션&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;조건코드&lt;/code&gt;: CF(carry flag), ZF(zero flag), SF(sign flag), OF(overflow flag)
+    &lt;ul&gt;
+      &lt;li&gt;cf: 중요한 비트로부터 받아올림이 발생한 것을 표시(오버플로우 검출)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;제어문: cmp, test, set
+    &lt;ul&gt;
+      &lt;li&gt;cmp는 두 오퍼랜드가 같으면 zf를 1로 설정&lt;/li&gt;
+      &lt;li&gt;test는 조건 코드만 설정&lt;/li&gt;
+      &lt;li&gt;set은 비교후 조건코드를 설정해줌&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;점프: jmp, je, jle…&lt;/li&gt;
+  &lt;li&gt;조건부 이동: cmove, cmovg…&lt;/li&gt;
+  &lt;li&gt;콜 리턴: call, ret&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;조건부-분기if-else&quot;&gt;조건부 분기(if else)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;조건제어: cmp와 jump를 사용함&lt;/li&gt;
+  &lt;li&gt;조건부이동: cmove등을 사용함(더 빠름)
+    &lt;ul&gt;
+      &lt;li&gt;경우를 다 계산하고 이동만함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;반복문for-while&quot;&gt;반복문(for, while)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;cmp와 jump를 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;프로시저&quot;&gt;프로시저&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;call: call하게 되면 이전 주소와 함께 스택 메모리에 올라감&lt;/li&gt;
+  &lt;li&gt;return: 후입선출 구조이기 때문에 스택에 있던 이전 주소가 pop되며 retrun 하게됨&lt;/li&gt;
+  &lt;li&gt;데이터 전송: 인자는 레지스터로 전송되지만, 6개 이상의 인자를 가지면 초과되는 인자는 스택으로 전달된다.&lt;/li&gt;
+  &lt;li&gt;지역 변수: 지역변수 또한 스택 프레임 내에서 생성된다.&lt;/li&gt;
+  &lt;li&gt;레지스터: 레지스터는 프로시저 모두가 굥유함. 기존에 사용하던 레지스터를 새로 호출한 함수에서 “saved registers”라는 스택의 일부분을 할당해서 저장하고 보존한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_1.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;데이터의-정렬&quot;&gt;데이터의 정렬&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;사용 가능한 주소를 k의 배수가 되도록 요구한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;버퍼-오버플로우&quot;&gt;버퍼 오버플로우&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;스택의 saved registers와 return address 범위를 침범하면 심각한 오류를 발생시킨다.&lt;/li&gt;
+  &lt;li&gt;대응 방법
+    &lt;ul&gt;
+      &lt;li&gt;스택 랜덤화: 스택의 위치를 프로그램 실행마다 다르게 해준다.&lt;/li&gt;
+      &lt;li&gt;스택 손상 검출: 스택에 canary값을 추가하여 손상되는 것을 감지한다.&lt;/li&gt;
+      &lt;li&gt;실행코드 영역 제한&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;부동소수점-1&quot;&gt;부동소수점&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;정수 연산과 유사하다.&lt;/li&gt;
+  &lt;li&gt;부동소수점을 위한 레지스터를 따로 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;4-프로세서-구조&quot;&gt;4 프로세서 구조&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;하드웨어 시스템이 ISA의 인스트럭션들을 어떻게 실행할 수 있는지를 학습한다. ISA인 “Y86-64”를 직접 만들어보며 학습한다.
+이후 SEQ를 기초로 파이프라인형 프로세서 PIPE를 만들어본다. 프로세서는 각 인스트럭션의 실행단계를 5단계로 나누어 처리한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;프로그래머-가시성 상태(programmer-visible state) : 프로그램 레지스터, CC(조건코드), PC, 메모리, Stat(상태코드)를 포함한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;인스트럭션-집합y86-64&quot;&gt;인스트럭션 집합(Y86-64)&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림처럼 인스트럭션이 인코딩된다.
+    &lt;ul&gt;
+      &lt;li&gt;인코딩에 1에서 10바이트가 소요된다.&lt;/li&gt;
+      &lt;li&gt;OPq는 정수연산이며 ZF,SF,OF 조건코드를 결정한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림처럼 인스트럭션에 대한 상세한 특정 인코딩으로 변환된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;예외상황y86-64&quot;&gt;예외상황(Y86-64)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Stat(상태코드)를 나타낸다.
+    &lt;ul&gt;
+      &lt;li&gt;AOK: 정상 실행&lt;/li&gt;
+      &lt;li&gt;HLT: halt 인스트럭션 실행(정지 인스트럭션)&lt;/li&gt;
+      &lt;li&gt;ADR: 잘못된 메모리 주소를 읽거나 쓸 때&lt;/li&gt;
+      &lt;li&gt;INS: 잘못된 인스트럭션을 만났을 때&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;어셈블러를-사용해-어셈블한-결과--목적코드&quot;&gt;어셈블러를 사용해 어셈블한 결과 == 목적코드&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_4.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;seq-설계-1-레지스터-파일&quot;&gt;SEQ 설계 1 (레지스터 파일)&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;SEQ는 sequential 프로세서를 의미한다. SEQ를 설계하기 위해서는 SEQ 내에 있는 레지스터 파일을 이해해야 한다.
+레지스터 파일을 이해하기 위해서는 논리게이트와 클럭을 이해해야한다.(레지스터 파일이 논리게이트로 이루어져있다.)&lt;/p&gt;
+
+  &lt;p&gt;논리게이트 -&amp;gt; 조합회로 -&amp;gt; (레지스터 연산 = 클럭) -&amp;gt; 레지스터 파일 -&amp;gt; SEQ -&amp;gt; SEQ+ -&amp;gt; PIPE&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;논리게이트: AND, OR, NOT등의 입력들의 불 함수 출력을 만들어낸다.
+    &lt;ul&gt;
+      &lt;li&gt;출력과 입력은 0과 1이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;조합회로: 여러 논리 게이트를 모아 네트워크를 만들어 계산 블록을 만든다.다&lt;/li&gt;
+  &lt;li&gt;클럭: 주기적 신호인 한 개의 클럭에 의해 새 값들이 제어된다.
+    &lt;ul&gt;
+      &lt;li&gt;클럭을 사용하는 레지스터: 워드나 개별 비트 저장&lt;/li&gt;
+      &lt;li&gt;RAM: 주소를 사용해서 여러 워드를 저장&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;레지스터 연산: 클럭이 상승할 때 레지스터의 입력값이 새값을 가진다.&lt;/li&gt;
+  &lt;li&gt;레지스터 파일:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_5.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;seq-설계-2-하드웨어-구조&quot;&gt;SEQ 설계 2 (하드웨어 구조)&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_6.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 그림은 SEQ 하드웨어 구조다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;작업 단계
+    &lt;ol&gt;
+      &lt;li&gt;선입 fetch: PC를 메모리주소로 사용해 인스트럭션 바이트를 읽어들인다.&lt;/li&gt;
+      &lt;li&gt;해독 decode: 레지스터 파일에서 오퍼랜드를 읽어서 valA, valB를 얻는다.&lt;/li&gt;
+      &lt;li&gt;실행 excution: ALU(산술/논리 연산)이 인스트럭션이 지시하는 연산을 수행하거나 유효주소 계산 및 스택 포인터 값 변경한다. 조건 코드 및 점프 인스트럭션도 갱신한다. valE&lt;/li&gt;
+      &lt;li&gt;메모리 memory: 데이터를 메모리에서 쓰거나 읽어온다. valM&lt;/li&gt;
+      &lt;li&gt;재기록 write back: 두 결과를 레지스터 파일에 기록한다.&lt;/li&gt;
+      &lt;li&gt;PC 갱신 PC update: PC는 다음 인스트럭션의 주소로 설정된다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SEQ 타이밍
+    &lt;ul&gt;
+      &lt;li&gt;메모리와 레지스터에 클럭을 공급하며 프로세서의 여러 동작들을 순서대로 제어한다.&lt;/li&gt;
+      &lt;li&gt;인스트럭션에 의해 갱신된 상태를 다시 읽을 필요는 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;파이프라이닝-원리&quot;&gt;파이프라이닝 원리&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;SEQ에서는 하나의 인스트럭션을 처리하는데 3~5 클럭정도 소요된다. 하지만, 다양한 단계에서 하나의 인스트럭션이 끝날 때 까지 쉬고 있는 단계가 많다.
+이를 사용하기 위해 파이프라이닝 개념을 도입하였다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;파이프라이닝 주요 특징 : 시스템 처리량, 지연시간을 증가 시킨다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_7.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_8.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 비파이프라인과 파이프라인
+    &lt;ul&gt;
+      &lt;li&gt;수행 시간을 계산하면 파이프라인이 약 2.5배 빠르지만, 지연시간은 40ps정도 늘어났다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;파이프라이닝의-한계&quot;&gt;파이프라이닝의 한계&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;각 단계별로 처리 시간이 다르면, 가장 늦은 단계의 시간지연 값에 의해 클럭의 속도가 결정된다.&lt;/li&gt;
+  &lt;li&gt;인스트럭션들 간에 데이터 의존성이 존재하면 파이프라이닝이 제한된다.
+    &lt;ul&gt;
+      &lt;li&gt;피드백을 갖는 파이프라인 시스템이라고도 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pipe-설계&quot;&gt;PIPE 설계&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;SEQ 구조에서 PC갱신 단계를 맨 처음으로 바꾼 SEQ+를 설계한 후 파이프라인을 적용하여 PIPE구조를 설계한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_9.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 PIPE-의 하드웨어 구조이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;다음-pc값의-추정&quot;&gt;다음 PC값의 추정&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;파이프라인 설계의 목표는 매 클럭 사이클마다 새로운 인스트럭션을 실행하는 것이다.&lt;/li&gt;
+  &lt;li&gt;목표를 달성하기 위해서 PC의 새로운 값을 예측해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;조건제어나 분기등으로 인해서&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;분기 방향을 추측하는 기술을 branch prediction이라고 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;파이프라인-해저드&quot;&gt;파이프라인 해저드&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;피드백이 있는 시스템에 파이프라인을 도입하면 인스트럭션들 간에 의존성으로 인해 문제가 발생한다.
+    &lt;ul&gt;
+      &lt;li&gt;데이터 의존성: 현재의 계산의 결과가 다음 인스트럭션을 위한 데이터로 사용되는 경우&lt;/li&gt;
+      &lt;li&gt;제어 의존성: jump, call, ret과 같은 인스트럭션을 처리할 경우&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;해저드: 의존성들이 파이프라인으로 인해 잘못된 계산을 하는 것&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;스톨을-사용한-데이터-해저드-회피&quot;&gt;스톨을 사용한 데이터 해저드 회피&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;해저드 조건이 사라질 때 까지 파이프 라인 내에 유지한다.&lt;/li&gt;
+  &lt;li&gt;스톨링동안 실행 단계에 버블을 삽입한다.&lt;/li&gt;
+  &lt;li&gt;버블은 동적으로 생성된 nop인스트럭션과 비슷하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;포워딩을-이용한-데이터-해저드-회피&quot;&gt;포워딩을 이용한 데이터 해저드 회피&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;소스 오퍼랜드로 이전에 실행된 인스트럭션 결과 값을 전달할 수 있다.&lt;/li&gt;
+  &lt;li&gt;“Sel+Fwd A”와 “Fwd B” 두 블록으로 피드백 된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;로드사용-데이터-해저드-회피&quot;&gt;로드/사용 데이터 해저드 회피&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리 읽기가 파이프라인의 뒷부분에서 일어나기 때문에 포워딩으로 처리할 수 없다.&lt;/li&gt;
+  &lt;li&gt;스톨링과 포워딩을 함께 사용한다.&lt;/li&gt;
+  &lt;li&gt;load interlock: 로드/사용 해저드를 처리하기 위해 스톨을 사용하는 것&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;제어-해저드의-회피&quot;&gt;제어 해저드의 회피&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;ret: 스톨을 사용한다.&lt;/li&gt;
+  &lt;li&gt;jump: 분기할 것을 예측한다. -&amp;gt; 잘못 예측된 것을 확인한다. -&amp;gt; 버블을 삽입하여 인스트럭션을 취소한다. -&amp;gt; 점프 다음에 오는 인스트럭션을 선입한다.&lt;/li&gt;
+  &lt;li&gt;instruction squashing: 잘못 선입한 인스트럭션을 취소하는 것&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;파이프라인-예외처리&quot;&gt;파이프라인 예외처리&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/22/img_10.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;제어로직을 사용하여 예외처리를한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;5-프로그램-성능-최적화하기&quot;&gt;5 프로그램 성능 최적화하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;상위 수준 설계: 적절한 알고리즘과 자료구조 선택&lt;/li&gt;
+  &lt;li&gt;최적화 장애물 피하기
+    &lt;ul&gt;
+      &lt;li&gt;함수 호출제거&lt;/li&gt;
+      &lt;li&gt;계산은 루프 밖으로 이동&lt;/li&gt;
+      &lt;li&gt;불필요한 메모리 참조 제거&lt;/li&gt;
+      &lt;li&gt;중간 값을 저장하는 임시 변수 사용(데이터 의존성 피하기)&lt;/li&gt;
+      &lt;li&gt;최종 값이 계산되었을 때에만 전역변수나 배열에 결과 저장(load 의존성 피하기)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;하위수준 최적화: 병렬성 이용
+    &lt;ul&gt;
+      &lt;li&gt;루프풀기&lt;/li&gt;
+      &lt;li&gt;다중누산기와 재결합 기법 사용&lt;/li&gt;
+      &lt;li&gt;statement 보다 expression 사용하기&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;6-메모리-계층구조&quot;&gt;6 메모리 계층구조&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;랜덤-접근 메모리(RAM)
+    &lt;ul&gt;
+      &lt;li&gt;SRAM: 캐시메모리로 사용
+        &lt;ul&gt;
+          &lt;li&gt;메모리셀에 저장한다.&lt;/li&gt;
+          &lt;li&gt;지속성을 갖는다.&lt;/li&gt;
+          &lt;li&gt;리프레시가 필요없다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;DRAM: 메인메모리로 사용
+        &lt;ul&gt;
+          &lt;li&gt;캐패시터에 저장한다.&lt;/li&gt;
+          &lt;li&gt;리프레시가 필요하다.&lt;/li&gt;
+          &lt;li&gt;메모리 컨트롤러는 행 주소 -&amp;gt; 열 주소를 보낸다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;RAM은 전원이 꺼지면 정보도 잃어버리기 때문에 휘발성이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비휘발성 메모리
+    &lt;ul&gt;
+      &lt;li&gt;전원이 꺼져도 정보를 유지한다.&lt;/li&gt;
+      &lt;li&gt;Read-only memory ROM이라고 부른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;버스
+    &lt;ul&gt;
+      &lt;li&gt;프로세서와 메인메모리간에 데이터를 교환한다.&lt;/li&gt;
+      &lt;li&gt;버스 트랜잭션이라고 부르는 일련의 단계들을 통해 이뤄진다.&lt;/li&gt;
+      &lt;li&gt;읽기와 쓰기 트랜잭션이 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;지역성&quot;&gt;지역성&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;최근에 참조했던 데이터 아이템 근처나 자신을 참조하려는 경향이 있다.&lt;/li&gt;
+  &lt;li&gt;종류
+    &lt;ul&gt;
+      &lt;li&gt;시간 지역성: 한번 참조된 메모리 위치는 여러번 참조될 가능성이 높다.&lt;/li&gt;
+      &lt;li&gt;공간 지역성: 한번 참조된 메모리는 근처의 메모리 위치를 참조할 가능성이 높다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;캐시 메모리: 가장 최근에 참조한 인스트럭션과 데이터 아이템의 블록을 저장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;캐시&quot;&gt;캐시&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;캐시 종류
+    &lt;ul&gt;
+      &lt;li&gt;직접매핑 캐시&lt;/li&gt;
+      &lt;li&gt;집합결합성 캐시&lt;/li&gt;
+      &lt;li&gt;완전결합성 캐시&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;캐시 동작 방법
+    &lt;ol&gt;
+      &lt;li&gt;집합 선택&lt;/li&gt;
+      &lt;li&gt;라인 매칭&lt;/li&gt;
+      &lt;li&gt;워드 추출
+        &lt;ul&gt;
+          &lt;li&gt;Thrashing: 캐시가 같은 집합의 캐시 블록들의 로드와 축출을 반복하는경우
+            &lt;ul&gt;
+              &lt;li&gt;해결법: 패딩을준다.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;인덱스를 중간비트로 쓰는 이유: 연속적인 메모리의 동일한 캐시 집합으로의 매핑을 피하기 위해&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;캐시 쓰기
+    &lt;ul&gt;
+      &lt;li&gt;Write-through: 즉시 하위 레벨로 쓴다. 버스 트래픽 일으키는 단점 있다.&lt;/li&gt;
+      &lt;li&gt;Write-back: 갱신을 지연시켜 교체 알고리즘에 의해 축출될 때 쓴다. dirty bit을 라인마다 추가로 유지해야한다.&lt;/li&gt;
+      &lt;li&gt;Write-allocate: 하위 레벨에서 캐시로 가져오고 난 뒤 캐시 블록을 갱신한다.&lt;/li&gt;
+      &lt;li&gt;No-write-allocate: 캐시를 통과하고 직접 하위 레벨에 써준다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;part1-프로그램의-구조와-실행-리뷰&quot;&gt;Part1 프로그램의 구조와 실행 리뷰&lt;/h1&gt;
+&lt;p&gt;처음 csapp 책을 읽기 시작한 날이 1월 21일이다. 총 세파트로 나뉘어져 있는데, 파트1을 1회독한 시점이 3월 29일 대략 2개월정도 걸렸다.
+CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했지만, 부트캠프 지원 이슈로 인해 대략 2-3주정도는 공부를 안한 것 같다. 
+또 어려운 내용이 나오기 시작하면, 예를들어 부동소수점, 프로시저, SEQ구현 등… 책을 덮게되었던 것 같다. 
+하루빨리 CS, OS, 네트워크, 디비 이론적인 부분들에 대해 공부를 마치고 지식적으로 성장하고 싶다. 컨디션 조절을 하되 2-3주동안 공부를 안했던 것은 반성하자.&lt;/p&gt;
+
+&lt;p&gt;SEQ 설계 단원을 공부하기 전까지는 공부하는 내용들이 머리속에서 잘 그려지지 않았다. 하지만 SEQ 설계를 공부하고 나니 그 이전에 공부했던 부분들에 대해 조금 더 이해가 되었고,
+그 이후에 최적화 부분에서 정말 말 그대로 신이났다. CS의 매력에 흠뻑 빠지게 된 것 같다. 대학에서 컴구를 공부할 때는 이론적인 부분 또는 하드웨어적인 부분에서의 설명만 하고 
+추가 설명은 없었다. 그래서, 나는 이런 하드웨어와 프로그램들이 어떻게 상호작용이 되는지 이해하지 못했고 재미도 못 느꼈던 것 같다. 하지만, csapp에서는 하드웨어와 프로그램의 상호작용에 대해 설명을 하면
+그 이후에 실제 c코드로 예시를 들어준다. 이러한 예시코드가 프로그래밍과 접목도 되고 이해의 수준이 상승하는 것 같다.&lt;/p&gt;
+
+&lt;p&gt;앞으로 남은 part2,3를 4월 중순 안으로 끝마치고 운영체제 공부를 빨리 하고 싶다. 화이팅이다! 아자아자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS:APP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 22(하드웨어와 프로그램 사이의 상호작용 요약 및 리뷰)</summary></entry><entry><title type="html">[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이</title><link href="http://localhost:4000/codingtest/python_02/" rel="alternate" type="text/html" title="[CodingTest/Python] 프로그래머스 Level1 모의고사 Python 풀이" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/codingtest/python_02</id><content type="html" xml:base="http://localhost:4000/codingtest/python_02/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
 
 &lt;h2 id=&quot;level1-완전탐색-모의고사-파이썬python-풀이&quot;&gt;Level1 완전탐색 모의고사 파이썬(Python) 풀이&lt;/h2&gt;
 
