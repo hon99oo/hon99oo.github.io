@@ -3,6 +3,7 @@ title: "About Me"
 layout: single
 permalink: /about_me/
 author_profile: true
+sidebar_main: true
 ---
 <br>
 안녕하세요 제가 한번 본격적인 개발자가 되어보도록 하겠습니다.<br>

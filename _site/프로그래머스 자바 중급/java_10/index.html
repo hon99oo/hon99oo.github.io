@@ -1,0 +1,856 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Java/프로그래머스] Part1 Object 클래스, Part2 java.lang 패키지 - 홍구의 개발 블로그</title>
+<meta name="description" content="프로그래머스 자바 중급 강의 - 01">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="[Java/프로그래머스] Part1 Object 클래스, Part2 java.lang 패키지">
+<meta property="og:url" content="http://localhost:4000/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_10/">
+
+
+  <meta property="og:description" content="프로그래머스 자바 중급 강의 - 01">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-02-06T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_10/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          [Java/프로그래머스] Part1 Object 클래스, Part2 java.lang 패키지
+
+        
+      </h1>
+      
+        <p class="page__lead">프로그래머스 자바 중급 강의 - 01
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+
+  
+
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Java/프로그래머스] Part1 Object 클래스, Part2 java.lang 패키지">
+    <meta itemprop="description" content="프로그래머스 자바 중급 강의 - 01">
+    <meta itemprop="datePublished" content="2022-02-06T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#part1-object-클래스">Part1 Object 클래스</a><ul><li><a href="#object와-오버라이딩">Object와 오버라이딩</a></li></ul></li><li><a href="#part2-javalang-패키지">Part2 java.lang 패키지</a><ul><li><a href="#javalang-패키지오토박싱">java.lang 패키지/오토박싱</a></li><li><a href="#스트링버퍼">스트링버퍼</a></li><li><a href="#스트링-클래스의-문제점">스트링 클래스의 문제점</a></li><li><a href="#math">Math</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="part1-object-클래스">Part1 Object 클래스</h1>
+
+<h2 id="object와-오버라이딩">Object와 오버라이딩</h2>
+<ul>
+  <li>Object 클래스는 모든 클래스의 최상위 클래스</li>
+  <li>아무것도 상속받지 않으면 자동으로 Object를 상속</li>
+  <li>Object가 가지고 있는 메소드는 모든 클래스에서 다 사용할 수 있다는 것을 의미</li>
+  <li>대표적인 예
+    <ol>
+      <li>equals : 객체가 가진 값을 비교할 때 사용</li>
+      <li>toString : 객체가 가진 값을 문자열로 반환</li>
+      <li>hashCode : 객체의 해시코드 값 반환</li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="part2-javalang-패키지">Part2 java.lang 패키지</h1>
+
+<h2 id="javalang-패키지오토박싱">java.lang 패키지/오토박싱</h2>
+<p>자바는 기본적으로 다양한 패키지를 지원 그중에서 가장 중요한 패키지</p>
+<ul>
+  <li>java.lang 패키지의 클래스는 import를 하지 않고도 사용할 수 있다.</li>
+  <li>java.lang 패키지에는 기본형 타입을 객체로 변환시킬 때 사용하는 Wrapper 클래스가 있다.
+    <ul>
+      <li>Boolean, Byte, Short, Integer, Long, Double 클래스</li>
+    </ul>
+  </li>
+  <li>모든 클래스의 최상위 클래스인 Object도 java.lang 패키지</li>
+  <li>문자열과 관련된 String StringBuffer, StringBuilder도 모두 java.lang 패키지</li>
+  <li>화면에 값을 출력할 때 사용했던 System 클래스도 java.lang 패키지</li>
+  <li>수학과 관련된 Math 클래스도 java.lang 패키지</li>
+  <li>Thread와 관련된 중요 클래스들이 java.lang 패키지</li>
+  <li>이외에도 다양한 클래스와 인터페이스가 java.lang 패키지에 속해 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WrapperExam</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span> 
+        <span class="nc">Integer</span> <span class="n">i2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+        <span class="nc">Integer</span> <span class="n">i3</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>     <span class="c1">//오토박싱</span>
+        <span class="kt">int</span> <span class="n">i4</span> <span class="o">=</span> <span class="n">i2</span><span class="o">.</span><span class="na">intValue</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">i5</span> <span class="o">=</span> <span class="n">i2</span><span class="o">;</span>       <span class="c1">//오토언박싱</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>오토박싱(Auto Boxing)
+    <ul>
+      <li>Integer i3 = 5; 숫자 5는 원래 기본형이지만 자동으로 Integer 형태로 변환된다.</li>
+    </ul>
+  </li>
+  <li>오토 언박싱(Auto Unboxing)
+    <ul>
+      <li>int i5 = i2; Integer 객체타입의 값을 기본형 int로 자동으로 변환되어 값을 할당한다.</li>
+    </ul>
+  </li>
+  <li>오토박싱, 오토 언박싱은 JAVA 5부터 지원한다. 이 때 내부적으로 Wrapper 클래스들이 사용된다.</li>
+</ul>
+
+<h2 id="스트링버퍼">스트링버퍼</h2>
+<p>아무 값도 가지고 있지 않은 StringBuffer 객체를 생성</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">StringBuffer</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="c1">// 해당 스트링 버퍼에 "hello", 공백, "world"를 차례대로 추가</span>
+
+<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"world"</span><span class="o">);</span>
+<span class="c1">// StringBuffer에 추가된 값을 toString()메소드를 이용하여 반환</span>
+
+<span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span></code></pre></figure>
+
+<ul>
+  <li>출력결과 : hello world</li>
+</ul>
+
+<p>StringBuffer가 가지고 있는 메소드들은 대부분 자기 자신, this를 반환</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">StringBuffer</span> <span class="n">sb2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="nc">StringBuffer</span> <span class="n">sb3</span> <span class="o">=</span> <span class="n">sb2</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="k">if</span><span class="o">(</span><span class="n">sb2</span> <span class="o">==</span> <span class="n">sb3</span><span class="o">){</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"sb2 == sb3"</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>자기 자신의 메소드를 호출하여 자기 자신의 값을 바꿔나가는 것을 메소드체이닝 이라고 한다.</li>
+  <li>StringBuffer 클래스는 메소드 체인 방식으로 사용할 수 있도록 만들어져 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">StringBuffer</span> <span class="n">sb2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+<span class="nc">StringBuffer</span> <span class="n">sb3</span> <span class="o">=</span> <span class="n">sb2</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+<span class="k">if</span><span class="o">(</span><span class="n">sb2</span> <span class="o">==</span> <span class="n">sb3</span><span class="o">){</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"sb2 == sb3"</span><span class="o">);</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>앞에서 5줄로 작성했던 코드를 위와 같이 한 줄로 수정할 수 있다.</li>
+  <li>StringBuffer는 append 메소드 외에도 길이를 구하거나, 자르거나 등의 다양한 메소드들을 가지고 있다.</li>
+</ul>
+
+<h2 id="스트링-클래스의-문제점">스트링 클래스의 문제점</h2>
+<p>String 클래스는 문자열을 다룰 때 사용하는 클래스</p>
+
+<p>String 클래스는 불변클래스이다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">String</span> <span class="n">str1</span> <span class="o">=</span> <span class="s">"hello world"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">str2</span> <span class="o">=</span> <span class="n">str1</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str1</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str2</span><span class="o">);</span></code></pre></figure>
+
+<ul>
+  <li>실행결과
+    <ul>
+      <li>hello world<br /> world</li>
+    </ul>
+  </li>
+  <li>기존의 str1은 전혀 변화 없다.</li>
+  <li>substring 메소드는 5번째부터 문자열을 잘라서 새로운 문자열을 반환하는 메소드</li>
+  <li>str1 자체는 전혀 변화가 없다.</li>
+</ul>
+
+<p>String 클래스를 사용할 때 가장 문제가 발생하는 경우는 다음과 같은 코드를 사용할 때이다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">String</span> <span class="n">str3</span> <span class="o">=</span> <span class="n">str1</span> <span class="o">+</span> <span class="n">str2</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str3</span><span class="o">);</span></code></pre></figure>
+
+<ul>
+  <li>실행결과
+    <ul>
+      <li>hello world world</li>
+    </ul>
+  </li>
+</ul>
+
+<p>문자열과 문자열을 더하게 되면 내부적으로는 다음과 같은 코드가 실행</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">String</span> <span class="n">str4</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">().</span><span class="na">append</span><span class="o">(</span><span class="n">str1</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="n">str2</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str4</span><span class="o">);</span></code></pre></figure>
+
+<blockquote>
+  <p>java 에서는 new 연산자가 많을 수록 성능이 저하된다. 위와 같은 str3 = str1 + str2; 코드를 반복문에서 사용하게 된다면,
+new 연산자가 내부에서 계속해서 생성되고 성능이 저하될 수 있다.</p>
+</blockquote>
+
+<h2 id="math">Math</h2>
+<p>Math클래스는 이름 그대로 수학계산을 위한 클래스</p>
+
+<p>코싸인, 싸인, 탄젠트, 절대값, 랜덤값등을 구할 수 있는 클래스</p>
+<ul>
+  <li>Math 클래스는 생성자가 private으로 되어 있기 때문에 new 연산자를 이용하여 객체를 생성할 수 없다.</li>
+  <li>객체를 생성할 수는 없지만 모든 메소드와 속성이 static으로 정의되어 있기 때문에 객체를 생성하지 않고도 사용할 수 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MathExam</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">value1</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">value2</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="o">-</span><span class="mi">5</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">value3</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(-</span><span class="mi">10</span><span class="o">);</span>
+        <span class="kt">double</span> <span class="n">value4</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">();</span>
+        <span class="kt">double</span> <span class="n">value5</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="mi">25</span><span class="o">);</span>  
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">프로그래머스 자바 중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">프로그래머스 자바 중급</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-02-06T00:00:00+09:00">February 6, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%2F%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%5D+Part1+Object+%ED%81%B4%EB%9E%98%EC%8A%A4%2C+Part2+java.lang+%ED%8C%A8%ED%82%A4%EC%A7%80%20http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25A8%25B8%25EC%258A%25A4%2520%25EC%259E%2590%25EB%25B0%2594%2520%25EC%25A4%2591%25EA%25B8%2589%2Fjava_10%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25A8%25B8%25EC%258A%25A4%2520%25EC%259E%2590%25EB%25B0%2594%2520%25EC%25A4%2591%25EA%25B8%2589%2Fjava_10%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25A8%25B8%25EC%258A%25A4%2520%25EC%259E%2590%25EB%25B0%2594%2520%25EC%25A4%2591%25EA%25B8%2589%2Fjava_10%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%9E%85%EB%AC%B8/java_09/" class="pagination--pager" title="[Java/프로그래머스] Part9 예외처리
+">이전</a>
+    
+    
+      <a href="/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_11/" class="pagination--pager" title="[Java/프로그래머스] Part3 java.util 패키지
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_23/" rel="permalink">[CS:APP] Chapter 07 링커
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 23
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_22/" rel="permalink">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 22(하드웨어와 프로그램 사이의 상호작용 요약 및 리뷰)
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programmers/python_03/" rel="permalink">[프로그래머스/Python] Level2 가장 큰 수 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Algorithm Study - 03
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programmers/python_02/" rel="permalink">[프로그래머스/Python] Level1 모의고사 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Algorithm Study - 02
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_10/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_10"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

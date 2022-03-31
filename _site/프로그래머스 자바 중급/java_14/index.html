@@ -1,0 +1,1135 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Java/프로그래머스] Part7 쓰레드 - 홍구의 개발 블로그</title>
+<meta name="description" content="프로그래머스 자바 중급 강의 - 05">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="[Java/프로그래머스] Part7 쓰레드">
+<meta property="og:url" content="http://localhost:4000/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_14/">
+
+
+  <meta property="og:description" content="프로그래머스 자바 중급 강의 - 05">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-02-15T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_14/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          [Java/프로그래머스] Part7 쓰레드
+
+        
+      </h1>
+      
+        <p class="page__lead">프로그래머스 자바 중급 강의 - 05
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 분 소요
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+
+  
+
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Java/프로그래머스] Part7 쓰레드">
+    <meta itemprop="description" content="프로그래머스 자바 중급 강의 - 05">
+    <meta itemprop="datePublished" content="2022-02-15T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#part7-쓰레드">Part7 쓰레드</a><ul><li><a href="#쓰레드란">쓰레드란</a></li><li><a href="#쓰레드-만들기">쓰레드 만들기</a></li><li><a href="#쓰레드와-공유객체">쓰레드와 공유객체</a></li><li><a href="#동기화-메소드와-동기화-블록">동기화 메소드와 동기화 블록</a></li><li><a href="#쓰레드와-상태제어">쓰레드와 상태제어</a></li><li><a href="#쓰레드와-상태제어-join">쓰레드와 상태제어 (join)</a></li><li><a href="#쓰레드와-상태제어-wait-notify">쓰레드와 상태제어 (wait, notify)</a></li><li><a href="#데몬-쓰레드">데몬 쓰레드</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="part7-쓰레드">Part7 쓰레드</h1>
+
+<h2 id="쓰레드란">쓰레드란</h2>
+
+<p>동시에 여러가지 작업을 동시에 수행할 수 있게 하는것</p>
+<ul>
+  <li>동시에 여러가지 작업을 수행할 수 있다.</li>
+  <li>프로세스란 현재 실행되고 있는 프로그램을 말한다.</li>
+  <li>자바 프로그램은 JVM에 위해 실행된다. 이 JVM도 프로그램중에 하나이다.</li>
+  <li>운영체제 입장으로 보면 자바도 하나의 프로세스로 실행 하는 것이다.</li>
+  <li>워드프로세서가 하나의 프로세스라면, 하나의 프로세스 안에서도 여러개의 흐름이 동작할 수 있다. 이것은 Thread라고 말한다.</li>
+</ul>
+
+<h2 id="쓰레드-만들기">쓰레드 만들기</h2>
+
+<p>자바에서 Thread를 만드는 방법은 크게 Thread 클래스를 상속받는 방법과 Runnable 인터페이스를 구현하는 방법이 있다.</p>
+<ul>
+  <li>Thread를 상속 받아서 쓰레드를 생성하는 방법
+    <ul>
+      <li>java.lang.Thread 클래스를 상속받는다. 그리고 Thread가 가지고 있는 run() 메소드를 오버라이딩한다.</li>
+      <li>10번 반복하면서 str를 찍는다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyThread1</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">str</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="nf">MyThread1</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="c1">//컴퓨터가 너무 빠르기 때문에 수행결과를 잘 확인 할 수 없어서 Thread.sleep() 메서드를 이용해서 조금씩 </span>
+                    <span class="c1">//쉬었다가 출력할 수 있게한다. </span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> 
+        <span class="o">}</span> 
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>Thread 클래스를 상속받은 MyThread1을 사용하는 클래스
+    <ul>
+      <li>Thread를 상속 받았으므로 MyThread1은 Thread 이다.</li>
+      <li>쓰레드를 생성하고, Thread 클래스가 가지고 있는 start() 메소드를 호출 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadExam1</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// MyThread인스턴스를 2개 만듭니다. </span>
+            <span class="nc">MyThread1</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyThread1</span><span class="o">(</span><span class="s">"*"</span><span class="o">);</span>
+            <span class="nc">MyThread1</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyThread1</span><span class="o">(</span><span class="s">"-"</span><span class="o">);</span>
+
+            <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"!!!!!"</span><span class="o">);</span>  
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>Runnable 인터페이스를 구현해서 쓰레드를 만드는 방법
+    <ul>
+      <li>Runnable 인터페이스가 가지고 있는 run() 메소드를 구현한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyThread2</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">str</span><span class="o">;</span>
+        <span class="kd">public</span> <span class="nf">MyThread2</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">){</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">str</span> <span class="o">=</span> <span class="n">str</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> 
+        <span class="o">}</span> 
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>Runnable 인터페이스를 구현한 MyYhread2 사용하는 방법
+    <ul>
+      <li>MyThread2는 Thread를 상속받지 않았기 때문에 Thread가 아니다.</li>
+      <li>Thread를 생성하고, 해당 생성자에 MyThread2를 넣어서 Thread를 생성한다.</li>
+      <li>Thread 클래스가 가진  start() 메소드를 호출한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadExam2</span> <span class="o">{</span>  
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">MyThread2</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyThread2</span><span class="o">(</span><span class="s">"*"</span><span class="o">);</span>
+            <span class="nc">MyThread2</span> <span class="n">r2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyThread2</span><span class="o">(</span><span class="s">"-"</span><span class="o">);</span>
+
+            <span class="nc">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="n">r1</span><span class="o">);</span>
+            <span class="nc">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="n">r2</span><span class="o">);</span>
+
+            <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"!!!!!"</span><span class="o">);</span>  
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="쓰레드와-공유객체">쓰레드와 공유객체</h2>
+
+<p>하나의 객체를 여러개의 Thread가 사용한다는 것을 의미</p>
+
+<p>MusicBox 라는 클래스가 있다고 가정한다. 해당 클래스는 3개의 메소드를 가지고 있다. 각각의 메소드는 1초 이하의 시간동안 10번 반복하면서, 
+어떤 음악을 출력한다. 이러한 MusicBox를 사용하는 MusicPlayer를 3명 만들어 보겠다.</p>
+
+<p>MusicPlayer 3명은 하나의 MusicBox를 사용할 것이다. 이 때 어떤 일이 발생하는지 살펴보겠다.</p>
+
+<ul>
+  <li>공유객체 MusicBox</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MusicBox</span> <span class="o">{</span> 
+        <span class="c1">//신나는 음악!!! 이란 메시지가 1초이하로 쉬면서 10번 반복출력</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">playMusicA</span><span class="o">(){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"신나는 음악!!!"</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="c1">// for        </span>
+        <span class="o">}</span> <span class="c1">//playMusicA</span>
+
+        <span class="c1">//슬픈 음악!!!이란 메시지가 1초이하로 쉬면서 10번 반복출력</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">playMusicB</span><span class="o">(){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"슬픈 음악!!!"</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="c1">// for        </span>
+        <span class="o">}</span> <span class="c1">//playMusicB</span>
+        <span class="c1">//카페 음악!!! 이란 메시지가 1초이하로 쉬면서 10번 반복출력</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">playMusicC</span><span class="o">(){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"카페 음악!!!"</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="c1">// for        </span>
+        <span class="o">}</span> <span class="c1">//playMusicC  </span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>MusicBox를 가지는 Thread 객체 MusicPlayer</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MusicPlayer</span> <span class="kd">extends</span> <span class="nc">Thread</span><span class="o">{</span>
+        <span class="kt">int</span> <span class="n">type</span><span class="o">;</span>
+        <span class="nc">MusicBox</span> <span class="n">musicBox</span><span class="o">;</span>  
+        <span class="c1">// 생성자로 부터 musicBox와 정수를 하나 받아들여서 필드를 초기화</span>
+        <span class="kd">public</span> <span class="nf">MusicPlayer</span><span class="o">(</span><span class="kt">int</span> <span class="n">type</span><span class="o">,</span> <span class="nc">MusicBox</span> <span class="n">musicBox</span><span class="o">){</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">type</span> <span class="o">=</span> <span class="n">type</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">musicBox</span> <span class="o">=</span> <span class="n">musicBox</span><span class="o">;</span>
+        <span class="o">}</span>       
+        <span class="c1">// type이 무엇이냐에 따라서 musicBox가 가지고 있는 메소드가 다르게 호출</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">switch</span><span class="o">(</span><span class="n">type</span><span class="o">){</span>
+                <span class="k">case</span> <span class="mi">1</span> <span class="o">:</span> <span class="n">musicBox</span><span class="o">.</span><span class="na">playMusicA</span><span class="o">();</span> <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="mi">2</span> <span class="o">:</span> <span class="n">musicBox</span><span class="o">.</span><span class="na">playMusicB</span><span class="o">();</span> <span class="k">break</span><span class="o">;</span>
+                <span class="k">case</span> <span class="mi">3</span> <span class="o">:</span> <span class="n">musicBox</span><span class="o">.</span><span class="na">playMusicC</span><span class="o">();</span> <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>       
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>MusicBox와 MusicPlayer를 이용하는 MusicBoxExam1 클래스</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MusicBoxExam1</span> <span class="o">{</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// MusicBox 인스턴스</span>
+            <span class="nc">MusicBox</span> <span class="n">box</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MusicBox</span><span class="o">();</span>
+
+            <span class="nc">MusicPlayer</span> <span class="n">kim</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MusicPlayer</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">box</span><span class="o">);</span>
+            <span class="nc">MusicPlayer</span> <span class="n">lee</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MusicPlayer</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">box</span><span class="o">);</span>
+            <span class="nc">MusicPlayer</span> <span class="n">kang</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MusicPlayer</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="n">box</span><span class="o">);</span>
+
+            <span class="c1">// MusicPlayer쓰레드를 실행합니다. </span>
+            <span class="n">kim</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="n">lee</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+            <span class="n">kang</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>           
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<h2 id="동기화-메소드와-동기화-블록">동기화 메소드와 동기화 블록</h2>
+
+<ul>
+  <li>고유객체가 가진 메소드를 동시에 호출 되지 않돚록 하는 방법
+    <ul>
+      <li>메소드 앞에 synchronized 를 붙힌다.</li>
+      <li>여러개의 Thread 들이 공유객체의 메소드를 사용할 때 메소드에 synchronized가 붙어 있을 경우 먼저 호출한 메소드가 객체의 사용권(Monitoring Lock)을 얻는다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">playMusicA</span><span class="o">(){</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"신나는 음악!!!"</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="c1">// for        </span>
+    <span class="o">}</span> <span class="c1">//playMusicA</span></code></pre></figure>
+
+<ul>
+  <li>메소드 앞에 synchronized 를 붙혀서 실행해 보면, 메소드 하나가 모두 실행된 후에 다음 메소드가 실행된다.</li>
+  <li>해당 모니터링 락은 메소드 실행이 종료되거나, wait() 와 같은 메소드를 만나기 전까지 유지된다.</li>
+  <li>다른 쓰레드들은 모니터링 락을 놓을 때 까지 대기한다.</li>
+  <li>synchronized를 붙히지 않은 메소드는 다른 쓰레드들이 synchronized메소드를실행하면서 모니터링 락을 획득했다 하더라도, 그것과 상관없이 실행된다.</li>
+  <li>synchronized를 메소드에 붙혀서 사용 할 경우, 메소드의 코드가 길어지면, 마지막에 대기하는 쓰레드가 너무 오래 ㅣㄱ다리는 것을 막기 위해서 메소드에 synchronized를 붙이지 않고,
+문제가 있을 것 같은 부분만 synchronized 블록을 사용한다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">playMusicB</span><span class="o">(){</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">++){</span>
+            <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"슬픈 음악!!!"</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="c1">// for        </span>
+    <span class="o">}</span> <span class="c1">//playMusicB</span></code></pre></figure>
+
+<h2 id="쓰레드와-상태제어">쓰레드와 상태제어</h2>
+
+<p>쓰레드가 3개가 있다면 JVM은 시간을 잘게 쪼갠 후에 한번은 쓰레드1을, 한번은 쓰레드 2를, 한번은 쓰레드3을 실행한다. 이것을 빠르게 일어나다 보니 쓰레드가 모두 동작하는 것처럼 보이는 것이다.</p>
+
+<ul>
+  <li>쓰레드는 실행가능상태인 Runnable과 실행상태인 Running상태로 나뉜다.</li>
+  <li>실행되는 쓰레드 안에서 Thread.sleep() 이나 Object가 가지고 있는 wait() 메소드가 호출이 되면 쓰레드는 블록상태가 된다.</li>
+  <li>Thread.sleep() 은 특정시간이 지나면 자신 스스로 블록상태에서 빠져나와 Runnable 이나 Running상태가 된다.</li>
+  <li>Object가 가지고 있는 wait() 메소드는 다른 쓰레드가 notify()나 notifyAll() 메소드를 호출하기 전에는 블록상태에서 해체되지 않는다.</li>
+  <li>wait()메소드는 호출이 되면 모니터링 락을 놓게 된다. 그래서 대기중인 다른 메소드가 실행한다.</li>
+  <li>쓰레드의 run메소드가 종료되면, 쓰레드는 종료된다. 즉 Dead상태가 된다.</li>
+  <li>Thread의 yeild메소드가 호출되면 해당 쓰레드는 다른 쓰레드에게 자원을 양보하게 된다.</li>
+  <li>Thread가 가지고 있는 join메소드를 호출하게 되면 해당 쓰레드가 종료될 때까지 대기하게 된다.</li>
+</ul>
+
+<h2 id="쓰레드와-상태제어-join">쓰레드와 상태제어 (join)</h2>
+
+<p>join() 메소드는 쓰레드가 멈출 때까지 기다리게 한다.</p>
+
+<ul>
+  <li>일단 0.5초씩 쉬면서 숫자를 출력하는 MyThread5를 작성해 보겠다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyThread5</span> <span class="kd">extends</span> <span class="nc">Thread</span><span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"MyThread5 : "</span><span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="c1">// run</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>해당 쓰레드를 실행하고, 해당 쓰레드가 종료될 때 까지 기다린 후, 내용을 출력하는 joinExam 클래스</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">JoinExam</span> <span class="o">{</span> 
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">MyThread5</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MyThread5</span><span class="o">();</span>
+            <span class="c1">// Thread 시작 </span>
+            <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> 
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Thread가 종료될때까지 기다립니다."</span><span class="o">);</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="c1">// 해당 쓰레드가 멈출때까지 멈춤</span>
+                <span class="n">thread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Thread가 종료되었습니다."</span><span class="o">);</span> 
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>실행 결과</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">        <span class="nc">Thread가</span> <span class="n">종료될때까지</span> <span class="n">기다립니다</span><span class="o">.</span>
+        <span class="nc">MyThread5</span> <span class="o">:</span> <span class="mi">0</span>
+        <span class="nc">MyThread5</span> <span class="o">:</span> <span class="mi">1</span>
+        <span class="nc">MyThread5</span> <span class="o">:</span> <span class="mi">2</span>
+        <span class="nc">MyThread5</span> <span class="o">:</span> <span class="mi">3</span>
+        <span class="nc">MyThread5</span> <span class="o">:</span> <span class="mi">4</span>
+        <span class="nc">Thread가</span> <span class="n">종료되었습니다</span><span class="o">.</span></code></pre></figure>
+
+<h2 id="쓰레드와-상태제어-wait-notify">쓰레드와 상태제어 (wait, notify)</h2>
+
+<p>wait과 notify는 동기화된 블록 안에서 사용해야 한다. wait를 만나게 되면 해당 쓰레드는 해당 객체의 모니터링 락에 대한 권한을 가지고 있다면 모니터링 락의 권한을 놓고 대기한다.</p>
+
+<ul>
+  <li>Thread를 상속받는 ThreadB 클래스 작성</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadB</span> <span class="kd">extends</span> <span class="nc">Thread</span><span class="o">{</span>
+       <span class="c1">// 해당 쓰레드가 실행되면 자기 자신의 모니터링 락을 획득</span>
+       <span class="c1">// 5번 반복하면서 0.5초씩 쉬면서 total에 값을 누적</span>
+       <span class="c1">// 그후에 notify()메소드를 호출하여 wiat하고 있는 쓰레드를 깨움 </span>
+        <span class="kt">int</span> <span class="n">total</span><span class="o">;</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">){</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span> <span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">"를 더합니다."</span><span class="o">);</span>
+                    <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="n">notify</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>이번에는 ThreadB 를 사용하며 wait 하는 클래스 작성</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadA</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+            <span class="c1">// 앞에서 만든 쓰레드 B를 만든 후 start </span>
+            <span class="c1">// 해당 쓰레드가 실행되면, 해당 쓰레드는 run메소드 안에서 자신의 모니터링 락을 획득</span>
+            <span class="nc">ThreadB</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ThreadB</span><span class="o">();</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+            <span class="c1">// b에 대하여 동기화 블럭을 설정</span>
+            <span class="c1">// 만약 main쓰레드가 아래의 블록을 위의 Thread보다 먼저 실행되었다면 wait를 하게 되면서 모니터링 락을 놓고 대기       </span>
+            <span class="kd">synchronized</span><span class="o">(</span><span class="n">b</span><span class="o">){</span>
+                <span class="k">try</span><span class="o">{</span>
+                    <span class="c1">// b.wait()메소드를 호출.</span>
+                    <span class="c1">// 메인쓰레드는 정지</span>
+                    <span class="c1">// ThreadB가 5번 값을 더한 후 notify를 호출하게 되면 wait에서 깨어남</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"b가 완료될때까지 기다립니다."</span><span class="o">);</span>
+                    <span class="n">b</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+                <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+
+                <span class="c1">//깨어난 후 결과를 출력</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Total is: "</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="na">total</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>실행 결과</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">        <span class="n">b가</span> <span class="n">완료될때까지</span> <span class="n">기다립니다</span><span class="o">.</span>
+        <span class="mi">0</span><span class="n">를</span> <span class="n">더합니다</span><span class="o">.</span>
+        <span class="mi">1</span><span class="n">를</span> <span class="n">더합니다</span><span class="o">.</span>
+        <span class="mi">2</span><span class="n">를</span> <span class="n">더합니다</span><span class="o">.</span>
+        <span class="mi">3</span><span class="n">를</span> <span class="n">더합니다</span><span class="o">.</span>
+        <span class="mi">4</span><span class="n">를</span> <span class="n">더합니다</span><span class="o">.</span>
+        <span class="nc">Total</span> <span class="nl">is:</span> <span class="mi">10</span></code></pre></figure>
+
+<h2 id="데몬-쓰레드">데몬 쓰레드</h2>
+
+<p>데몬(Daemon)이란 보통 리눅스와 같은 유닉스계열의 운영체제에서 백그라운드로 동작하는 프로그램을 말한다.</p>
+<ul>
+  <li>데몬쓰레드를 만뜨는 방법은 쓰레드에 데몬 설정을 하면 된다.
+    <ul>
+      <li>이런 쓰레드는 자바프로그램을 만들 때 백그라운드에서 특별한 작업을 처리하게 하는 용도로 만든다.</li>
+    </ul>
+  </li>
+  <li>데몬쓰레드는 일반 쓰레드(main 등)가 모두 종료되면 강저젝으로 종료되는 특징을 가지고 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="c1">// Runnable을 구현하는 DaemonThread클래스를 작성</span>
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">DaemonThread</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+
+        <span class="c1">// 무한루프안에서 0.5초씩 쉬면서 데몬쓰레드가 실행중입니다를 출력하도록 run()메소드를 작성</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"데몬 쓰레드가 실행중입니다."</span><span class="o">);</span>
+
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                    <span class="k">break</span><span class="o">;</span> <span class="c1">//Exception발생시 while 문 빠찌도록 </span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// Runnable을 구현하는 DaemonThread를 실행하기 위하여 Thread 생성</span>
+            <span class="nc">Thread</span> <span class="n">th</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">DaemonThread</span><span class="o">());</span>
+            <span class="c1">// 데몬쓰레드로 설정</span>
+            <span class="n">th</span><span class="o">.</span><span class="na">setDaemon</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+            <span class="c1">// 쓰레드를 실행</span>
+            <span class="n">th</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+            <span class="c1">// 메인 쓰레드가 1초뒤에 종료되도록 설정. </span>
+            <span class="c1">// 데몬쓰레드는 다른 쓰레드가 모두 종료되면 자동종료.</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>   
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"메인 쓰레드가 종료됩니다. "</span><span class="o">);</span>    
+        <span class="o">}</span>   
+    <span class="o">}</span></code></pre></figure>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">프로그래머스 자바 중급</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EC%9E%90%EB%B0%94-%EC%A4%91%EA%B8%89" class="page__taxonomy-item p-category" rel="tag">프로그래머스 자바 중급</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-02-15T00:00:00+09:00">February 15, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BJava%2F%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%5D+Part7+%EC%93%B0%EB%A0%88%EB%93%9C%20http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25A8%25B8%25EC%258A%25A4%2520%25EC%259E%2590%25EB%25B0%2594%2520%25EC%25A4%2591%25EA%25B8%2589%2Fjava_14%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25A8%25B8%25EC%258A%25A4%2520%25EC%259E%2590%25EB%25B0%2594%2520%25EC%25A4%2591%25EA%25B8%2589%2Fjava_14%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EA%25B7%25B8%25EB%259E%2598%25EB%25A8%25B8%25EC%258A%25A4%2520%25EC%259E%2590%25EB%25B0%2594%2520%25EC%25A4%2591%25EA%25B8%2589%2Fjava_14%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/programmers/java_03/" class="pagination--pager" title="[프로그래머스/Java] Level1 모의고사 풀이
+">이전</a>
+    
+    
+      <a href="/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_15/" class="pagination--pager" title="[Java/프로그래머스] Part8 람다
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_23/" rel="permalink">[CS:APP] Chapter 07 링커
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 23
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_22/" rel="permalink">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 22(하드웨어와 프로그램 사이의 상호작용 요약 및 리뷰)
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programmers/python_03/" rel="permalink">[프로그래머스/Python] Level2 가장 큰 수 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Algorithm Study - 03
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programmers/python_02/" rel="permalink">[프로그래머스/Python] Level1 모의고사 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Algorithm Study - 02
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_14/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4%20%EC%9E%90%EB%B0%94%20%EC%A4%91%EA%B8%89/java_14"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

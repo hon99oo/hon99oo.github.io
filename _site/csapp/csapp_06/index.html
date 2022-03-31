@@ -1,0 +1,807 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산) - 홍구의 개발 블로그</title>
+<meta name="description" content="CS:APP - 06">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)">
+<meta property="og:url" content="http://localhost:4000/csapp/csapp_06/">
+
+
+  <meta property="og:description" content="CS:APP - 06">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-01-26T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/csapp/csapp_06/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          [CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)
+
+        
+      </h1>
+      
+        <p class="page__lead">CS:APP - 06
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+
+  
+
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.5 산술연산과 논리연산)">
+    <meta itemprop="description" content="CS:APP - 06">
+    <meta itemprop="datePublished" content="2022-01-26T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#chapter-03-프로그램의-기계수준-표현">Chapter 03. 프로그램의 기계수준 표현</a></li><li><a href="#35-산술연산과-논리연산">3.5 산술연산과 논리연산</a><ul><li><a href="#351-유효주소-적재-load-effective-address">3.5.1 유효주소 적재 Load Effective Address</a></li><li><a href="#352-단항-및-이항-연산">3.5.2 단항 및 이항 연산</a></li><li><a href="#353-쉬프트-연산">3.5.3 쉬프트 연산</a></li><li><a href="#354-토의">3.5.4 토의</a></li><li><a href="#355-특수-산술연산">3.5.5 특수 산술연산</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="chapter-03-프로그램의-기계수준-표현">Chapter 03. 프로그램의 기계수준 표현</h1>
+<ul>
+  <li>3.1 역사적 관점</li>
+  <li>3.2 프로그램의 인코딩</li>
+  <li>3.3 데이터의 형식</li>
+  <li>3.4 정보 접근하기</li>
+  <li>3.5 산술연산과 논리연산</li>
+</ul>
+
+<h1 id="35-산술연산과-논리연산">3.5 산술연산과 논리연산</h1>
+<p><img src="../../assets/img/csapp/06/img.png" width="80%" height="100%" /></p>
+<ul>
+  <li>위 그림은 x86-64 정수와 논리연산의 리스트를 보여준다. 오퍼랜드의 길이에 따른 다양한 변형이 가능하기 때문에 대부분의 연산을 인스트럭션 클래스에 따라 나열하였다.</li>
+  <li>인스트럭션 클래스 ADD는 네 개의 덧셈 인스트럭션으로 이루어져 있다.
+    <ul>
+      <li>addb, addw, addl, addq로 각각 바이트, 워드, 어블워드, 쿼드워드를 의미한다.</li>
+    </ul>
+  </li>
+  <li>연산들은 네 개의 그룹으로 나누어진다.
+    <ul>
+      <li>유효주소 적재, 단항unary, 이항binary, 쉬프트
+        <ul>
+          <li>이항 연산은 두 개의 오퍼랜드를 가진다.</li>
+          <li>단항 연산은 한 개의 오퍼랜드를 가진다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="351-유효주소-적재-load-effective-address">3.5.1 유효주소 적재 Load Effective Address</h2>
+<ul>
+  <li>유효주소 적재 인스트럭션 leaq는 실제로는 movq 인스트럭션의 변형이다.</li>
+  <li>메모리에서 레지스터로 읽어들이는 인스트럭션의 형태를 갖지만, 메모리를 전혀 참조하지 않는다.</li>
+  <li>가리키는 위치에서 읽기를 수행하는 대신에 유효주소를 목적지에 복사한다.</li>
+  <li>이 인스트럭션은 나중의 메모리 참조에 사용하게 되는 포인터를 생성하기 위해 사용한다.</li>
+  <li>또한 일반적인 산술연산을 간결하게 설명하기 위해 사용된다
+    <ul>
+      <li>ex) %rdx가 x를 가지고 있다면, leaq 7(%rdx, %rdx, 7)은 %rdx에 5x+7을 저장한다.</li>
+    </ul>
+  </li>
+  <li>목적 오퍼랜드는 반드시 레지스터만 올 수 있다.</li>
+</ul>
+
+<h2 id="352-단항-및-이항-연산">3.5.2 단항 및 이항 연산</h2>
+<ul>
+  <li>단항 연산
+    <ul>
+      <li>하나의 오퍼랜드가 소스와 목적지로 동시에 사용되는 단항 연산이다.</li>
+      <li>오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.</li>
+      <li>ex) incq(%rsp)는 스택 탑의 8바이트 원소의 값을 증가시켜준다. -&gt; C에서의 ++, – 연산자</li>
+    </ul>
+  </li>
+  <li>이항 연산
+    <ul>
+      <li>첫 번째 오퍼랜드는 상수나 레지스터, 메모리 위치가 올 수 있고 두 번째 오퍼랜드는 소스이면서 목적지로 사용된다.</li>
+      <li>C에서 x -= y와 유사하다.</li>
+      <li>두 개의 오퍼랜드가 모두 메모리 위치가 될 수 없다.</li>
+      <li>두 번째 오퍼랜드가 메모리 위치일 때 프로세서가 메모리에서 값을 읽고, 연산을 하고, 그 결과를 다시 메모리에 써야 한다는 점에 유의해야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="353-쉬프트-연산">3.5.3 쉬프트 연산</h2>
+<ul>
+  <li>쉬프트하는 크기를 먼저 주고, 쉬프트할 값을 두 번째로 준다.</li>
+  <li>산술과 논리형 우측 쉬프트가 모두 가능하다.</li>
+  <li>쉬프트 인스트럭션들은 쉬프트할 양을 즉시 값이나 단일 바이트 레지스터 %cl로 명시할 수 있다.</li>
+  <li>좌측 쉬프트 인스트럭션에는 두 가지 이름이 있다.
+    <ul>
+      <li>SAR: 산술 쉬프트, 부호비트를 복사해서 채운다</li>
+      <li>SHR: 논리 쉬프트, 0으로 채운다</li>
+    </ul>
+  </li>
+  <li>쉬프트 연산의 목적 오퍼랜드는 레지스터나 메모리 위치가 될 수 있다.</li>
+</ul>
+
+<h2 id="354-토의">3.5.4 토의</h2>
+<ul>
+  <li>인스트럭션들은 비부호형과 2의 보수 산술연산에 사용될 수 있다.</li>
+  <li>오직 우측 쉬프트만이 부호형과 비부호형 데이터를 구분하는 인스트럭션을 요구한다.</li>
+  <li>이것이 부호형 정수 산술연산을 구현하는 방식으로 2의 보수 산술연산을 선호하는 주요 특징이다.</li>
+</ul>
+
+<h2 id="355-특수-산술연산">3.5.5 특수 산술연산</h2>
+<p><img src="../../assets/img/csapp/06/img_2.png" width="80%" height="100%" /></p>
+<ul>
+  <li>두 개의 64비트 부호형 또는 비부호형 정수들 간의 곱셈 결과값을 표시하기 위해 128비트를 필요로한다.</li>
+  <li>x86064 인스트럭션 집합은 128비트 숫자와 관련된 연산에 대해서는 제한적인 지원을 제공한다.
+    <ul>
+      <li>워드(2바이트), 더블워드(4바이트), 쿼드워드(8바이트), 인텔은 16바이트 워드를 옥트워드oct word라고 명명한다.</li>
+    </ul>
+  </li>
+  <li>IMUL 인스트럭션 클래스의 멤버인 형태
+    <ul>
+      <li>이 형식은 두 개의 64비트 오퍼랜드로부터 64비트 곱을 생성하는 “2 오퍼랜드” 곱셈 인스트럭션을 제공한다.</li>
+    </ul>
+  </li>
+  <li>추가적으로 x86-64는 두 개의 다른 “단일 오퍼랜드” 곱셈 인스트럭션을 제공하며 64비트 값의 완전한 128비트 곱을 계산한다.
+    <ul>
+      <li>하나는 비부호형(mulq), 다른 하나는 2의 보수(imulq) 곱셈이다.</li>
+      <li>이들 모두 한 개의 인자는 레지스터 %rax에 보관해야 하고 다른 하나는 인스트럭션 소스 오퍼랜드로 주어진다.</li>
+      <li>곱은 레지스터 %rdx(상위 64비트)와  %rax(하위 64비트)에 저장된다.</li>
+    </ul>
+  </li>
+  <li>곱을 저장하기 위해서는 아래의 그림처럼 두 개의 movq 인스트럭션이 필요하다.
+<img src="../../assets/img/csapp/06/img_1.png" width="80%" height="100%" />
+<br /><br /><br /></li>
+  <li>단일 오퍼랜드 곱셈 인스트럭션과 비슷한 단일 오퍼랜드 나눈셈 인스트럭션으로 제공된다.</li>
+  <li>나눗셈 인스트럭션 idviq은 피제수dividened를 128비트로 레지스터 %rdx(상위 64비트)와 %rax(하위 64비트)에 저장한다.</li>
+  <li>제수divisor는 인스트럭션의 오퍼랜드로 주어진다.</li>
+  <li>인스트럭션은 몫은 레지스터 %rax에, 나머지는 레지스터 %rdx에 저장한다.</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#cs-app" class="page__taxonomy-item p-category" rel="tag">CS:APP</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#csapp" class="page__taxonomy-item p-category" rel="tag">CSAPP</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-01-26T00:00:00+09:00">January 26, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+03.+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8%EC%9D%98+%EA%B8%B0%EA%B3%84%EC%88%98%EC%A4%80+%ED%91%9C%ED%98%84+%283.5+%EC%82%B0%EC%88%A0%EC%97%B0%EC%82%B0%EA%B3%BC+%EB%85%BC%EB%A6%AC%EC%97%B0%EC%82%B0%29%20http%3A%2F%2Flocalhost%3A4000%2Fcsapp%2Fcsapp_06%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcsapp%2Fcsapp_06%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcsapp%2Fcsapp_06%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/csapp/csapp_05/" class="pagination--pager" title="[CS:APP] Chapter 03. 프로그램의 기계수준 표현 (3.1 역사점 관점 ~ 3.4 정보 접근하기)
+">이전</a>
+    
+    
+      <a href="/nlp/NLP_04/" class="pagination--pager" title="[NLP/Paper]Multi-Task Deep Neural Networks for Natural Language Understanding 논문 리뷰
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_23/" rel="permalink">[CS:APP] Chapter 07 링커
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 23
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_22/" rel="permalink">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 22(하드웨어와 프로그램 사이의 상호작용 요약 및 리뷰)
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programmers/python_03/" rel="permalink">[프로그래머스/Python] Level2 가장 큰 수 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Algorithm Study - 03
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programmers/python_02/" rel="permalink">[프로그래머스/Python] Level1 모의고사 Python 풀이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Python Algorithm Study - 02
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/csapp/csapp_06/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/csapp/csapp_06"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

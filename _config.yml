@@ -288,3 +288,5 @@ defaults:
       comments: true # true
       share: true
       related: true
+
+sidebar_main: true
