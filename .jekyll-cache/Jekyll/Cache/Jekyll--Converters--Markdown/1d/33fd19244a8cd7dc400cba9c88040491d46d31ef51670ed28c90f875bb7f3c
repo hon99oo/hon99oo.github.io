@@ -1,0 +1,50 @@
+I"�<h1 id="프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</h1>
+
+<h2 id="level1-그리디-체육복-파이썬python-풀이">Level1 그리디 체육복 파이썬(Python) 풀이</h2>
+
+<ul>
+  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/42862">풀이로 이동!</a></li>
+</ul>
+
+<h2 id="gitblog-주소">GitBlog 주소</h2>
+
+<ul>
+  <li></li>
+</ul>
+
+<h2 id="문제풀이">문제풀이</h2>
+<blockquote>
+  <p>그리디 문제는 ‘현재 상황에서 지금 당장 좋은 것만 고르는 방법’을 의미한다. 알고리즘의 패턴보다는 풀이하는 사람의 아이디어가 더 중요한 알고리즘이다.
+우선 체육복 문제는 인접한 index의 학생들만 여벌의 옷을 받을 수 있으므로 인접한 index에 대해서만 생각해주면 된다. 또한 도난당한 학생이 여벌의 옷을 가지고 올 수 있기 때문에
+이 부분에서 예외처리를 해주어야한다.</p>
+</blockquote>
+
+<ol>
+  <li>lost와 reserve를 set형식으로 변경해준뒤 각각의 차집합을 구해준다.(도난당한 학생과 여벌옷을 가져온 학생이 중복된 경우를 제거하기 위해)</li>
+  <li>reserve를 기준으로 인접한 lost를 조회하여 존재하면 reserve에서 해당 value를 삭제해주고 count(옷을 빌린 학생 수)를 1 올려준다.</li>
+  <li>전체에서 lost에 남아있는 값들의 길이를 빼주고 count(옷을 빌린 학생 수)를 더해준다.</li>
+  <li>위에 값을 answer로 return한다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lost</span><span class="p">,</span> <span class="n">reserve</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">lost</span><span class="p">,</span> <span class="n">reserve</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">lost</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">reserve</span><span class="p">)),</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">reserve</span><span class="p">)</span><span class="o">-</span><span class="nb">set</span><span class="p">(</span><span class="n">lost</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">lost_v</span> <span class="ow">in</span> <span class="n">lost</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">reserve_v</span> <span class="ow">in</span> <span class="n">reserve</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">lost_v</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">reserve_v</span> <span class="ow">or</span> <span class="n">reserve_v</span> <span class="o">==</span> <span class="n">lost_v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">reserve</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">reserve_v</span><span class="p">)</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">break</span>
+    
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">lost</span><span class="p">)</span> <span class="o">+</span> <span class="n">count</span>
+    
+        <span class="k">return</span> <span class="n">answer</span>
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">lost</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">reserve</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">lost</span><span class="p">,</span><span class="n">reserve</span><span class="p">))</span></code></pre></figure>
+:ET

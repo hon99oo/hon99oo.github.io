@@ -317,19 +317,19 @@ var store = [{
         "url": "/csapp/csapp_21/",
         "teaser": null
       },{
-        "title": "[프로그래머스/Python] Level1 K번째수 Python 풀이",
+        "title": "[프로그래머스/Python] Level1 K번째수 (정렬)",
         "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 정렬 K번째수 파이썬(Python) 풀이      풀이로 이동!   문제풀이     반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.       2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.   1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.   slicing된 배열을 정렬한다.   정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.   return answer   코드   def solution(array, commands):     answer = []     for command in commands:         answer.append(sorted(array[command[0]-1:command[1]])[command[2]-1])     return answer  if __name__ == \"__main__\":     array = [1, 5, 2, 6, 3, 7, 4]     commands = [[2, 5, 3], [4, 4, 1], [1, 7, 3]]     print(solution(array, commands)) ","categories": ["programmers"],
         "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/programmers/python_01/",
         "teaser": null
       },{
-        "title": "[프로그래머스/Python] Level1 모의고사 Python 풀이",
+        "title": "[프로그래머스/Python] Level1 모의고사 (완전탐색)",
         "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 완전탐색 모의고사 파이썬(Python) 풀이      풀이로 이동!   문제풀이     반복문의 횟수를 줄이는 것이 핵심인 문제인 것 같다. 반복문의 횟수를 줄이기 위해 접근하는 index를 학생들의 정답 패턴의 길이로 나누는 아이디어를 채택하였다.       정답의 길이로 반복문을 돌린다.   학생 a,b,c의 정답 패턴의 길이로 현재 반복문의 index를 나누어 각 학생의 정답 패턴에 접근한다.   정답이 각각 일치하면, answer_list의 a-&gt;0, b-&gt;1, c-&gt;2 인덱스에 맞게 +1을 해준다.   answer_list를 enumerate를 사용하여 인덱스와 밸류값으로 함께 반복문을 돌린다.   answer_list의 max값을 찾아 해당 max값과 밸류값이 같은 인덱스값을 answer배열에 저장한다.   return answer   코드   def solution(answers):     answer = []     answer_list = [0,0,0]     a = [1, 2, 3, 4, 5]     b = [2, 1, 2, 3, 2, 4, 2, 5]     c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]     for i in range(len(answers)):         if a[i%len(a)]==answers[i]:             answer_list[0]+=1         if b[i%len(b)]==answers[i]:             answer_list[1]+=1         if c[i%len(c)]==answers[i]:             answer_list[2]+=1      for i,val in enumerate(answer_list):         if val == max(answer_list):             answer.append(i+1)     return answer  if __name__ == \"__main__\":     answers = [5, 5, 4, 2, 3]     print(solution(answers)) ","categories": ["programmers"],
         "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/programmers/python_02/",
         "teaser": null
       },{
-        "title": "[프로그래머스/Python] Level2 가장 큰 수 Python 풀이",
+        "title": "[프로그래머스/Python] Level2 가장 큰 수 (정렬)",
         "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level2 정렬 가증 큰 수 파이썬(Python) 풀이      풀이로 이동!   문제풀이     가장 큰 수를 만드려면, 예를 들어 9와 91이 있을 때 991이 919보다 더 큰 수가 된다. 수의 가장 큰 값이 1000이기 때문에, ‘9’3, ‘91’3을 해서 비교를 하면, ‘999’ &gt; ‘919191’ 이다. 그렇기 때문에 int-&gt;str-&gt;*3을 하여 비교를 하여 정렬을 하고 해당 숫자들을 원래 숫자로 변경하여 return 해준다.       배열의 값들을 str type으로 변경해준뒤 *3을 해준다.   이후 sorted 함수를 사용하여 정렬한다.(내림차순으로 정렬하기 위해 reverse=True로 설정해준다.)   다시 배열의 값들의 길이를 1/4로 나누어 slicing해준다.   해당 배열들을 ‘‘로 join해준다.   return answer   코드   def solution(numbers):     if sum(numbers)==0:         return '0'     numbers = sorted([str(number)*3 for number in numbers],reverse=True)     answer = ''.join([numbers[i][:int(len(numbers[i])/4)] for i in range(len(numbers))])     return answer  if __name__ == \"__main__\":     numbers = [6,2,10]     print(solution(numbers)) ","categories": ["programmers"],
         "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/programmers/python_03/",
@@ -345,5 +345,17 @@ var store = [{
         "excerpt":" ","categories": ["CSAPP"],
         "tags": ["CS:APP","CS"],
         "url": "/csapp/csapp_23/",
+        "teaser": null
+      },{
+        "title": "[프로그래머스/Python] Level1 체육복 (그리디)",
+        "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level1 그리디 체육복 파이썬(Python) 풀이      풀이로 이동!   문제풀이     그리디 문제는 ‘현재 상황에서 지금 당장 좋은 것만 고르는 방법’을 의미한다. 알고리즘의 패턴보다는 풀이하는 사람의 아이디어가 더 중요한 알고리즘이다. 우선 체육복 문제는 인접한 index의 학생들만 여벌의 옷을 받을 수 있으므로 인접한 index에 대해서만 생각해주면 된다. 또한 도난당한 학생이 여벌의 옷을 가지고 올 수 있기 때문에 이 부분에서 예외처리를 해주어야한다.       lost와 reserve를 set형식으로 변경해준뒤 각각의 차집합을 구해준다.(도난당한 학생과 여벌옷을 가져온 학생이 중복된 경우를 제거하기 위해)   reserve를 기준으로 인접한 lost를 조회하여 존재하면 reserve에서 해당 value를 삭제해주고 count(옷을 빌린 학생 수)를 1 올려준다.   전체에서 lost에 남아있는 값들의 길이를 빼주고 count(옷을 빌린 학생 수)를 더해준다.   위에 값을 answer로 return한다.   코드       def solution(n, lost, reserve):         count = 0         lost, reserve = list(set(lost)-set(reserve)), list(set(reserve)-set(lost))         for lost_v in lost:             for reserve_v in reserve:                 if lost_v - 1 == reserve_v or reserve_v == lost_v + 1:                     reserve.remove(reserve_v)                     count += 1                     break              answer = n - len(lost) + count              return answer          if __name__ == \"__main__\":         n = 5         lost = [1,2,4]         reserve = [2,3,4,5]         print(solution(n,lost,reserve)) ","categories": ["programmers"],
+        "tags": ["Algorithm","Python","프로그래머스 코테"],
+        "url": "/programmers/python_04/",
+        "teaser": null
+      },{
+        "title": "[프로그래머스/Python] Level2 큰 수 만들기(그리디)",
+        "excerpt":"프로그래머스(Programmers) 코딩테스트 연습   Level2 그리디 큰 수 만들기 파이썬(Python) 풀이      풀이로 이동!   문제풀이     총 두가지의 방법으로 문제를 풀었는데 모두 테스트케이스 10에서 시간 초과로 인해 풀지 못하였다…  그래서 정답 코드를 가지고 와서 공부를 하는 것으로 대신하겠다.  파이썬에는 스택 자료구조가 따로 없고 리스트로 스택을 흉내내서 사용할 수 있다. 정답 코드는 스택의 성질을 사용하여서 문제를 해결했다.    맞는 풀이 solution3      stack을 흉내내는 리스트(stack이라 부르겠다.)에 number의 첫번째 값을 넣어준다(push).   number의 두번째 값부터 반복문을 돈다.   while문을 도는데, 조건은 세가지다.            stack에 값이 있어야한다.       stack의 마지막 값(stack.top)이 num보다 작아야한다.       k가 0보다 커야한다.           위에 해당하지 않으면 stack에 값을 추가해준다(push).   조건이 해당하면, 반복문을 돌면서 stack.pop()과 k를 1씩 줄여준다.   반복문이 끝나고도 k가 0이 아니면 stack을 뒤에서 k만큼 slicing해준다.   '’으로 join하여 문자열로 return한다.   틀린 풀이 solution1      numbur의 i와 i+1을 비교한다.   i가 i+1보다 작으면 i를 pop해준다.   다시 첫번째 index로 돌아가 1-2번을 반복한다.   남아있는 값이 len(number)-k의 길이가 아니면, 뒤에서 k만큼 slicing 해준다.   '’으로 join하여 문자열로 return한다.   틀린 풀이 solution2      number의 i와 j를 비교한다.   i가 j보다 작으면 i의 인덱스를 새로운 배열에 저장한다.   모두 저장된 배열에 포함된 인덱스를 number에서 제거해준다.   남아있는 값이 len(number)-k의 길이가 아니면, 뒤에서 k만큼 slicing 해준다.   '’으로 join하여 문자열로 return한다.   코드       def solution1(number, k):         number = list(number)         i = 0;         while k &gt; 0:             for j in range(i,i+k+1):                 if number[i] == '9': break                 if number[i] &lt; number[j]:                     number.pop(i)                     k = k -1                     if i&gt;0:                         i = i -1                         break                     i = -1                     break             i += 1         answer = ''.join(number)         return answer          def solution2(number, k):         number = list(number)         length = len(number)-k         remove_list = []         i = 0         while k &gt; 0:             if i+1+k &gt; len(number):                 break             for j in range(i+1,i+1+k):                 if number[i] &lt; number[j]:                     remove_list.append(i)                     k -= 1                     break             i += 1         number = [number[i] for i in range(len(number)) if i not in remove_list]         number = number[:length]         answer = ''.join(number)         return answer                    def solution3(number,k):         stack = [number[0]]         for num in number[1:]:             while len(stack) &gt; 0 and stack[-1] &lt; num and k &gt; 0:                 k -= 1                 stack.pop()             stack.append(num)         if k != 0:             stack = stack[:-k]         return ''.join(stack)               if __name__ == \"__main__\":         number = '4177252841'         k = 4         print(solution3(number, k)) ","categories": ["programmers"],
+        "tags": ["Algorithm","Python","프로그래머스 코테"],
+        "url": "/programmers/python_05/",
         "teaser": null
       }]
