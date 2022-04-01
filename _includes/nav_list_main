@@ -29,11 +29,18 @@
                 {% endfor %}
             </ul>
 
-        <font size="4.5em"><span class="nav__sub-title">Coding Test</span></font>
+        <font size="4.5em"><span class="nav__sub-title">Algorithm</span></font>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "programmers" %}
                         <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "이코테" %}
+                        <li><a href="/categories/this" class="">이코테 ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
