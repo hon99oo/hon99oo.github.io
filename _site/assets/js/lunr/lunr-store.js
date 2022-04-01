@@ -358,4 +358,28 @@ var store = [{
         "tags": ["Algorithm","Python","프로그래머스 코테"],
         "url": "/programmers/python_05/",
         "teaser": null
+      },{
+        "title": "[이코테/Python] 그리디 - 모험가 길드",
+        "excerpt":"이것이 코딩 테스트다 with 파이썬   그리디 모험가 길드(Python)   문제   모험가 N명에겐 공포도 X가 각각 존재한다.  공포도가 X인 모험가는 반드시 X명 이상으로 구성된 그룹에 참여하고 여행을 떠나야 한다.  여행을 떠날 수 있는 그룹 수의 최댓값을 구하라.      예시    입력 : [2,3,1,2,2]  결과 : 5   풀이     공포도가 가장 큰 모험가를 우선으로 그룹을 지정해주어야 한다. 그렇기 때문에 내림차순으로 정렬을 하고 접근한다.       array를 내림차순으로 정렬   array의 첫번째 인덱스의 값만큼 slicing해서 array에 저장, count를 1 올려줌   array가 빈 리스트가 되면 while문 탈출   return count   코드       def solution(array):         count = 0         array.sort(reverse=True)프로그래머스 파이썬 알고리즘          while array:             array = array[array[0]:]             count += 1              return count          if __name__ == \"__main__\":         array = [2,3,1,2,2]         print(solution(array)) ","categories": ["이코테"],
+        "tags": ["Algorithm","Python","이코테"],
+        "url": "/%EC%9D%B4%EC%BD%94%ED%85%8C/this_01/",
+        "teaser": null
+      },{
+        "title": "[이코테/Python] 그리디 - 곱하기 혹은 더하기",
+        "excerpt":"이것이 코딩 테스트다 with python   그리디 곱하기 혹은 더하기(Python)   문제   숫자로만 이루어진 문자열 S가 있다.  숫자 사이에 ‘x’, ‘+’ 연산자를 넣어 가장 큰 수를 만들어라.       예시   입력 : ‘02984’  결과 : 576   풀이     0과 1일 때는 +를 해주고 그렇지 않으면 x를 해주는 것이 이 문제의 포인트로 보인다.       sum 변수에 str(문자열 S)의 첫번째 인덱스의 값을 넣어준다.   str의 두번째 인덱스의 값부터 반복문을 돌린다.   sum과 ch(반복문을 도는 str의 값)이 2보다 작다면 +, 그렇지 않으면 x를 해준다.            sum도 체크 하는 이유는 sum이 0이나 1이면 +를 해줘야 하기 때문           return sum   코드       def solution(str):         sum = int(str[0])              for ch in str[1:]:             ch = int(ch)             if sum &lt; 2 or ch &lt; 2:                 sum += ch             else:                 sum *= ch              return sum               if __name__ == \"__main__\":         str = \"567\"         print(solution(str)) ","categories": ["이코테"],
+        "tags": ["Algorithm","Python","이코테"],
+        "url": "/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/",
+        "teaser": null
+      },{
+        "title": "[이코테/Python] 그리디 - 문자열 뒤집기",
+        "excerpt":"이것이 코딩 테스트다 with python   그리디 문자열 뒤집기(Python)   문제   0과 1로만 이루어진 문자열 S가 있다.  연속된 숫자를 잡고 뒤집을 수 있다.(0을 1로, 1로 0으로)  모두 같은 수를 만들 수 있는 뒤집기의 최소 횟수를 구하라.      예시   입력 : ‘00001110000’  결과 : 1   풀이     0과1이 인접한 부분이 몇개 있는지를 체크하면 된다. 예를들어 인접한 부분의 패턴을 ‘01’을 조사한다. 하지만, 1010 문자열을 조사하게 되면 마지막 인접한 부분을 조사하지 못해 최소 횟수가 1이 되므로 마지막 문자열에 1을 붙여주고 조사한다. 이렇게만 진행했을 경우 ‘010’을 조사하게 되면 최소 횟수가 2회가 된다. 그렇기 때문에 같은 방법으로 ‘01’과 ‘10’을 둘다 조사하여 두가지의 최소 횟수중 최소값을 구한다.       문자열 S(str)의 마지막 부분을 조사해서 0 또는 1을 붙여준다.   반복문을 돌며 ‘01’패턴과 ‘10’패턴을 조사한다 각각의 횟수를 count_0, count_1에 저장한다.   count_0과 count_1중 최소값을 return한다.   코드       def solution(str):         if str[-1] == '1':             str += '0'         else:             str += '1'         count_0 = 0         count_1 = 0              for i in range(len(str)-1):             if str[i]+str[i+1] == '01':                 count_0 += 1             if str[i]+str[i+1] == '10':                 count_1 +=1              return min(count_0,count_1)                    if __name__ == \"__main__\":         str = \"010\"         print(solution(str)) ","categories": ["이코테"],
+        "tags": ["Algorithm","Python","이코테"],
+        "url": "/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/",
+        "teaser": null
+      },{
+        "title": "[이코테/Python] 그리디 - 만들 수 없는 금액",
+        "excerpt":"이코테   그리디 만들 수 없는 금액(Python)   문제   N개의 동전을 갖고 있다.  N개의 동전을 이용하여 만들 수 없는 정수 금액 중 최솟값을 구하라.       예시   입력 : [3,2,1,1,9]  결과 : 8   풀이     고민을 좀 많이 했던 문제이다. 만들 수 있는 금액을 모두 구한 뒤 해당 금액에서 없는 금액중 최소값을 구하는 방식으로 접근했었다. 이렇게 문제를 풀면 n^2의 시간이 걸린다. 하지만, 해답에서는 n으로 풀고 있어 정답 코드를 배울 필요성이 있어 보인다. 정답 코드는 누적합을 사용한다.    solution1     동전이 모두 저장되어 있는 array를 정렬한다.   동전들의 모든 가능한 합이 저장될 set 타입의 변수를 선언한다. (set은 중복이 없다.)   1,1,2,3,9라면, 1, 1+1, 1+1+2, 1+1+2+3, 1+1+2+3+9 \\ 1, 1+2, 1+2+3, 1+2+3+9 \\ 2, 2+3, … 식으로  2중 포문을 돌리며 값을 저장한다.   이후 set의 max값 만큼 반복문을 돌며 만들 수 없는 최솟값을 구한다.   4번에서 구한 최소값을 return한다.   solution2     동전이 모두 저장되어 있는 array를 정렬한다.   target=1을 선언한다.(0인 동전은 없기 때문에)   array를 반복문을 돌며 동전을 하나씩 꺼낸다.   target이 동전보다 작다면 break 한다.(더이상 만들 수 없는 동전을 만났기 때문)   target이 동전보다 작지 않다면 target에 동전을 더해준다.   반복문을 빠져나오면 target을 return한다.      모든 것을 다 구해야만 가능하다고 생각해서 이중 포문을 돌았지만,  누적된 합은 다시 구해도 되지 않은 수이기 때문에 부등호를 사용하여 비교한 점이 인상 깊었다.    코드       def solution1(array):         array.sort()         money_set = set()         for i in range(len(array)):             sum = 0             for j in range(i,len(array)):                 sum += j                 money_set.add(sum)              for i in range(max(money_set)):             if i not in money_set:                 return i         return max(money_set)+1          def solution2(array):         array.sort()         target = 1         for x in array:             if target &lt; x:                 break             target += x              answer = target          if __name__ == \"__main__\":         array = [3,2,1,1,9]         print(solution2(array)) ","categories": ["이코테"],
+        "tags": ["Algorithm","Python","이코테"],
+        "url": "/%EC%9D%B4%EC%BD%94%ED%85%8C/this_04/",
+        "teaser": null
       }]

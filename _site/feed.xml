@@ -1,46 +1,222 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-01T02:27:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[프로그래머스/Python] Level1 체육복 (그리디)</title><link href="http://localhost:4000/programmers/python_04/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level1 체육복 (그리디)" /><published>2022-03-31T00:00:00+09:00</published><updated>2022-03-31T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_04</id><content type="html" xml:base="http://localhost:4000/programmers/python_04/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-01T14:48:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[이코테/Python] 그리디 - 문자열 뒤집기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 문자열 뒤집기" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-python&quot;&gt;이것이 코딩 테스트다 with python&lt;/h1&gt;
 
-&lt;h2 id=&quot;level1-그리디-체육복-파이썬python-풀이&quot;&gt;Level1 그리디 체육복 파이썬(Python) 풀이&lt;/h2&gt;
+&lt;h2 id=&quot;그리디-문자열-뒤집기python&quot;&gt;그리디 문자열 뒤집기(Python)&lt;/h2&gt;
+
+&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
+
+&lt;p&gt;0과 1로만 이루어진 문자열 S가 있다.&lt;br /&gt;
+연속된 숫자를 잡고 뒤집을 수 있다.(0을 1로, 1로 0으로)&lt;br /&gt;
+모두 같은 수를 만들 수 있는 뒤집기의 최소 횟수를 구하라.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42862&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;예시&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
+&lt;p&gt;입력 : ‘00001110000’&lt;br /&gt;
+결과 : 1&lt;/p&gt;
+
+&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;그리디 문제는 ‘현재 상황에서 지금 당장 좋은 것만 고르는 방법’을 의미한다. 알고리즘의 패턴보다는 풀이하는 사람의 아이디어가 더 중요한 알고리즘이다.
-우선 체육복 문제는 인접한 index의 학생들만 여벌의 옷을 받을 수 있으므로 인접한 index에 대해서만 생각해주면 된다. 또한 도난당한 학생이 여벌의 옷을 가지고 올 수 있기 때문에
-이 부분에서 예외처리를 해주어야한다.&lt;/p&gt;
+  &lt;p&gt;0과1이 인접한 부분이 몇개 있는지를 체크하면 된다. 예를들어 인접한 부분의 패턴을 ‘01’을 조사한다. 하지만, 1010 문자열을 조사하게 되면 마지막 인접한 부분을 조사하지 못해 최소 횟수가 1이 되므로
+마지막 문자열에 1을 붙여주고 조사한다. 이렇게만 진행했을 경우 ‘010’을 조사하게 되면 최소 횟수가 2회가 된다. 그렇기 때문에 같은 방법으로 ‘01’과 ‘10’을 둘다 조사하여 두가지의 최소 횟수중 최소값을 구한다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;lost와 reserve를 set형식으로 변경해준뒤 각각의 차집합을 구해준다.(도난당한 학생과 여벌옷을 가져온 학생이 중복된 경우를 제거하기 위해)&lt;/li&gt;
-  &lt;li&gt;reserve를 기준으로 인접한 lost를 조회하여 존재하면 reserve에서 해당 value를 삭제해주고 count(옷을 빌린 학생 수)를 1 올려준다.&lt;/li&gt;
-  &lt;li&gt;전체에서 lost에 남아있는 값들의 길이를 빼주고 count(옷을 빌린 학생 수)를 더해준다.&lt;/li&gt;
-  &lt;li&gt;위에 값을 answer로 return한다.&lt;/li&gt;
+  &lt;li&gt;문자열 S(str)의 마지막 부분을 조사해서 0 또는 1을 붙여준다.&lt;/li&gt;
+  &lt;li&gt;반복문을 돌며 ‘01’패턴과 ‘10’패턴을 조사한다 각각의 횟수를 count_0, count_1에 저장한다.&lt;/li&gt;
+  &lt;li&gt;count_0과 count_1중 최소값을 return한다.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost_v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
     
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'01'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'10'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
     
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    
     
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python Algorithm Study - 04</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 큰 수 만들기(그리디)</title><link href="http://localhost:4000/programmers/python_05/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 큰 수 만들기(그리디)" /><published>2022-03-31T00:00:00+09:00</published><updated>2022-03-31T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_05</id><content type="html" xml:base="http://localhost:4000/programmers/python_05/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+        &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;010&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 03</summary></entry><entry><title type="html">[이코테/Python] 그리디 - 곱하기 혹은 더하기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 곱하기 혹은 더하기" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-python&quot;&gt;이것이 코딩 테스트다 with python&lt;/h1&gt;
+
+&lt;h2 id=&quot;그리디-곱하기-혹은-더하기python&quot;&gt;그리디 곱하기 혹은 더하기(Python)&lt;/h2&gt;
+
+&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
+
+&lt;p&gt;숫자로만 이루어진 문자열 S가 있다.&lt;br /&gt;
+숫자 사이에 ‘x’, ‘+’ 연산자를 넣어 가장 큰 수를 만들어라.&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;입력 : ‘02984’&lt;br /&gt;
+결과 : 576&lt;/p&gt;
+
+&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;0과 1일 때는 +를 해주고 그렇지 않으면 x를 해주는 것이 이 문제의 포인트로 보인다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;sum 변수에 str(문자열 S)의 첫번째 인덱스의 값을 넣어준다.&lt;/li&gt;
+  &lt;li&gt;str의 두번째 인덱스의 값부터 반복문을 돌린다.&lt;/li&gt;
+  &lt;li&gt;sum과 ch(반복문을 도는 str의 값)이 2보다 작다면 +, 그렇지 않으면 x를 해준다.
+    &lt;ul&gt;
+      &lt;li&gt;sum도 체크 하는 이유는 sum이 0이나 1이면 +를 해줘야 하기 때문&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;return sum&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ch&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;
+    
+    
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;567&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 02</summary></entry><entry><title type="html">[이코테/Python] 그리디 - 모험가 길드</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_01/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 모험가 길드" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_01</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_01/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-파이썬&quot;&gt;이것이 코딩 테스트다 with 파이썬&lt;/h1&gt;
+
+&lt;h2 id=&quot;그리디-모험가-길드python&quot;&gt;그리디 모험가 길드(Python)&lt;/h2&gt;
+
+&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
+
+&lt;p&gt;모험가 N명에겐 공포도 X가 각각 존재한다.&lt;br /&gt;
+공포도가 X인 모험가는 반드시 X명 이상으로 구성된 그룹에 참여하고 여행을 떠나야 한다.&lt;br /&gt;
+여행을 떠날 수 있는 그룹 수의 최댓값을 구하라.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;입력 : [2,3,1,2,2]&lt;br /&gt;
+결과 : 5&lt;/p&gt;
+
+&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;공포도가 가장 큰 모험가를 우선으로 그룹을 지정해주어야 한다. 그렇기 때문에 내림차순으로 정렬을 하고 접근한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;array를 내림차순으로 정렬&lt;/li&gt;
+  &lt;li&gt;array의 첫번째 인덱스의 값만큼 slicing해서 array에 저장, count를 1 올려줌&lt;/li&gt;
+  &lt;li&gt;array가 빈 리스트가 되면 while문 탈출&lt;/li&gt;
+  &lt;li&gt;return count&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;프로그래머스&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;파이썬&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;알고리즘&lt;/span&gt; 
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:]&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 01</summary></entry><entry><title type="html">[이코테/Python] 그리디 - 만들 수 없는 금액</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_04/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 만들 수 없는 금액" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_04</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_04/">&lt;h1 id=&quot;이코테&quot;&gt;이코테&lt;/h1&gt;
+
+&lt;h2 id=&quot;그리디-만들-수-없는-금액python&quot;&gt;그리디 만들 수 없는 금액(Python)&lt;/h2&gt;
+
+&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
+
+&lt;p&gt;N개의 동전을 갖고 있다.&lt;br /&gt;
+N개의 동전을 이용하여 만들 수 없는 정수 금액 중 최솟값을 구하라.&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;입력 : [3,2,1,1,9]&lt;br /&gt;
+결과 : 8&lt;/p&gt;
+
+&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;고민을 좀 많이 했던 문제이다. 만들 수 있는 금액을 모두 구한 뒤 해당 금액에서 없는 금액중 최소값을 구하는 방식으로 접근했었다.
+이렇게 문제를 풀면 n^2의 시간이 걸린다. 하지만, 해답에서는 n으로 풀고 있어 정답 코드를 배울 필요성이 있어 보인다.
+정답 코드는 누적합을 사용한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;solution1&quot;&gt;solution1&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;동전이 모두 저장되어 있는 array를 정렬한다.&lt;/li&gt;
+  &lt;li&gt;동전들의 모든 가능한 합이 저장될 set 타입의 변수를 선언한다. (set은 중복이 없다.)&lt;/li&gt;
+  &lt;li&gt;1,1,2,3,9라면, 1, 1+1, 1+1+2, 1+1+2+3, 1+1+2+3+9 \ 1, 1+2, 1+2+3, 1+2+3+9 \ 2, 2+3, … 식으로 
+2중 포문을 돌리며 값을 저장한다.&lt;/li&gt;
+  &lt;li&gt;이후 set의 max값 만큼 반복문을 돌며 만들 수 없는 최솟값을 구한다.&lt;/li&gt;
+  &lt;li&gt;4번에서 구한 최소값을 return한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;solution2&quot;&gt;solution2&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;동전이 모두 저장되어 있는 array를 정렬한다.&lt;/li&gt;
+  &lt;li&gt;target=1을 선언한다.(0인 동전은 없기 때문에)&lt;/li&gt;
+  &lt;li&gt;array를 반복문을 돌며 동전을 하나씩 꺼낸다.&lt;/li&gt;
+  &lt;li&gt;target이 동전보다 작다면 break 한다.(더이상 만들 수 없는 동전을 만났기 때문)&lt;/li&gt;
+  &lt;li&gt;target이 동전보다 작지 않다면 target에 동전을 더해준다.&lt;/li&gt;
+  &lt;li&gt;반복문을 빠져나오면 target을 return한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;모든 것을 다 구해야만 가능하다고 생각해서 이중 포문을 돌았지만, 
+누적된 합은 다시 구해도 되지 않은 수이기 때문에 부등호를 사용하여 비교한 점이 인상 깊었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    
+        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 04</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 큰 수 만들기(그리디)</title><link href="http://localhost:4000/programmers/python_05/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 큰 수 만들기(그리디)" /><published>2022-03-31T00:00:00+09:00</published><updated>2022-03-31T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_05</id><content type="html" xml:base="http://localhost:4000/programmers/python_05/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
 
 &lt;h2 id=&quot;level2-그리디-큰-수-만들기-파이썬python-풀이&quot;&gt;Level2 그리디 큰 수 만들기 파이썬(Python) 풀이&lt;/h2&gt;
 
@@ -150,7 +326,49 @@
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'4177252841'&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python Algorithm Study - 05</summary></entry><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/csapp/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-03-29T00:00:00+09:00</published><updated>2022-03-29T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_23</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_23/"></content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰</title><link href="http://localhost:4000/csapp/csapp_22/" rel="alternate" type="text/html" title="[CS:APP] Part 1 프로그램의 구조와 실행 리뷰" /><published>2022-03-28T00:00:00+09:00</published><updated>2022-03-28T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_22</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_22/">&lt;h1 id=&quot;2-정보의-표현과-처리&quot;&gt;2 정보의 표현과 처리&lt;/h1&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 05</summary></entry><entry><title type="html">[프로그래머스/Python] Level1 체육복 (그리디)</title><link href="http://localhost:4000/programmers/python_04/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level1 체육복 (그리디)" /><published>2022-03-31T00:00:00+09:00</published><updated>2022-03-31T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_04</id><content type="html" xml:base="http://localhost:4000/programmers/python_04/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+
+&lt;h2 id=&quot;level1-그리디-체육복-파이썬python-풀이&quot;&gt;Level1 그리디 체육복 파이썬(Python) 풀이&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42862&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;그리디 문제는 ‘현재 상황에서 지금 당장 좋은 것만 고르는 방법’을 의미한다. 알고리즘의 패턴보다는 풀이하는 사람의 아이디어가 더 중요한 알고리즘이다.
+우선 체육복 문제는 인접한 index의 학생들만 여벌의 옷을 받을 수 있으므로 인접한 index에 대해서만 생각해주면 된다. 또한 도난당한 학생이 여벌의 옷을 가지고 올 수 있기 때문에
+이 부분에서 예외처리를 해주어야한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;lost와 reserve를 set형식으로 변경해준뒤 각각의 차집합을 구해준다.(도난당한 학생과 여벌옷을 가져온 학생이 중복된 경우를 제거하기 위해)&lt;/li&gt;
+  &lt;li&gt;reserve를 기준으로 인접한 lost를 조회하여 존재하면 reserve에서 해당 value를 삭제해주고 count(옷을 빌린 학생 수)를 1 올려준다.&lt;/li&gt;
+  &lt;li&gt;전체에서 lost에 남아있는 값들의 길이를 빼주고 count(옷을 빌린 학생 수)를 더해준다.&lt;/li&gt;
+  &lt;li&gt;위에 값을 answer로 return한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)),&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost_v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lost_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve_v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+    
+        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lost&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reserve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 04</summary></entry><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/csapp/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-03-29T00:00:00+09:00</published><updated>2022-03-29T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_23</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_23/"></content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[CS:APP] Part 1 프로그램의 구조와 실행 리뷰</title><link href="http://localhost:4000/csapp/csapp_22/" rel="alternate" type="text/html" title="[CS:APP] Part 1 프로그램의 구조와 실행 리뷰" /><published>2022-03-28T00:00:00+09:00</published><updated>2022-03-28T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_22</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_22/">&lt;h1 id=&quot;2-정보의-표현과-처리&quot;&gt;2 정보의 표현과 처리&lt;/h1&gt;
 &lt;blockquote&gt;
   &lt;p&gt;컴퓨터가 실제로 해석하는 비트들과 연산들이 무엇이 있는지 배운다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -643,72 +861,7 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 추가 설명은 없었다. 그래서, 나는 이런 하드웨어와 프로그램들이 어떻게 상호작용이 되는지 이해하지 못했고 재미도 못 느꼈던 것 같다. 하지만, csapp에서는 하드웨어와 프로그램의 상호작용에 대해 설명을 하면
 그 이후에 실제 c코드로 예시를 들어준다. 이러한 예시코드가 프로그래밍과 접목도 되고 이해의 수준이 상승하는 것 같다.&lt;/p&gt;
 
-&lt;p&gt;앞으로 남은 part2,3를 4월 중순 안으로 끝마치고 운영체제 공부를 빨리 하고 싶다. 화이팅이다! 아자아자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 22(하드웨어와 프로그램 사이의 상호작용 요약 및 리뷰)</summary></entry><entry><title type="html">[프로그래머스/Python] Level1 K번째수 (정렬)</title><link href="http://localhost:4000/programmers/python_01/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level1 K번째수 (정렬)" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_01</id><content type="html" xml:base="http://localhost:4000/programmers/python_01/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
-
-&lt;h2 id=&quot;level1-정렬-k번째수-파이썬python-풀이&quot;&gt;Level1 정렬 K번째수 파이썬(Python) 풀이&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42748?language=python3&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;반복문과 slicing, sort 함수를 사용하면 간단하게 해결되는 가장 기초적인 정렬 문제이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;2차원 배열인 commands를 반복문을 통해 하나씩 접근한다.&lt;/li&gt;
-  &lt;li&gt;1차원 배열인 command에서 0번 index와 1번 index에 해당되도록 slicing 한다.&lt;/li&gt;
-  &lt;li&gt;slicing된 배열을 정렬한다.&lt;/li&gt;
-  &lt;li&gt;정렬된 배열에서 index 2번에 해당되는 인자값을 answer 배열에 append 한다.&lt;/li&gt;
-  &lt;li&gt;return answer&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]])[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commands&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python Algorithm Study - 01</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 가장 큰 수 (정렬)</title><link href="http://localhost:4000/programmers/python_03/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 가장 큰 수 (정렬)" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_03</id><content type="html" xml:base="http://localhost:4000/programmers/python_03/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
-
-&lt;h2 id=&quot;level2-정렬-가증-큰-수-파이썬python-풀이&quot;&gt;Level2 정렬 가증 큰 수 파이썬(Python) 풀이&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42746?language=python3&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;가장 큰 수를 만드려면, 예를 들어 9와 91이 있을 때 991이 919보다 더 큰 수가 된다. 수의 가장 큰 값이 1000이기 때문에, ‘9’&lt;em&gt;3, ‘91’&lt;/em&gt;3을 해서 비교를 하면,
-‘999’ &amp;gt; ‘919191’ 이다. 그렇기 때문에 int-&amp;gt;str-&amp;gt;*3을 하여 비교를 하여 정렬을 하고 해당 숫자들을 원래 숫자로 변경하여 return 해준다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;배열의 값들을 str type으로 변경해준뒤 *3을 해준다.&lt;/li&gt;
-  &lt;li&gt;이후 sorted 함수를 사용하여 정렬한다.(내림차순으로 정렬하기 위해 reverse=True로 설정해준다.)&lt;/li&gt;
-  &lt;li&gt;다시 배열의 값들의 길이를 1/4로 나누어 slicing해준다.&lt;/li&gt;
-  &lt;li&gt;해당 배열들을 ‘‘로 join해준다.&lt;/li&gt;
-  &lt;li&gt;return answer&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))])&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python Algorithm Study - 03</summary></entry><entry><title type="html">[프로그래머스/Python] Level1 모의고사 (완전탐색)</title><link href="http://localhost:4000/programmers/python_02/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level1 모의고사 (완전탐색)" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_02</id><content type="html" xml:base="http://localhost:4000/programmers/python_02/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+&lt;p&gt;앞으로 남은 part2,3를 4월 중순 안으로 끝마치고 운영체제 공부를 빨리 하고 싶다. 화이팅이다! 아자아자!&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 22(하드웨어와 프로그램 사이의 상호작용 요약 및 리뷰)</summary></entry><entry><title type="html">[프로그래머스/Python] Level1 모의고사 (완전탐색)</title><link href="http://localhost:4000/programmers/python_02/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level1 모의고사 (완전탐색)" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_02</id><content type="html" xml:base="http://localhost:4000/programmers/python_02/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
 
 &lt;h2 id=&quot;level1-완전탐색-모의고사-파이썬python-풀이&quot;&gt;Level1 완전탐색 모의고사 파이썬(Python) 풀이&lt;/h2&gt;
 
@@ -753,826 +906,37 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">Python Algorithm Study - 02</summary></entry><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조(캐시)</title><link href="http://localhost:4000/csapp/csapp_21/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조(캐시)" /><published>2022-03-24T00:00:00+09:00</published><updated>2022-03-24T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_21</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_21/">&lt;h1 id=&quot;chapter-06-메모리-계층구조&quot;&gt;Chapter 06 메모리 계층구조&lt;/h1&gt;
-&lt;ol&gt;
-  &lt;li&gt;저장장치 기술&lt;/li&gt;
-  &lt;li&gt;지역성&lt;/li&gt;
-  &lt;li&gt;메모리 계층구조&lt;/li&gt;
-  &lt;li&gt;캐시메모리&lt;/li&gt;
-  &lt;li&gt;캐시 친화적 코드 작성하기&lt;/li&gt;
-  &lt;li&gt;프로그램 성능에 대한 캐시의 영향&lt;/li&gt;
-  &lt;li&gt;요약&lt;/li&gt;
-&lt;/ol&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 02</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 가장 큰 수 (정렬)</title><link href="http://localhost:4000/programmers/python_03/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 가장 큰 수 (정렬)" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_03</id><content type="html" xml:base="http://localhost:4000/programmers/python_03/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
 
-&lt;h1 id=&quot;64-캐시-메모리&quot;&gt;6.4 캐시 메모리&lt;/h1&gt;
+&lt;h2 id=&quot;level2-정렬-가증-큰-수-파이썬python-풀이&quot;&gt;Level2 정렬 가증 큰 수 파이썬(Python) 풀이&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;CPU와 메인메모리 사이의 성능 격차가 커짐에 따라 L1 캐시 및 L2 캐시를 삽입하였다.&lt;/li&gt;
-  &lt;li&gt;캐시는 SRAM이다.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42746?language=python3&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/21/img.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 캐시 메모리를 위한 일반적인 버스 구조이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;641-기본-캐시-메모리-구조&quot;&gt;6.4.1 기본 캐시 메모리 구조&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;캐시의 구성은 순서쌍 S,E,B,m 으로 규정할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;S : 2^s개의 캐시 집합&lt;/li&gt;
-      &lt;li&gt;E : 집합에 포함되는 캐시 라인&lt;/li&gt;
-      &lt;li&gt;B : 2^b 바이트의 데이터 블록&lt;/li&gt;
-      &lt;li&gt;m : M = 2^m 개의 교유의 주소를 구성하는 m비트&lt;/li&gt;
-      &lt;li&gt;C : 모든 블록의 크기 S&lt;em&gt;E&lt;/em&gt;B&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;캐시는 요청된 워드를 간단히 주소비트만 조사해서 찾아ㅓ낼 수 있도록 구성되어있다.
-    &lt;ul&gt;
-      &lt;li&gt;해당 방식은 해시 함수를 사용하는 해시 테이블과 유사하다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/21/img_1.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 캐시의 일반적인 구조이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;642-캐시-종류&quot;&gt;6.4.2 캐시 종류&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;직접매핑 캐시
-    &lt;ul&gt;
-      &lt;li&gt;집합당 정확히 한개의 라인을 갖는 경우&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;집합결합성 캐시
-    &lt;ul&gt;
-      &lt;li&gt;집합당 k개의 라인을 갖는 경우&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;완전결합성 캐시
-    &lt;ul&gt;
-      &lt;li&gt;모든 캐시 라인들을 갖는 하나의 집합으로 구성된 경우&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;643-캐시-동작-방법&quot;&gt;6.4.3 캐시 동작 방법&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;캐시의 동작 방법은 세 단계로 이루어진다.
-    &lt;ol&gt;
-      &lt;li&gt;집합 선택&lt;/li&gt;
-      &lt;li&gt;라인 매칭&lt;/li&gt;
-      &lt;li&gt;워드 추출&lt;/li&gt;
-    &lt;/ol&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;위와 같은 방법으로 캐시가 어떤 요청이 적중인지 미스인지 결정하고, 요청한 워드를 뽑아내기 위해 작업을 수행한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;집합 선택
-    &lt;ul&gt;
-      &lt;li&gt;s개의 집합 인덱스 비트를 w의 주소 중에서 뽑아낸다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;라인 매칭
-    &lt;ul&gt;
-      &lt;li&gt;워드 w의 사본이 집합 i에 포함된 캐시 라인에 들어 있는지 결정한다.&lt;/li&gt;
-      &lt;li&gt;유효비트 valid가 1이고, 태그비트들이 일치해야한다. -&amp;gt; 캐시 적중&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;워드 선택
-    &lt;ul&gt;
-      &lt;li&gt;캐시 적중이 발생하면 원하는 워드가 블록 내 어디에서 시작하는지 결정한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/21/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/21/img_3.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위의 그림은 집합 선택과 라인 매칭 그리고 워드 선택이다.(직접매핑 캐시)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Thrashing : 캐시가 같은 집합의 캐시 블록들의 로드와 축출을 반복하는 경우
-    &lt;ul&gt;
-      &lt;li&gt;해결 방법 : 예를들어 x배열, y배열에서 쓰레싱이 일어나면 x배열에 패딩을 주어 x[i]와 y[i]가 서로 다른 집합에 매핑되도록 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;인덱스를 중간 비트로 사용하는 이유
-    &lt;ul&gt;
-      &lt;li&gt;연속적인 메모리 블록들은 동일한 캐시 집합으로 매핑된다. -&amp;gt; 어떠한 특정 순간에 한 개의 블록 크기의 배열 묶음만을 저장하게 되며 캐시를 비효율적으로 사용하게 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/21/img_4.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위의 그림은 중간 비트로 캐시 인덱스를 사용하는 이유다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;집합결합성 캐시에서의 동작 방법
-    &lt;ul&gt;
-      &lt;li&gt;직접매핑 캐시와 동작이 비슷하지만,&lt;/li&gt;
-      &lt;li&gt;라인 매칭에서 캐시 내 태그와 주소의 태그가 일치하는 라인을 찾기위해 탐색을 한다.&lt;/li&gt;
-      &lt;li&gt;캐시에서 미스 발생시 : LFU(최소 빈도 사용), LRU(최소 최근 사용) 정책 활용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;완전결합성 캐시
-    &lt;ul&gt;
-      &lt;li&gt;집합결합성 캐시와 동작이 비슷하지만,&lt;/li&gt;
-      &lt;li&gt;많은 수의 태그를 병렬로 검색해야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;644-쓰기와-관련된-이슈&quot;&gt;6.4.4 쓰기와 관련된 이슈&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Write-through: 즉시 w의 캐시 블록 전체를 다음 하위 레벨로 써준다.
-    &lt;ul&gt;
-      &lt;li&gt;버스 트래픽을 발생시키는 단점이 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Write-back : 갱신을 지연시켜 이 블록이 블록 교체 알고리즘에 의해 캐시에서 축출될 때에만 하위 레벨에 써준다.
-    &lt;ul&gt;
-      &lt;li&gt;캐시 블록이 수정되었는지 여부를 나타내는 dirty bit 을 각 라인마다 추가로 유지해야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Write-allocate : 해당 블록을 다음 하위 레벨에서 캐시로 가져오고 난 뒤에 캐시 블록을 갱신한다.&lt;/li&gt;
-  &lt;li&gt;No-write-allocate : 캐시를 통과하고 워드를 직접 다음 하위 레벨에 써준다.&lt;/li&gt;
-  &lt;li&gt;Write-through &amp;amp; no-write-allocate, Write-back &amp;amp; Write-allocate&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;645-실제-캐시-계층구조의-해부&quot;&gt;6.4.5 실제 캐시 계층구조의 해부&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;i-cache : 인스트럭션만을 보관하는 캐시&lt;/li&gt;
-  &lt;li&gt;d-cache : 데이터만 보관하는 캐시&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;646-캐시-매개변수의-성능에-대한-효과&quot;&gt;6.4.6 캐시 매개변수의 성능에 대한 효과&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;미스 비율 Miss rate : 미스하는 메모리를 참조하는 비율&lt;/li&gt;
-  &lt;li&gt;적중 비율 Hit rate : 1 - miss rate&lt;/li&gt;
-  &lt;li&gt;적중 시간 Hit Time : 캐시에 있는 워드를 CPU 로 전달하는 데 걸리는 시간&lt;/li&gt;
-  &lt;li&gt;미스 비용 Miss Penalty : 미스로 인해서 추가적으로 요구되는 시간&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캐시-크기의-영향&quot;&gt;캐시 크기의 영향&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;큰 캐시는 적중비율을 높여주지만 더 적중시간이 길어진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;블록-크기의-영향&quot;&gt;블록 크기의 영향&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;적중 비율을 높여주지만 전송시간이 길어진다.&lt;/li&gt;
-  &lt;li&gt;시간 지역성이 더 많은 프로그램에서 적중 비율에 타격을 줄 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;결합도의-영향&quot;&gt;결합도의 영향&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;집합당 캐시 라인 수의 선택이 미치는 영향&lt;/li&gt;
-  &lt;li&gt;충돌미스로 인해 쓰레싱하는 위험성을 감소시킨다&lt;/li&gt;
-  &lt;li&gt;라인당 더 많은 태그비트 필요, LRU 상태비트 필요&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;65-캐시-친화적-코드-작성하기&quot;&gt;6.5 캐시 친화적 코드 작성하기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;좋은 프로그래머란 항상 캐시 친화적으로, 즉 좋은 지역성을 가지도록 프로그램을 작성해야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;공통적인 경우를 빠르게 동작하게 만들어야한다.&lt;/li&gt;
-      &lt;li&gt;각 내부 루프의 캐시 미스 수를 최소화 해야한다.&lt;/li&gt;
-      &lt;li&gt;지역변수들에 대한 반복적인 참조는 좋다.(시간 지역성)&lt;/li&gt;
-      &lt;li&gt;Stride-1 참조 패턴은 좋다.(공간 지역성)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;66-프로그램-성능에-대한-캐시의-영향&quot;&gt;6.6 프로그램 성능에 대한 캐시의 영향&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;읽기 처리량 or 읽기 대역폭 : 프로그램이 메모리 시스템에서 데이터를 읽는 비율&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;67-요약&quot;&gt;6.7 요약&lt;/h1&gt;
+&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;이렇게 메모리까지 하드웨어와 프로그램 사이의 상호작용에 대해 공부했다.
-메모리에 대해서 좀 더 자세히 살펴볼 필요가 있어 보인다. 대학 2학년 때 컴구 수업에서 캐시 매핑 관련 내용이 생각나는데,
-이 책에는 수록되어 있지 않은 것 같다.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 21</summary></entry><entry><title type="html">[CS:APP] Chapter 06 메모리 계층구조(메모리 계층구조와 지역성)</title><link href="http://localhost:4000/csapp/csapp_20/" rel="alternate" type="text/html" title="[CS:APP] Chapter 06 메모리 계층구조(메모리 계층구조와 지역성)" /><published>2022-03-21T00:00:00+09:00</published><updated>2022-03-21T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_20</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_20/">&lt;h1 id=&quot;chapter-06-메모리-계층구조&quot;&gt;Chapter 06. 메모리 계층구조&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리 시스템은 용량, 비용, 접근시간을 갖는 저장장치들의 계층구조다.
-    &lt;ul&gt;
-      &lt;li&gt;캐시메모리는 CPU 부근에서 비교적 느린 메인메모리에 대한 준비장소&lt;/li&gt;
-      &lt;li&gt;메인메모리는 크고 느린 디스크들에 대한 준비장소&lt;/li&gt;
-      &lt;li&gt;디스크들은 네트워크로 연결된 다른 머신들의 준비장소&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;메모리의 계층별로 접근 속도가 상이하다.
-    &lt;ul&gt;
-      &lt;li&gt;레지스터가 가장 빠르고, 그 다음은 메인메모리, 그 다음은 디스크이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;데이터를 계층의 상부에 저장시켜서 CPU가 보다 빨리 접근할 수 있도록 프로그램을 작성해야한다.
-    &lt;ul&gt;
-      &lt;li&gt;이 개념은 지역성locality라고 알려진 컴퓨터 프로그램의 근본특징에 근거를 두고 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;61-저장장치-기술&quot;&gt;6.1 저장장치 기술&lt;/h1&gt;
-
-&lt;h2 id=&quot;611-랜덤-접근-메모리&quot;&gt;6.1.1 랜덤-접근 메모리&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;랜덤-접근 메모리(RAM)은 두 종류를 가진다.
-    &lt;ul&gt;
-      &lt;li&gt;정적 SRAM : 동적램 DRAM 보다 더 빠르고 훨 씬 비싸다. 캐시메모리로 사용된다.&lt;/li&gt;
-      &lt;li&gt;동적 DRAM : 메인메모리와 그래픽 시스템의 프레임 버퍼로도 사용된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;정적-sram&quot;&gt;정적 SRAM&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;SRAM은 각 비트를 이중안정bistable 메모리 셀cell에 저장한다.&lt;/li&gt;
-  &lt;li&gt;SRAM은 전원이 공급되는 한 지속성을 갖는다.&lt;/li&gt;
-  &lt;li&gt;리프레시가 필요없다.&lt;/li&gt;
-  &lt;li&gt;DRAM보다 트랜지스터를 더 많이 사용하여 밀도가 낮으며 비싸고 전력을 많이 사용한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;동적-dram&quot;&gt;동적 DRAM&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;DRAM은 각 비트를 전하로 캐패시터에 저장한다.&lt;/li&gt;
-  &lt;li&gt;리프레시가 필요하다.
-    &lt;ul&gt;
-      &lt;li&gt;메모리 시스템은 주기적으로 메모리의 모든 비트를 읽었다가 다시 써 주는 방식&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;일반-dram&quot;&gt;일반 DRAM&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 DRAM 칩의 구조이다.&lt;/li&gt;
-  &lt;li&gt;DRAM 칩 내의 셀들은 d 슈퍼셀들로 나누어지며, 각각은 w DRAM 셀들로 이루어진다.&lt;/li&gt;
-  &lt;li&gt;슈퍼셀 (i,j)의 내용을 읽으려면 메모리 컨트롤러는 행 주소 i를 DRAM에 보내고, 다음에 열 주소 j를 보낸다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_1.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 DRAM 슈퍼셀의 내용을 읽는 과정이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;메모리-모듈&quot;&gt;메모리 모듈&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;DRAM 칩은 메인 시스템(머더보드)의 확상슬롯에 꽂을 수 있는 메모리 모듈 형태로 패키징 된다.&lt;/li&gt;
-  &lt;li&gt;DRAM을 여러개 추가하여 바이트를 순서대로 저장한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;비휘발성-메모리&quot;&gt;비휘발성 메모리&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;DRAM과 SRAM은 전원이 꺼지면 정보도 잃어버리기 때문에 휘발성이다.&lt;/li&gt;
-  &lt;li&gt;비휘발성 메모리는 이들의 전원 꺼져도 정보를 유지한다.&lt;/li&gt;
-  &lt;li&gt;Read-only memory : ROM 이라고 부른다.&lt;/li&gt;
-  &lt;li&gt;ROM 디바이스에 저장된 프로그램들은 종종 펌웨어firmware라고 부른다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;메모리에-접근하기&quot;&gt;메모리에 접근하기&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;데이터는 ‘버스’라고 하는 공유된 전기회로를 통해서 프로세서와 DRAM메인메모리간에 앞뒤로 교환한다.&lt;/li&gt;
-  &lt;li&gt;CPU와 메모리 간의 매 전송은 버스 트랜잭션bus transaction이라고 부르는 일련의 단계들을 통해 이뤄진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위의 그림은 CPU와 메인메모리를 연결하는 버스 구조다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;읽기 트랜잭션(movq A,%rax)
-    &lt;ol&gt;
-      &lt;li&gt;CPU는 주소 A를 시스템 버스에 보낸다. I/O브릿지는 신호를 메모리 버스를 따라 보낸다.&lt;/li&gt;
-      &lt;li&gt;메인메모리는 메모리 버스에서 주소 신호를 감지하고, 메모리 버스로부터 주소를 읽고 DRAM에서 데이터 워드를 선입, 데이터를 메모리 버스에 쓴다.&lt;/li&gt;
-      &lt;li&gt;I/O 브릿지는 신호를 시스템 버스 신호로 변환해서 시스템 버스를 따라 보낸다. CPU는 시스템 버스에서 데이터를 감지하고 %rax에 복사한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;쓰기 트랜잭션(movq %rax,A)
-    &lt;ol&gt;
-      &lt;li&gt;CPU는 주소를 시스템 버스에 보낸다. 메모리는 메모리 버스에서 주소를 읽고 데이터가 도착하기를 기다린다.&lt;/li&gt;
-      &lt;li&gt;CPU는 %rax에 있는 데이터를 시스템 버스에 복사한다.&lt;/li&gt;
-      &lt;li&gt;메인메모리는 데이터를 메모리 버스에서 읽고 비트들을 저장한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;612-디스크-저장장치&quot;&gt;6.1.2 디스크 저장장치&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;디스크는 RAM 메모리의 수천 메가바이트 단위에 비해 수백에서 수천 기가비이트 단위의 엄청난 양의 데이터를 저장하는 대표적인 저장장치다.&lt;/li&gt;
-  &lt;li&gt;디스크 용량
-    &lt;ul&gt;
-      &lt;li&gt;기록밀도: 1인치의 트랙에 집어넣을 수 있는 비트의 수&lt;/li&gt;
-      &lt;li&gt;트랙밀도: 원판 중심에서 반지름의 1인치 길이에 넣을 수 있는 트랙의 수&lt;/li&gt;
-      &lt;li&gt;면적밀도: 기록밀도와 트랙밀도의 곱&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;디스크의 동작
-    &lt;ul&gt;
-      &lt;li&gt;탐색시간: 섹터의 내용을 읽기위해 헤드를 타깃 섹터를 보유한 트랙 위로 위치시키는 시간&lt;/li&gt;
-      &lt;li&gt;회전 지연시간: 헤드가 트랙 위에 위치하면 타깃 섹터의 첫번째 비트가 헤드 아래로 지나가는 것을 기다리는 시간.(헤드의 위치와 디스크의 회전 속도 모두 관련됨)&lt;/li&gt;
-      &lt;li&gt;전송시간: 하나의 섹터를 전송하는 시간(회전속도와 트랙당 섹터 수에 관련됨)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;디스크 접근하기(디스크 섹터 읽기)
-    &lt;ol&gt;
-      &lt;li&gt;CPU는 명령어, 논리블록 번호, 목적지 메모리 주소를 디스크와 관련된 메모리 매핑한 주소에 써주어서 디스크 읽기를 개시한다.&lt;/li&gt;
-      &lt;li&gt;디스크 컨트롤러는 이 섹터를 읽고 메인메모리로 DMA 전송을 수행한다.&lt;/li&gt;
-      &lt;li&gt;DMA 전송이 완료될 때, 디스크 컨트롤러는 CPU에 인터럽트로 알려준다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;62-지역성&quot;&gt;6.2 지역성&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;잘 작성한 컴퓨터 프로그램은 좋은 지역성locality를 보여준다.
-    &lt;ul&gt;
-      &lt;li&gt;최근에 참조했던 데이터 아이템 근처의 데이터 아이템이나 최근에 자신을 참조했던 데이터 아이템을 참조하려는 경향이 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;지역성은 두가지 형태가 있다.
-    &lt;ul&gt;
-      &lt;li&gt;시간 지역성 : 한번 참조된 메모리 위치는 여러 번 참조될 가능성이 높다.&lt;/li&gt;
-      &lt;li&gt;공간 지역성 : 한번 참조된 메모리는 근처의 메모리 위치를 참조할 가능성이 높다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;캐시 메모리 : 가장 최근에 참조한 인스트럭션과 데이터 아이템의 블록을 저장
-    &lt;ul&gt;
-      &lt;li&gt;캐시 메모리라는 작고 빠른 메모리를 도입하여 메인메모리를 빠르게 돌릴 수 있게 됐다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;621-프로그램-데이터-참조의-지역성&quot;&gt;6.2.1 프로그램 데이터 참조의 지역성&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 코드는 좋은 지역성을 갖는다.
-    &lt;ul&gt;
-      &lt;li&gt;행 우선 순서로 접근되기 때문이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 코드는 나쁜 지역성을 갖는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;sum1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 코드도 썩 좋은 지역성을 갖고 있지는 않다.
-    &lt;ul&gt;
-      &lt;li&gt;보폭이 존재하기 때문&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;622-지역성-요약&quot;&gt;6.2.2 지역성 요약&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;동일한 변수들을 반복적으로 참조하는 프로그램은 좋은 시간 지역성&lt;/li&gt;
-  &lt;li&gt;Stride-k참조 패턴에서 stride가 적으면 적을수록 공간 지역성도 좋아진다.&lt;/li&gt;
-  &lt;li&gt;루프는 인스트럭션 선입에 대해 좋은 시간 및 공간 지역성을 갖는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;63-메모리-계층구조&quot;&gt;6.3 메모리 계층구조&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;아래 두가지를 보완하기 위해 ‘메모리 계층구조’라고 알려진 메모리 시스템 조직을 위한 접근 방법을 사용한다.
-    &lt;ul&gt;
-      &lt;li&gt;저장장치 기술 : 다양한 저장장치 기술들은 매우 광범위한 접근시간을 갖는다.&lt;/li&gt;
-      &lt;li&gt;컴퓨터 소프트웨어 : 잘 작성한 프로그램들은 좋은 지역성을 나타내는 경향이 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 메모리 계층구조이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;631-메모리-계층구조에서의-캐시&quot;&gt;6.3.1 메모리 계층구조에서의 캐시&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;캐시는 보다 크고 느린 디바이스에 저장된 데이터 객체를 위한 준비 영역으로 사용하는 작고 빠른 저장장치다.&lt;/li&gt;
-  &lt;li&gt;메모리 계층구조의 중심 개념은, 레벨 k에 있는 보다 빠르고 더 작은 장치가 레벨 k+1을 위한 캐시 서비스를 제공한다는 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/20/img_5.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 메모리 계층구조에서 캐싱의 기본 원리이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캐시-적중&quot;&gt;캐시 적중&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;레벨 k+1로부터 특정 데이터 객체 d를 필요로 한다.&lt;/li&gt;
-  &lt;li&gt;현재 레벨 k에 저장된 블록들 중의 하나에서 d를 찾는다.&lt;/li&gt;
-  &lt;li&gt;만일 d가 레벨 k에서 우연히 캐시되어 있다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;캐시-미스&quot;&gt;캐시 미스&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;만일 d가 레벨 k에서 캐시되지 않는다면 ‘캐시 미스’가 발생한 것이다.&lt;/li&gt;
-  &lt;li&gt;k+1에 있는 캐시로부터 d를 포함하는 블록을 가져온다.&lt;/li&gt;
-  &lt;li&gt;만일 레벨 k 캐시가 이미 꽉 찬 상태full라면 기존 블록에 덮어쓴다.
-    &lt;ul&gt;
-      &lt;li&gt;축출 : 기존 블록을 덮어쓰는 과정&lt;/li&gt;
-      &lt;li&gt;희생블록 : 축출되는 블록&lt;/li&gt;
-      &lt;li&gt;교체정책 : 어떤 블록을 교체할지에 관한 결정&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;캐시-미스-종류&quot;&gt;캐시 미스 종류&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;cold cache : 캐시가 비어있을 때&lt;/li&gt;
-  &lt;li&gt;충돌미스conflict miss : 캐시의 배치 정책으로 인한 캐시 미스&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캐시-관리&quot;&gt;캐시 관리&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리 계층 구조의 핵심은 각 레벨에 있는 저장장치가 다음 낮은 레벨을 위한 캐시&lt;/li&gt;
-  &lt;li&gt;레벨 L1,L2,L3의 캐시들은 캐시에 구현된 하드웨어 로직으로 전적으로 관리된다.&lt;/li&gt;
-  &lt;li&gt;가상모메리를 사용하는 시스템에서 DRAM메인메모리는디스크에 저장된 데이터 블록에 대한 캐시 서비스를 제공한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 20</summary></entry><entry><title type="html">[CS:APP] Chapter 05 프로그램 성능 최적화하기</title><link href="http://localhost:4000/csapp/csapp_19/" rel="alternate" type="text/html" title="[CS:APP] Chapter 05 프로그램 성능 최적화하기" /><published>2022-03-19T00:00:00+09:00</published><updated>2022-03-19T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_19</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_19/">&lt;h1 id=&quot;chapter-05-프로그램-성능-최적화하기&quot;&gt;Chapter 05. 프로그램 성능 최적화하기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로그램을 작성하는 주목적은 모든 가능한 조건에서 프로그램이 정확하게 동작하도록 하는 것이다.&lt;/li&gt;
-  &lt;li&gt;프로그래머는 명확하고 간결한 코드를 작성해야하고, 이해하기 쉽고, 코드를 검토할 때와 수정할 때 다른사람들도 코드를 읽고 이해할 수 있어야 한다.&lt;/li&gt;
-  &lt;li&gt;효율적인 프로그램을 작성하는 방법
-    &lt;ol&gt;
-      &lt;li&gt;적절한 알고리즘과 자료구조를 선택해야한다.&lt;/li&gt;
-      &lt;li&gt;컴파일러가 효과적으로 최적화해서 효율적인 실행코드로 바꿀 수 있는 소스코드를 작성해야 한다.&lt;/li&gt;
-      &lt;li&gt;작업을 부분으로 나누어 멀티코어와 멀티프로세서의 조합을 갖는 컴퓨터에서 병렬로 계산한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;프로그래머는 컴파일러를 도와서 쉽게 최적화될 수 있는 코드를 작성해야한다.
-    &lt;ol&gt;
-      &lt;li&gt;불필요한 작업 제거
-        &lt;ul&gt;
-          &lt;li&gt;불필요한 함수호출 제거&lt;/li&gt;
-          &lt;li&gt;조건 테스트 제거&lt;/li&gt;
-          &lt;li&gt;메모리 참조 제거&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;인스트럭션-수준 병렬성을 제공&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;51-최적화-컴파일러의-능력과-한계&quot;&gt;5.1 최적화 컴파일러의 능력과 한계&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;컴파일러는 프로그래머의 코드를 자동으로 최적화 해준다.&lt;/li&gt;
-  &lt;li&gt;하지만 특정 코드는 컴파일러가 자동으로 최적화해줄 수 없다.
-    &lt;ul&gt;
-      &lt;li&gt;두 개의 포인터가 같은 메모리 위치를 가리킬 수 있는 경우(메모리 연결memory aliasing)&lt;/li&gt;
-      &lt;li&gt;함수 호출
-        &lt;ul&gt;
-          &lt;li&gt;ex) 호출되는 횟수에 따라 프로그램의 동작이 변경 되는 경우(부가효과 side effect)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;위 항목들이 ‘최적화 장애물blocker’이 되는데, 이것은 컴파일러가 최적화된 코드를 생성하기 위한 기회를 제한한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;52-프로그램-성능의-표현&quot;&gt;5.2 프로그램 성능의 표현&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;CPE : 요소당 측정 사이클metric cycle&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;53-프로그램-예제&quot;&gt;5.3 프로그램 예제&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;코드를 최적화하는 방법은 다음과 같은 방법들이 존재한다.
-    &lt;ul&gt;
-      &lt;li&gt;타깃 머신의 특징을 고려하지 않은 최적화 기법
-        &lt;ul&gt;
-          &lt;li&gt;루프 비효율성 제거하기&lt;/li&gt;
-          &lt;li&gt;프로시저 호출 줄이기&lt;/li&gt;
-          &lt;li&gt;불필요한 메모리 참조 제거&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;최신 프로세서의 인스트럭션 수준 병렬성을 고려한 최적화 기법
-        &lt;ul&gt;
-          &lt;li&gt;루프풀기&lt;/li&gt;
-          &lt;li&gt;병렬성 높이기&lt;/li&gt;
-          &lt;li&gt;재결합 변환&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;최신프로세서의 인스트럭션 수준 병렬성을 고려하기 위해 5.7절에서 최신프로세서에 대해서 조금 다루고 넘어간다.&lt;/p&gt;
+  &lt;p&gt;가장 큰 수를 만드려면, 예를 들어 9와 91이 있을 때 991이 919보다 더 큰 수가 된다. 수의 가장 큰 값이 1000이기 때문에, ‘9’&lt;em&gt;3, ‘91’&lt;/em&gt;3을 해서 비교를 하면,
+‘999’ &amp;gt; ‘919191’ 이다. 그렇기 때문에 int-&amp;gt;str-&amp;gt;*3을 하여 비교를 하여 정렬을 하고 해당 숫자들을 원래 숫자로 변경하여 return 해준다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h1 id=&quot;54-루프-비효율성-제거하기&quot;&gt;5.4 루프 비효율성 제거하기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;테스트 조건이 루프의 매 실행마다 평가된다.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;ol&gt;
+  &lt;li&gt;배열의 값들을 str type으로 변경해준뒤 *3을 해준다.&lt;/li&gt;
+  &lt;li&gt;이후 sorted 함수를 사용하여 정렬한다.(내림차순으로 정렬하기 위해 reverse=True로 설정해준다.)&lt;/li&gt;
+  &lt;li&gt;다시 배열의 값들의 길이를 1/4로 나누어 slicing해준다.&lt;/li&gt;
+  &lt;li&gt;해당 배열들을 ‘‘로 join해준다.&lt;/li&gt;
+  &lt;li&gt;return answer&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_1.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;lower1은 n^2&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;lower2는 n&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;겉보기에는 의미 없는 코드가 감춰진 잠재적 비효율성을 갖고 있다.&lt;/li&gt;
-  &lt;li&gt;적은 데이터 셋으로 시험하고 분석되지만, 프로그램이 궁극적으로 배포되면, 프로시저가 백만 개 문자들의 스트리에 적용될 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;이러한 상황에 안전했던 코드조각이 주요 성능 병목이 되게된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;경쟁력 있는 프로그래머 역할의 한 부분은 지속적으로 소개되는 그러한 잠재적 비효율성을 피하는것이다&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))])&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
 
-&lt;h1 id=&quot;55-프로시저-호출-줄이기&quot;&gt;5.5 프로시저 호출 줄이기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로시저 호출은 오버헤드를 발생시키고 대부분의 프로그램 최적화 작업을 방해할 수 있다.&lt;/li&gt;
-  &lt;li&gt;경계값을 체크하는 것은 배열의 임의로 접근하는 경우를 처리할 때에는 유용할 수 있지만, 특정 경우에는 모든 참조 시도가 유효하다.&lt;/li&gt;
-  &lt;li&gt;예제에서 각 벡터의 원소를 가져오기 위해서 작성된 함수(벡터 경계값 체크 함수)를 매번 호출하는 대신 배열에 직접 접근한다.
-    &lt;ul&gt;
-      &lt;li&gt;결벽주의자들은 이렇게 변환하는 것이 프로그램 모듈성을 심각하게 훼손한다고 말할 수 있다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;실용적인 프로그래머라면 이러한 변환과정이 고성능 결과를 얻기 위해서 필요한 단계라고 주장할 것이다.&lt;/strong&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;56-불필요한-메모리-참조의-제거&quot;&gt;5.6 불필요한 메모리 참조의 제거&lt;/h1&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;결과값을 임시로 누적한다.
-    &lt;ul&gt;
-      &lt;li&gt;누적값을 지역변수 acc에 저장하면 매 루프 반복실행마다 메모리에서 가져오고 갱신된 값을 다시 기록할 필요가 없어진다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;57-최신-프로세서-이해하기&quot;&gt;5.7 최신 프로세서 이해하기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;코드의 성능을 더 개선하기 위해서는 프로세서의 마이크로구조, 즉 프로세서가 인스트럭션을 실행하도록 하는 하부 시스템 설계를 활용하는 최적화 기법을 고려해야한다.&lt;/li&gt;
-  &lt;li&gt;실제 프로세서에서 많은 인스트럭션들이 동시에 처리된다.
-    &lt;ul&gt;
-      &lt;li&gt;이것을 인스트럭션 수준 병렬성이라고 부른다.&lt;/li&gt;
-      &lt;li&gt;두 개의 서로 다른 하위 경계값lower bounds가 프로그램의 최대 성능을 결정한다.
-        &lt;ul&gt;
-          &lt;li&gt;지연시간 경계값 : 일련의 연산들이 엄격하게 순서를 준수하여 수행되어야 할 때 발생&lt;/li&gt;
-          &lt;li&gt;처리량 경계값: 프로세서의 기능 유닛들의 기본 계산 능력을 결정한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;571-전체적인-동작&quot;&gt;5.7.1 전체적인 동작&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;최신 프로세서는 인스트럭션이 실행되는 순서가 기계어 수준 프로그램에서의 순서와 일치할 필요가 없다.
-    &lt;ul&gt;
-      &lt;li&gt;무순서 out-of-order라고 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_5.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 최신 프로세서의 블록 다이어그램이다.
-    &lt;ul&gt;
-      &lt;li&gt;인스트럭션 제어 유닛(ICU)은 인스트럭션들을 메모리에서 읽고 일련의 기본연산들을 생성하는 역할을 수행한다.&lt;/li&gt;
-      &lt;li&gt;그 이후 실행 유닛(EU)은 연산을 수행하여 분기가 정확히 예측되었는지 여부를 나타낸다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;최신 프로세서들은 ‘분기 예측branch prediction’이라는 기술을 사용한다.&lt;/li&gt;
-  &lt;li&gt;‘추정 실행speculative execution’이라는 기술을 사용해서 분기가 이동해야 하는 위치에 있는 인스트럭션을 선입하고 해독한다.&lt;/li&gt;
-  &lt;li&gt;Fetch control 블록은 분기예측과 연동해서 어떤 인스트럭션을 선입할지를 결정한다.&lt;/li&gt;
-  &lt;li&gt;추정 실행을 사용해서 연산들이 계산되지만, 확실할 때까지 최종 결과값들은 데이터 메모리나 레지스터에 저장되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;결국 최신 프로세서들은 ‘무순서로 연산들을 병렬로 진행한다.’라고 말하는 것 같다. 하지만, 데이터 의존성이 있는 경우에는 병렬로 진행할 수 없기 때문에 지연이 발생하고,
-이런 데이터 의존성은 컴파일러가 최적화를 할 수 없다.(다른 코드로 변경시 무조건적으로 무결성하다는 것을 입증할 수 없어서) 그렇기 때문에 우리는 데이터 의존성을 줄일 수 있는 코드를 작성하여
-최적화를 한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;572-함수유닛의-성능&quot;&gt;5.7.2 함수유닛의 성능&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;발급시간 issue time: 두 연산 사이에 소요되는 최소 사이클 수&lt;/li&gt;
-  &lt;li&gt;용량 capacity: 해당 연산을 수행할 수 있는 함수 유닛의 수&lt;/li&gt;
-  &lt;li&gt;지연 latency: 실제 연산을 수행하는 데 걸린 클럭 사이클 수&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_6.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 인텔 코어 i7의 지연시간과 발급시간 특성이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;기계수준-코드로부터-데이터흐름-그래프로의-변환&quot;&gt;기계수준 코드로부터 데이터흐름 그래프로의 변환&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_7.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;combine4에 대한 내부 루프의 그림
-    &lt;ul&gt;
-      &lt;li&gt;인스트럭션들은 동적으로 하나 또는 두 개의 연산으로 번역된다.&lt;/li&gt;
-      &lt;li&gt;각각은 다른 연산들 또는 레지스터들로부터 값들을 받고 다른 연산과 레지스터를 위한 값들을 생성한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;루프를 구성하는 코드부분에 대해서 접근하게 되는 레지스터들을 다음의 네 종류로 구분할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;읽기전용 Read-only : 데이터 또는 메모리 주소를 계산하기 위한 소스 값들로 사용된다.&lt;/li&gt;
-      &lt;li&gt;쓰기전용 Write-only : 데이터 이동 연산의 목적지로 사용된다.&lt;/li&gt;
-      &lt;li&gt;지역적 Local : 루프 내에서 사용되고 갱신되지만, 한 번의 반복 실행에서 다른 실행으로의 의존성은 없다.
-        &lt;ul&gt;
-          &lt;li&gt;ex) cmp에 의해 갱신되며 jne 연산에 의해 사용된다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;루프 Loop : 한 번의 반복실행에서 생성된 값은 다른 실행에서 사용되는 방식으로 소스 값들로 사용되며 루프의 목적지로도 사용된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;루프 레지스터들 간의 연산들의 연결이 성능을 제한하는 데이터 의존성을 결정한다.&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/19/img_9.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 combine4 연산들을 데이터 흐름 그래프로 추상화하였다.
-    &lt;ul&gt;
-      &lt;li&gt;(b)를 보면 데이터의존성을 확인할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;58-루프풀기&quot;&gt;5.8 루프풀기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;루프 풀기는 루프의 매 반복실행마다 계산되는 원소의 수를 증가시켜 루프에서의 반복 실행 횟수를 줄이는 방법이다.&lt;/li&gt;
-  &lt;li&gt;루프 풀기는 두가지 측면에서 성능을 개선할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;루프 인덱스 계산과 조건부 분기와 같이 프로그램의 결과와는 직접적으로 관련 없는 연산들의 수를 줄인다.&lt;/li&gt;
-      &lt;li&gt;전체 계산의 핵심 경로에 있는 연산의 수를 줄이기 위한 추가적인 코드변환을 할 수 있는 방법들을 적용할 수 있게 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/* default */&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/* Combine 2 elements at a time (2X1 루프풀기)*/&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위 코드와 같이 반복 횟수를 줄인다.
-    &lt;ul&gt;
-      &lt;li&gt;kX1로 가능하다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;59-병렬성-높이기&quot;&gt;5.9 병렬성 높이기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;데이터 의존성을 줄이고자 병렬성을 높이는 방법이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;다수의-누산기-사용&quot;&gt;다수의 누산기 사용&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/* default */&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/* Combine 2 elements at a time (2X1 루프풀기)*/&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;acc0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc0&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;acc1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc1&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위 코드와 같이 홀수와 짝수를 나누면 데이터 의존성이 사라진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;재결합-변환&quot;&gt;재결합 변환&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/* default */&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-
-&lt;span class=&quot;cm&quot;&gt;/* reassociation transform (2X1a 루프풀기) */&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OP&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h1 id=&quot;511-일부-제한-요인들&quot;&gt;5.11 일부 제한 요인들&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;최적화중 프로그램의 성능을 제한하는 다른 요소들이 존재한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;5111-레지스터-넘기기&quot;&gt;5.11.1 레지스터 넘기기&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로그램이 사용 가능한 레지스터의 수를 넘어가는 병렬성을 가지면, 메모리에 저장하게 되는 &lt;strong&gt;레지스터 넘기기 spilling&lt;/strong&gt; 방법이 사용된다.
-    &lt;ul&gt;
-      &lt;li&gt;이 때 런타임 스택에 공간을 할당하기 때문에 성능이 저하된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;5112-분기예측과-예측비용&quot;&gt;5.11.2 분기예측과 예측비용&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;if문보다 삼항연산자가 더 빠르다.
-    &lt;blockquote&gt;
-      &lt;p&gt;if문은 statement, 삼항연산자는 expression이다.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;512-메모리-성능의-이해&quot;&gt;5.12 메모리 성능의 이해&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;Load의 성능
-    &lt;ul&gt;
-      &lt;li&gt;반복실행에 대한 로드 연산은 이전 반복실행에 대한 로드 연산이 완료되었을 때까지는 시작할 수 없다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Store의 성능
-    &lt;ul&gt;
-      &lt;li&gt;store 연산은 레지스터 값을 메모리로 기록한다.&lt;/li&gt;
-      &lt;li&gt;store 연산은 데이터 의존성을 발생시키지 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;load 연산만이 store 연산의 결과에 영향을 받는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;513-실제상황-성능개선-기술&quot;&gt;5.13 실제상황: 성능개선 기술&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로그램 성능의 최적화하는 기본적인 전략들
-    &lt;ul&gt;
-      &lt;li&gt;상위수준 설계 : 적절한 알고리즘과 자료구조를 선택&lt;/li&gt;
-      &lt;li&gt;기본 코딩원칙 : 최적화 장애물 피하기
-        &lt;ul&gt;
-          &lt;li&gt;함수 호출 제거&lt;/li&gt;
-          &lt;li&gt;계산은 루프 밖으로 이동&lt;/li&gt;
-          &lt;li&gt;불필요한 메모리 참조 제거&lt;/li&gt;
-          &lt;li&gt;중간 값들을 저장하는 임시 변수 사용(데이터 의존성 피하기)&lt;/li&gt;
-          &lt;li&gt;최종 값이 계산되었을 때에만 전역변수나 배열에 결과 저장(load 의존성 피하기)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;하위수준 최적화 : 하드웨어의 성능을 활용할 수 있는 코드 작성
-        &lt;ul&gt;
-          &lt;li&gt;루프풀기&lt;/li&gt;
-          &lt;li&gt;다중누산기와 재결합 기법 사용&lt;/li&gt;
-          &lt;li&gt;statement보다 expression 사용하기&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;마무리&quot;&gt;마무리&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;2장부터 4장까지 컴퓨터가 해석할 수 있는 언어들과 해당 언어들을 컴퓨터가 어떻게 해석하는지를 공부했다.
-해당 방법들을 통해서 5장에서는 프로그래머들이 어떻게 코드를 작성해야 하는지를 배웠다. 
-만약 컴퓨터가 코드를 해석하는 방법을 몰랐더라면, 코드 최적화 방법을 공부할 때 정확히 이해할 수 없었을 것이다.
-작성한 코드에서 인스트럭션 조합과 기계어가 어떻게 동작하는지를 항상 생각하자.&lt;/p&gt;
-
-  &lt;p&gt;추가적으로, CSAPP 포스팅 방식을 조금 변경해야할 것 같다. 4장 초반까지는 솔직히 굉장히 어려웠다. “무슨 말을 하는지 이걸 도대체 컴퓨터가 어떻게 해석한다는거지?”
-라고 생각하며 의문으로 가득차 거의 모든 내용을 포스팅한 것 같다. 하지만, 4장 후반 SEQ와 파이프라이닝을 공부하고 “아! 이래서 지금까지 이런 내용들을 공부했구나!”
-그리고 5장을 공부하면서 뭔가 “득도”를 하게 된 것 같다. 다양한 부분들의 이해가 빨라졌다. 앞으로 챕터를 공부하고 나의 방식으로 녹인 후 포스팅을 하는 것으로 포스팅 방향을 바꿀 것이다.&lt;/p&gt;
-
-  &lt;p&gt;6장은 드디어 메모리 파트이다. 너무 기대된다!&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 19</summary></entry></feed>
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 03</summary></entry></feed>
