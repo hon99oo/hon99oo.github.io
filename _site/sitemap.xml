@@ -261,6 +261,10 @@
 <lastmod>2022-04-04T00:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_06/</loc>
+<lastmod>2022-04-04T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/about_me/</loc>
 </url>
 <url>
@@ -343,6 +347,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/page13/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page14/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/googlef9a00d099044f819.html</loc>
