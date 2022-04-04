@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-04T19:18:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[이코테/Python] 그리디 - 볼링공 고르기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 볼링공 고르기" /><published>2022-04-04T00:00:00+09:00</published><updated>2022-04-04T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05/">&lt;h1 id=&quot;이코테&quot;&gt;이코테&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-04T19:19:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[이코테/Python] 그리디 - 볼링공 고르기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 볼링공 고르기" /><published>2022-04-04T00:00:00+09:00</published><updated>2022-04-04T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05/">&lt;h1 id=&quot;이코테&quot;&gt;이코테&lt;/h1&gt;
 
 &lt;h2 id=&quot;그리디-볼링공-고르기python&quot;&gt;그리디 볼링공 고르기(Python)&lt;/h2&gt;
 
@@ -120,10 +120,11 @@ index 접근은 array의 길이만큼 나눈 나머지로 접근함으로써 반
 &lt;h3 id=&quot;새로-알게된-문법&quot;&gt;새로 알게된 문법&lt;/h3&gt;
 &lt;blockquote&gt;
   &lt;p&gt;solution1을 풀 때 리스트 컴프리헨션의 조건문에 대한 새로운 문법을 알게 되었다.&lt;/p&gt;
-  &lt;ol&gt;
-    &lt;li&gt;조건문이 뒤에 있을 때 : 조건문에 해당 하는 값 i만 추가&lt;/li&gt;
-  &lt;/ol&gt;
 &lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;조건문이 뒤에 있을 때 : 조건문에 해당 하는 값 i만 추가&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
