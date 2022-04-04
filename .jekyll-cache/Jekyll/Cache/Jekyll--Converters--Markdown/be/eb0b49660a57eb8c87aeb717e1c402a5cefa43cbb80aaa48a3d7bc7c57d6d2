@@ -1,0 +1,77 @@
+I"A<h1 id="이코테">이코테</h1>
+
+<h2 id="그리디-볼링공-고르기python">그리디 볼링공 고르기(Python)</h2>
+
+<h2 id="문제">문제</h2>
+
+<p>두 사람이 서로 다른 무게의 볼링공을 고르려고 한다.<br />
+같은 무게의 공이 여러개 있따면 서로 다른 공으로 간주된다.<br />
+이 때 두 사람이 고를 수 있는 볼링공 번호의 조합의 경우의 수를 구하라.</p>
+
+<ul>
+  <li>예시</li>
+</ul>
+
+<p>입력 : [1,3,2,3,2]<br />
+결과 : 8</p>
+
+<h2 id="풀이">풀이</h2>
+<blockquote>
+  <p>정렬을 한 뒤에 자신과 다른 무게를 가지고 있는 볼링공을 차례로 비교하여 count하면 쉽게 풀 수 있는 문제다. 하지만,
+나는 n^2으로 풀었고 답지는 n으로 풀었다. 남아있는 볼링공의 개수와 현재 해당하는 볼링공의 무게의 개수를 곱하면 더 빠른 시간복잡도로 문제를 해결할 수 있다.
+조합을 위와 같은 방법으로 접근 할 수 있다는 것을 새롭게 배웠다.</p>
+</blockquote>
+
+<h3 id="solution1n2">solution1(n^2)</h3>
+<ol>
+  <li>볼링공의 무게가 담겨져 있는 배열(array)를 정렬한다.</li>
+  <li>A 사람이 i번째 볼링 공을 골랐을 때 B가 고를 경우의 수를 이중포문을 돌려서 체크한다.(A와 무게가 다르다면 count +1을 해준다.)</li>
+  <li>이중포문을 돌릴 때 i번째 이후 공만 체크하면 되기 때문에 index와 value 두가지로 포문을 돌린다.</li>
+  <li>return count</li>
+</ol>
+
+<h3 id="solution2n">solution2(n)</h3>
+<ol>
+  <li>weight_list에 무게의 종류만큼 0으로 초기화한다.</li>
+  <li>볼링공의 무게가 담겨져 있는 배열을 반복문을 돌면서 볼링공의 무게에 해당하는 index에 값을 1씩 증가해준다.</li>
+  <li>볼링공의 최대 무게까지 반복문을 돈다.</li>
+  <li>현재 인덱스 무개의 볼링공의 개수를 전체 개수에서 제외해준다.</li>
+  <li>result에 현재 인덱스 무게의 볼링공 * 전체 개수를 계산하여 더해준다.</li>
+  <li>return result</li>
+</ol>
+
+<blockquote>
+  <p>조합 문제를 어떻게 접근하냐에 따라서 시간복잡도를 줄일 수 있다. 
+앞으로도 문제를 풀 때 최대한 시간복잡도를 생각하면서 풀 수 있도록 노력해야겠다.</p>
+</blockquote>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">solution1</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+        <span class="n">array</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">money_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+            <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+                <span class="nb">sum</span> <span class="o">+=</span> <span class="n">j</span>
+                <span class="n">money_set</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">money_set</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">money_set</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">money_set</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">solution2</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+        <span class="n">array</span><span class="p">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">array</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">target</span> <span class="o">+=</span> <span class="n">x</span>
+    
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">target</span>
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution2</span><span class="p">(</span><span class="n">array</span><span class="p">))</span></code></pre></figure>
+:ET

@@ -1,55 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-01T14:52:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[이코테/Python] 그리디 - 문자열 뒤집기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 문자열 뒤집기" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-python&quot;&gt;이것이 코딩 테스트다 with python&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-04T15:41:33+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[이코테/Python] 그리디 - 볼링공 고르기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 볼링공 고르기" /><published>2022-04-04T00:00:00+09:00</published><updated>2022-04-04T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_05/">&lt;h1 id=&quot;이코테&quot;&gt;이코테&lt;/h1&gt;
 
-&lt;h2 id=&quot;그리디-문자열-뒤집기python&quot;&gt;그리디 문자열 뒤집기(Python)&lt;/h2&gt;
+&lt;h2 id=&quot;그리디-볼링공-고르기python&quot;&gt;그리디 볼링공 고르기(Python)&lt;/h2&gt;
 
 &lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
 
-&lt;p&gt;0과 1로만 이루어진 문자열 S가 있다.&lt;br /&gt;
-연속된 숫자를 잡고 뒤집을 수 있다.(0을 1로, 1로 0으로)&lt;br /&gt;
-모두 같은 수를 만들 수 있는 뒤집기의 최소 횟수를 구하라.&lt;/p&gt;
+&lt;p&gt;두 사람이 서로 다른 무게의 볼링공을 고르려고 한다.&lt;br /&gt;
+같은 무게의 공이 여러개 있다면 서로 다른 공으로 간주된다.&lt;br /&gt;
+이 때 두 사람이 고를 수 있는 볼링공 번호의 조합의 경우의 수를 구하라.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;예시&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;입력 : ‘00001110000’&lt;br /&gt;
-결과 : 1&lt;/p&gt;
+&lt;p&gt;입력 : [1,3,2,3,2]&lt;br /&gt;
+결과 : 8&lt;/p&gt;
 
 &lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;0과1이 인접한 부분이 몇개 있는지를 체크하면 된다. 예를들어 인접한 부분의 패턴을 ‘01’을 조사한다. 하지만, 1010 문자열을 조사하게 되면 마지막 인접한 부분을 조사하지 못해 최소 횟수가 1이 되므로
-마지막 문자열에 1을 붙여주고 조사한다. 이렇게만 진행했을 경우 ‘010’을 조사하게 되면 최소 횟수가 2회가 된다. 그렇기 때문에 같은 방법으로 ‘01’과 ‘10’을 둘다 조사하여 두가지의 최소 횟수중 최소값을 구한다.&lt;/p&gt;
+  &lt;p&gt;정렬을 한 뒤에 자신과 다른 무게를 가지고 있는 볼링공을 차례로 비교하여 count하면 쉽게 풀 수 있는 문제다. 하지만,
+나는 n^2으로 풀었고 답지는 n으로 풀었다. 남아있는 볼링공의 개수와 현재 해당하는 볼링공의 무게의 개수를 곱하면 더 빠른 시간복잡도로 문제를 해결할 수 있다.
+조합을 위와 같은 방법으로 접근 할 수 있다는 것을 새롭게 배웠다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
+&lt;h3 id=&quot;solution1n2&quot;&gt;solution1(n^2)&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;문자열 S(str)의 마지막 부분을 조사해서 0 또는 1을 붙여준다.&lt;/li&gt;
-  &lt;li&gt;반복문을 돌며 ‘01’패턴과 ‘10’패턴을 조사한다 각각의 횟수를 count_0, count_1에 저장한다.&lt;/li&gt;
-  &lt;li&gt;count_0과 count_1중 최소값을 return한다.&lt;/li&gt;
+  &lt;li&gt;볼링공의 무게가 담겨져 있는 배열(array)를 정렬한다.&lt;/li&gt;
+  &lt;li&gt;A 사람이 i번째 볼링 공을 골랐을 때 B가 고를 경우의 수를 이중포문을 돌려서 체크한다.(A와 무게가 다르다면 count +1을 해준다.)&lt;/li&gt;
+  &lt;li&gt;이중포문을 돌릴 때 i번째 이후 공만 체크하면 되기 때문에 index와 value 두가지로 포문을 돌린다.&lt;/li&gt;
+  &lt;li&gt;return count&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h3 id=&quot;solution2n&quot;&gt;solution2(n)&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;weight_list에 무게의 종류만큼 0으로 초기화한다.&lt;/li&gt;
+  &lt;li&gt;볼링공의 무게가 담겨져 있는 배열을 반복문을 돌면서 볼링공의 무게에 해당하는 index에 값을 1씩 증가해준다.&lt;/li&gt;
+  &lt;li&gt;볼링공의 최대 무게까지 반복문을 돈다.&lt;/li&gt;
+  &lt;li&gt;현재 인덱스 무개의 볼링공의 개수를 전체 개수에서 제외해준다.&lt;/li&gt;
+  &lt;li&gt;result에 현재 인덱스 무게의 볼링공 * 전체 개수를 계산하여 더해준다.&lt;/li&gt;
+  &lt;li&gt;return result&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;조합 문제를 어떻게 접근하냐에 따라서 시간복잡도를 줄일 수 있다. 
+앞으로도 문제를 풀 때 최대한 시간복잡도를 생각하면서 풀 수 있도록 노력해야겠다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+                &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'01'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'10'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;money_set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
     
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
     
-    
+        &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;
     
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;010&quot;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 03</summary></entry><entry><title type="html">[이코테/Python] 그리디 - 곱하기 혹은 더하기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 곱하기 혹은 더하기" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-python&quot;&gt;이것이 코딩 테스트다 with python&lt;/h1&gt;
+        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 05</summary></entry><entry><title type="html">[이코테/Python] 그리디 - 곱하기 혹은 더하기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 곱하기 혹은 더하기" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_02/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-python&quot;&gt;이것이 코딩 테스트다 with python&lt;/h1&gt;
 
 &lt;h2 id=&quot;그리디-곱하기-혹은-더하기python&quot;&gt;그리디 곱하기 혹은 더하기(Python)&lt;/h2&gt;
 
@@ -216,7 +240,58 @@ N개의 동전을 이용하여 만들 수 없는 정수 금액 중 최솟값을 
     
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 04</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 큰 수 만들기(그리디)</title><link href="http://localhost:4000/programmers/python_05/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 큰 수 만들기(그리디)" /><published>2022-03-31T00:00:00+09:00</published><updated>2022-03-31T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_05</id><content type="html" xml:base="http://localhost:4000/programmers/python_05/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 04</summary></entry><entry><title type="html">[이코테/Python] 그리디 - 문자열 뒤집기</title><link href="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/" rel="alternate" type="text/html" title="[이코테/Python] 그리디 - 문자열 뒤집기" /><published>2022-04-01T00:00:00+09:00</published><updated>2022-04-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03</id><content type="html" xml:base="http://localhost:4000/%EC%9D%B4%EC%BD%94%ED%85%8C/this_03/">&lt;h1 id=&quot;이것이-코딩-테스트다-with-python&quot;&gt;이것이 코딩 테스트다 with python&lt;/h1&gt;
+
+&lt;h2 id=&quot;그리디-문자열-뒤집기python&quot;&gt;그리디 문자열 뒤집기(Python)&lt;/h2&gt;
+
+&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
+
+&lt;p&gt;0과 1로만 이루어진 문자열 S가 있다.&lt;br /&gt;
+연속된 숫자를 잡고 뒤집을 수 있다.(0을 1로, 1로 0으로)&lt;br /&gt;
+모두 같은 수를 만들 수 있는 뒤집기의 최소 횟수를 구하라.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;예시&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;입력 : ‘00001110000’&lt;br /&gt;
+결과 : 1&lt;/p&gt;
+
+&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;0과1이 인접한 부분이 몇개 있는지를 체크하면 된다. 예를들어 인접한 부분의 패턴을 ‘01’을 조사한다. 하지만, 1010 문자열을 조사하게 되면 마지막 인접한 부분을 조사하지 못해 최소 횟수가 1이 되므로
+마지막 문자열에 1을 붙여주고 조사한다. 이렇게만 진행했을 경우 ‘010’을 조사하게 되면 최소 횟수가 2회가 된다. 그렇기 때문에 같은 방법으로 ‘01’과 ‘10’을 둘다 조사하여 두가지의 최소 횟수중 최소값을 구한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;문자열 S(str)의 마지막 부분을 조사해서 0 또는 1을 붙여준다.&lt;/li&gt;
+  &lt;li&gt;반복문을 돌며 ‘01’패턴과 ‘10’패턴을 조사한다 각각의 횟수를 count_0, count_1에 저장한다.&lt;/li&gt;
+  &lt;li&gt;count_0과 count_1중 최소값을 return한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1'&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'01'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'10'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count_1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    
+    
+    
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;010&quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 03</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 큰 수 만들기(그리디)</title><link href="http://localhost:4000/programmers/python_05/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 큰 수 만들기(그리디)" /><published>2022-03-31T00:00:00+09:00</published><updated>2022-03-31T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_05</id><content type="html" xml:base="http://localhost:4000/programmers/python_05/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
 
 &lt;h2 id=&quot;level2-그리디-큰-수-만들기-파이썬python-풀이&quot;&gt;Level2 그리디 큰 수 만들기 파이썬(Python) 풀이&lt;/h2&gt;
 
@@ -906,37 +981,4 @@ CS부터 공부하기로 다짐했을 때 매일매일 공부하려고 노력했
 
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 02</summary></entry><entry><title type="html">[프로그래머스/Python] Level2 가장 큰 수 (정렬)</title><link href="http://localhost:4000/programmers/python_03/" rel="alternate" type="text/html" title="[프로그래머스/Python] Level2 가장 큰 수 (정렬)" /><published>2022-03-26T00:00:00+09:00</published><updated>2022-03-26T00:00:00+09:00</updated><id>http://localhost:4000/programmers/python_03</id><content type="html" xml:base="http://localhost:4000/programmers/python_03/">&lt;h1 id=&quot;프로그래머스programmers-코딩테스트-연습&quot;&gt;프로그래머스(Programmers) 코딩테스트 연습&lt;/h1&gt;
-
-&lt;h2 id=&quot;level2-정렬-가증-큰-수-파이썬python-풀이&quot;&gt;Level2 정렬 가증 큰 수 파이썬(Python) 풀이&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://programmers.co.kr/learn/courses/30/lessons/42746?language=python3&quot;&gt;풀이로 이동!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;문제풀이&quot;&gt;문제풀이&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;가장 큰 수를 만드려면, 예를 들어 9와 91이 있을 때 991이 919보다 더 큰 수가 된다. 수의 가장 큰 값이 1000이기 때문에, ‘9’&lt;em&gt;3, ‘91’&lt;/em&gt;3을 해서 비교를 하면,
-‘999’ &amp;gt; ‘919191’ 이다. 그렇기 때문에 int-&amp;gt;str-&amp;gt;*3을 하여 비교를 하여 정렬을 하고 해당 숫자들을 원래 숫자로 변경하여 return 해준다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;배열의 값들을 str type으로 변경해준뒤 *3을 해준다.&lt;/li&gt;
-  &lt;li&gt;이후 sorted 함수를 사용하여 정렬한다.(내림차순으로 정렬하기 위해 reverse=True로 설정해준다.)&lt;/li&gt;
-  &lt;li&gt;다시 배열의 값들의 길이를 1/4로 나누어 slicing해준다.&lt;/li&gt;
-  &lt;li&gt;해당 배열들을 ‘‘로 join해준다.&lt;/li&gt;
-  &lt;li&gt;return answer&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'0'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sorted&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][:&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))])&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 03</summary></entry></feed>
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="programmers" /><category term="Algorithm" /><category term="Python" /><category term="프로그래머스 코테" /><summary type="html">프로그래머스 파이썬 알고리즘 - 02</summary></entry></feed>
