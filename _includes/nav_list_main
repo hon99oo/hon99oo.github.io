@@ -22,9 +22,12 @@
                     {% if category[0] == "CSAPP" %}
                         <li><a href="/categories/CSAPP" class="">CSAPP ({{category[1].size}})</a></li>
                     {% endif %}
-
-                    {% if category[0] == "OSTEP" %}
-                        <li><a href="/categories/CSAPP" class="">OSTEP ({{category[1].size}})</a></li>
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "CS" %}
+                        <li><a href="/categories/CS_ETC" class="">ETC ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
