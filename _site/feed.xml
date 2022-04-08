@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-08T02:53:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">전역변수 vs 매개변수</title><link href="http://localhost:4000/cs/csetc_01/" rel="alternate" type="text/html" title="전역변수 vs 매개변수" /><published>2022-04-08T00:00:00+09:00</published><updated>2022-04-08T00:00:00+09:00</updated><id>http://localhost:4000/cs/csetc_01</id><content type="html" xml:base="http://localhost:4000/cs/csetc_01/">&lt;h1 id=&quot;dfs-문제를-풀며&quot;&gt;DFS 문제를 풀며&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-04-08T03:04:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">전역변수 vs 매개변수</title><link href="http://localhost:4000/cs/csetc_01/" rel="alternate" type="text/html" title="전역변수 vs 매개변수" /><published>2022-04-08T00:00:00+09:00</published><updated>2022-04-08T00:00:00+09:00</updated><id>http://localhost:4000/cs/csetc_01</id><content type="html" xml:base="http://localhost:4000/cs/csetc_01/">&lt;h1 id=&quot;dfs-문제를-풀며&quot;&gt;DFS 문제를 풀며&lt;/h1&gt;
 
 &lt;p&gt;DFS 문제를 공부하며, 예제 코드를 봤는데, graph 변수를 전역변수로 선언하고 사용하고 있었다.
-컴퓨터구조를 공부하면서, &lt;strong&gt;전역변수&lt;/strong&gt;는 메모리에 할당되고 함수의 일부 &lt;strong&gt;매개변수&lt;strong&gt;는 레지스터에 저장되어 훨씬 빠른 속도로 액세스된다고 이해했었다.
+컴퓨터구조를 공부하면서, &lt;strong&gt;전역변수&lt;/strong&gt;는 메모리에 할당되고 함수의 일부 &lt;strong&gt;매개변수&lt;/strong&gt;는 레지스터에 저장되어 훨씬 빠른 속도로 액세스된다고 이해했었다.
 그렇다면 graph 변수를 dfs 함수의 인자로 넘겨줄 때, ‘전역변수를 사용하지 않고 매개변수로 넘겨주면 성능이 더 좋은 코드가 되지 않을까?’ 라는 궁금증에 휩싸여 풀던 문제를 내려놓고
-열심히 구글링을 하기 시작하였다.&lt;/strong&gt;&lt;/strong&gt;&lt;/p&gt;
+열심히 구글링을 하기 시작하였다.&lt;/p&gt;
 
 &lt;h1 id=&quot;기존에-알고-있던-것&quot;&gt;기존에 알고 있던 것&lt;/h1&gt;
 &lt;p&gt;우선 두가지 생각을 했다. 첫번째, 전역변수는 메모리에 올라가기 때문에 액세스가 느리다. 두번째, 매개변수는 지역변수이지만, 재귀함수처럼 호출이 잦다면 해당 매개변수를 할당하고 해제하는 작업을 반복하면서 느려질 것이다.
