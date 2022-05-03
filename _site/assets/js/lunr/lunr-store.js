@@ -436,4 +436,10 @@ var store = [{
         "tags": ["CS:APP","CS"],
         "url": "/csapp/csapp_23/",
         "teaser": null
+      },{
+        "title": "[CS:APP] Chapter 08 예외적인 제어흐름",
+        "excerpt":" ","categories": ["CSAPP"],
+        "tags": ["CS:APP","CS"],
+        "url": "/csapp/csapp_24/",
+        "teaser": null
       }]
