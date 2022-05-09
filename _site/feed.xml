@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-04T05:16:28+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 08 예외적인 제어흐름</title><link href="http://localhost:4000/csapp/csapp_24/" rel="alternate" type="text/html" title="[CS:APP] Chapter 08 예외적인 제어흐름" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_24</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_24/"></content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 24</summary></entry><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/csapp/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_23</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_23/">&lt;h1 id=&quot;chapter-07-링커&quot;&gt;Chapter 07. 링커&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-09T15:54:45+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 08 예외적인 제어흐름</title><link href="http://localhost:4000/csapp/csapp_24/" rel="alternate" type="text/html" title="[CS:APP] Chapter 08 예외적인 제어흐름" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_24</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_24/"></content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 24</summary></entry><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/csapp/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_23</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_23/">&lt;h1 id=&quot;chapter-07-링커&quot;&gt;Chapter 07. 링커&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;링킹은 여러 개의 코드와 데이터를 모아서 연결하여 메모리에 로드될 수 있고 실행될 수 있는 한 개의 파이로 만드는 작업이다.
     &lt;ul&gt;
@@ -211,7 +211,151 @@
 
 &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_4.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;772-심볼-참조의-재배치&quot;&gt;7.7.2 심볼 참조의 재배치&lt;/h2&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고</title><link href="http://localhost:4000/dataengineering/de_02/" rel="alternate" type="text/html" title="[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고" /><published>2022-05-02T00:00:00+09:00</published><updated>2022-05-02T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_02</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_02/">&lt;h1 id=&quot;첫-회사-생활&quot;&gt;첫 회사 생활&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;재배치 타입
+    &lt;ul&gt;
+      &lt;li&gt;R_X86_64_PC32: 32비트 PC-상대주소를 사용하는 참조를 재배치한다.&lt;/li&gt;
+      &lt;li&gt;R_X86_64_32: 32비트 절대주소를 사용하는 참조를 재배치한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;772-심볼-참조의-재배치&quot;&gt;7.7.2 심볼 참조의 재배치&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_5.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 링커의 재배치 알고리즘을 위한 의사코드이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;78-실행-가능한-목적파일&quot;&gt;7.8 실행 가능한 목적파일&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_6.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;실행 가능 목적파일의 포맷은 재배치 가능한 목적파일의 포맷과 유사하다.
+    &lt;ul&gt;
+      &lt;li&gt;.text, .rodata, .data 섹션들이 각자의 최종 런타임 메모리 주소로 재배치되었다.&lt;/li&gt;
+      &lt;li&gt;_init는 프로그램의 초기화 코드에서 호출한다.&lt;/li&gt;
+      &lt;li&gt;실행파일이 완전히 링크(재배치) 되었기 때문에, .rel 섹션을 필요로 하지 않는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ELF 실행파일들은 연속적인 메모리 세그멘트에 매핑된 연속적인 실행 가능 파일들의 덩어리로 메모리에 로드하기 쉽도록 설계되었다.
+    &lt;ul&gt;
+      &lt;li&gt;이 매핑은 프로그램 헤더 테이블에 설명되어 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;모든 세그먼트 s에 대해, 링커는 다음과 같이 시작주소를 선택해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;vaddr mod align = off mod align&lt;/li&gt;
+      &lt;li&gt;align은 프로그램 헤더에 명시된 정렬(2^21 = 0x2000000)이다.&lt;/li&gt;
+      &lt;li&gt;이러한 정렬 요구사항은 프로그램이 실행될 때 목적파일의 세그먼트들이 메모리로 효과적으로 전송될 수 있도록 하는 최적화의 결과다.
+        &lt;ul&gt;
+          &lt;li&gt;가상메모리가 크기가 큰 연속된 2의 제곱 크기의 바이트 묶음으로 구성되어 있는 방식이기 때문이다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;79-실행-가능-목적파일의-로딩&quot;&gt;7.9 실행 가능 목적파일의 로딩&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;실행 가능 목적파일 prog를 실행한다.&lt;/li&gt;
+  &lt;li&gt;쉘은 로더loader 라고 알려진 메모리 상주 운영체제 코드를 호출해서 prog를 실행한다.&lt;/li&gt;
+  &lt;li&gt;로더는 디스크로부터 실행 가능한 목적파일 내의 코드와 데이터를 메모리로 복사한다.&lt;/li&gt;
+  &lt;li&gt;해당 프로그램의 첫 번째 인스트럭션, 즉 엔트리 포인트로 점프해서 프로그램을 실행한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_7.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;모든 실행 중인 리눅스 프로그램은 위의 그림과 유사한 런타임 메모리 이미지를 가진다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;710-공유-라이브러리로-동적-링크하기&quot;&gt;7.10 공유 라이브러리로 동적 링크하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;정적 라이브러리들은 다른 모든 소프트웨어처럼 관리해야 하고 주기적으로 갱신해야한다.&lt;/li&gt;
+  &lt;li&gt;공유 라이브러리들은 정적 라이브러리의 단점들을 극복한다.
+    &lt;ul&gt;
+      &lt;li&gt;공유 라이브러리는 런타임이나 로드타임에 임의의 메모리 주소에서 로드되고, 메모리에서 프로그램으로 연결될 수 있는 목적 모듈이다.&lt;/li&gt;
+      &lt;li&gt;해당 과정을 동적 링킹이라고 한다.&lt;/li&gt;
+      &lt;li&gt;리눅스 시스템에서 .so 확장자, 윈도우 시스템에서 DLL(dynamic link libraries)이라고 부른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;공유 라이브러리들은 두 가지 다른 방법으로 “공유”된다.
+    &lt;ol&gt;
+      &lt;li&gt;어떤 주어진 파일 시스템에서, 특정 라이브러리에 대해 정확히 한 개의 .so 파일만이 존재한다.
+        &lt;ul&gt;
+          &lt;li&gt;.so 파일 내의 코드와 데이터는 이 라이브러리를 참조하는 모든 실행 가능한 목적파일들에 의해 공유된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;메모리에 있는 공유 라이브러리의 .text 섹션은 서로 다른 실행중의 프로세스들에 의해 공유될 수 있다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_8.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 공유 라이브러리로 동적 링크 과정을 요약한 것이다.&lt;/li&gt;
+  &lt;li&gt;기본 아이디어는 링킹의 일부는 실행 가능 파일이 생성될 때 정적으로 수행하고, 프로그램이 로드될 때 링킹 작업을 동적으로 완료하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;711-applications-으로부터-공유-라이브러리를-로드하고-링크하기&quot;&gt;7.11 Applications 으로부터 공유 라이브러리를 로드하고 링크하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;응용프로그램이 돌고 있는 동안에 동적 링커에게 응용프로그램을 컴파일 시에 라이브러리와 링크할 필요 없이 임의의 공유 라이브러리를 로드하고 링크할 것을 요청할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;기본 아이디어는 공유 라이브러리에서 동적 콘텐츠를 생성하는 각 함수들을 패키지 하는 것이다.
+    &lt;ul&gt;
+      &lt;li&gt;서버는 동적으로 적당한 함수를 로드하고 링크한 뒤에 직접 호출한다.&lt;/li&gt;
+      &lt;li&gt;함수는 서버의 주소공간에 캐시된 상태로 남으며, 후속 요청들은 간단한 함수 호출하는 비용만으로 처리될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;712-위치-독립성-코드pic&quot;&gt;7.12 위치-독립성 코드(PIC)&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;공유 라이브러리를 사용하는 주목적은 다수의 실행되고 있는 프로세스들이 메모리 내에서 동일한 라이브러리 코드를 공유하도록 하는 것이며, 귀중한 메모리 자원을 절약하는 것이다.
+    &lt;ul&gt;
+      &lt;li&gt;한 가지 접근 방법은 공유 라이브러리를 사전에 정해진 주소공간 블록에 할당 하는 것이다.
+        &lt;ul&gt;
+          &lt;li&gt;단점 : 사용하지 않을 때도 할당, 메모리 블록들이 중첩되지 않도록 보장해줘야 함&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위의 문제점을 피하기 위해 공유 모듈들의 코드 일부분을 컴파일해서 링커에 의해 수정되지 않고도 이들이 메모리 어디든지 로드될 수 있도록 한다.
+    &lt;ul&gt;
+      &lt;li&gt;어떠한 재배치 작업 없이 로드될 수 있는 코드는 위치-독립성코드라고 한다.(PIC)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;PIC와 GOT, PLT는 아직 이해를 하지 못해 좀 더 찾아보고 공부해야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;713-라이브러리-삽입&quot;&gt;7.13 라이브러리 삽입&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴파일 삽입&lt;/li&gt;
+  &lt;li&gt;링크 삽입&lt;/li&gt;
+  &lt;li&gt;런타임 삽입&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;714-요약&quot;&gt;7.14 요약&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;링킹은 컴파일 시에 정적 링커에 의해 수행될 수 있으며, 로드타임과 런타임에는 동적 링커에 의해 수행된다.&lt;/li&gt;
+  &lt;li&gt;목적 파일들은 세 가지 형태로 나타난다.
+    &lt;ul&gt;
+      &lt;li&gt;재배치 가능: 정적 링커에 의해 실행 가능 목적파일로 연결&lt;/li&gt;
+      &lt;li&gt;실행 가능: 메모리에 로드되고 실행&lt;/li&gt;
+      &lt;li&gt;공유: 공유 라이브러리&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;링커의 두 가지 주요 임무
+    &lt;ul&gt;
+      &lt;li&gt;전역 심볼들이 유일한 정의에 연결되는 경우 심볼 해석&lt;/li&gt;
+      &lt;li&gt;재배치 작업&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;로더는 실행파일의 내용을 메모리로 매핑하고 프로그램을 실행한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고</title><link href="http://localhost:4000/dataengineering/de_02/" rel="alternate" type="text/html" title="[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고" /><published>2022-05-02T00:00:00+09:00</published><updated>2022-05-02T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_02</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_02/">&lt;h1 id=&quot;첫-회사-생활&quot;&gt;첫 회사 생활&lt;/h1&gt;
 &lt;p&gt;4학년 1학기에 졸업작품을 마치고 현업을 경험하고 싶어 인턴을 지원했다. 그 때 당시에는 아직 세세한 직무를 정하지 않아서, 평소에 관심 있던 백엔드와 데이터엔지니어
 두 분야에 지원했다. 둘 중 더 좋은 조건의 인턴을 붙게 된다면 해당 직무를 경험해보자는 생각이였다. 지원은 많이 했지만, 코테 준비가 미흡해서 면접까지 간 회사는 거의 없었다.
 코테를 보지 않는 회사 중 두 곳을 면접을 보게 되었는데, 첫 번째 회사의 면접 경험은 정말 최악이었다. 두 번째 회사의 면접은 정말 마음에 들었다. 내가 했던 프로젝트에 대해서
