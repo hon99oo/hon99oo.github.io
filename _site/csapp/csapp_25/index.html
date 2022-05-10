@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 09 가상메모리 - 홍구의 개발 블로그</title>
+<!-- begin _includes/seo.html --><title>[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역) - 홍구의 개발 블로그</title>
 <meta name="description" content="CS:APP - 25">
 
 
@@ -22,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="홍구의 개발 블로그">
-<meta property="og:title" content="[CS:APP] Chapter 09 가상메모리">
+<meta property="og:title" content="[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)">
 <meta property="og:url" content="http://localhost:4000/csapp/csapp_25/">
 
 
@@ -165,7 +165,7 @@
     <div class="wrapper">
       <h1 id="page-title" class="page__title" itemprop="headline">
         
-          [CS:APP] Chapter 09 가상메모리
+          [CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)
 
         
       </h1>
@@ -328,7 +328,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[CS:APP] Chapter 09 가상메모리">
+    <meta itemprop="headline" content="[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)">
     <meta itemprop="description" content="CS:APP - 25">
     <meta itemprop="datePublished" content="2022-05-09T00:00:00+09:00">
     
@@ -341,7 +341,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#chapter-09-가상메모리">Chapter 09. 가상메모리</a></li><li><a href="#91-물리-및-가상주소-방식">9.1 물리 및 가상주소 방식</a></li><li><a href="#92-주소공간">9.2 주소공간</a></li><li><a href="#93-캐싱-도구로서의-vm">9.3 캐싱 도구로서의 VM</a><ul><li><a href="#931-dram-캐시의-구성">9.3.1 DRAM 캐시의 구성</a></li><li><a href="#932-페이지-테이블">9.3.2 페이지 테이블</a></li><li><a href="#933-페이지-적중">9.3.3 페이지 적중</a></li><li><a href="#934-페이지-오류">9.3.4 페이지 오류</a></li><li><a href="#935-페이지의-할당">9.3.5 페이지의 할당</a></li><li><a href="#936-문제해결을-위한-또-한-번의-지역성의-등장">9.3.6 문제해결을 위한 또 한 번의 지역성의 등장</a></li></ul></li><li><a href="#94-메모리-관리를-위한-도구로서의-vm">9.4 메모리 관리를 위한 도구로서의 VM</a></li><li><a href="#95-메모리-보호를-위한-도구로서의-vm">9.5 메모리 보호를 위한 도구로서의 VM</a></li><li><a href="#96-주소의-번역">9.6 주소의 번역</a></li></ul>
+              <ul class="toc__menu"><li><a href="#chapter-09-가상메모리">Chapter 09. 가상메모리</a></li><li><a href="#91-물리-및-가상주소-방식">9.1 물리 및 가상주소 방식</a></li><li><a href="#92-주소공간">9.2 주소공간</a></li><li><a href="#93-캐싱-도구로서의-vm">9.3 캐싱 도구로서의 VM</a><ul><li><a href="#931-dram-캐시의-구성">9.3.1 DRAM 캐시의 구성</a></li><li><a href="#932-페이지-테이블">9.3.2 페이지 테이블</a></li><li><a href="#933-페이지-적중">9.3.3 페이지 적중</a></li><li><a href="#934-페이지-오류">9.3.4 페이지 오류</a></li><li><a href="#935-페이지의-할당">9.3.5 페이지의 할당</a></li><li><a href="#936-문제해결을-위한-또-한-번의-지역성의-등장">9.3.6 문제해결을 위한 또 한 번의 지역성의 등장</a></li></ul></li><li><a href="#94-메모리-관리를-위한-도구로서의-vm">9.4 메모리 관리를 위한 도구로서의 VM</a></li><li><a href="#95-메모리-보호를-위한-도구로서의-vm">9.5 메모리 보호를 위한 도구로서의 VM</a></li><li><a href="#96-주소의-번역">9.6 주소의 번역</a><ul><li><a href="#961-캐시와-vm의-통합">9.6.1 캐시와 VM의 통합</a></li><li><a href="#962-tlb를-사용한-주소-번역-속도의-개선">9.6.2 TLB를 사용한 주소 번역 속도의 개선</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -557,6 +557,43 @@
   </li>
 </ul>
 
+<h2 id="961-캐시와-vm의-통합">9.6.1 캐시와 VM의 통합</h2>
+<ul>
+  <li>대부분의 시스템은 SRAM 캐시에 물리 주소지정을 선택한다.</li>
+  <li>물리 주소를 사용하면 다중 프로세스들이 캐시에서 블록을 갖는 것과 마찬가지로 가상페이지로부터 블록을 공유하는 것이 단순해진다.</li>
+  <li>물리 주소를 사용하는 캐시가 가상메모리와 통합될 수 있는 이유는 <strong>주소 번역이 캐시 참조 이전에 일어나기 때문이다.</strong>
+    <ul>
+      <li>TLB를 사용하면 캐시 참조 이전에 주소 번역이 일어남</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="962-tlb를-사용한-주소-번역-속도의-개선">9.6.2 TLB를 사용한 주소 번역 속도의 개선</h2>
+<ul>
+  <li>주소 번역의 비용을 줄이기 위해 MMU 내에 <strong>번역 참조 버퍼translation lookaside buffer(TLB)</strong>라고 부르는 작은 캐시를 포함한다.</li>
+  <li>TLB는 작은 가상주소지정 캐시로, 각 라인은 하나의 PTE로 구성된 하나의 블록을 저장한다.</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/25/img_10.png" width="60%" height="100%" /></p>
+<ul>
+  <li>TLB 적중이 발생할 때
+    <ol>
+      <li>CPU는 가상주소를 생성한다.</li>
+      <li>MMU는 적당한 PTE를 TLB로부터 선입한다.</li>
+      <li>MMU는 적당한 PTE를 TLB로부터 선입한다.</li>
+      <li>MMU는 가상주소를 물리 주소로 번역하고, 그것을 캐시/메인 메모리로 전송한다.</li>
+      <li>캐시/메인 메모리는 요청한 데이터 워드를 CPU로 리턴한다.</li>
+    </ol>
+  </li>
+</ul>
+
+<p><br /><br /><br /></p>
+
+<p><img src="../../assets/img/csapp/25/img_11.png" width="60%" height="100%" /></p>
+<ul>
+  <li>TLB 미스가 발생하면, MMU는 PTE를 L1캐시에서 선입해야한다.</li>
+</ul>
+
 
         
       </section>
@@ -609,7 +646,7 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+09+%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC%20http%3A%2F%2Flocalhost%3A4000%2Fcsapp%2Fcsapp_25%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BCS%3AAPP%5D+Chapter+09+%EA%B0%80%EC%83%81%EB%A9%94%EB%AA%A8%EB%A6%AC+%289.1%EB%AC%BC%EB%A6%AC+%EB%B0%8F+%EA%B0%80%EC%83%81%EC%A3%BC%EC%86%8C+%EB%B0%A9%EC%8B%9D+~+9.6%EC%A3%BC%EC%86%8C%EC%9D%98+%EB%B2%88%EC%97%AD%29%20http%3A%2F%2Flocalhost%3A4000%2Fcsapp%2Fcsapp_25%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcsapp%2Fcsapp_25%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
