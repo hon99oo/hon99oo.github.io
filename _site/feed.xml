@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-11T00:47:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)</title><link href="http://localhost:4000/csapp/csapp_26/" rel="alternate" type="text/html" title="[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)" /><published>2022-05-10T00:00:00+09:00</published><updated>2022-05-10T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_26</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_26/"></content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 26</summary></entry><entry><title type="html">[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)</title><link href="http://localhost:4000/csapp/csapp_25/" rel="alternate" type="text/html" title="[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)" /><published>2022-05-09T00:00:00+09:00</published><updated>2022-05-09T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_25</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_25/">&lt;h1 id=&quot;chapter-09-가상메모리&quot;&gt;Chapter 09. 가상메모리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-11T01:19:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)</title><link href="http://localhost:4000/csapp/csapp_26/" rel="alternate" type="text/html" title="[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)" /><published>2022-05-10T00:00:00+09:00</published><updated>2022-05-10T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_26</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_26/">&lt;h1 id=&quot;chapter-09-가상메모리&quot;&gt;Chapter 09 가상메모리&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;물리 및 가상주소 방식&lt;/li&gt;
+  &lt;li&gt;주소공간&lt;/li&gt;
+  &lt;li&gt;캐싱 도구로서의 VM&lt;/li&gt;
+  &lt;li&gt;메모리 관리를 위한 도구로서의 VM&lt;/li&gt;
+  &lt;li&gt;메모리 보호를 위한 도구로서의 VM&lt;/li&gt;
+  &lt;li&gt;주소의 번역&lt;/li&gt;
+  &lt;li&gt;사례 연구: 인텔 코어 i7/리눅스 메모리 시스템&lt;/li&gt;
+  &lt;li&gt;메모리 매핑&lt;/li&gt;
+  &lt;li&gt;동적 메모리 할당&lt;/li&gt;
+  &lt;li&gt;가비지 컬렉션&lt;/li&gt;
+  &lt;li&gt;C 프로그램에서의 공통된 메모리 관련 버그&lt;/li&gt;
+  &lt;li&gt;요약&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;98-메모리-매핑&quot;&gt;9.8 메모리 매핑&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;매핑: 리눅스는 가상메모리 영역의 내용을 디스크의 객체에 연결해서 초기화한다.&lt;/li&gt;
+  &lt;li&gt;영역들은 다음 두 종류의 객체 중의 하나로 매핑될 수 있다.
+    &lt;ol&gt;
+      &lt;li&gt;리눅스 파일 시스템 내의 일반 파일: 한 영역은 실행가능 목적파일과 같은 일반 디스크 파일의 연속적인 섹션으로 매핑될 수 있다.&lt;/li&gt;
+      &lt;li&gt;무기명 파일: 한 영역은 또한 무기명 파일로 매핑될 수 있다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;가상페이지가 초기화된 후에는 커널이 관리하는 특별한 &lt;strong&gt;스왑 파일&lt;/strong&gt; 사이에서 스왑 인되었다가 아웃되었다가 한다.
+    &lt;ul&gt;
+      &lt;li&gt;스왑 파일은 스왑 공간 또는 스왑 영역이라고도 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;981-다시-보는-공유-객체&quot;&gt;9.8.1 다시 보는 공유 객체&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리 매핑에 대한 아이디어는 만일 가상메모리 시스템이 보통의 파일 시스템과 통합될 수 있다면, 단순하고 효과적으로 프로그램과 데이터를 메모리에 로드할 수 있을 것이라는 기발한 
+생각에서 생겨났다.&lt;/li&gt;
+  &lt;li&gt;프로세스 개념은 각 프로세스에 자신만의 가상 주소공간을 제공하며, 이것은 다른 프로세스들에 의해 잘못된 쓰기와 읽기 작업이 발생하는 것을 막아준다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 26</summary></entry><entry><title type="html">[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)</title><link href="http://localhost:4000/csapp/csapp_25/" rel="alternate" type="text/html" title="[CS:APP] Chapter 09 가상메모리 (9.1물리 및 가상주소 방식 ~ 9.6주소의 번역)" /><published>2022-05-09T00:00:00+09:00</published><updated>2022-05-09T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_25</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_25/">&lt;h1 id=&quot;chapter-09-가상메모리&quot;&gt;Chapter 09. 가상메모리&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;시스템의 프로세스들은 CPU와 메인 메모리를 다른 프로세스들과 공유한다.&lt;/li&gt;
   &lt;li&gt;메모리를 보다 효율적이고 더 적은 에러를 갖도록 관리하기 위해서 현대의 시스템은 가상메모리 virtual memory VM 이라고 알려진 메인 메모리의 추상화를 제공한다.&lt;/li&gt;
