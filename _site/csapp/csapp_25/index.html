@@ -341,7 +341,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
-              <ul class="toc__menu"><li><a href="#chapter-09-가상메모리">Chapter 09. 가상메모리</a></li><li><a href="#91-물리-및-가상주소-방식">9.1 물리 및 가상주소 방식</a></li><li><a href="#92-주소공간">9.2 주소공간</a></li><li><a href="#93-캐싱-도구로서의-vm">9.3 캐싱 도구로서의 VM</a><ul><li><a href="#931-dram-캐시의-구성">9.3.1 DRAM 캐시의 구성</a></li><li><a href="#932-페이지-테이블">9.3.2 페이지 테이블</a></li><li><a href="#933-페이지-적중">9.3.3 페이지 적중</a></li><li><a href="#934-페이지-오류">9.3.4 페이지 오류</a></li><li><a href="#935-페이지의-할당">9.3.5 페이지의 할당</a></li><li><a href="#936-문제해결을-위한-또-한-번의-지역성의-등장">9.3.6 문제해결을 위한 또 한 번의 지역성의 등장</a></li></ul></li><li><a href="#94-메모리-관리를-위한-도구로서의-vm">9.4 메모리 관리를 위한 도구로서의 VM</a></li><li><a href="#95-메모리-보호를-위한-도구로서의-vm">9.5 메모리 보호를 위한 도구로서의 VM</a></li><li><a href="#96-주소의-번역">9.6 주소의 번역</a><ul><li><a href="#961-캐시와-vm의-통합">9.6.1 캐시와 VM의 통합</a></li><li><a href="#962-tlb를-사용한-주소-번역-속도의-개선">9.6.2 TLB를 사용한 주소 번역 속도의 개선</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#chapter-09-가상메모리">Chapter 09. 가상메모리</a></li><li><a href="#91-물리-및-가상주소-방식">9.1 물리 및 가상주소 방식</a></li><li><a href="#92-주소공간">9.2 주소공간</a></li><li><a href="#93-캐싱-도구로서의-vm">9.3 캐싱 도구로서의 VM</a><ul><li><a href="#931-dram-캐시의-구성">9.3.1 DRAM 캐시의 구성</a></li><li><a href="#932-페이지-테이블">9.3.2 페이지 테이블</a></li><li><a href="#933-페이지-적중">9.3.3 페이지 적중</a></li><li><a href="#934-페이지-오류">9.3.4 페이지 오류</a></li><li><a href="#935-페이지의-할당">9.3.5 페이지의 할당</a></li><li><a href="#936-문제해결을-위한-또-한-번의-지역성의-등장">9.3.6 문제해결을 위한 또 한 번의 지역성의 등장</a></li></ul></li><li><a href="#94-메모리-관리를-위한-도구로서의-vm">9.4 메모리 관리를 위한 도구로서의 VM</a></li><li><a href="#95-메모리-보호를-위한-도구로서의-vm">9.5 메모리 보호를 위한 도구로서의 VM</a></li><li><a href="#96-주소의-번역">9.6 주소의 번역</a><ul><li><a href="#961-캐시와-vm의-통합">9.6.1 캐시와 VM의 통합</a></li><li><a href="#962-tlb를-사용한-주소-번역-속도의-개선">9.6.2 TLB를 사용한 주소 번역 속도의 개선</a></li><li><a href="#963-다중-레벨-페이지-테이블">9.6.3 다중 레벨 페이지 테이블</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -594,6 +594,26 @@
   <li>TLB 미스가 발생하면, MMU는 PTE를 L1캐시에서 선입해야한다.</li>
 </ul>
 
+<h2 id="963-다중-레벨-페이지-테이블">9.6.3 다중 레벨 페이지 테이블</h2>
+<ul>
+  <li>주소를 번역하기 위해서 한 개의 페이지 테이블을 사용하면 낭비가 매우 심하기 때문에 페이지 테이블의 계층구조를 사용한다.</li>
+</ul>
+
+<p><img src="../../assets/img/csapp/25/img_16.png" width="60%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 2단계 페이지 테이블 계층구조이다.</li>
+  <li>위와 같은 기법은 메모리 요구량을 두 가지 방법으로 줄여준다.
+    <ol>
+      <li>만일 1단계 PTE가 널이면, 해당 2단계 페이지 테이블이 존재할 필요가 없어진다. -&gt; 절약</li>
+      <li>1단계 테이블만이 항상 메인 메모리에 있고 2단계 페이지 테이블은 필요로 할 때마다 페이지 인 또는 아웃이 되므로 메인 메모리로의 압박을 줄일 수 있다.</li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/csapp/25/img_17.png" width="60%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 K단계 페이지 테이블을 사용한 주소 번역이다.</li>
+</ul>
 
         
       </section>
@@ -661,7 +681,8 @@
 ">이전</a>
     
     
-      <a href="#" class="pagination--pager disabled">다음</a>
+      <a href="/csapp/csapp_26/" class="pagination--pager" title="[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)
+">다음</a>
     
   </nav>
 
@@ -675,6 +696,43 @@
     <div class="page__related">
       <h2 class="page__related-title">참고</h2>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/csapp/csapp_26/" rel="permalink">[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-05-10T00:00:00+09:00">May 10, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CS:APP - 26
+</p>
+  </article>
+</div>
+
         
           
 
@@ -782,43 +840,6 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">길면 길었고 짧으면 짧았던 9개월간의 기록
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EC%9D%B4%EC%BD%94%ED%85%8C/this_10/" rel="permalink">[이코테/Python] 이진 탐색 - 나무 자르기
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-04-08T00:00:00+09:00">April 8, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">이코테 알고리즘 - 10
 </p>
   </article>
 </div>
