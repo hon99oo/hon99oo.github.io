@@ -454,4 +454,10 @@ var store = [{
         "tags": ["CS:APP","CS"],
         "url": "/csapp/csapp_26/",
         "teaser": null
+      },{
+        "title": "[CS:APP] Chapter 10 시스템 수준 입출력",
+        "excerpt":" ","categories": ["CSAPP"],
+        "tags": ["CS:APP","CS"],
+        "url": "/csapp/csapp_27/",
+        "teaser": null
       }]

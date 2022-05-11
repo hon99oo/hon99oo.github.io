@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-11T14:27:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)</title><link href="http://localhost:4000/csapp/csapp_26/" rel="alternate" type="text/html" title="[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)" /><published>2022-05-10T00:00:00+09:00</published><updated>2022-05-10T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_26</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_26/">&lt;h1 id=&quot;chapter-09-가상메모리&quot;&gt;Chapter 09 가상메모리&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-11T14:29:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[CS:APP] Chapter 10 시스템 수준 입출력</title><link href="http://localhost:4000/csapp/csapp_27/" rel="alternate" type="text/html" title="[CS:APP] Chapter 10 시스템 수준 입출력" /><published>2022-05-11T00:00:00+09:00</published><updated>2022-05-11T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_27</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_27/"></content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 26</summary></entry><entry><title type="html">[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)</title><link href="http://localhost:4000/csapp/csapp_26/" rel="alternate" type="text/html" title="[CS:APP] Chapter 09 가상메모리 (9.8 메모리 매핑 ~ 9.12 요약)" /><published>2022-05-10T00:00:00+09:00</published><updated>2022-05-10T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_26</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_26/">&lt;h1 id=&quot;chapter-09-가상메모리&quot;&gt;Chapter 09 가상메모리&lt;/h1&gt;
 &lt;ol&gt;
   &lt;li&gt;물리 및 가상주소 방식&lt;/li&gt;
   &lt;li&gt;주소공간&lt;/li&gt;
@@ -638,7 +638,364 @@
 &lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/25/img_17.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;위의 그림은 K단계 페이지 테이블을 사용한 주소 번역이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 25</summary></entry><entry><title type="html">[CS:APP] Chapter 08 예외적인 제어흐름</title><link href="http://localhost:4000/csapp/csapp_24/" rel="alternate" type="text/html" title="[CS:APP] Chapter 08 예외적인 제어흐름" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_24</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_24/">&lt;h1 id=&quot;chapter-08-예외적인-제어흐름&quot;&gt;Chapter 08. 예외적인 제어흐름&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 25</summary></entry><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/csapp/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_23</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_23/">&lt;h1 id=&quot;chapter-07-링커&quot;&gt;Chapter 07. 링커&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;링킹은 여러 개의 코드와 데이터를 모아서 연결하여 메모리에 로드될 수 있고 실행될 수 있는 한 개의 파이로 만드는 작업이다.
+    &lt;ul&gt;
+      &lt;li&gt;링킹은 컴파일 시에 수행할 수 있다.&lt;/li&gt;
+      &lt;li&gt;로더에 의해 로드 타임에, 응용프로그램에 의해 실행 시에도 수행될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;링커는 소프트웨어 개발 시에 중요한 역할: 독립적인 컴파일을 가능하게 하기 때문이다.&lt;/li&gt;
+  &lt;li&gt;링커를 배우는 이유
+    &lt;ul&gt;
+      &lt;li&gt;큰 프로그램을 작성하는 데 도움이 된다.&lt;/li&gt;
+      &lt;li&gt;위험한 프로그래밍 에러를 피할 수 있다.&lt;/li&gt;
+      &lt;li&gt;어떻게 언어의 변수 영역 규칙이 구현되었는지 이해하는 데 도움이 된다.&lt;/li&gt;
+      &lt;li&gt;다른 중요한 시스템 개념을 이해할 수 있게 된다.&lt;/li&gt;
+      &lt;li&gt;공유 라이브러리에 대해 이해할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;71-컴파일러-드라이버&quot;&gt;7.1 컴파일러 드라이버&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;대부분의 컴파일 시스템은 사용자를 대신해서 언어 전처리기, 컴파일러, 어셈블러, 링커를 필요에 따라 호출하는 컴파일러 드라이버를 제공한다.&lt;/li&gt;
+  &lt;li&gt;컴파일 순서
+    &lt;ol&gt;
+      &lt;li&gt;C 전처리기(cpp)로 main.c -&amp;gt; ASCII 중간 파일인 main.i로 번역&lt;/li&gt;
+      &lt;li&gt;C 컴파일러(cc1)로 main.i -&amp;gt; ASCII 어셈블리 언어 파일인 main.s로 번역&lt;/li&gt;
+      &lt;li&gt;어셈블러(as)로 main.s -&amp;gt; 재배치 가능한 바이너리 목적파일인 main.o로 번역&lt;/li&gt;
+      &lt;li&gt;링커(ld)로 main.o &amp;amp; sum.o 두개를 연결 -&amp;gt; 실행 가능 목적파일 prog 생성&lt;/li&gt;
+      &lt;li&gt;로더라고 부르는 운영체제 내의 함수를 호출 -&amp;gt; 로더는 실행파일 prog의 코드와 데이터를 메모리로 복사하고, 제어를 프로그램의 시작 부분으로 전환한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;72-정적연결&quot;&gt;7.2 정적연결&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;정적 링커는 재배치 가능한 목적파일들과 명령줄 인자들을 받아들여 로드될 수 있고 실행될 수 있는 완전히 링크된 실행 가능 목적파일을 생성한다.&lt;/li&gt;
+  &lt;li&gt;실행파일을 만들기 위해서 링커는 두 가지 주요 작업을 수행한다.
+    &lt;ol&gt;
+      &lt;li&gt;심볼 해석 symbol resolutions: 각각의 심볼 참조를 정확하게 하나의 심볼 정의에 연결하는 것이다.&lt;/li&gt;
+      &lt;li&gt;재배치 Relocation: 링커는 섹션들을 각 심볼 정의와 연결시켜 재배치한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;73-목적파일&quot;&gt;7.3 목적파일&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;세가지 목적파일이 있다.
+    &lt;ul&gt;
+      &lt;li&gt;재배치 가능 목적파일 Relocatable object file: 다른 재구성가능 목적파일들과 결합될 수 있는 바이너리 코드와 데이터를 포함&lt;/li&gt;
+      &lt;li&gt;실행 가능 목적파일 Executable object file: 메모리에 직접 복사될 수 있고 실행될 수 있음&lt;/li&gt;
+      &lt;li&gt;공유 목적파일 Shared object file: 로드타임 또는 런타임 시에 동적으로 링크되고 로드될 수 있는 목적파일&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;컴파일러와 어셈블러는 재배치 가능 목적파일을 생성, 링커는 실행 가능한 목적파일을 생성&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;74-재배치-가능-목적파일&quot;&gt;7.4 재배치 가능 목적파일&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_1.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 전형적인 ELF(Executable and Linkable Format) 재배치 가능 목적파일의 포맷이다.
+    &lt;ul&gt;
+      &lt;li&gt;.text: 컴파일된 프로그램의 머신 코드&lt;/li&gt;
+      &lt;li&gt;.rodata: printf 문장의 포맷 스트링&lt;/li&gt;
+      &lt;li&gt;.data: 초기화된 전역변수 및 정적변수&lt;/li&gt;
+      &lt;li&gt;.bss: 초기화되지 않은 또는 0으로 초기화된 전역변수 및 정적변수&lt;/li&gt;
+      &lt;li&gt;.symtab: 프로그램에서 정의되고 참조되는 전역변수들과 함수에 대한 정보를 가지고 있는 심볼 테이블&lt;/li&gt;
+      &lt;li&gt;.rel.text: 다른 목적 파일들과 연결할 때 링커가 수정해야하는 .text 섹션 내 위치들의 리스트&lt;/li&gt;
+      &lt;li&gt;.rel.data: 전역변수들에 대한 재배치 정보&lt;/li&gt;
+      &lt;li&gt;.debug: 프로그램 내에서 정의된 지역변수들과 typedef&lt;/li&gt;
+      &lt;li&gt;.line: 최초 소스 프로그램과 .text 섹션 내 머신 코드 인스트럭션 내 라인 번호들간의 매핑&lt;/li&gt;
+      &lt;li&gt;.strtab: 섹션 이름들을 위한 스트링 테이블&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;75-심볼과-심볼-테이블&quot;&gt;7.5 심볼과 심볼 테이블&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;재배치 가능 목적 모듈 m은 m에 의해서 정의되고 참조되는 심볼들에 대한 정보를 포함하는 심볼 테이블을 가지고 있다.
+    &lt;ul&gt;
+      &lt;li&gt;m에 의해 정의되고 다른 모든 모듈들에 의해서 참조될 수 있는 전역 심볼
+        &lt;ul&gt;
+          &lt;li&gt;전역&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;m에 의해 참조되지만 다른 모듈에 의해 정의된 전역 심볼
+        &lt;ul&gt;
+          &lt;li&gt;external&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;m에 의해서 배타적으로 참조되고 정의된 지역 심볼
+        &lt;ul&gt;
+          &lt;li&gt;static&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;지역 변수는 런타임에 스택에 의해서 관리되며 링커에는 관심거리가 아니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;.symtab 섹션의 ELF 심볼 테이블은 엔트리들의 배열을 포함하고 있다.
+&lt;img src=&quot;../../assets/img/csapp/23/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;테이블 엔트리가 없는 의사 섹션pseudo section 이 존재한다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ABS: 재배치해서는 안 되는 심볼&lt;/li&gt;
+      &lt;li&gt;UNDEF: 정의되지 않은 심볼, 해당 모듈에서는 참조만 되고 다른 곳에서 정의된 심볼들을 위함&lt;/li&gt;
+      &lt;li&gt;COMMON: 아직 할당되거나 초기화되지 않은 데이터 객체를 위함&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;COMMON: 초기화하지 않은 전역변수들, .bss: 초기화하지 않은 정적변수들과 0으로 초기화된 전역변수나 정적변수들&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;76-심볼-해석&quot;&gt;7.6 심볼 해석&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;링커는 자신의 입력 재배치 가능 목적파일들의 심볼 테이블로부터 정확히 한 개의 심볼 정의에 각 참조를 연결시켜서 심볼 참조를 해석한다.&lt;/li&gt;
+  &lt;li&gt;컴파일러가 현재 모듈에서 정의되지 않은 심볼을 만나면, 다른 모듈에서 정의되어 있다고 가정하고 링커 심볼 테이블 엔트리를 생성하며, 링커가 이것을 처리하도록 남겨둔다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;761-링커가-중복으로-정의된-전역-심볼을-해결하는-방법&quot;&gt;7.6.1 링커가 중복으로 정의된 전역 심볼을 해결하는 방법&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;링커의 입력은 여러 개의 재배치 가능한 오브젝트 모듈들이다.
+    &lt;ul&gt;
+      &lt;li&gt;일부는 지역적이다(정의된 모듈 내에서만 볼 수 있는).&lt;/li&gt;
+      &lt;li&gt;일부는 전역적이다(다른 모듈에서도 볼 수 있는).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;컴파일러는 각 전역 심볼을 어셈블러로 강하게 또는 약하게 보내 심볼 테이블에 묵시적으로 인코딩하게 한다.
+    &lt;ul&gt;
+      &lt;li&gt;함수들과 초기화된 전역변수들은 강한 심볼&lt;/li&gt;
+      &lt;li&gt;비초기화된 전역변수들은 약한 심볼이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;링커는 중복된 심볼 이름을 처리하기 위해서 다음과 같은 규칙을 사용한다.
+    &lt;ol&gt;
+      &lt;li&gt;동일한 이름을 갖는 복수의 강한 심불은 허용 X&lt;/li&gt;
+      &lt;li&gt;동일한 이름의 강한 심볼과 다수의 약한 심볼들이 있으면 강한 심볼 선택&lt;/li&gt;
+      &lt;li&gt;동일한 이름의 여러 개의 약한 심볼이 있으면 어떤 약한 심볼을 선택해도 관계 X&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;762-정적-라이브러리와-링크하기&quot;&gt;7.6.2 정적 라이브러리와 링크하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;모든 컴파일 시스템은 관련된 객체 모듈들을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;정적 라이브러리&lt;/code&gt;라고 부르는 한 개의 파일로 패키징하는 매커니즘을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;이 라이브러리는 다음에 링커의 입력으로 제공될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;컴파일러 개발자들이 라이브러리의 다양한 함수들을 정적 라이브러리의 혜택 없이 사용자들에게 재공하려면 컴파일러가 직접 함수의 코드를 생성하거나 한 개의 재배치 가능 목적 모듈에
+저장하거나 해야한다. 하지만 이런 방법들은 상당한 복잡성을 더하거나 디스크 공간을 극도로 낭비한다. 위와 같은 접근 방법의 단점들을 해겨하기 위해 정적 라이브러리 개념이 개발되었다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 그림은 정적 라이브러리 연결 시 링커의 동작을 요약한 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;763-링커가-참조를-해석하기-위해-정적-라이브러리를-사용하는-방법&quot;&gt;7.6.3 링커가 참조를 해석하기 위해 정적 라이브러리를 사용하는 방법&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;링커는 실행파일을 구성하기 위해 합쳐질 재배치 가능 목적파일들의 집합 E, 미해석 집합 U, 이전 입력파일에서 정의된 심볼 집합 D를 유지한다.
+    &lt;ol&gt;
+      &lt;li&gt;입력파일 f에 대해서 링커는 f가 목적파일 또는 아카이브인지 결정한다.&lt;/li&gt;
+      &lt;li&gt;f가 목적파일이면 f를 E에 추가하고 U와 D를 갱신한다.&lt;/li&gt;
+      &lt;li&gt;f가 아카이브라면, 링커는 U 안의 미해석 심볼들을 아카이브의 멤버들에 의해 정의된 심볼들과 매칭하려고 시도한다.&lt;/li&gt;
+      &lt;li&gt;심볼을 정의한다면 m은 E에 추가되고 U와 D를 갱신한다.&lt;/li&gt;
+      &lt;li&gt;위 과정을 U와 D가 더 이상 바뀌지 않는 일정 지점까지 반복 실행한다.&lt;/li&gt;
+      &lt;li&gt;스캔을 끝마칠 때 U가 비어있지 않다면 에러 출력, 그렇지 않다면 E에 있는 목적파일들을 합치고 재배치해서 출력 실행파일을 만든다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;위의 알고리즘은 명령줄의 라이브러리와 목적파일의 순서가 중요한 이유가 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;77-재배치&quot;&gt;7.7 재배치&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;링커가 심볼 해석 단계를 완료하면, 코드 내 각 심볼 참조는 정확히 한 개의 심볼 정의에 연결된다.(입력 모듈 중 하나의 심볼 테이블 엔트리로 연결됨)&lt;/li&gt;
+  &lt;li&gt;이후 재배치를 하게 된다. 재배치는 두 단계로 구성된다.
+    &lt;ol&gt;
+      &lt;li&gt;섹션과 심볼 정의를 재배치한다.&lt;/li&gt;
+      &lt;li&gt;섹션 내 심볼 참조를 재배치한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;771-재배치-엔트리&quot;&gt;7.7.1 재배치 엔트리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;어셈블러가 목적 모듈을 생성할 때, 어셈블러는 코드와 데이터가 궁극적으로 메모리 어디에 저장될지 알지 못한다.
+    &lt;ul&gt;
+      &lt;li&gt;어셈블러가 위치를 알지 못하는 객체로의 참조를 만나면, 링커에게 이 참조를 어떻게 수정하는지 알려주는 재배치 엔트리를 생성한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_4.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;재배치 타입
+    &lt;ul&gt;
+      &lt;li&gt;R_X86_64_PC32: 32비트 PC-상대주소를 사용하는 참조를 재배치한다.&lt;/li&gt;
+      &lt;li&gt;R_X86_64_32: 32비트 절대주소를 사용하는 참조를 재배치한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;772-심볼-참조의-재배치&quot;&gt;7.7.2 심볼 참조의 재배치&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_5.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 링커의 재배치 알고리즘을 위한 의사코드이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;78-실행-가능한-목적파일&quot;&gt;7.8 실행 가능한 목적파일&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_6.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;실행 가능 목적파일의 포맷은 재배치 가능한 목적파일의 포맷과 유사하다.
+    &lt;ul&gt;
+      &lt;li&gt;.text, .rodata, .data 섹션들이 각자의 최종 런타임 메모리 주소로 재배치되었다.&lt;/li&gt;
+      &lt;li&gt;_init는 프로그램의 초기화 코드에서 호출한다.&lt;/li&gt;
+      &lt;li&gt;실행파일이 완전히 링크(재배치) 되었기 때문에, .rel 섹션을 필요로 하지 않는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ELF 실행파일들은 연속적인 메모리 세그멘트에 매핑된 연속적인 실행 가능 파일들의 덩어리로 메모리에 로드하기 쉽도록 설계되었다.
+    &lt;ul&gt;
+      &lt;li&gt;이 매핑은 프로그램 헤더 테이블에 설명되어 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;모든 세그먼트 s에 대해, 링커는 다음과 같이 시작주소를 선택해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;vaddr mod align = off mod align&lt;/li&gt;
+      &lt;li&gt;align은 프로그램 헤더에 명시된 정렬(2^21 = 0x2000000)이다.&lt;/li&gt;
+      &lt;li&gt;이러한 정렬 요구사항은 프로그램이 실행될 때 목적파일의 세그먼트들이 메모리로 효과적으로 전송될 수 있도록 하는 최적화의 결과다.
+        &lt;ul&gt;
+          &lt;li&gt;가상메모리가 크기가 큰 연속된 2의 제곱 크기의 바이트 묶음으로 구성되어 있는 방식이기 때문이다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;79-실행-가능-목적파일의-로딩&quot;&gt;7.9 실행 가능 목적파일의 로딩&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;실행 가능 목적파일 prog를 실행한다.&lt;/li&gt;
+  &lt;li&gt;쉘은 로더loader 라고 알려진 메모리 상주 운영체제 코드를 호출해서 prog를 실행한다.&lt;/li&gt;
+  &lt;li&gt;로더는 디스크로부터 실행 가능한 목적파일 내의 코드와 데이터를 메모리로 복사한다.&lt;/li&gt;
+  &lt;li&gt;해당 프로그램의 첫 번째 인스트럭션, 즉 엔트리 포인트로 점프해서 프로그램을 실행한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_7.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;모든 실행 중인 리눅스 프로그램은 위의 그림과 유사한 런타임 메모리 이미지를 가진다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;710-공유-라이브러리로-동적-링크하기&quot;&gt;7.10 공유 라이브러리로 동적 링크하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;정적 라이브러리들은 다른 모든 소프트웨어처럼 관리해야 하고 주기적으로 갱신해야한다.&lt;/li&gt;
+  &lt;li&gt;공유 라이브러리들은 정적 라이브러리의 단점들을 극복한다.
+    &lt;ul&gt;
+      &lt;li&gt;공유 라이브러리는 런타임이나 로드타임에 임의의 메모리 주소에서 로드되고, 메모리에서 프로그램으로 연결될 수 있는 목적 모듈이다.&lt;/li&gt;
+      &lt;li&gt;해당 과정을 동적 링킹이라고 한다.&lt;/li&gt;
+      &lt;li&gt;리눅스 시스템에서 .so 확장자, 윈도우 시스템에서 DLL(dynamic link libraries)이라고 부른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;공유 라이브러리들은 두 가지 다른 방법으로 “공유”된다.
+    &lt;ol&gt;
+      &lt;li&gt;어떤 주어진 파일 시스템에서, 특정 라이브러리에 대해 정확히 한 개의 .so 파일만이 존재한다.
+        &lt;ul&gt;
+          &lt;li&gt;.so 파일 내의 코드와 데이터는 이 라이브러리를 참조하는 모든 실행 가능한 목적파일들에 의해 공유된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;메모리에 있는 공유 라이브러리의 .text 섹션은 서로 다른 실행중의 프로세스들에 의해 공유될 수 있다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_8.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 공유 라이브러리로 동적 링크 과정을 요약한 것이다.&lt;/li&gt;
+  &lt;li&gt;기본 아이디어는 링킹의 일부는 실행 가능 파일이 생성될 때 정적으로 수행하고, 프로그램이 로드될 때 링킹 작업을 동적으로 완료하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;711-applications-으로부터-공유-라이브러리를-로드하고-링크하기&quot;&gt;7.11 Applications 으로부터 공유 라이브러리를 로드하고 링크하기&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;응용프로그램이 돌고 있는 동안에 동적 링커에게 응용프로그램을 컴파일 시에 라이브러리와 링크할 필요 없이 임의의 공유 라이브러리를 로드하고 링크할 것을 요청할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;기본 아이디어는 공유 라이브러리에서 동적 콘텐츠를 생성하는 각 함수들을 패키지 하는 것이다.
+    &lt;ul&gt;
+      &lt;li&gt;서버는 동적으로 적당한 함수를 로드하고 링크한 뒤에 직접 호출한다.&lt;/li&gt;
+      &lt;li&gt;함수는 서버의 주소공간에 캐시된 상태로 남으며, 후속 요청들은 간단한 함수 호출하는 비용만으로 처리될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;712-위치-독립성-코드pic&quot;&gt;7.12 위치-독립성 코드(PIC)&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;공유 라이브러리를 사용하는 주목적은 다수의 실행되고 있는 프로세스들이 메모리 내에서 동일한 라이브러리 코드를 공유하도록 하는 것이며, 귀중한 메모리 자원을 절약하는 것이다.
+    &lt;ul&gt;
+      &lt;li&gt;한 가지 접근 방법은 공유 라이브러리를 사전에 정해진 주소공간 블록에 할당 하는 것이다.
+        &lt;ul&gt;
+          &lt;li&gt;단점 : 사용하지 않을 때도 할당, 메모리 블록들이 중첩되지 않도록 보장해줘야 함&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위의 문제점을 피하기 위해 공유 모듈들의 코드 일부분을 컴파일해서 링커에 의해 수정되지 않고도 이들이 메모리 어디든지 로드될 수 있도록 한다.
+    &lt;ul&gt;
+      &lt;li&gt;어떠한 재배치 작업 없이 로드될 수 있는 코드는 위치-독립성코드라고 한다.(PIC)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;PIC와 GOT, PLT는 아직 이해를 하지 못해 좀 더 찾아보고 공부해야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;713-라이브러리-삽입&quot;&gt;7.13 라이브러리 삽입&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴파일 삽입&lt;/li&gt;
+  &lt;li&gt;링크 삽입&lt;/li&gt;
+  &lt;li&gt;런타임 삽입&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;714-요약&quot;&gt;7.14 요약&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;링킹은 컴파일 시에 정적 링커에 의해 수행될 수 있으며, 로드타임과 런타임에는 동적 링커에 의해 수행된다.&lt;/li&gt;
+  &lt;li&gt;목적 파일들은 세 가지 형태로 나타난다.
+    &lt;ul&gt;
+      &lt;li&gt;재배치 가능: 정적 링커에 의해 실행 가능 목적파일로 연결&lt;/li&gt;
+      &lt;li&gt;실행 가능: 메모리에 로드되고 실행&lt;/li&gt;
+      &lt;li&gt;공유: 공유 라이브러리&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;링커의 두 가지 주요 임무
+    &lt;ul&gt;
+      &lt;li&gt;전역 심볼들이 유일한 정의에 연결되는 경우 심볼 해석&lt;/li&gt;
+      &lt;li&gt;재배치 작업&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;로더는 실행파일의 내용을 메모리로 매핑하고 프로그램을 실행한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[CS:APP] Chapter 08 예외적인 제어흐름</title><link href="http://localhost:4000/csapp/csapp_24/" rel="alternate" type="text/html" title="[CS:APP] Chapter 08 예외적인 제어흐름" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_24</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_24/">&lt;h1 id=&quot;chapter-08-예외적인-제어흐름&quot;&gt;Chapter 08. 예외적인 제어흐름&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;프로세서에서 전원을 처음 공급하는 시점부터 전원을 끌 때까지 프로그램 카운터는 연속된 값들을 가정한다.
     &lt;ul&gt;
@@ -1078,364 +1435,7 @@
 
 &lt;blockquote&gt;
   &lt;p&gt;8.4 프로세스의 제어, 8.5.5 시그널 핸들러 작성하기 8.6 비지역성 점프 부분은 한번 더 꼭 읽어보자.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 24</summary></entry><entry><title type="html">[CS:APP] Chapter 07 링커</title><link href="http://localhost:4000/csapp/csapp_23/" rel="alternate" type="text/html" title="[CS:APP] Chapter 07 링커" /><published>2022-05-03T00:00:00+09:00</published><updated>2022-05-03T00:00:00+09:00</updated><id>http://localhost:4000/csapp/csapp_23</id><content type="html" xml:base="http://localhost:4000/csapp/csapp_23/">&lt;h1 id=&quot;chapter-07-링커&quot;&gt;Chapter 07. 링커&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;링킹은 여러 개의 코드와 데이터를 모아서 연결하여 메모리에 로드될 수 있고 실행될 수 있는 한 개의 파이로 만드는 작업이다.
-    &lt;ul&gt;
-      &lt;li&gt;링킹은 컴파일 시에 수행할 수 있다.&lt;/li&gt;
-      &lt;li&gt;로더에 의해 로드 타임에, 응용프로그램에 의해 실행 시에도 수행될 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;링커는 소프트웨어 개발 시에 중요한 역할: 독립적인 컴파일을 가능하게 하기 때문이다.&lt;/li&gt;
-  &lt;li&gt;링커를 배우는 이유
-    &lt;ul&gt;
-      &lt;li&gt;큰 프로그램을 작성하는 데 도움이 된다.&lt;/li&gt;
-      &lt;li&gt;위험한 프로그래밍 에러를 피할 수 있다.&lt;/li&gt;
-      &lt;li&gt;어떻게 언어의 변수 영역 규칙이 구현되었는지 이해하는 데 도움이 된다.&lt;/li&gt;
-      &lt;li&gt;다른 중요한 시스템 개념을 이해할 수 있게 된다.&lt;/li&gt;
-      &lt;li&gt;공유 라이브러리에 대해 이해할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;71-컴파일러-드라이버&quot;&gt;7.1 컴파일러 드라이버&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;대부분의 컴파일 시스템은 사용자를 대신해서 언어 전처리기, 컴파일러, 어셈블러, 링커를 필요에 따라 호출하는 컴파일러 드라이버를 제공한다.&lt;/li&gt;
-  &lt;li&gt;컴파일 순서
-    &lt;ol&gt;
-      &lt;li&gt;C 전처리기(cpp)로 main.c -&amp;gt; ASCII 중간 파일인 main.i로 번역&lt;/li&gt;
-      &lt;li&gt;C 컴파일러(cc1)로 main.i -&amp;gt; ASCII 어셈블리 언어 파일인 main.s로 번역&lt;/li&gt;
-      &lt;li&gt;어셈블러(as)로 main.s -&amp;gt; 재배치 가능한 바이너리 목적파일인 main.o로 번역&lt;/li&gt;
-      &lt;li&gt;링커(ld)로 main.o &amp;amp; sum.o 두개를 연결 -&amp;gt; 실행 가능 목적파일 prog 생성&lt;/li&gt;
-      &lt;li&gt;로더라고 부르는 운영체제 내의 함수를 호출 -&amp;gt; 로더는 실행파일 prog의 코드와 데이터를 메모리로 복사하고, 제어를 프로그램의 시작 부분으로 전환한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;72-정적연결&quot;&gt;7.2 정적연결&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;정적 링커는 재배치 가능한 목적파일들과 명령줄 인자들을 받아들여 로드될 수 있고 실행될 수 있는 완전히 링크된 실행 가능 목적파일을 생성한다.&lt;/li&gt;
-  &lt;li&gt;실행파일을 만들기 위해서 링커는 두 가지 주요 작업을 수행한다.
-    &lt;ol&gt;
-      &lt;li&gt;심볼 해석 symbol resolutions: 각각의 심볼 참조를 정확하게 하나의 심볼 정의에 연결하는 것이다.&lt;/li&gt;
-      &lt;li&gt;재배치 Relocation: 링커는 섹션들을 각 심볼 정의와 연결시켜 재배치한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;73-목적파일&quot;&gt;7.3 목적파일&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;세가지 목적파일이 있다.
-    &lt;ul&gt;
-      &lt;li&gt;재배치 가능 목적파일 Relocatable object file: 다른 재구성가능 목적파일들과 결합될 수 있는 바이너리 코드와 데이터를 포함&lt;/li&gt;
-      &lt;li&gt;실행 가능 목적파일 Executable object file: 메모리에 직접 복사될 수 있고 실행될 수 있음&lt;/li&gt;
-      &lt;li&gt;공유 목적파일 Shared object file: 로드타임 또는 런타임 시에 동적으로 링크되고 로드될 수 있는 목적파일&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;컴파일러와 어셈블러는 재배치 가능 목적파일을 생성, 링커는 실행 가능한 목적파일을 생성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;74-재배치-가능-목적파일&quot;&gt;7.4 재배치 가능 목적파일&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_1.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 전형적인 ELF(Executable and Linkable Format) 재배치 가능 목적파일의 포맷이다.
-    &lt;ul&gt;
-      &lt;li&gt;.text: 컴파일된 프로그램의 머신 코드&lt;/li&gt;
-      &lt;li&gt;.rodata: printf 문장의 포맷 스트링&lt;/li&gt;
-      &lt;li&gt;.data: 초기화된 전역변수 및 정적변수&lt;/li&gt;
-      &lt;li&gt;.bss: 초기화되지 않은 또는 0으로 초기화된 전역변수 및 정적변수&lt;/li&gt;
-      &lt;li&gt;.symtab: 프로그램에서 정의되고 참조되는 전역변수들과 함수에 대한 정보를 가지고 있는 심볼 테이블&lt;/li&gt;
-      &lt;li&gt;.rel.text: 다른 목적 파일들과 연결할 때 링커가 수정해야하는 .text 섹션 내 위치들의 리스트&lt;/li&gt;
-      &lt;li&gt;.rel.data: 전역변수들에 대한 재배치 정보&lt;/li&gt;
-      &lt;li&gt;.debug: 프로그램 내에서 정의된 지역변수들과 typedef&lt;/li&gt;
-      &lt;li&gt;.line: 최초 소스 프로그램과 .text 섹션 내 머신 코드 인스트럭션 내 라인 번호들간의 매핑&lt;/li&gt;
-      &lt;li&gt;.strtab: 섹션 이름들을 위한 스트링 테이블&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;75-심볼과-심볼-테이블&quot;&gt;7.5 심볼과 심볼 테이블&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;재배치 가능 목적 모듈 m은 m에 의해서 정의되고 참조되는 심볼들에 대한 정보를 포함하는 심볼 테이블을 가지고 있다.
-    &lt;ul&gt;
-      &lt;li&gt;m에 의해 정의되고 다른 모든 모듈들에 의해서 참조될 수 있는 전역 심볼
-        &lt;ul&gt;
-          &lt;li&gt;전역&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;m에 의해 참조되지만 다른 모듈에 의해 정의된 전역 심볼
-        &lt;ul&gt;
-          &lt;li&gt;external&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;m에 의해서 배타적으로 참조되고 정의된 지역 심볼
-        &lt;ul&gt;
-          &lt;li&gt;static&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;지역 변수는 런타임에 스택에 의해서 관리되며 링커에는 관심거리가 아니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;.symtab 섹션의 ELF 심볼 테이블은 엔트리들의 배열을 포함하고 있다.
-&lt;img src=&quot;../../assets/img/csapp/23/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;테이블 엔트리가 없는 의사 섹션pseudo section 이 존재한다.&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ABS: 재배치해서는 안 되는 심볼&lt;/li&gt;
-      &lt;li&gt;UNDEF: 정의되지 않은 심볼, 해당 모듈에서는 참조만 되고 다른 곳에서 정의된 심볼들을 위함&lt;/li&gt;
-      &lt;li&gt;COMMON: 아직 할당되거나 초기화되지 않은 데이터 객체를 위함&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;COMMON: 초기화하지 않은 전역변수들, .bss: 초기화하지 않은 정적변수들과 0으로 초기화된 전역변수나 정적변수들&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;76-심볼-해석&quot;&gt;7.6 심볼 해석&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;링커는 자신의 입력 재배치 가능 목적파일들의 심볼 테이블로부터 정확히 한 개의 심볼 정의에 각 참조를 연결시켜서 심볼 참조를 해석한다.&lt;/li&gt;
-  &lt;li&gt;컴파일러가 현재 모듈에서 정의되지 않은 심볼을 만나면, 다른 모듈에서 정의되어 있다고 가정하고 링커 심볼 테이블 엔트리를 생성하며, 링커가 이것을 처리하도록 남겨둔다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;761-링커가-중복으로-정의된-전역-심볼을-해결하는-방법&quot;&gt;7.6.1 링커가 중복으로 정의된 전역 심볼을 해결하는 방법&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;링커의 입력은 여러 개의 재배치 가능한 오브젝트 모듈들이다.
-    &lt;ul&gt;
-      &lt;li&gt;일부는 지역적이다(정의된 모듈 내에서만 볼 수 있는).&lt;/li&gt;
-      &lt;li&gt;일부는 전역적이다(다른 모듈에서도 볼 수 있는).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;컴파일러는 각 전역 심볼을 어셈블러로 강하게 또는 약하게 보내 심볼 테이블에 묵시적으로 인코딩하게 한다.
-    &lt;ul&gt;
-      &lt;li&gt;함수들과 초기화된 전역변수들은 강한 심볼&lt;/li&gt;
-      &lt;li&gt;비초기화된 전역변수들은 약한 심볼이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;링커는 중복된 심볼 이름을 처리하기 위해서 다음과 같은 규칙을 사용한다.
-    &lt;ol&gt;
-      &lt;li&gt;동일한 이름을 갖는 복수의 강한 심불은 허용 X&lt;/li&gt;
-      &lt;li&gt;동일한 이름의 강한 심볼과 다수의 약한 심볼들이 있으면 강한 심볼 선택&lt;/li&gt;
-      &lt;li&gt;동일한 이름의 여러 개의 약한 심볼이 있으면 어떤 약한 심볼을 선택해도 관계 X&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;762-정적-라이브러리와-링크하기&quot;&gt;7.6.2 정적 라이브러리와 링크하기&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;모든 컴파일 시스템은 관련된 객체 모듈들을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;정적 라이브러리&lt;/code&gt;라고 부르는 한 개의 파일로 패키징하는 매커니즘을 제공한다.
-    &lt;ul&gt;
-      &lt;li&gt;이 라이브러리는 다음에 링커의 입력으로 제공될 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;컴파일러 개발자들이 라이브러리의 다양한 함수들을 정적 라이브러리의 혜택 없이 사용자들에게 재공하려면 컴파일러가 직접 함수의 코드를 생성하거나 한 개의 재배치 가능 목적 모듈에
-저장하거나 해야한다. 하지만 이런 방법들은 상당한 복잡성을 더하거나 디스크 공간을 극도로 낭비한다. 위와 같은 접근 방법의 단점들을 해겨하기 위해 정적 라이브러리 개념이 개발되었다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위 그림은 정적 라이브러리 연결 시 링커의 동작을 요약한 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;763-링커가-참조를-해석하기-위해-정적-라이브러리를-사용하는-방법&quot;&gt;7.6.3 링커가 참조를 해석하기 위해 정적 라이브러리를 사용하는 방법&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;링커는 실행파일을 구성하기 위해 합쳐질 재배치 가능 목적파일들의 집합 E, 미해석 집합 U, 이전 입력파일에서 정의된 심볼 집합 D를 유지한다.
-    &lt;ol&gt;
-      &lt;li&gt;입력파일 f에 대해서 링커는 f가 목적파일 또는 아카이브인지 결정한다.&lt;/li&gt;
-      &lt;li&gt;f가 목적파일이면 f를 E에 추가하고 U와 D를 갱신한다.&lt;/li&gt;
-      &lt;li&gt;f가 아카이브라면, 링커는 U 안의 미해석 심볼들을 아카이브의 멤버들에 의해 정의된 심볼들과 매칭하려고 시도한다.&lt;/li&gt;
-      &lt;li&gt;심볼을 정의한다면 m은 E에 추가되고 U와 D를 갱신한다.&lt;/li&gt;
-      &lt;li&gt;위 과정을 U와 D가 더 이상 바뀌지 않는 일정 지점까지 반복 실행한다.&lt;/li&gt;
-      &lt;li&gt;스캔을 끝마칠 때 U가 비어있지 않다면 에러 출력, 그렇지 않다면 E에 있는 목적파일들을 합치고 재배치해서 출력 실행파일을 만든다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;위의 알고리즘은 명령줄의 라이브러리와 목적파일의 순서가 중요한 이유가 된다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;77-재배치&quot;&gt;7.7 재배치&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;링커가 심볼 해석 단계를 완료하면, 코드 내 각 심볼 참조는 정확히 한 개의 심볼 정의에 연결된다.(입력 모듈 중 하나의 심볼 테이블 엔트리로 연결됨)&lt;/li&gt;
-  &lt;li&gt;이후 재배치를 하게 된다. 재배치는 두 단계로 구성된다.
-    &lt;ol&gt;
-      &lt;li&gt;섹션과 심볼 정의를 재배치한다.&lt;/li&gt;
-      &lt;li&gt;섹션 내 심볼 참조를 재배치한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;771-재배치-엔트리&quot;&gt;7.7.1 재배치 엔트리&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;어셈블러가 목적 모듈을 생성할 때, 어셈블러는 코드와 데이터가 궁극적으로 메모리 어디에 저장될지 알지 못한다.
-    &lt;ul&gt;
-      &lt;li&gt;어셈블러가 위치를 알지 못하는 객체로의 참조를 만나면, 링커에게 이 참조를 어떻게 수정하는지 알려주는 재배치 엔트리를 생성한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_4.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;재배치 타입
-    &lt;ul&gt;
-      &lt;li&gt;R_X86_64_PC32: 32비트 PC-상대주소를 사용하는 참조를 재배치한다.&lt;/li&gt;
-      &lt;li&gt;R_X86_64_32: 32비트 절대주소를 사용하는 참조를 재배치한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;772-심볼-참조의-재배치&quot;&gt;7.7.2 심볼 참조의 재배치&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_5.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 링커의 재배치 알고리즘을 위한 의사코드이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;78-실행-가능한-목적파일&quot;&gt;7.8 실행 가능한 목적파일&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_6.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;실행 가능 목적파일의 포맷은 재배치 가능한 목적파일의 포맷과 유사하다.
-    &lt;ul&gt;
-      &lt;li&gt;.text, .rodata, .data 섹션들이 각자의 최종 런타임 메모리 주소로 재배치되었다.&lt;/li&gt;
-      &lt;li&gt;_init는 프로그램의 초기화 코드에서 호출한다.&lt;/li&gt;
-      &lt;li&gt;실행파일이 완전히 링크(재배치) 되었기 때문에, .rel 섹션을 필요로 하지 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;ELF 실행파일들은 연속적인 메모리 세그멘트에 매핑된 연속적인 실행 가능 파일들의 덩어리로 메모리에 로드하기 쉽도록 설계되었다.
-    &lt;ul&gt;
-      &lt;li&gt;이 매핑은 프로그램 헤더 테이블에 설명되어 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;모든 세그먼트 s에 대해, 링커는 다음과 같이 시작주소를 선택해야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;vaddr mod align = off mod align&lt;/li&gt;
-      &lt;li&gt;align은 프로그램 헤더에 명시된 정렬(2^21 = 0x2000000)이다.&lt;/li&gt;
-      &lt;li&gt;이러한 정렬 요구사항은 프로그램이 실행될 때 목적파일의 세그먼트들이 메모리로 효과적으로 전송될 수 있도록 하는 최적화의 결과다.
-        &lt;ul&gt;
-          &lt;li&gt;가상메모리가 크기가 큰 연속된 2의 제곱 크기의 바이트 묶음으로 구성되어 있는 방식이기 때문이다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;79-실행-가능-목적파일의-로딩&quot;&gt;7.9 실행 가능 목적파일의 로딩&lt;/h1&gt;
-&lt;ol&gt;
-  &lt;li&gt;실행 가능 목적파일 prog를 실행한다.&lt;/li&gt;
-  &lt;li&gt;쉘은 로더loader 라고 알려진 메모리 상주 운영체제 코드를 호출해서 prog를 실행한다.&lt;/li&gt;
-  &lt;li&gt;로더는 디스크로부터 실행 가능한 목적파일 내의 코드와 데이터를 메모리로 복사한다.&lt;/li&gt;
-  &lt;li&gt;해당 프로그램의 첫 번째 인스트럭션, 즉 엔트리 포인트로 점프해서 프로그램을 실행한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_7.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;모든 실행 중인 리눅스 프로그램은 위의 그림과 유사한 런타임 메모리 이미지를 가진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;710-공유-라이브러리로-동적-링크하기&quot;&gt;7.10 공유 라이브러리로 동적 링크하기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;정적 라이브러리들은 다른 모든 소프트웨어처럼 관리해야 하고 주기적으로 갱신해야한다.&lt;/li&gt;
-  &lt;li&gt;공유 라이브러리들은 정적 라이브러리의 단점들을 극복한다.
-    &lt;ul&gt;
-      &lt;li&gt;공유 라이브러리는 런타임이나 로드타임에 임의의 메모리 주소에서 로드되고, 메모리에서 프로그램으로 연결될 수 있는 목적 모듈이다.&lt;/li&gt;
-      &lt;li&gt;해당 과정을 동적 링킹이라고 한다.&lt;/li&gt;
-      &lt;li&gt;리눅스 시스템에서 .so 확장자, 윈도우 시스템에서 DLL(dynamic link libraries)이라고 부른다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;공유 라이브러리들은 두 가지 다른 방법으로 “공유”된다.
-    &lt;ol&gt;
-      &lt;li&gt;어떤 주어진 파일 시스템에서, 특정 라이브러리에 대해 정확히 한 개의 .so 파일만이 존재한다.
-        &lt;ul&gt;
-          &lt;li&gt;.so 파일 내의 코드와 데이터는 이 라이브러리를 참조하는 모든 실행 가능한 목적파일들에 의해 공유된다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;메모리에 있는 공유 라이브러리의 .text 섹션은 서로 다른 실행중의 프로세스들에 의해 공유될 수 있다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/csapp/23/img_8.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 공유 라이브러리로 동적 링크 과정을 요약한 것이다.&lt;/li&gt;
-  &lt;li&gt;기본 아이디어는 링킹의 일부는 실행 가능 파일이 생성될 때 정적으로 수행하고, 프로그램이 로드될 때 링킹 작업을 동적으로 완료하는 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;711-applications-으로부터-공유-라이브러리를-로드하고-링크하기&quot;&gt;7.11 Applications 으로부터 공유 라이브러리를 로드하고 링크하기&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;응용프로그램이 돌고 있는 동안에 동적 링커에게 응용프로그램을 컴파일 시에 라이브러리와 링크할 필요 없이 임의의 공유 라이브러리를 로드하고 링크할 것을 요청할 수도 있다.&lt;/li&gt;
-  &lt;li&gt;기본 아이디어는 공유 라이브러리에서 동적 콘텐츠를 생성하는 각 함수들을 패키지 하는 것이다.
-    &lt;ul&gt;
-      &lt;li&gt;서버는 동적으로 적당한 함수를 로드하고 링크한 뒤에 직접 호출한다.&lt;/li&gt;
-      &lt;li&gt;함수는 서버의 주소공간에 캐시된 상태로 남으며, 후속 요청들은 간단한 함수 호출하는 비용만으로 처리될 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;712-위치-독립성-코드pic&quot;&gt;7.12 위치-독립성 코드(PIC)&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;공유 라이브러리를 사용하는 주목적은 다수의 실행되고 있는 프로세스들이 메모리 내에서 동일한 라이브러리 코드를 공유하도록 하는 것이며, 귀중한 메모리 자원을 절약하는 것이다.
-    &lt;ul&gt;
-      &lt;li&gt;한 가지 접근 방법은 공유 라이브러리를 사전에 정해진 주소공간 블록에 할당 하는 것이다.
-        &lt;ul&gt;
-          &lt;li&gt;단점 : 사용하지 않을 때도 할당, 메모리 블록들이 중첩되지 않도록 보장해줘야 함&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;위의 문제점을 피하기 위해 공유 모듈들의 코드 일부분을 컴파일해서 링커에 의해 수정되지 않고도 이들이 메모리 어디든지 로드될 수 있도록 한다.
-    &lt;ul&gt;
-      &lt;li&gt;어떠한 재배치 작업 없이 로드될 수 있는 코드는 위치-독립성코드라고 한다.(PIC)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;PIC와 GOT, PLT는 아직 이해를 하지 못해 좀 더 찾아보고 공부해야 한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;713-라이브러리-삽입&quot;&gt;7.13 라이브러리 삽입&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;컴파일 삽입&lt;/li&gt;
-  &lt;li&gt;링크 삽입&lt;/li&gt;
-  &lt;li&gt;런타임 삽입&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;714-요약&quot;&gt;7.14 요약&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;링킹은 컴파일 시에 정적 링커에 의해 수행될 수 있으며, 로드타임과 런타임에는 동적 링커에 의해 수행된다.&lt;/li&gt;
-  &lt;li&gt;목적 파일들은 세 가지 형태로 나타난다.
-    &lt;ul&gt;
-      &lt;li&gt;재배치 가능: 정적 링커에 의해 실행 가능 목적파일로 연결&lt;/li&gt;
-      &lt;li&gt;실행 가능: 메모리에 로드되고 실행&lt;/li&gt;
-      &lt;li&gt;공유: 공유 라이브러리&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;링커의 두 가지 주요 임무
-    &lt;ul&gt;
-      &lt;li&gt;전역 심볼들이 유일한 정의에 연결되는 경우 심볼 해석&lt;/li&gt;
-      &lt;li&gt;재배치 작업&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;로더는 실행파일의 내용을 메모리로 매핑하고 프로그램을 실행한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 23</summary></entry><entry><title type="html">[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고</title><link href="http://localhost:4000/dataengineering/de_02/" rel="alternate" type="text/html" title="[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고" /><published>2022-05-02T00:00:00+09:00</published><updated>2022-05-02T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_02</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_02/">&lt;h1 id=&quot;첫-회사-생활&quot;&gt;첫 회사 생활&lt;/h1&gt;
+&lt;/blockquote&gt;</content><author><name>honggoo</name></author><category term="CSAPP" /><category term="CS:APP" /><category term="CS" /><summary type="html">CS:APP - 24</summary></entry><entry><title type="html">[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고</title><link href="http://localhost:4000/dataengineering/de_02/" rel="alternate" type="text/html" title="[DataEngineering] 첫 번째 데이터엔지니어 인턴 회고" /><published>2022-05-02T00:00:00+09:00</published><updated>2022-05-02T00:00:00+09:00</updated><id>http://localhost:4000/dataengineering/de_02</id><content type="html" xml:base="http://localhost:4000/dataengineering/de_02/">&lt;h1 id=&quot;첫-회사-생활&quot;&gt;첫 회사 생활&lt;/h1&gt;
 &lt;p&gt;4학년 1학기에 졸업작품을 마치고 현업을 경험하고 싶어 인턴을 지원했다. 그 때 당시에는 아직 세세한 직무를 정하지 않아서, 평소에 관심 있던 백엔드와 데이터엔지니어
 두 분야에 지원했다. 둘 중 더 좋은 조건의 인턴을 붙게 된다면 해당 직무를 경험해보자는 생각이였다. 지원은 많이 했지만, 코테 준비가 미흡해서 면접까지 간 회사는 거의 없었다.
 코테를 보지 않는 회사 중 두 곳을 면접을 보게 되었는데, 첫 번째 회사의 면접 경험은 정말 최악이었다. 두 번째 회사의 면접은 정말 마음에 들었다. 내가 했던 프로젝트에 대해서
@@ -1832,32 +1832,4 @@ set 자료형은 {} &amp;lt;- 로 array를 묶어 target in {} 문법을 사용�
             &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
     
-        &lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 07</summary></entry><entry><title type="html">전역변수 vs 매개변수</title><link href="http://localhost:4000/cs/csetc_01/" rel="alternate" type="text/html" title="전역변수 vs 매개변수" /><published>2022-04-07T00:00:00+09:00</published><updated>2022-04-07T00:00:00+09:00</updated><id>http://localhost:4000/cs/csetc_01</id><content type="html" xml:base="http://localhost:4000/cs/csetc_01/">&lt;h1 id=&quot;dfs-문제를-풀며&quot;&gt;DFS 문제를 풀며&lt;/h1&gt;
-
-&lt;p&gt;DFS 문제를 공부하며, 예제 코드를 봤는데, graph 변수를 전역변수로 선언하고 사용하고 있었다.
-컴퓨터구조를 공부하면서, &lt;strong&gt;전역변수&lt;/strong&gt;는 메모리에 할당되고 함수의 일부 &lt;strong&gt;매개변수&lt;/strong&gt;는 레지스터에 저장되어 훨씬 빠른 속도로 액세스된다고 이해했었다.
-그렇다면 graph 변수를 dfs 함수의 인자로 넘겨줄 때, ‘전역변수를 사용하지 않고 매개변수로 넘겨주면 성능이 더 좋은 코드가 되지 않을까?’ 라는 궁금증에 휩싸여 풀던 문제를 내려놓고
-열심히 구글링을 하기 시작하였다.&lt;/p&gt;
-
-&lt;h1 id=&quot;기존에-알고-있던-것&quot;&gt;기존에 알고 있던 것&lt;/h1&gt;
-&lt;p&gt;우선 두가지 생각을 했다. 첫번째, 전역변수는 메모리에 올라가기 때문에 액세스가 느리다. 두번째, 매개변수는 지역변수이지만, 재귀함수처럼 호출이 잦다면 해당 매개변수를 할당하고 해제하는 작업을 반복하면서 느려질 것이다.
-첫번째 의견에 대해서는 지역변수의 액세스보다 전역변수의 액세스가 느리다는 것은 대충 ‘그렇게 들었다~’ 수준으로 알고 있었다. 두번째 의견은 컴퓨터 구조를 공부하며 어셈블리 코드에 대해서도
-아주 살짝 공부를 했었는데, 함수를 호출하는 부분에서 매개변수의 할당과 해제에 대한 어셈블리 코드가 없다는 것은 알고 있었다. 그렇기 때문에 ‘함수의 호출이 잦아도 매개변수의 할당과 해제로 실행속도가 느려지거나 하진 않을 것이다.’ 
-라는 결론을 내렸지만, 이 의견이 맞는지 조금 불안했다.&lt;/p&gt;
-
-&lt;h1 id=&quot;전역변수와-지역변수의-저장-위치&quot;&gt;전역변수와 지역변수의 저장 위치&lt;/h1&gt;
-&lt;p&gt;구글링의 결과, 전역변수와 함수로 인해서 호출된 지역변수는 모두 메모리에 위치한다. 하지만, 전역변수는 메모리에서 상대적으로 낮은 위치인 데이터 영역에 저장되고, 지역변수는 상대적으로 높은 위치인 스택 영역에 저장된다.
-데이터 영역은 프로그램 끝나기 전까지 해제되지 않고, 스택 영역은 해당 함수가 리턴되면 해제된다. 또한 데이터 영역보다 스택 영역의 액세스가 빠르다.&lt;/p&gt;
-
-&lt;h1 id=&quot;캐시-적중&quot;&gt;캐시 적중&lt;/h1&gt;
-&lt;p&gt;해당 데이터가 캐시 위에 올라와 있을 확률은 최근에 사용된 적이 있는 지역 변수쪽이 전역 변수쪽보다는 높다. 전역 변수는 비슷한 위치의 주소공간에 존재한다는 보장이 없다. 
-반대로 지역변수의 경우는 스택에 쌓이기 때문에, 모두 비슷한 위치에 존재한다. 결국 지역변수들은 한 캐시 블록 안에 올라가 있을 확률이 매우 높다.&lt;/p&gt;
-
-&lt;h1 id=&quot;컴파일러-최적화&quot;&gt;컴파일러 최적화&lt;/h1&gt;
-&lt;p&gt;C언어 기준으로, 전역 변수는 최적화에 불리하다. 전역 변수는 언제 그 값이 변경되는지 알 수 없기 때문에, 컴파일러가 최적화를 진행할 때 전역 변수를 제거하지 않는다. 즉, 컴파일러가
-사용자의 의도를 모르기 때문에, 최적화를 하지 못하고 그대로 코드를 남겨둔다.&lt;/p&gt;
-
-&lt;h1 id=&quot;결론--매개변수가-전역변수보다-빠르다&quot;&gt;결론 : 매개변수가 전역변수보다 빠르다.&lt;/h1&gt;
-&lt;p&gt;물론 모든 상황에서 매개변수로 전달하는 것이 전역변수보다 빠르지 않을 수 있다. 특정 블로그에서 실험했을 때 매개변수로 전달된 변수들을 전역변수로 변경하니 실행 시간이 2배 정도 향상되었다고 한다.
-하지만, 최적화를 위해서 전역변수를 사용하는 것은 잘못된 방법이며, 더 적절한 알고리즘과 자료구조를 사용하는 것이 옳다. 물론 간단한 코드에서 전역변수로 전달을 하냐 매개변수로 전달을 하냐에 대해
-아주 미미한 속도 차이 혹은 차이가 없을 수도 있겠지만, 항상 이러한 생각을 가지며 혹시 모를 병목 현상을 예방하는 것이 더 나은 프로그래머가 될 수 있는 길이라고 생각한다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="CS" /><category term="CS" /><summary type="html">재귀로 함수를 호출할 때 변수를 어떻게 넘겨주는 것이 더 빠를까?</summary></entry></feed>
+        &lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="이코테" /><category term="Algorithm" /><category term="Python" /><category term="이코테" /><summary type="html">이코테 알고리즘 - 07</summary></entry></feed>
