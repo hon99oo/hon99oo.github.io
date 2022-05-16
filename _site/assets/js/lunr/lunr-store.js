@@ -455,12 +455,6 @@ var store = [{
         "url": "/csapp/csapp_26/",
         "teaser": null
       },{
-        "title": "[CS:APP] Chapter 10 시스템 수준 입출력",
-        "excerpt":" ","categories": ["CSAPP"],
-        "tags": ["CS:APP","CS"],
-        "url": "/csapp/csapp_27/",
-        "teaser": null
-      },{
         "title": "[Python] `__name__` 전역 변수란 무엇인가?",
         "excerpt":"모듈  __name__ 전역 변수가 정확히 어떤 역할을 하는지 알기 위해선 python 에서의 모듈 개념에 대해서 먼저 알고 있어야 한다.   인터프리터 입력을 에디터를 사용해서 준비한 후에 그 파일을 입력으로 사용해서 실행하는 것을 스크립트를 만든다고 한다. 여러 프로그램(스크립트)에서 썼던  편리한 함수를 각 프로그램에 정의를 복사하지 않고 사용하는 것을 지원하기 위해 파이썬은 정의들을 파일에 넣고 스크립트나 인터프리터의 대화형 모드에서 사용할 수 있는 방법을 제공한다. 그런 파일을 모듈이라고 한다. 모듈로부터 정의들이 다른 모듈이나 메인 모듈로 임포트 될 수 있다.   모듈은 파이썬 정의와 문장들을 담고 있는 파일이다. 파일의 이름은 모듈 이름에 확장자 .py를 붙인다.   __name__  모듈의 이름은 전역 변수 __name__ 으로 제공 된다. 즉 현재 py 파일의 이름을 가지고 있는 변수라는 것이다.   예를들어, fibo.py 라면 __name__ 전역 변수가 fibo라는 문자열을 가지고 있게 된다.   그렇다면 if __name__ == __main__ 은 뭘까?  위에 설명했던 것 처럼 __name__ 전역 변수가 자기 자신의 모듈 이름을 가지고 있지만, 자기 자신의 모듈 안에서 __name__를 호출하게 되면 __main__ 문자열을 갖게 된다.   예를들어, test1.py 와 test2.py 가 있을 때, test1에 test2를 import 하게 되면, test1은 __main__ 이 되고 test2는 ‘test2’가 된다.   # test1.py import test2 name = __name__ print(\"test1.py :\", name)  # test2.py name = __name__ print(\"test2.py: \", name)  ------------------------------------------ \"\"\" 출력 값 test2.py:  test2 test1.py : __main__ \"\"\"  ","categories": ["Pandas"],
         "tags": ["Python","Pandas","DataEngineering"],
@@ -468,7 +462,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[Python] 파이썬은 call by value인가? 아니면 call by reference인가?",
-        "excerpt":"call by value   call by reference   call by assignment  immutable이면 값이 변경 되지 않는다. mutable이면 값이 변경된다.   mutable, immutable     숫자형(number): immutable   문자열(string): immutable   리스트(list): mutable   튜플(tuple): immutable   딕셔너리(dictionary): mutable  ","categories": ["Pandas"],
+        "excerpt":"call by value     값에 의한 호출   인자로 받은 값을 복사하여 처리한다.   call by reference     참조에 의한 호출   인자로 받은 값의 주소를 참조하여 직접 값에 영향을 준다.   call by assignment     파라미터로 전달받는 객체에 따라 객체의 참조방식이 결정된다.            immutable이면 값이 변경 되지 않는다.       mutable이면 값이 변경된다.           mutable, immutable     숫자형(number): immutable   문자열(string): immutable   리스트(list): mutable   튜플(tuple): immutable   딕셔너리(dictionary): mutable  ","categories": ["Pandas"],
         "tags": ["Python","Pandas","DataEngineering"],
         "url": "/pandas/python_03/",
         "teaser": null

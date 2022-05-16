@@ -1,0 +1,25 @@
+I"�<h1 id="call-by-value">call by value</h1>
+<ul>
+  <li>값에 의한 호출</li>
+  <li>인자로 받은 값을 복사하여 처리한다.</li>
+</ul>
+
+<h1 id="call-by-reference">call by reference</h1>
+<ul>
+  <li>참조에 의한 호출</li>
+  <li>인자로 받은 값의 주소를 참조하여 직접 값에 영향을 준다.</li>
+</ul>
+
+<h1 id="call-by-assignment">call by assignment</h1>
+<p>immutable이면 값이 변경 되지 않는다.
+mutable이면 값이 변경된다.</p>
+
+<h1 id="mutable-immutable">mutable, immutable</h1>
+<ul>
+  <li>숫자형(number): immutable</li>
+  <li>문자열(string): immutable</li>
+  <li>리스트(list): mutable</li>
+  <li>튜플(tuple): immutable</li>
+  <li>딕셔너리(dictionary): mutable</li>
+</ul>
+:ET
