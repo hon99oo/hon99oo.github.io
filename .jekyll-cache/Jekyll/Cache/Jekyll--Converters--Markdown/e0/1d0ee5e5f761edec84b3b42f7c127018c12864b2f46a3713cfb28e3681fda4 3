@@ -1,0 +1,54 @@
+I"K<h1 id="이코테">이코테</h1>
+
+<h2 id="이진탐색-나무-자르기python">이진탐색 나무 자르기(Python)</h2>
+
+<h2 id="문제">문제</h2>
+
+<p><a href="https://www.acmicpc.net/problem/2805">문제로 이동!</a></p>
+
+<h2 id="풀이">풀이</h2>
+<blockquote>
+  <p>나무를 자를 수 있는 길이는 0부터 가장 긴 나무의 길이다. 0~가장 긴 나무 길이를 이진 탐색을 하며 잘려진 나무의 합이 목표 길이보다 크다면 자른 길이를 저장한다.
+최대값을 구하기 위해서 탐색이 종료될 때까지 조건에 맞는 길이를 찾아간다.</p>
+</blockquote>
+
+<ol>
+  <li>나무 길이의 최대 값을 찾는다.</li>
+  <li>start는 0, end는 나무 길이의 최대 값으로 설정한다.</li>
+  <li>중간 값을 찾고, 나무 길이 - 중간 값을 리스트 컴프리헨션으로 음수가 되는 값은 0으로 변경하여 전체 합을 구한다.</li>
+  <li>전체합과 target을 비교하여 전체합 보다 target이 작거나 같으면 결과에 중간값을 저장한다.</li>
+  <li>탐색이 끝날 때 까지 반복하며 최대 값을 구한다.</li>
+</ol>
+
+<h2 id="추가-설명">추가 설명</h2>
+<blockquote>
+  <p>해당 문제는 전형적인 이진 탐색 문제이자, 파라메트릭 서치parametric search 유형의 문제라고 한다. “원하는 조건을 만족하는 가장 알맞은 값을 찾는 문제”에 주로 사용한다.
+예를 들어 범위 내에서 조건을 만족하는 가장 큰 값을 찾으라는 최적화 문제라면 이진 탐색으로 결정 문제를 해결하며 범위를 좁혀갈 수 있다.</p>
+</blockquote>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    
+    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    
+    
+    <span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="mi">0</span> <span class="k">if</span> <span class="n">i</span><span class="o">-</span><span class="n">mid</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">i</span><span class="o">-</span><span class="n">mid</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">array</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">total</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">mid</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+    
+        <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">17</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">target</span><span class="p">))</span></code></pre></figure>
+:ET
