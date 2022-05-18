@@ -1,4 +1,330 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-18T15:31:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[백준/Python] 9205 맥주 마시면서 걸어가기(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_21/" rel="alternate" type="text/html" title="[백준/Python] 9205 맥주 마시면서 걸어가기(DFS/BFS)" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_21</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_21/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-18T16:52:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 프로세스 API 구현</title><link href="http://localhost:4000/ostep/ostep_process_API/" rel="alternate" type="text/html" title="[OSTEP] 프로세스 API 구현" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_process_API</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_process_API/">&lt;h1 id=&quot;gcc-컴파일-방법&quot;&gt;gcc 컴파일 방법&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;옵션
+    &lt;ul&gt;
+      &lt;li&gt;-o: 오브젝트의 파일명 설정&lt;/li&gt;
+      &lt;li&gt;-c: 소스파일과 같은 이름의 오브젝트 파일 생성&lt;/li&gt;
+      &lt;li&gt;-I(대문자 i): 헤더파일을 검색할 디렉토리 명&lt;/li&gt;
+      &lt;li&gt;-L: 라이브러리를 검색할 디렉토리명&lt;/li&gt;
+      &lt;li&gt;-l(소문자 L): 링크할 라이브러리 파일명&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;c 컴파일
+    &lt;ul&gt;
+      &lt;li&gt;gcc -o &lt;출력파일명&gt; &lt;c 파일명=&quot;&quot;&gt;&lt;/c&gt;&lt;/출력파일명&gt;&lt;/li&gt;
+      &lt;li&gt;ex) gcc -o main main.c&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;실행
+    &lt;ul&gt;
+      &lt;li&gt;./&lt;생성된 실행파일명=&quot;&quot;&gt;&lt;/생성된&gt;&lt;/li&gt;
+      &lt;li&gt;ex) ./main&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;fork-시스템-콜&quot;&gt;fork() 시스템 콜&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로세스 생성에 fork() 시스템 콜이 사용된다.&lt;/li&gt;
+  &lt;li&gt;fork() 는 자신과 비슷한 자식 프로세스를 생성한다.
+    &lt;ul&gt;
+      &lt;li&gt;자식 프로세스는 자신의 주소 공간, 자신의 레지스터, 자신의 PC 값을 가진다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;unistd.h&amp;gt;
+&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello world (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;fork failed&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am child (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am parent of %d (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/03/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;fork와-wait-호출&quot;&gt;fork()와 wait() 호출&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;wait() 시스템 콜을 호출하여 자식 프로세스 종료 시점까지 자신의 실행을 잠시 중지시킨다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;unistd.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// insert code here...&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello world (pid:%d)'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;fork failen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am child (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc_wait&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am parent of %d (rc_wait:%d) (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc_wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/03/img_1.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;결과를 보면 알 수 있듯이 fork() 함수만 사용했을 때는 부모 프로세스의 정보가 먼저 출력되었지만, wait()을 사용해서 자식 프로세스의 정보가 먼저 출력 되었다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;exec-시스템-콜&quot;&gt;exec() 시스템 콜&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;자기 자신이 아닌 다른 프로그램을 실행해야 할 때 사용한다.&lt;/li&gt;
+  &lt;li&gt;fork() 시스템 콜은 자신의 복사본을 생성하여 실행한다.&lt;/li&gt;
+  &lt;li&gt;exec() 시스템 콜은 자신의 복사본이 아닌 새로운 프로세스를 생성하여 실행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;unistd.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;sys/wait.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello world (pid:%d)'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;fork failen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am child (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strdup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strdup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main.c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;execvp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;this shouldn't print out&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc_wait&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am parent of %d (rc_wait:%d) (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc_wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/03/img_2.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;결과를 보면 exec() 함수 호출 이후 “printf(“this shouldn’t print out”);” 이 출력되지 않음을 확인할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;왜-이런-api를&quot;&gt;왜, 이런 API를?&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Unix 쉘을 구현하기 위해서는 fork()와 exec()을 분리해야한다.&lt;/li&gt;
+  &lt;li&gt;그래야만 쉘이 fork()를 호출하고 exec()를 호출해서 프로세스를 만들어낸다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">fork, wait, exec 함수에 대하여</summary></entry><entry><title type="html">[OSTEP] CPU 가상화 - 프로세스 개념과 문맥전환</title><link href="http://localhost:4000/ostep/ostep_02/" rel="alternate" type="text/html" title="[OSTEP] CPU 가상화 - 프로세스 개념과 문맥전환" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_02</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_02/">&lt;h1 id=&quot;1-프로세스의-개념&quot;&gt;1. 프로세스의 개념&lt;/h1&gt;
+
+&lt;h2 id=&quot;11-프로세스의-개념&quot;&gt;1.1 프로세스의 개념&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제는 &lt;strong&gt;실행 중인 프로그램&lt;/strong&gt;의 개념을 제공하는데, 이를 &lt;strong&gt;프로세스(process)&lt;/strong&gt;라고 한다.&lt;/li&gt;
+  &lt;li&gt;프로세스의 구성 요소를 이해하기 위해서 &lt;strong&gt;하드웨어 상태&lt;/strong&gt;를 이해해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;메모리: 프로그램의 명령어와 데이터는 메모리에 저장된다.&lt;/li&gt;
+      &lt;li&gt;레지스터: 프로그램의 많은 명령어들이 레지스터를 직접 읽거나 갱신한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;12-프로세스-api&quot;&gt;1.2 프로세스 API&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제가 제공하는 API 중 중요한 다섯가지
+    &lt;ul&gt;
+      &lt;li&gt;생성(Create): 운영체제는 새로운 프로세스를 생성할 수 있는 방법을 제공해야 한다.&lt;/li&gt;
+      &lt;li&gt;제거(Destroy): 운영체제는 프로세스를 강제로 제거할 수 있는 인터페이스를 제공해야 한다.&lt;/li&gt;
+      &lt;li&gt;대기(Wait): 프로세스의 실행 중지를 기다릴 필요가 있다.&lt;/li&gt;
+      &lt;li&gt;각종 제어(Miscellaneous Control): 일시정지나 재개등&lt;/li&gt;
+      &lt;li&gt;상태(Status): 프로세스 상태 정보를 얻어내는 인터페이스를 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;13-프로세스-생성-좀-더-자세하게&quot;&gt;1.3 프로세스 생성: 좀 더 자세하게&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로그램 실행을 위하여 운영체제가 하는 첫 번째 작업은 프로그램 코드와 정적 데이터(static data)를 메모리, 프로세스의 주소공간에 &lt;strong&gt;탑재(load)&lt;/strong&gt;하는 것이다.&lt;/li&gt;
+  &lt;li&gt;코드와 정적 데이터가 메모로 탑재된 후 운영체제는 다음과 같은 일을 한다.
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 특정 크기의 메모리 공간이 프로그램에 &lt;strong&gt;스택(run-time stack)&lt;/strong&gt; 용도로 할당되어야 한다.&lt;/li&gt;
+      &lt;li&gt;운영체제는 프로그램의 &lt;strong&gt;힙(heap)&lt;/strong&gt;을 위한 메모리 영역을 할당한다.&lt;/li&gt;
+      &lt;li&gt;운영체제는 입출력과 관계된 초기화 작업을 수행한다.&lt;/li&gt;
+      &lt;li&gt;위의 세가지 일을 끝마치면 main() 루틴으로 분기함으로써 프로그램 실행이 시작된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;14-프로세스-상태&quot;&gt;1.4 프로세스 상태&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로세스 상태
+    &lt;ul&gt;
+      &lt;li&gt;실행(Running): 프로세스는 프로세서에서 실행 중이다. 즉, 명령어를 실행하고 있다.&lt;/li&gt;
+      &lt;li&gt;준비(Ready): 프로세스는 실행할 준비가 되어 있지만, 운영체제가 다른 프로세스를 실행하고 있는 등의 이유로 대기 중이다.&lt;/li&gt;
+      &lt;li&gt;대기(Blocked): 프로세스가 다른 사건을 기다리는 동안 프로세스의 수행을 중단시키는 연산이다. 예: 입출력을 요청하고 블락됨&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로세스는 운영체제의 스케줄링 정책에 따라 &lt;strong&gt;스케줄&lt;/strong&gt;이 되면 준비 상태에서 실행 상태로 전이한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/02/img_1.png&quot; width=&quot;50%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 “프로세스: 상태 전이” 이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;15-자료-구조&quot;&gt;1.5 자료 구조&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제도 일종의 프로그램으로서 다양한 정보를 유지하기 위한 자료 구조를 가지고 있따.
+    &lt;ul&gt;
+      &lt;li&gt;ex1: 프로세스 상태를 파악하기 위해 준비 상태의 프로세스들을 위한 &lt;strong&gt;프로세스 리스트(process list)&lt;/strong&gt;를 유지한다.&lt;/li&gt;
+      &lt;li&gt;ex2: 실행 중 프로세스를 명시하기 위한 부가적인 자료 구조도 유지한다.&lt;/li&gt;
+      &lt;li&gt;ex3: 대기 상태인 프로세스들에 대한 정보도 관리한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;16-요약&quot;&gt;1.6 요약&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;프로세스는 간단히 말하면 실행 중인 프로그램이다.&lt;/li&gt;
+  &lt;li&gt;프로세스의 핵심 사항
+    &lt;ul&gt;
+      &lt;li&gt;프로세스 구현에 필요한 기법&lt;/li&gt;
+      &lt;li&gt;구현한 프로세스를 스케줄링하는 정책&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2-제한적-직접-실행-원리limited-direct-execution&quot;&gt;2. 제한적 직접 실행 원리(Limited Direct Execution)&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;CPU를 가상화하기 위해서 운영체제는 여러 작업들이 동시에 실행되는 것처럼 보이도록 물리적인 CPU를 공유한다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;CPU 시간을 나누어 씀&lt;/strong&gt;으로써 가상화를 구현할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;위와 같은 가상화 기법을 구현하기 위해서는 몇 가지 문제를 해결해야 한다.
+    &lt;ol&gt;
+      &lt;li&gt;성능 저하 : 시스템에 과중한 오버헤드를 주어선 안됨&lt;/li&gt;
+      &lt;li&gt;제어 문제 : CPU에 대한 통제를 유지하면서 프로세스를 효율적으로 실행시켜야함&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;21-기본-원리-제한적-직접-실행lde&quot;&gt;2.1 기본 원리: 제한적 직접 실행(LDE)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제 개발자들은 프로그램을 빠르게 실행하기 위하여 &lt;strong&gt;제한적 직접 실행(Limited Direct Excution, LDE)&lt;/strong&gt;라는 기법을 개발하였다.
+    &lt;ul&gt;
+      &lt;li&gt;“직접 실행”: 프로그램을 CPU 상에서 그냥 직접 실행&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;제한적 직접 실행 접근법은 CPU를 가상화함에 있어 몇가지 문제를 일으킨다.
+    &lt;ol&gt;
+      &lt;li&gt;프로그램을 직접 실행시킨다면 프로그램이, 운영체제가 원치않는 일을 하지 않는다는 것을 어떻게 보장할 수 있는가?&lt;/li&gt;
+      &lt;li&gt;프로세스 실행시, 운영체제는 어떻게 프로그램의 실행을 중단하고 다른 프로세스로 전환시킬 수 있는가
+        &lt;ul&gt;
+          &lt;li&gt;즉, CPU를 가상화하는 데 필요한 &lt;strong&gt;시분할(time sharing)&lt;/strong&gt;기법을 어떻게 구현하는가&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;22-문제점-1-제한된-연산&quot;&gt;2.2 문제점 1: 제한된 연산&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;직접 실행의 장점은 빠르게 실행된다는 것이다.&lt;/li&gt;
+  &lt;li&gt;하지만 프로세스가 디스크에 대하여 입출력을 제한하지 않으면 운영체제의 접근 권한 기능이 의미가 없다.
+    &lt;ul&gt;
+      &lt;li&gt;이 때문에 &lt;strong&gt;사용자 모드(user mode)&lt;/strong&gt;가 도입되었다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;사용자 모드(user mode): 사용자 모드에서 실행되는 코드는 할 수 있는 일이 제한된다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;커널 모드(kernel mode): 사용자 모드와 대비되는 모드로서 운영체제의 중요한 코드들이 실행된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;사용자 모드에서 운영체제의 도움이 필요할 때 &lt;strong&gt;시스템 콜&lt;/strong&gt;을 사용한다.&lt;/li&gt;
+  &lt;li&gt;커널은 시스템 콜을 통하여 자신의 주요 기능을 사용자 모드 프로그램에게 제공한다.&lt;/li&gt;
+  &lt;li&gt;시스템 콜을 실행하기 위해 프로그램은 trap 특수 명령어를 실행해야 한다.&lt;/li&gt;
+  &lt;li&gt;호출한 프로세스의 필요한 레지스터들을 저장해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;운영체제가 return-from-trap 명령어 실행 시 사용자 프로세스로 제대로 리턴할 수 있어야 하기 위함이다.&lt;/li&gt;
+      &lt;li&gt;PC, 플래그, 레지스터를 각 프로세스의 &lt;strong&gt;커널 스택&lt;/strong&gt;에 저장한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;커널은 부팅 시에 &lt;strong&gt;트랩 테이블&lt;/strong&gt;을 만들고 이를 이용하여 시스템을 통제한다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;운영체제는 특정 명령어를 사용하여 하드웨어에게 &lt;strong&gt;트랩 핸들러(trap handler)&lt;/strong&gt;의 위치를 알려준다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;모든 시스템 콜은 자신의 고유 번호를 갖고 있따.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;LDE 방식은 두 단계로 진행된다.
+    &lt;ol&gt;
+      &lt;li&gt;전반부에서(부팅 시) 커널은 트랩 테이블을 초기화하고 CPU는 나중에 사용하기 위하여 테이블의 위치를 기억한다.&lt;/li&gt;
+      &lt;li&gt;후반부에서(프로세스를 실행할 때) return-from-trap을 이용하여 사용자 프로세스를 시작할 때 몇 가지 작업을 수행한다.
+        &lt;ul&gt;
+          &lt;li&gt;프로세스 리스트 삽입, 메모리 할당 등&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;23-문제점-2-프로세스-간-전환&quot;&gt;2.3 문제점 2: 프로세스 간 전환&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;직접 실행의 두 번째 문제점은 프로세스 전환이 가능해야한다는 점이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;협조-방식-시스템-콜-호출시-까지-대기&quot;&gt;협조 방식: 시스템 콜 호출시 까지 대기&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;협조 방식은 각 사용자 프로세스가 비정상적인 행동은 하지 않을것으로 가정한다.
+    &lt;ul&gt;
+      &lt;li&gt;프로세스들이 CPU를 사용 완료하면 CPU를 반납할 것이라 믿는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 방식의 문제점은 프로세스가 무한 루프에 빠져 시스템 콜을 호출할 수 없다면 문제가 발생할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;비협조-방식-운영체제가-제어권-확보&quot;&gt;비협조 방식: 운영체제가 제어권 확보&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;타이머 인터럽트&lt;/strong&gt;를 이용한다.
+    &lt;ul&gt;
+      &lt;li&gt;타이머는 수 밀리 초마다 인터럽트라 불리는 하드웨어 신호를 발생시킨다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인터럽트가 발생하면 운영체제는 현재 수행 중인 프로세스를 중단시키고 해당 인터러븥에 대한 &lt;strong&gt;인터럽트 핸들러(interrupt handler)&lt;/strong&gt;를 실행한다.&lt;/li&gt;
+  &lt;li&gt;운영체제는 타이머 인터럽트가 발생 시 실행해야 할 코드의 주소를 기록해두어야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;문맥의-저장과-복원&quot;&gt;문맥의 저장과 복원&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템 콜을 통하여 협조적으로 하던, 타이머 인터럽트를 통하여 약간은 강제적으로 하던, 운영체제가 제어권을 다시 획득하면 중요한 결정을 내려야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;현재 실행 중인 프로세스를 계속 실행할 것인지 아니면 다른 프로세스로 전환될 것인지를 결정해야 한다.&lt;/li&gt;
+      &lt;li&gt;이결 정은 운영체제의 &lt;strong&gt;스케줄러(scheduler)&lt;/strong&gt;라는 부분에 의해 내려진다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;현재 프로세스를 중단하고 다른 프로세스를 실행하기로 결정을 하면 운영체제는 &lt;strong&gt;문맥 교환(context switch)&lt;/strong&gt;이라 불리는 코드를 실행한다.
+    &lt;ul&gt;
+      &lt;li&gt;현재 실행 중인 프로세스의 레지스터 값들을 커널 스택에 저장하고, 새로 실행될 프로세스의 커널 스택으로부터 레지스터 값을 복원하는 것이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/02/img_2.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 제한적 직접 실행 방식(타이머 인터럽트)의 예시이다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 02</summary></entry><entry><title type="html">[백준/Python] 9205 맥주 마시면서 걸어가기(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_21/" rel="alternate" type="text/html" title="[백준/Python] 9205 맥주 마시면서 걸어가기(DFS/BFS)" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_21</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_21/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;dfsbfs-9205-맥주-마시면서-걸어가기&quot;&gt;DFS/BFS 9205 맥주 마시면서 걸어가기&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/9205&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
@@ -110,120 +436,7 @@
             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
                 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;happy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sad&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 21</summary></entry><entry><title type="html">[OSTEP] 운영체제 개요</title><link href="http://localhost:4000/ostep/ostep_01/" rel="alternate" type="text/html" title="[OSTEP] 운영체제 개요" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_01</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_01/">&lt;h1 id=&quot;운영체제-개요&quot;&gt;운영체제 개요&lt;/h1&gt;
-&lt;p&gt;프로그램이 실행될 때 어떤일이 일어날까?&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;명령어가 실행된다.&lt;/li&gt;
-  &lt;li&gt;프로세서는 명령어를 초당 수백만번 fetch, decode, execute 한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;시스템을 사용하기 &lt;strong&gt;쉽게하기 위해(easy to use)&lt;/strong&gt; 프로그램 실행 시 다양한 일들이 발생한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로그램 간의 메모리 공유를 가능하게 한다.&lt;/li&gt;
-  &lt;li&gt;프로그램이 장치와 상호작용을 가능하게한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;시스템을 사용하기 편리하면서 정확하고 올바르게 동작시킬 책임이 있기 때문에 소프트웨어를 &lt;strong&gt;운영체제(operating stystem, OS)&lt;/strong&gt;라고 부른다.&lt;/p&gt;
-
-&lt;p&gt;운영체제에는 세가지 기법을 사용한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;가상화(virtualization)&lt;/li&gt;
-  &lt;li&gt;병행성(concurrency)&lt;/li&gt;
-  &lt;li&gt;영속성(persistence)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;가상화&quot;&gt;가상화&lt;/h1&gt;
-&lt;p&gt;운영체제는 프로세서, 메모리, 또는 디스크와 같은 &lt;strong&gt;물리적(physical)&lt;/strong&gt;인 자원을 이용하여 일반적이고 강력하고 사용이 편리한 &lt;strong&gt;가상(virtual)&lt;/strong&gt; 형태의 자원을 생성한다.
-때문에 운영체제를 때로는 &lt;strong&gt;가상 머신(virtual machine)&lt;/strong&gt;이라고 부른다.&lt;/p&gt;
-
-&lt;p&gt;두가지 가상화가 존재한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;CPU 가상화&lt;/li&gt;
-  &lt;li&gt;메모리 가상화&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;cpu-가상화&quot;&gt;CPU 가상화&lt;/h2&gt;
-&lt;p&gt;여러개의 CPU가 존재하는 것처럼 변환하여 동시에 많은 수의 프로그램을 실행시키는 것을 &lt;strong&gt;CPU 가상화(virtualizing the CPU)&lt;/strong&gt;라 한다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;sys/time.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;assert.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;usage: cpu &amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;            exit(1);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        }&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        char *str = argv[1]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        while (1){&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;            Spin(1);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;            printf(&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, str);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        }&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        return 0;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/01/img_1.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;메모리-가상화&quot;&gt;메모리 가상화&lt;/h2&gt;
-&lt;p&gt;물리 메모리 모델은 매우 단순한 바이트의 배열이다. 메모리는 프로그램이 실행되는 동안 항상 접근한다.&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;unistd.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;
-    &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(%d) memory address of p: %u&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(%d) p: %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/*
-    출력
-    (24113) memory address of p: 0x20000
-    (24114) memory address of p: 0x20000
-    (24113) p:1
-    (24114) p:1
-    (24113) p:2
-    (24114) p:2
-    .
-    .  
-    .
-    */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;책에서는 위의 출력처럼 나온다고 했는데 나는 직접 해보니 아래의 그림처럼 다른 메모리값을 가지게 나왔다.&lt;/p&gt;
-
-  &lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/01/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;위의 출력 예제와 같이 각각이 독립적으로 메모리 주소 번지의 값을 갱신한다. 물리 메모리를 다른 프로그램과 공유하는 것이 아니라 각자 자신의 메모리를 가지고 있는 것 처럼 보인다.
-운영체제가 &lt;strong&gt;메모리 가상화(virtualiziang memory)&lt;/strong&gt;을 하기 때문에 이런 현상이 생긴다.&lt;/p&gt;
-
-&lt;p&gt;각 프로세스는 자신만의 &lt;strong&gt;가상 주소 공간(virtual address space)&lt;/strong&gt;을 갖는다.&lt;/p&gt;
-
-&lt;h1 id=&quot;병행성&quot;&gt;병행성&lt;/h1&gt;
-&lt;p&gt;프로그램이 한 번에 많은 일을 하려할 때 (즉, 동시에) 발생하는 그리고 반드시 해결해야 하는 문제들을 가리킬 때 &lt;strong&gt;병행성&lt;/strong&gt; 용어를 사용한다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;병행성과 병렬성의 차이&lt;/p&gt;
-  &lt;ul&gt;
-    &lt;li&gt;병행성: 동시에 처리 되는 것 ‘처럼’ 보임&lt;/li&gt;
-    &lt;li&gt;병렬성: 진짜 동시에 처리 됨&lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/01/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;영속성&quot;&gt;영속성&lt;/h1&gt;
-&lt;p&gt;DRAM과 같은 장치는 데이터를 &lt;strong&gt;휘발성(volatile)&lt;/strong&gt; 방식으로 저장하기 때문에 메모리의 데이터는 쉽게 손시로딜 수 있따.
-데이터를 &lt;strong&gt;영속적(persistence)&lt;/strong&gt;으로 저장할 수 있는 하드웨어와 소프트웨어가 필요하다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 01</summary></entry><entry><title type="html">[백준/Python] 7596 토마토(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_20/" rel="alternate" type="text/html" title="[백준/Python] 7596 토마토(DFS/BFS)" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_20</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_20/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
+                &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sad&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 21</summary></entry><entry><title type="html">[백준/Python] 7596 토마토(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_20/" rel="alternate" type="text/html" title="[백준/Python] 7596 토마토(DFS/BFS)" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_20</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_20/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;dfsbfs-7596-토마토&quot;&gt;DFS/BFS 7596 토마토&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/7596&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
@@ -434,60 +647,129 @@ dfs 함수 내에서는 현재 위치의 상,하,좌,우를 탐색하여 인접�
         &lt;span class=&quot;n&quot;&gt;count_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;total_count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 19</summary></entry><entry><title type="html">[OSTEP] 프로세스 개념과 문맥전환</title><link href="http://localhost:4000/ostep/ostep_02/" rel="alternate" type="text/html" title="[OSTEP] 프로세스 개념과 문맥전환" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_02</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_02/">&lt;h1 id=&quot;11-프로세스의-개념&quot;&gt;1.1 프로세스의 개념&lt;/h1&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 19</summary></entry><entry><title type="html">[OSTEP] 운영체제 개요</title><link href="http://localhost:4000/ostep/ostep_01/" rel="alternate" type="text/html" title="[OSTEP] 운영체제 개요" /><published>2022-05-18T00:00:00+09:00</published><updated>2022-05-18T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_01</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_01/">&lt;h1 id=&quot;운영체제-개요&quot;&gt;운영체제 개요&lt;/h1&gt;
+&lt;p&gt;프로그램이 실행될 때 어떤일이 일어날까?&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;명령어가 실행된다.&lt;/li&gt;
+  &lt;li&gt;프로세서는 명령어를 초당 수백만번 fetch, decode, execute 한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;시스템을 사용하기 &lt;strong&gt;쉽게하기 위해(easy to use)&lt;/strong&gt; 프로그램 실행 시 다양한 일들이 발생한다.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;운영체제는 &lt;strong&gt;실행 중인 프로그램&lt;/strong&gt;의 개념을 제공하는데, 이를 &lt;strong&gt;프로세스(process)&lt;/strong&gt;라고 한다.&lt;/li&gt;
-  &lt;li&gt;프로세스의 구성 요소를 이해하기 위해서 &lt;strong&gt;하드웨어 상태&lt;/strong&gt;를 이해해야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;메모리: 프로그램의 명령어와 데이터는 메모리에 저장된다.&lt;/li&gt;
-      &lt;li&gt;레지스터: 프로그램의 많은 명령어들이 레지스터를 직접 읽거나 갱신한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;프로그램 간의 메모리 공유를 가능하게 한다.&lt;/li&gt;
+  &lt;li&gt;프로그램이 장치와 상호작용을 가능하게한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;12-프로세스-api&quot;&gt;1.2 프로세스 API&lt;/h1&gt;
+&lt;p&gt;시스템을 사용하기 편리하면서 정확하고 올바르게 동작시킬 책임이 있기 때문에 소프트웨어를 &lt;strong&gt;운영체제(operating stystem, OS)&lt;/strong&gt;라고 부른다.&lt;/p&gt;
+
+&lt;p&gt;운영체제에는 세가지 기법을 사용한다.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;운영체제가 제공하는 API 중 중요한 다섯가지
-    &lt;ul&gt;
-      &lt;li&gt;생성(Create): 운영체제는 새로운 프로세스를 생성할 수 있는 방법을 제공해야 한다.&lt;/li&gt;
-      &lt;li&gt;제거(Destroy): 운영체제는 프로세스를 강제로 제거할 수 있는 인터페이스를 제공해야 한다.&lt;/li&gt;
-      &lt;li&gt;대기(Wait): 프로세스의 실행 중지를 기다릴 필요가 있다.&lt;/li&gt;
-      &lt;li&gt;각종 제어(Miscellaneous Control): 일시정지나 재개등&lt;/li&gt;
-      &lt;li&gt;상태(Status): 프로세스 상태 정보를 얻어내는 인터페이스를 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;가상화(virtualization)&lt;/li&gt;
+  &lt;li&gt;병행성(concurrency)&lt;/li&gt;
+  &lt;li&gt;영속성(persistence)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;13-프로세스-생성-좀-더-자세하게&quot;&gt;1.3 프로세스 생성: 좀 더 자세하게&lt;/h1&gt;
+&lt;h1 id=&quot;가상화&quot;&gt;가상화&lt;/h1&gt;
+&lt;p&gt;운영체제는 프로세서, 메모리, 또는 디스크와 같은 &lt;strong&gt;물리적(physical)&lt;/strong&gt;인 자원을 이용하여 일반적이고 강력하고 사용이 편리한 &lt;strong&gt;가상(virtual)&lt;/strong&gt; 형태의 자원을 생성한다.
+때문에 운영체제를 때로는 &lt;strong&gt;가상 머신(virtual machine)&lt;/strong&gt;이라고 부른다.&lt;/p&gt;
+
+&lt;p&gt;두가지 가상화가 존재한다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;CPU 가상화&lt;/li&gt;
+  &lt;li&gt;메모리 가상화&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cpu-가상화&quot;&gt;CPU 가상화&lt;/h2&gt;
+&lt;p&gt;여러개의 CPU가 존재하는 것처럼 변환하여 동시에 많은 수의 프로그램을 실행시키는 것을 &lt;strong&gt;CPU 가상화(virtualizing the CPU)&lt;/strong&gt;라 한다.&lt;/p&gt;
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;unistd.h&amp;gt;
 &lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;string.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;sys/wait.h&amp;gt;
-&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello world (pid:%d)'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fork&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;fork failen&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am child (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strdup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strdup&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main.c&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;execvp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;this shouldn't print out&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc_wait&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;hello, I am parent of %d (rc_wait:%d) (pid:%d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc_wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;sys/time.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;assert.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;fprintf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;usage: cpu &amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;            exit(1);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        }&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        char *str = argv[1]&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        while (1){&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;            Spin(1);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;            printf(&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, str);&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        }&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;        return 0;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    /*&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    입력:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    prompt&amp;gt; ./cpu A &amp;amp; ; ./cpu B &amp;amp; ./cpu C &amp;amp; ; ./cpu D &amp;amp;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    출력:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    (아래 그림)&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    */&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;    }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/01/img_1.png&quot; width=&quot;30%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;메모리-가상화&quot;&gt;메모리 가상화&lt;/h2&gt;
+&lt;p&gt;물리 메모리 모델은 매우 단순한 바이트의 배열이다. 메모리는 프로그램이 실행되는 동안 항상 접근한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;unistd.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdlib.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;
+    &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]){&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;malloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(%d) memory address of p: %u&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;unsigned&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(%d) p: %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getpid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;cnt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/*
+    입력:
+    prompt&amp;gt; ./mem &amp;amp; ; ./mem &amp;amp;
+    출력:
+    (24113) memory address of p: 0x20000
+    (24114) memory address of p: 0x20000
+    (24113) p:1
+    (24114) p:1
+    (24113) p:2
+    (24114) p:2
+    .
+    .  
+    .
+    */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/02/img.png&quot; width=&quot;80%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 01</summary></entry><entry><title type="html">[백준/Python] 2644 촌수계산(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_18/" rel="alternate" type="text/html" title="[백준/Python] 2644 촌수계산(DFS/BFS)" /><published>2022-05-17T00:00:00+09:00</published><updated>2022-05-17T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_18</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_18/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;책에서는 위의 출력처럼 나온다고 했는데 나는 직접 해보니 아래의 그림처럼 다른 메모리값을 가지게 나왔다.&lt;/p&gt;
+
+  &lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/01/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;위의 출력 예제와 같이 각각이 독립적으로 메모리 주소 번지의 값을 갱신한다. 물리 메모리를 다른 프로그램과 공유하는 것이 아니라 각자 자신의 메모리를 가지고 있는 것 처럼 보인다.
+운영체제가 &lt;strong&gt;메모리 가상화(virtualiziang memory)&lt;/strong&gt;을 하기 때문에 이런 현상이 생긴다.&lt;/p&gt;
+
+&lt;p&gt;각 프로세스는 자신만의 &lt;strong&gt;가상 주소 공간(virtual address space)&lt;/strong&gt;을 갖는다.&lt;/p&gt;
+
+&lt;h1 id=&quot;병행성&quot;&gt;병행성&lt;/h1&gt;
+&lt;p&gt;프로그램이 한 번에 많은 일을 하려할 때 (즉, 동시에) 발생하는 그리고 반드시 해결해야 하는 문제들을 가리킬 때 &lt;strong&gt;병행성&lt;/strong&gt; 용어를 사용한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;병행성과 병렬성의 차이&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;병행성: 동시에 처리 되는 것 ‘처럼’ 보임&lt;/li&gt;
+    &lt;li&gt;병렬성: 진짜 동시에 처리 됨&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/01/img_3.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;영속성&quot;&gt;영속성&lt;/h1&gt;
+&lt;p&gt;DRAM과 같은 장치는 데이터를 &lt;strong&gt;휘발성(volatile)&lt;/strong&gt; 방식으로 저장하기 때문에 메모리의 데이터는 쉽게 손시로딜 수 있따.
+데이터를 &lt;strong&gt;영속적(persistence)&lt;/strong&gt;으로 저장할 수 있는 하드웨어와 소프트웨어가 필요하다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 01</summary></entry><entry><title type="html">[백준/Python] 2644 촌수계산(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_18/" rel="alternate" type="text/html" title="[백준/Python] 2644 촌수계산(DFS/BFS)" /><published>2022-05-17T00:00:00+09:00</published><updated>2022-05-17T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_18</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_18/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;dfsbfs-2644-촌수계산&quot;&gt;DFS/BFS 2644 촌수계산&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2644&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
@@ -887,112 +1169,4 @@ dfs 함수 내에서는 현재 위치의 상,하,좌,우를 탐색하여 인접�
             &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
                 &lt;span class=&quot;n&quot;&gt;max_g&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;
     
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 17</summary></entry><entry><title type="html">[백준/Python] 1206 DFS와 BFS(DFS/BFS)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_14/" rel="alternate" type="text/html" title="[백준/Python] 1206 DFS와 BFS(DFS/BFS)" /><published>2022-05-16T00:00:00+09:00</published><updated>2022-05-16T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_14</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_14/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
-
-&lt;h2 id=&quot;그리디-1260-dfs와-bfs&quot;&gt;그리디 1260 DFS와 BFS&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1260&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
-
-&lt;p&gt;그래프를 DFS로 탐색한 결과와 BFS로 탐색한 결과를 출력하는 프로그램을 작성하시오. 단, 방문할 수 있는 정점이 여러 개인 경우에는 정점 번호가 작은 것을 먼저 방문하고, 더 이상 방문할 수 있는 점이 없는 경우 종료한다. 정점 번호는 1번부터 N번까지이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;입력&quot;&gt;입력&lt;/h2&gt;
-
-&lt;p&gt;첫째 줄에 정점의 개수 N(1 ≤ N ≤ 1,000), 간선의 개수 M(1 ≤ M ≤ 10,000), 탐색을 시작할 정점의 번호 V가 주어진다. 다음 M개의 줄에는 간선이 연결하는 두 정점의 번호가 주어진다. 어떤 두 정점 사이에 여러 개의 간선이 있을 수 있다. 입력으로 주어지는 간선은 양방향이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;예제-입력&quot;&gt;예제 입력&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
-    case 1:
-    입력
-    4 5 1
-    1 2
-    1 3
-    1 4
-    2 4
-    3 4
-    출력
-    1 2 4 3
-    1 2 3 4
-
-    case 2:
-    입력
-    5 5 3
-    5 4
-    5 2
-    1 2
-    3 4
-    3 1  
-    출력
-    3 1 2 5 4
-    3 1 4 2 5
-    &quot;&quot;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;DFS와 BFS를 사용하면 간단히 풀 수 있는 문제이다. 하지만, 입력값으로부터 인접리스트 그래프를 만들 때 들어가는 인자값을 sorting을 해주어야 정확한 순서로 그래프를 탐색한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;solution&quot;&gt;solution&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;bfs와 dfs 함수를 정의한다.&lt;/li&gt;
-  &lt;li&gt;인접리스트 graph를 초기화한다.&lt;/li&gt;
-  &lt;li&gt;입력값을 저장하고 해당 리스트를 정렬한다.&lt;/li&gt;
-  &lt;li&gt;bfs와 dfs 함수를 호출해 정답을 도출한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;새로-배운점&quot;&gt;새로 배운점&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;리스트에 *을 붙여서 print하면 c언어 처럼 출력된다.&lt;/li&gt;
-  &lt;li&gt;graph 인접리스트를 만들 때 heapq로 생성하면 리스트 후 정렬 하는 것보다 성능이 아주 조금 더 좋다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;collections&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deque&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;visited_dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;order_dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited_dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;visited_bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;order_bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deque&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popleft&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visited_bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;visited_bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;order_bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;queue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([])&lt;/span&gt;
-    
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-    
-    
-        &lt;span class=&quot;n&quot;&gt;visited_dfs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;order_dfs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;visited_bfs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;order_bfs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
-    
-        &lt;span class=&quot;n&quot;&gt;dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order_dfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order_bfs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 14</summary></entry></feed>
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max_g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 17</summary></entry></feed>

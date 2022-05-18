@@ -1,0 +1,30 @@
+I"ÿ
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;unistd.h&gt;
+</span>    <span class="cp">#include &lt;stdlib.h&gt;
+</span>    <span class="cp">#include &lt;string.h&gt;
+</span>    <span class="cp">#include &lt;sys/wait.h&gt;
+</span>
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"hello world (pid:%d)'</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"fork failen"</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"hello, I am child (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+            <span class="kt">char</span> <span class="o">*</span><span class="n">myargs</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+            <span class="n">myargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"wc"</span><span class="p">);</span>
+            <span class="n">myargs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="s">"main.c"</span><span class="p">);</span>
+            <span class="n">myargs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+            <span class="n">execvp</span><span class="p">(</span><span class="n">myargs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">myargs</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"this shouldn't print out"</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+            <span class="kt">int</span> <span class="n">rc_wait</span> <span class="o">=</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"hello, I am parent of %d (rc_wait:%d) (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">rc_wait</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p><img src="../../assets/img/ostep/02/img.png" width="80%" height="100%" /></p>
+:ET

@@ -1,0 +1,70 @@
+I"�<h1 id="gcc-컴파일-방법">gcc 컴파일 방법</h1>
+<ul>
+  <li>옵션
+    <ul>
+      <li>-o: 오브젝트의 파일명 설정</li>
+      <li>-c: 소스파일과 같은 이름의 오브젝트 파일 생성</li>
+      <li>-I(대문자 i): 헤더파일을 검색할 디렉토리 명</li>
+      <li>-L: 라이브러리를 검색할 디렉토리명</li>
+      <li>-l(소문자 L): 링크할 라이브러리 파일명</li>
+    </ul>
+  </li>
+  <li>c 컴파일
+    <ul>
+      <li>gcc -o <출력파일명> <c 파일명=""></c></출력파일명></li>
+      <li>ex) gcc -o main main.c</li>
+    </ul>
+  </li>
+  <li>실행
+    <ul>
+      <li>./<생성된 실행파일명=""></생성된></li>
+      <li>ex) ./main</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="fork-시스템-콜">fork() 시스템 콜</h1>
+<p>프로세스 생성에 fork() 시스템 콜이 사용된다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;stdlib.h&gt;
+</span>    <span class="cp">#include &lt;unistd.h&gt;
+</span>
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"hello world (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"fork failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"hello, I am child (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"hello, I am parent of %d (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p><img src="../../assets/img/ostep/03/img.png" width="80%" height="100%" /></p>
+
+<h1 id="fork와-wait-호출">fork()와 wait() 호출</h1>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;unistd.h&gt;
+</span>    <span class="cp">#include &lt;stdlib.h&gt;
+</span>    
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="c1">// insert code here...</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"hello world (pid:%d)'</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"fork failen"</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"hello, I am child (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+            <span class="kt">int</span> <span class="n">rc_wait</span> <span class="o">=</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"hello, I am parent of %d (rc_wait:%d) (pid:%d)</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">rc_wait</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+:ET
