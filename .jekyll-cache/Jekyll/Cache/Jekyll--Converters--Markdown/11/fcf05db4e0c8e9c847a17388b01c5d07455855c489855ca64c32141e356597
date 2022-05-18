@@ -1,0 +1,93 @@
+I"Z<h1 id="운영체제-개요">운영체제 개요</h1>
+<p>프로그램이 실행될 때 어떤일이 일어날까?</p>
+<ol>
+  <li>명령어가 실행된다.</li>
+  <li>프로세서는 명령어를 초당 수백만번 fetch, decode, execute 한다.</li>
+</ol>
+
+<p>시스템을 사용하기 <strong>쉽게하기 위해(easy to use)</strong> 프로그램 실행 시 다양한 일들이 발생한다.</p>
+<ul>
+  <li>프로그램 간의 메모리 공유를 가능하게 한다.</li>
+  <li>프로그램이 장치와 상호작용을 가능하게한다.</li>
+</ul>
+
+<p>시스템을 사용하기 편리하면서 정확하고 올바르게 동작시킬 책임이 있기 때문에 소프트웨어를 <strong>운영체제(operating stystem, OS)</strong>라고 부른다.</p>
+
+<p>운영체제에는 세가지 기법을 사용한다.</p>
+<ul>
+  <li>가상화(virtualization)</li>
+  <li>병행성(concurrency)</li>
+  <li>영속성(persistence)</li>
+</ul>
+
+<h1 id="가상화">가상화</h1>
+<p>운영체제는 프로세서, 메모리, 또는 디스크와 같은 <strong>물리적(physical)</strong>인 자원을 이용하여 일반적이고 강력하고 사용이 편리한 <strong>가상(virtual)</strong> 형태의 자원을 생성한다.
+때문에 운영체제를 때로는 <strong>가상 머신(virtual machine)</strong>이라고 부른다.</p>
+
+<p>두가지 가상화가 존재한다.</p>
+<ul>
+  <li>CPU 가상화</li>
+  <li>메모리 가상화</li>
+</ul>
+
+<h2 id="cpu-가상화">CPU 가상화</h2>
+<p>여러개의 CPU가 존재하는 것처럼 변환하여 동시에 많은 수의 프로그램을 실행시키는 것을 <strong>CPU 가상화(virtualizing the CPU)</strong>라 한다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;stdlib.h&gt;
+</span>    <span class="cp">#include &lt;sys/time.h&gt;
+</span>    <span class="cp">#include &lt;assert.h&gt;
+</span>    <span class="kt">int</span>
+    <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">){</span>
+            <span class="n">fprintf</span><span class="p">(</span><span class="n">strderr</span><span class="p">,</span> <span class="s">"usage: cpu &lt;string&gt;</span><span class="se">\n</span><span class="s">);</span><span class="err">
+</span><span class="s">            exit(1);</span><span class="err">
+</span><span class="s">        }</span><span class="err">
+</span><span class="s">        char *str = argv[1]</span><span class="err">
+</span><span class="s">        while (1){</span><span class="err">
+</span><span class="s">            Spin(1);</span><span class="err">
+</span><span class="s">            printf("</span><span class="o">%</span><span class="n">s</span><span class="err">\</span><span class="n">n</span><span class="s">", str);</span><span class="err">
+</span><span class="s">        }</span><span class="err">
+</span><span class="s">        return 0;</span><span class="err">
+</span><span class="s">    }</span></code></pre></figure>
+
+<p><img src="../../assets/img/ostep/01/img_1.png" width="30%" height="100%" /></p>
+
+<h2 id="메모리-가상화">메모리 가상화</h2>
+<p>물리 메모리 모델은 매우 단순한 바이트의 배열이다. 메모리는 프로그램이 실행되는 동안 항상 접근한다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;unistd.h&gt;
+</span>    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;stdlib.h&gt;
+</span>    <span class="kt">int</span>
+    <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+        <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"(%d) memory address of p: %u</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getpid</span><span class="p">(),</span> <span class="p">(</span><span class="kt">unsigned</span><span class="p">)</span><span class="n">p</span><span class="p">);</span>
+        <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">cnt</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"(%d) p: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">getpid</span><span class="p">(),</span> <span class="o">*</span><span class="n">p</span><span class="p">);</span>
+            <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cm">/*
+    출력
+    (24113) memory address of p: 0x20000
+    (24114) memory address of p: 0x20000
+    (24113) p:1
+    (24114) p:1
+    (24113) p:2
+    (24114) p:2
+    .
+    .  
+    .
+    */</span></code></pre></figure>
+
+<p>책에서는 위의 출력처럼 나온다고 했는데</p>
+
+<p><img src="../../assets/img/ostep/01/img_2.png" width="30%" height="100%" />
+나는 직접 해보니 위의 그림처럼 다른 메모리값을 가지게 나왔다.</p>
+
+:ET
