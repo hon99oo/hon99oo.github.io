@@ -1,0 +1,107 @@
+I"�&<h1 id="boj">BOJ</h1>
+
+<h2 id="그리디-17609-회문">그리디 17609 회문</h2>
+<p><a href="https://www.acmicpc.net/problem/17609">문제로 이동!</a></p>
+
+<h2 id="문제">문제</h2>
+
+<p>회문(回文) 또는 팰린드롬(palindrome)은 앞 뒤 방향으로 볼 때 같은 순서의 문자로 구성된 문자열을 말한다. 예를 들어 ‘abba’ ‘kayak’, ‘reviver’, ‘madam’은 모두 회문이다. 만일 그 자체는 회문이 아니지만 한 문자를 삭제하여 회문으로 만들 수 있는 문자열이라면 우리는 이런 문자열을 “유사회문”(pseudo palindrome)이라고 부른다. 예를 들어 ‘summuus’는 5번째나 혹은 6번째 문자 ‘u’를 제거하여 ‘summus’인 회문이 되므로 유사회문이다.</p>
+
+<p>여러분은 제시된 문자열을 분석하여 그것이 그 자체로 회문인지, 또는 한 문자를 삭제하면 회문이 되는 “유사회문”인지, 아니면 회문이나 유사회문도 아닌 일반 문자열인지를 판단해야 한다. 만일 문자열 그 자체로 회문이면 0, 유사회문이면 1, 그 외는 2를 출력해야 한다.</p>
+
+<h2 id="입력">입력</h2>
+
+<p>입력의 첫 줄에는 주어지는 문자열의 개수를 나타내는 정수 T(1 ≤ T ≤ 30)가 주어진다. 다음 줄부터 T개의 줄에 걸쳐 한 줄에 하나의 문자열이 입력으로 주어진다. 주어지는 문자열의 길이는 3 이상 100,000 이하이고, 영문 알파벳 소문자로만 이루어져 있다.</p>
+
+<h2 id="예제-입력">예제 입력</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="s">"""
+    입력
+    7
+    abba
+    summuus
+    xabba
+    xabbay
+    comcom
+    comwwmoc
+    comwwtmoc
+    출력
+    0
+    1
+    1
+    2
+    2
+    0
+    1
+    """</span></code></pre></figure>
+
+<h2 id="풀이">풀이</h2>
+<blockquote>
+  <p>회문은 양 끝부터 차례대로 확인해야 하기 때문에 <strong>투 포인터</strong>를 사용한다. 다른 문자를 만나게 되면 start 포인터를 pop 하는 경우와 end 포인터를 pop 하는 경우 두가지를 
+계산한다. 이 계산에서 한번 더 다른 문자를 만나게 되면 더 이상 계산할 필요가 없기 때문에 break를 걸어 전체 반복문을 탈출해서 답을 도출한다.</p>
+</blockquote>
+
+<h3 id="solution">solution</h3>
+<ol>
+  <li>start 포인터를 pop 할 때 계산하는 함수와 end 포인터를 pop 할 때 계산하는 함수를 정의한다. (함수를 사용하는 이유는 전체 반복문을 편리하게 탈출하기 위해서이다.)</li>
+  <li>스타트 포인터가 해당 string의 중간지점에 위치할 때 까지 while문을 돈다.</li>
+  <li>다른 문자를 만나게 되면 count를 1 올려주고 start_pop 함수와 end_pop 함수를 호출한다.</li>
+  <li>각각의 함수에서 다른 문자를 만나게 되면 count를 2로 설정해서 리턴한다.</li>
+  <li>각각 함수를 호출하고 난뒤 리턴 받은 count(count_sp, count_ep)중 최소값을 count에 저장한 뒤 break로 반복문을 빠져나온다.</li>
+  <li>count를 결과 리스트에 저장해서 return 한다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="kn">import</span> <span class="nn">sys</span>
+    
+    
+    <span class="k">def</span> <span class="nf">start_pop</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">!=</span> <span class="n">string</span><span class="p">[</span><span class="n">end</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="mi">2</span>
+            <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    
+    
+    <span class="k">def</span> <span class="nf">end_pop</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">!=</span> <span class="n">string</span><span class="p">[</span><span class="n">end</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="mi">2</span>
+            <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    
+    
+    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">strings</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    
+        <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">strings</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+            <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">string</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">!=</span> <span class="n">string</span><span class="p">[</span><span class="n">end</span><span class="p">]:</span>
+                    <span class="n">count_sp</span> <span class="o">=</span> <span class="n">start_pop</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+                    <span class="n">count_ep</span> <span class="o">=</span> <span class="n">end_pop</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+                    <span class="n">count</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">count_ep</span><span class="p">,</span> <span class="n">count_sp</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">end</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    
+    
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+        <span class="n">strings</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">strings</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">rstrip</span><span class="p">())</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">solution</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></code></pre></figure>
+:ET

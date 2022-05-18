@@ -1,0 +1,91 @@
+I"�<h1 id="boj">BOJ</h1>
+
+<h2 id="그리디-2606-바이러스">그리디 2606 바이러스</h2>
+<p><a href="https://www.acmicpc.net/problem/2606">문제로 이동!</a></p>
+
+<h2 id="문제">문제</h2>
+
+<p>신종 바이러스인 웜 바이러스는 네트워크를 통해 전파된다. 한 컴퓨터가 웜 바이러스에 걸리면 그 컴퓨터와 네트워크 상에서 연결되어 있는 모든 컴퓨터는 웜 바이러스에 걸리게 된다.</p>
+
+<p>예를 들어 7대의 컴퓨터가 &lt;그림 1&gt;과 같이 네트워크 상에서 연결되어 있다고 하자. 1번 컴퓨터가 웜 바이러스에 걸리면 웜 바이러스는 2번과 5번 컴퓨터를 거쳐 3번과 6번 컴퓨터까지 전파되어 2, 3, 5, 6 네 대의 컴퓨터는 웜 바이러스에 걸리게 된다. 하지만 4번과 7번 컴퓨터는 1번 컴퓨터와 네트워크상에서 연결되어 있지 않기 때문에 영향을 받지 않는다.</p>
+
+<p><img src="../../assets/img/boj/img_1.png" width="50%" height="100%" /></p>
+
+<p>어느 날 1번 컴퓨터가 웜 바이러스에 걸렸다. 컴퓨터의 수와 네트워크 상에서 서로 연결되어 있는 정보가 주어질 때, 1번 컴퓨터를 통해 웜 바이러스에 걸리게 되는 컴퓨터의 수를 출력하는 프로그램을 작성하시오.</p>
+
+<h2 id="입력">입력</h2>
+
+<p>첫째 줄에는 컴퓨터의 수가 주어진다. 컴퓨터의 수는 100 이하이고 각 컴퓨터에는 1번 부터 차례대로 번호가 매겨진다. 둘째 줄에는 네트워크 상에서 직접 연결되어 있는 컴퓨터 쌍의 수가 주어진다. 이어서 그 수만큼 한 줄에 한 쌍씩 네트워크 상에서 직접 연결되어 있는 컴퓨터의 번호 쌍이 주어진다.</p>
+<h2 id="예제-입력">예제 입력</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="s">"""
+    case 1:
+    입력
+    3
+    7
+    6
+    1 2
+    2 3
+    1 5
+    5 2
+    5 6
+    4 7
+    출력
+    4
+
+    case 2:
+    입력
+    7   
+    10
+    7
+    1 2
+    2 3
+    3 4 
+    5 6
+    7 8
+    8 9
+    9 1
+    출력
+    6
+    """</span></code></pre></figure>
+
+<h2 id="풀이">풀이</h2>
+<blockquote>
+  <p>1번 정점과 연결된 모든 정점의 개수를 찾는 문제이다. 입력은 각 연결된 정점 두개를 받는다. 이를 인접리스트로 변경한 후 dfs로 접근하여 방문했던 정점의 개수-1 을 출력하면된다.(1번 자기 자신은 포함하지 않기 때문에)</p>
+</blockquote>
+
+<h3 id="solution">solution</h3>
+<ol>
+  <li>인접리스트를 초기화해준다.</li>
+  <li>visited 리스트를 초기화해준다.</li>
+  <li>입력받은 값을 각 값에 맞도록 인접리스트에 추가해준다.</li>
+  <li>dfs 함수를 정의해서 방문 노드를 조회한다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">dfs</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+    
+        <span class="n">graph</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">graph</span><span class="p">.</span><span class="n">append</span><span class="p">([])</span>
+    
+        <span class="n">visited</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">x</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">graph</span><span class="p">[</span><span class="n">y</span><span class="p">].</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+        <span class="n">dfs</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">visited</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></code></pre></figure>
+:ET
