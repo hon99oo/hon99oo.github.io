@@ -1,0 +1,60 @@
+I"�<h1 id="1-스케줄링-개요">1. 스케줄링: 개요</h1>
+<p>이전 포스트에서는 프로세스를 실행시키기 위한 문맥 교환 등의 저수준 <strong>기법</strong>에 대해서 설명하였다.
+이번 포스트에서는 운영체제 스케줄러의 고수준 <strong>정책</strong>에 관한 이야기다.</p>
+
+<h2 id="11-워크로드에-대한-가정">1.1 워크로드에 대한 가정</h2>
+<ul>
+  <li>프로세스가 동작하는 일련의 행위를 <strong>워크로드(workload)</strong>라 한다.
+    <ul>
+      <li>적절한 워크로드의 선정은 스케줄링 정책 개발에 매우 중요한 부분이다.</li>
+    </ul>
+  </li>
+  <li>스케줄러의 종류를 임의로 세가지로 구분한다.
+    <ul>
+      <li>기본 스케줄러
+        <ul>
+          <li>선입선출(FIFO)</li>
+          <li>최단 작업 우선(SJF, Shortest Job First)</li>
+          <li>최소 잔여시간 우선(STCF, Shortest Time-to-Completion First)</li>
+          <li>라운드 로빈(RR, Round-Robin)</li>
+        </ul>
+      </li>
+      <li>멀티 레벨 피드백 큐(MLFQ)</li>
+      <li>비례 볘분 or 공정 배분
+        <ul>
+          <li>추첨 스케줄링(lottery scheduling)</li>
+          <li>보폭 스케줄링(stride scheduling)</li>
+          <li>리눅스 CFS(Completely Fair Scheduler)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="2-기본-스케줄러">2. 기본 스케줄러</h1>
+
+<h2 id="선입선출fifo">선입선출(FIFO)</h2>
+<ul>
+  <li>단순하며 구현하기 쉽다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/03/img_1.png" width="50%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 FIFO의 간단한 예이다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/03/img_2.png" width="50%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 FIFO의 단점을 보여주는 예이다.
+    <ul>
+      <li>긴 반환 시간을 가진 A가 먼저 도착했기 때문에 전체 평균 반환 시간이 110초로 늘어났다.</li>
+      <li>만약 B, C를 먼저 해결한다면 전체 평균 반환 시간은 대폭 줄어들 것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>반환시간은 작업이 완료된 시각에서 작업이 도착한 시각을 뺀 시각이다.</p>
+</blockquote>
+
+:ET

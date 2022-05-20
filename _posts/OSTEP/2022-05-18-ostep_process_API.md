@@ -68,7 +68,7 @@ toc_sticky: true # 마우스 스크롤과 함께 내려갈 것인지 설정
     }
 {% endhighlight %}
 
-<img src="../../assets/img/ostep/03/img.png" width="80%" height="100%">
+<img src="../../assets/img/ostep/process_API/img.png" width="80%" height="100%">
 
 # fork()와 wait() 호출
 - wait() 시스템 콜을 호출하여 자식 프로세스 종료 시점까지 자신의 실행을 잠시 중지시킨다.
@@ -96,7 +96,7 @@ toc_sticky: true # 마우스 스크롤과 함께 내려갈 것인지 설정
     }
 {% endhighlight %}
 
-<img src="../../assets/img/ostep/03/img_1.png" width="80%" height="100%">
+<img src="../../assets/img/ostep/process_API/img_1.png" width="80%" height="100%">
 
 - 결과를 보면 알 수 있듯이 fork() 함수만 사용했을 때는 부모 프로세스의 정보가 먼저 출력되었지만, wait()을 사용해서 자식 프로세스의 정보가 먼저 출력 되었다.
 
@@ -135,7 +135,7 @@ toc_sticky: true # 마우스 스크롤과 함께 내려갈 것인지 설정
     }
 {% endhighlight %}
 
-<img src="../../assets/img/ostep/03/img_2.png" width="80%" height="100%">
+<img src="../../assets/img/ostep/process_API/img_2.png" width="80%" height="100%">
 
 - 결과를 보면 exec() 함수 호출 이후 "printf("this shouldn't print out");" 이 출력되지 않음을 확인할 수 있다.
 
