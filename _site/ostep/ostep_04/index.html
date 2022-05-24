@@ -1,0 +1,971 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션 - 홍구의 개발 블로그</title>
+<meta name="description" content="OSTEP - 04">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션">
+<meta property="og:url" content="http://localhost:4000/ostep/ostep_04/">
+
+
+  <meta property="og:description" content="OSTEP - 04">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-05-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/ostep/ostep_04/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          [OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션
+
+        
+      </h1>
+      
+        <p class="page__lead">OSTEP - 04
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-05-24T00:00:00+09:00">May 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+
+  
+
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션">
+    <meta itemprop="description" content="OSTEP - 04">
+    <meta itemprop="datePublished" content="2022-05-24T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#1-주소-공간의-개념">1. 주소 공간의 개념</a><ul><li><a href="#11-초기-시스템">1.1 초기 시스템</a></li><li><a href="#12-주소-공간">1.2 주소 공간</a></li><li><a href="#13-가상-메모리-시스템vm의-목표">1.3 가상 메모리 시스템(VM)의 목표</a></li></ul></li><li><a href="#2-주소-변환의-원리">2. 주소 변환의 원리</a><ul><li><a href="#21-동적하드웨어-기반-재배치-base-bound">2.1 동적(하드웨어 기반) 재배치: base-bound</a></li><li><a href="#22-하드웨어-지원">2.2 하드웨어 지원</a><ul><li><a href="#하드웨어-요구사항">하드웨어 요구사항</a></li></ul></li><li><a href="#23-운영체제-이슈">2.3 운영체제 이슈</a></li><li><a href="#24-주소변환바운드-베이스-요약">2.4 주소변환(바운드 베이스) 요약</a></li></ul></li><li><a href="#3-세그멘테이션">3. 세그멘테이션</a><ul><li><a href="#31-세그멘테이션-베이스바운드basebound-의-일반화">3.1 세그멘테이션: 베이스/바운드(base/bound) 의 일반화</a></li><li><a href="#32-세그멘트-종류의-파악">3.2 세그멘트 종류의 파악</a></li><li><a href="#33-스택">3.3 스택</a></li><li><a href="#34-공유-지원">3.4 공유 지원</a></li><li><a href="#35-운영체제의-지원">3.5 운영체제의 지원</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="1-주소-공간의-개념">1. 주소 공간의 개념</h1>
+
+<h2 id="11-초기-시스템">1.1 초기 시스템</h2>
+<ul>
+  <li>메모리 관점에서 초기 컴퓨터는 많은 개념을 사용자에게 제공하지 않았다. 하지만, 시분할 시스템이 대중화 되면서 운영체제에게 새로운 요구 사항이 부과되었다. 여러 프로그램이
+메모리에 동시에 존재하려면 <strong>보호(protection)</strong>가 중요한 문제가 된다.</li>
+  <li>한 프로세스가 다른 프로세스의 메모리를 읽거나 혹은 더 안좋게는 쓸 수 있는 상황이 있어선 안된다.</li>
+</ul>
+
+<h2 id="12-주소-공간">1.2 주소 공간</h2>
+<ul>
+  <li>위 문제의 위험에 대비하기 위해 운영체제는 <strong>사용하기 쉬운(easy to use)</strong>메모리 개념을 만들어야 한다.
+    <ul>
+      <li>이 개념이 <strong>주소 공간(address space)</strong>이다.</li>
+    </ul>
+  </li>
+  <li>주소 공간은 실행 프로그램의 모든 메모리 상태를 갖고 있다.
+    <ul>
+      <li>프로그램의 코드(code, 명령어): 메모리에 존재해야 하고 따라서 주소 공간에 존재한다.</li>
+      <li>스택: 함수 호출 체인 상의 현재 위치, 지역 변수, 함수 인자와 반환 값 등을 저장하는 데 사용된다.</li>
+      <li>힙: 동적으로 할당되는 메모리를 위해 사용된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img.png" width="40%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 주소 공간의 예이다.
+    <ul>
+      <li>위의 그림처럼 실제로 프로그램이 물리 주소 0에서 16KB 사이에 존재하는 것은 아니다.실제로는 임의의 물리 주소에 탑재된다. 운영체제가 해당 일을 할 때 <strong>메모리를 가상화(virtualizing memory)</strong>한다고 말한다.</li>
+      <li>즉, 메모리 가상화는 프로그램은 가상화된 주소를 사용하고 운영체제는 이 가상 주소를 실제 물리 메모리 주소로 변환하는 방식의 메커니즘을 가진다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="13-가상-메모리-시스템vm의-목표">1.3 가상 메모리 시스템(VM)의 목표</h2>
+<ul>
+  <li>투명성(transparency): 운영체제는 실행 중인 프로그램이 가상 메모리의 존재를 인지하지 못하도록 가상 메모리 시스템을 구현해야 한다.</li>
+  <li>효율성(efficiency): 운영체제는 가상화가 시간과 공간 측면에서 효율적이도록 해야 한다.</li>
+  <li>보호(protection): 운영체제는 프로세스를 다른 프로세스로부터 보호해야 하고 운영체제 자신도 프로세스로부터 보호해야 한다.
+    <ul>
+      <li>보호 성질을 이용하여 프로세스들을 서로 <strong>격리(isolate)</strong>시킬 수 있다.</li>
+    </ul>
+  </li>
+  <li>메모리를 가상화하기 위해 필요한 기본적인 <strong>기법</strong>과 <strong>정책</strong>이 있다.</li>
+</ul>
+
+<h1 id="2-주소-변환의-원리">2. 주소 변환의 원리</h1>
+<ul>
+  <li>메모리 가상화에서도 CPU 가상화 부분에서 제한적 직접 실행 기법과 비슷하게 약간의 하드웨어 지원을 받아 효율적인 가상화 제공 전략을 추구한다.</li>
+  <li>메모리 가상화를 제공하는 동시에 효율성과 제어 모두를 추구한다.
+    <ul>
+      <li>효율성을 높이려면 하드웨어 지원을 활용할 수밖에 없다.</li>
+      <li>제어는 응용 프로그램이 자기자신의 메모리 이외에는 다른 메모리에 접근하지 못한다는 것을 운영체제가 보장하는 것을 의미한다.</li>
+      <li>마지막으로, 유연성(flexibility) 측면에서 VM 시스템에서 프로그래머가 원하는 대로 주소 공간을 사용하고, 프로그래밍하기 쉬운 시스템을 만들어야 한다.</li>
+    </ul>
+  </li>
+  <li><strong>주소 변환(address translation)</strong>: 하드웨어 기반 주소 변환(hardware-based address translation)이라고도 하는 기법은 프로그램의 모든 메모리 참조를 실제 메모리 위치로 재지정하기 위하여 하드웨어가 주소를 변환한다.
+    <ul>
+      <li>정확한 변환이 일어날 수 있도록 하드웨어를 셋업하기 위해 운영체제가 관여해야 한다. 운영체제는 메모리의 빈 공간과 사용 중인 공간을 항상 알고 있어야 하고, 메모리 사용을 제어하고 관리한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_1.png" width="30%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 프로세스와 그 주소 공간이다.</li>
+</ul>
+
+<h2 id="21-동적하드웨어-기반-재배치-base-bound">2.1 동적(하드웨어 기반) 재배치: base-bound</h2>
+<ul>
+  <li><strong>베이스와 바운드(base and bound)</strong>: 이 기술은 <strong>동적 재배치(dynamic relocation)</strong>라고도 한다.</li>
+  <li>이 기술은 각 CPU마다 2개의 하드웨어 레지스터가 필요하다. 하나는 <strong>베이스(base)</strong>레지스터, 다른 하나는 <strong>바운드(bound)</strong> 레지스터 혹은 <strong>한계(limit)</strong> 레지스터라고 불린다.
+<br /><br /></li>
+  <li><strong>베이스</strong> 레지스터 동작 방법
+    <ol>
+      <li>운영체제가 프로그램이 탑재될 물리 메모리 위치를 결정하고 베이스 레지스터를 그 주소로 지정한다.</li>
+      <li>physical address = virtual address + base &lt;- 방법으로 프로세서에 의해 변환된다.
+        <ul>
+          <li>프로세스가 생성하는 메모리 참조는 <strong>가상 주소</strong>이다. 하드웨어는 베이스 레지스터의 내용을 이 주소에 더하여 <strong>물리 주소</strong>를 생성한다.
+<br /><br /></li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>가상 주소에서 물리 주소로의 변환이 <strong>주소 변환</strong>이라고 부르는 바로 그 기술이다.</li>
+  <li>이 주소의 재배치는 실행 시에 일어나고, 프로세스가 실행을 시작한 이후에도 주소 공간을 이동할 수 있기 때문에, <strong>동적 재배치(dynamic relocation)</strong>라고도 불린다.
+<br /><br /></li>
+  <li><strong>바운드</strong> 레지스터는 보호를 지원하기 위해 존재한다. 프로세서는 먼저 메모리 참조가 합법적인가를 확인하기 위해 가상 주소가 바운드 안에 있는지 확인한다.</li>
+  <li>바운드 레지스터의 정의 방법
+    <ol>
+      <li>주소 공간의 크기를 저장하는 방식</li>
+      <li>주소 공간의 마지막 물리 주소를 저장하는 방식
+<br /><br /></li>
+    </ol>
+  </li>
+  <li>주소 변환에 도움을 주는 프로세서의 일부를 <strong>메모리 관리 장치(memory management unit,MMU)</strong>라고 부르기도 한다.</li>
+</ul>
+
+<h2 id="22-하드웨어-지원">2.2 하드웨어 지원</h2>
+
+<h3 id="하드웨어-요구사항">하드웨어 요구사항</h3>
+<ul>
+  <li>특권 모드
+    <ul>
+      <li>사용자 모드 프로세스가 특권 연산을 실행하는 것을 방지하기 위해 필요</li>
+    </ul>
+  </li>
+  <li>베이스/바운드 레지스터
+    <ul>
+      <li>주소 변환과 범위 검사를 지원하기 위하여 CPU 당 한 쌍의 레지스터가 필요</li>
+    </ul>
+  </li>
+  <li>가상 주소를 변환하고 범위 안에 있는지 검사하는 능력
+    <ul>
+      <li>주소 변환과 범위 검사를 위한 회로. 매우 간단함</li>
+    </ul>
+  </li>
+  <li>베이스/바운드를 갱신하기 위한 특권 명령어
+    <ul>
+      <li>프로그램 시작 전에 운영체제가 베이스와 바운드 레지스터 값을 지정할 수 있어야 함</li>
+    </ul>
+  </li>
+  <li>예외 핸들러 등록을 위한 특권 명령어
+    <ul>
+      <li>운영체제가 예외 처리 코드를 하드웨어에게 알려줄 수 있어야 함</li>
+    </ul>
+  </li>
+  <li>예외 발생 기능
+    <ul>
+      <li>프로세스가 특권 명령어 실행을 시도하거나 범위를 벗어난 메모리의 접근을 시도할 때 예외를 발생시킬 수 있어야 함</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="23-운영체제-이슈">2.3 운영체제 이슈</h2>
+<ul>
+  <li>베이스와 바운드 방식의 가상 메모리 구현을 위해서 운영체제가 반드시 개입되어야 하는 중요한 세 개의 시점이 존재한다.
+    <ol>
+      <li>프로세스가 생성될 때 운영체제는 주소 공간이 저장될 메모리 공간을 찾아 조치를 취해야 한다.
+        <ul>
+          <li>새로운 프로세스가 생성되면 운영체제는 새로운 주소 공간 할당에 필요한 영역을 찾기 위해 <strong>빈 공간 리스트(free list)</strong> 자료 구조를 검색해야 한다.</li>
+        </ul>
+      </li>
+      <li>프로세스가 종료할 때, 즉 정상적으로 종료될 때 또는 잘못된 행동을 하여 강제적으로 죽게될 때 프로세스가 사용하던 메모리를 회수하여 다른 프로세스나 운영체제가 사용할 수 있게 해야 한다.</li>
+      <li>운영체제는 문맥 교환이 일어날 때에도 몇가지 추가 조치를 취해야 한다.
+        <ul>
+          <li>운영체제는 프로세스 전환 시 베이스와 바운드 쌍을 저장하고 복원해야 한다.</li>
+          <li>운영체제가 실행중인 프로세스를 중단시키기로 결정하면 운영체제는 메모리에 존재하는 프로세스 별 자료 구조 안에 베이스와 바운드 레지스터의 값을 저장해야 한다.</li>
+          <li>이 자료 구조는 <strong>프로세스 구조체(process structure)</strong> 또는 <strong>프로세스 제어 블럭(process control block, PCB)</strong>라고 불린다.</li>
+        </ul>
+      </li>
+      <li>운영체제는 예외 핸들러 또는 호출된 함수를 제공해야 한다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="24-주소변환바운드-베이스-요약">2.4 주소변환(바운드 베이스) 요약</h2>
+<ul>
+  <li>주소 변환이라고 알려진 가상 메모리 기법을 통해 제한적 직접 실행의 개념을 확장하였다.</li>
+  <li><strong>주소 변환</strong>을 사용하면 운영체제는 프로세스의 모든 메모리 접근을 제어할 수 있고 ,접근이 항상 주소 공간의 범위 내에서 이루어지도록 보장할 수 있다.</li>
+  <li>베이스 바운드, 즉 동적 재배치는 비효율적이다. 재배치된 프로세스는 스택과 힙 사이의 공간이 단순히 낭비되고 있다. 즉 <strong>내부 단편화(internal fragmentation)</strong>이 발생한다.
+    <ul>
+      <li>이를 해결하기 위해 베이스 바운드를 일반화한 기법 <strong>세그멘테이션(segmentation)</strong>을 사용한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="3-세그멘테이션">3. 세그멘테이션</h1>
+<ul>
+  <li>베이스와 바운드 방식은 메모리 낭비가 심하기 때문에 유연성이 없다.</li>
+</ul>
+
+<h2 id="31-세그멘테이션-베이스바운드basebound-의-일반화">3.1 세그멘테이션: 베이스/바운드(base/bound) 의 일반화</h2>
+<ul>
+  <li>MMU에 하나의 베이스와 바운드값이 존재하는 것이 아니라 <strong>세그멘트(segment)</strong>마다 베이스와 바운드 값이 존재한다.
+    <ul>
+      <li>세그멘트는 특정 길이를 가지는 연속적인 주소 공간이다: 코드, 스택, 힙의 세 종류의 세그멘트가 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_2.png" width="30%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 물리 메모리에 세그멘트 배치를 한 그림이다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_3.png" width="30%" height="100%" /></p>
+<ul>
+  <li>세그멘트의 사이즈는 바운드 레지스터와 일치한다.(위의 그림)</li>
+</ul>
+
+<h2 id="32-세그멘트-종류의-파악">3.2 세그멘트 종류의 파악</h2>
+<ul>
+  <li>하드웨어는 변환을 위해 세그멘트 레지스터를 사용한다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_4.png" width="40%" height="100%" /></p>
+<ul>
+  <li>일반적인 접근법으로는 가상 주소의 최상위 비트 몇 개를 세그멘트 종류를 나타내는데 사용하는 것이다.(위의 그림)
+    <ul>
+      <li>최상위 2비트가 00이면, 하드웨어는 가상 주소가 코드 세그멘트를 가리킨다.</li>
+      <li>최상위 2비트가 01이면, 하드웨어는 주소가 힙 세그멘트라는 것을 인지한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_5.png" width="40%" height="100%" /></p>
+<ul>
+  <li>위의 그림처럼 하드웨어는 세그멘트 레지스터를 파악하는 데 처음 2비트를 이용하고 세그멘트 오프셋으로 다음 12비트를 취한다.
+    <ul>
+      <li>오프셋에 베이스 레지스터 값을 더하여 하드웨어는 최종 물리 주소를 계산한다.
+<br /><br /></li>
+    </ul>
+  </li>
+  <li>특정 주소의 세그멘트를 하드웨어적으로 파악하는 다른 방법이 있다.
+    <ul>
+      <li><strong>묵시적(implicit)</strong> 접근 방식에서는 주소가 어떻게 형성되었나를 관찰하여 세그멘트를 결정한다.
+        <ul>
+          <li>ex) 주소가 프로그램 카운터로부터 생성되었다면 코드 세그멘트, 주소가 스택 또는 베이스 포인터에 기반을 둔다면 스택 세그멘트</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="33-스택">3.3 스택</h2>
+<ul>
+  <li>스택 세그멘트는 다른 세그멘트들과는 반대 방향으로 확장된다.(낮은 주소 방향으로 확장)</li>
+  <li>위의 이유로 인해 간단한 하드웨어가 추가로 필요하다.
+    <ul>
+      <li>베이스와 바운드 값뿐 아니라 하드웨어는 세그멘트가 어느 방향으로 확장하는지도 알아야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_6.png" width="50%" height="100%" /></p>
+
+<h2 id="34-공유-지원">3.4 공유 지원</h2>
+<ul>
+  <li>세그멘테이션 기법이 발전함에 따라 시스템 설계자들은 간단한 하드웨어 지원으로 새로운 종류의 효율성을 성취할 수 있다는 것을 깨달았다.
+    <ul>
+      <li>메모리를 절야갛기 위해 때로는 주소 공간들 간에 특정 메모리 세그멘트를 <strong>공유</strong>하는 것이 유용하다.</li>
+      <li>특히, <strong>코드 공유</strong>가 일반적이며, 현재 시스템에서도 광범위하게 사용 중이다.</li>
+    </ul>
+  </li>
+  <li>공유를 지원하기 위해, 하드웨어에 <strong>protection bit</strong>의 추가가 필요하다.
+    <ul>
+      <li>protection bit를 세그멘트마다 추가하여 세그멘트를 읽거나 쓸 수 있는지 혹은 세그멘트의 코드를 실행시킬 수 있는지를 나타낸다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_7.png" width="50%" height="100%" /></p>
+<ul>
+  <li>위의 그림은 세그멘트 레지스터 값(보호 정보 포함)이다.</li>
+</ul>
+
+<h2 id="35-운영체제의-지원">3.5 운영체제의 지원</h2>
+<ul>
+  <li>시스템이 각 주소 공간(세그멘트) 단위로 가상 주소 공간을 물리 메모리에 재배치하기 때문에, 전체 주소 공간이 하나의 베이스-바운드 값을 갖는 방식에 비해 물리 메모리를 절약할 수 있다.
+    <ul>
+      <li>스택과 힙 사이의 사용하지 않는 공간에 대해서 할당할 필요가 없기 때문</li>
+    </ul>
+  </li>
+  <li>세그멘테이션의 도입을 위해서는 운영체제가 몇가지 문제를 해결해야 한다.
+    <ol>
+      <li>문맥교환
+        <ul>
+          <li>세그멘트 레지스터의 저장과 복원</li>
+        </ul>
+      </li>
+      <li>세그멘트 크기의 변경</li>
+      <li>미사용 중인 물리 메모리 공간의 관리
+        <ul>
+          <li>세그멘트들이 많아지면 물리 메모리가 빠르게 작은 크기의 빈 공간들로 채워진다. 이 작은 빈 공간들은 새로이 생겨나는 세그멘트에 할당하기도 힘들거니와 기존 세그멘트를 확장하는 데에도 도움이 되지 않는다. 이를 <strong>외부 단편화(external fregmentation)</strong>라고 부른다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/04/img_7.png" width="50%" height="100%" /></p>
+<ul>
+  <li>
+    <p>위의 그림은 압축 전과 압축 후의 메모리 상태이다.</p>
+  </li>
+  <li>이를 해결하는 간단한 방법은 빈 공간 리스트를 관리하는 알고리즘을 사용하는 것이다.</li>
+  <li>빈 공간 관리 알고리즘은 할당 가능한 메모리 영역들을 리스트 형태로 유지한다.
+    <ul>
+      <li>최적 적합(best-fit), 최악 적합(worst-fit), 최초 적합(first-fit), 버디 알고리즘(buddy algorithm) 등의 방식이 존재한다.</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#ostep" class="page__taxonomy-item p-category" rel="tag">OSTEP</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ostep" class="page__taxonomy-item p-category" rel="tag">OSTEP</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-05-24T00:00:00+09:00">May 24, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOSTEP%5D+%EB%A9%94%EB%AA%A8%EB%A6%AC+%EA%B0%80%EC%83%81%ED%99%94+-+%EC%A3%BC%EC%86%8C+%EB%B3%80%ED%99%98%EA%B3%BC+%EC%84%B8%EA%B7%B8%EB%A9%98%ED%85%8C%EC%9D%B4%EC%85%98%20http%3A%2F%2Flocalhost%3A4000%2Fostep%2Fostep_04%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fostep%2Fostep_04%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fostep%2Fostep_04%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%B0%B1%EC%A4%80/python_35/" class="pagination--pager" title="[백준/Python] 2473 세 용액(이진탐색)
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80/python_35/" rel="permalink">[백준/Python] 2473 세 용액(이진탐색)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-05-24T00:00:00+09:00">May 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">백준 알고리즘 - 35
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80/python_34/" rel="permalink">[백준/Python] 2467 용액(이진탐색)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-05-24T00:00:00+09:00">May 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">백준 알고리즘 - 34
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80/python_33/" rel="permalink">[백준/Python] 2295 세 수의 합(수학)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-05-24T00:00:00+09:00">May 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">백준 알고리즘 - 33
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B0%B1%EC%A4%80/python_32/" rel="permalink">[백준/Python] 2110 공유기 설치(이진탐색)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-05-24T00:00:00+09:00">May 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">백준 알고리즘 - 32
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/ostep/ostep_04/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/ostep/ostep_04"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
