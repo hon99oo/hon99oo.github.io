@@ -706,4 +706,16 @@ var store = [{
         "tags": ["OSTEP","CS"],
         "url": "/ostep/ostep_04/",
         "teaser": null
+      },{
+        "title": "[OSTEP] 메모리 가상화 - 빈 공간 관리",
+        "excerpt":" ","categories": ["OSTEP"],
+        "tags": ["OSTEP","CS"],
+        "url": "/ostep/ostep_05/",
+        "teaser": null
+      },{
+        "title": "[OSTEP] 메모리 가상화 - 페이징",
+        "excerpt":" ","categories": ["OSTEP"],
+        "tags": ["OSTEP","CS"],
+        "url": "/ostep/ostep_06/",
+        "teaser": null
       }]
