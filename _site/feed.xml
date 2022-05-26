@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-26T15:46:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[백준/Python] 10974 모든 순열(백트래킹)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_38/" rel="alternate" type="text/html" title="[백준/Python] 10974 모든 순열(백트래킹)" /><published>2022-05-25T00:00:00+09:00</published><updated>2022-05-25T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_38</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_38/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-05-26T16:27:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[백준/Python] 10974 모든 순열(백트래킹)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_38/" rel="alternate" type="text/html" title="[백준/Python] 10974 모든 순열(백트래킹)" /><published>2022-05-25T00:00:00+09:00</published><updated>2022-05-25T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_38</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_38/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;수학-10974-모든-순열&quot;&gt;수학 10974 모든 순열&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/10974&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
@@ -447,7 +447,82 @@ visited 에 값이 들어있지 않다면, visited 첫번째 자리(depth)에 �
                     &lt;span class=&quot;n&quot;&gt;virus_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
     
         &lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;make_wall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;virus_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;blank_list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 36</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징</title><link href="http://localhost:4000/ostep/ostep_06/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징" /><published>2022-05-25T00:00:00+09:00</published><updated>2022-05-25T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_06</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_06/"></content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 06</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션</title><link href="http://localhost:4000/ostep/ostep_04/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션" /><published>2022-05-24T00:00:00+09:00</published><updated>2022-05-24T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_04</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_04/">&lt;h1 id=&quot;1-주소-공간의-개념&quot;&gt;1. 주소 공간의 개념&lt;/h1&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;answer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 36</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징</title><link href="http://localhost:4000/ostep/ostep_06/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징" /><published>2022-05-25T00:00:00+09:00</published><updated>2022-05-25T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_06</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_06/">&lt;h1 id=&quot;1-페이징-개요&quot;&gt;1. 페이징: 개요&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;세그멘테이션은 공간을 다양한 크기의 청크로 분할할 때 공간 자체가 &lt;strong&gt;단편화(fragmented)&lt;/strong&gt;될 수 있고, 할당은 점점 더 어려워진다.&lt;/li&gt;
+  &lt;li&gt;다른 방법은 공간을 동일 크기의 조각으로 분할하는 &lt;storng&gt;페이징(paging)&amp;lt;/strong&amp;gt; 기법이다.
+&lt;/storng&gt;    &lt;ul&gt;
+      &lt;li&gt;프로세스의 주소 공간을 몇개의 가변 크기의 논리 세그멘트(코드, 힙, 스택)로 나누는 것이 아니라 고정 크기의 단위로 나눈다. 이 각각의 단위를 &lt;strong&gt;페이지(page)&lt;/strong&gt;라고 부른다. 상응하여 물리 메모리도 &lt;strong&gt;페이지 프레임(page frame)&lt;/strong&gt;이라고 불리는 고정 크기의 슬롯의 배열이라고 생각한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;11-간단한-예제-및-개요&quot;&gt;1.1 간단한 예제 및 개요&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/06/img.png&quot; width=&quot;40%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 128바이트 물리 메모리에 탑재된 64바이트 주소 공간이다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;페이징의 가장 큰 장점은 유연성이다.
+    &lt;ul&gt;
+      &lt;li&gt;힙과 스택이 어느 방향으로 커지는가, 어떻게 사용되는가에 대한 가정을 하지 않아도 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;페이징의 또 다른 장점은 단순함이다.
+    &lt;ul&gt;
+      &lt;li&gt;물리 메모리에 주소 공간을 배치하기 위해서는 운영체제는 비어 있는 네 개의 페이지만 찾으면된다. 운영체제는 모든 비어 있는 페이지의 &lt;strong&gt;빈 공간 리스트&lt;/strong&gt;를 유지하고 리스트의 첫 네 개 페이지를 선택한다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;주소 공간의 각 가상 페이지에 대한 물리 메모리 위치 기록을 위하여 운영체제는 프로세스 마다 &lt;strong&gt;페이지 테이블(page table)&lt;/strong&gt;이라는 자료 구조를 유지한다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 테이블의 주요 역할은 주소 공간의 가상 페이지 &lt;strong&gt;주소 변환(address translation)&lt;/strong&gt;정보를 저장하는 것이다.&lt;/li&gt;
+      &lt;li&gt;페이지 테이블은 프로세스마다 존재한다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;프로세스가 생성한 가상 주소의 &lt;strong&gt;변환&lt;/strong&gt;을 위해 먼저 가상 주소를 &lt;strong&gt;가상 페이지 번호(virtual page number, VPN)&lt;/strong&gt;와 페이지 내의 &lt;strong&gt;오프셋&lt;/strong&gt; 2개의 구성 요소로 분할한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/06/img_1.png&quot; width=&quot;40%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;movl 21, %eax&lt;/code&gt;를 이진 형식으로 변환한 뒤 가상페이지 번호와 오프셋으로 나눈 예이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/06/img_2.png&quot; width=&quot;40%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 주소 변환 과정이다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 테이블에서 VPN을 PFN으로 교체하여 가상 주소를 변환한다. offset은 그대로 사용한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;12-페이지-테이블은-어디에-저장되는가&quot;&gt;1.2 페이지 테이블은 어디에 저장되는가&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;물리주소로의 변환 정보와 다른 필요한 정보를 저장하기 위하여 각 프로세스의 &lt;strong&gt;페이지 테이블&lt;/strong&gt;을 메모리에 저장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;13-페이지-테이블에는-실제-무엇이-있는가&quot;&gt;1.3 페이지 테이블에는 실제 무엇이 있는가&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;페이지 테이블은 가상 주소를 물리 주소로 매핑(mapping)하는 데 사용되는 자료 구조이다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;가장 간단한 형태는 &lt;strong&gt;선형 페이지 테이블(linear page table)&lt;/strong&gt;이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;페이지 테이블 엔트리(page table entry, PTE)&lt;/strong&gt;에는 여러가지 비트들이 존재한다.
+    &lt;ul&gt;
+      &lt;li&gt;Valid bit: 특정 변환의 유효 여부를 나타내기 위하여 포함된다. Valid bit은 할당되지 않은 주소 공간을 표현하기 이ㅜ해 반드시 필요하다.&lt;/li&gt;
+      &lt;li&gt;Protection bit: 페이지가 읽을 수 있는지, 쓸 수 있는지, 또는 실행될 수 있는지를 표시한다.&lt;/li&gt;
+      &lt;li&gt;Present bit: 페이지가 물리 메모리에 있는지 혹은 디스크에 있는지(즉, 스왑 아웃되었는지) 가리킨다.
+        &lt;ul&gt;
+          &lt;li&gt;스와핑은 운영체제가 드물게 사용되는 페이지를 디스크로 이동시켜 물리 메모리를 비울 수 있게 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;dirty bit: 메모리에 반입된 후 페이지가 변경되었는지 여부를 나타낸다.&lt;/li&gt;
+      &lt;li&gt;reference bit: 페이지가 접근되었는지를 추적하기 위해 사용된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 06</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션</title><link href="http://localhost:4000/ostep/ostep_04/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 주소 변환과 세그멘테이션" /><published>2022-05-24T00:00:00+09:00</published><updated>2022-05-24T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_04</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_04/">&lt;h1 id=&quot;1-주소-공간의-개념&quot;&gt;1. 주소 공간의 개념&lt;/h1&gt;
 
 &lt;h2 id=&quot;11-초기-시스템&quot;&gt;1.1 초기 시스템&lt;/h2&gt;
 &lt;ul&gt;
