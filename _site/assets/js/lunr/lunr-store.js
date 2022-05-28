@@ -742,4 +742,10 @@ var store = [{
         "tags": ["Algorithm","Python","백준"],
         "url": "/%EB%B0%B1%EC%A4%80/python_39/",
         "teaser": null
+      },{
+        "title": "[이코테/Python] 다이나믹 프로그래밍 - 1로 만들기",
+        "excerpt":"이코테   DP 1로 만들기(Python)   문제   정수 X가 주어질 때 정수 X에 사용할 수 있는 연산은 다음과 같다.      X가 5로 나누어 떨어지면, 5로 나눈다.   X가 3으로 나누어 떨어지면, 3으로 나눈다.   X가 2로 나누어 떨어지면, 2로 나눈다.   X에서 1을 뺀다. 정수 X가 연산 4개를 적절히 사용해서 1을 만들려고 한다. 연산을 사용하는 횟수의 최솟값을 출력해라.      예시   입력 : 26  결과 : 3   풀이     이 문제는 잘 알려진 다이나믹 프로그래밍 문제다.       sum 변수에 str(문자열 S)의 첫번째 인덱스의 값을 넣어준다.   str의 두번째 인덱스의 값부터 반복문을 돌린다.   sum과 ch(반복문을 도는 str의 값)이 2보다 작다면 +, 그렇지 않으면 x를 해준다.            sum도 체크 하는 이유는 sum이 0이나 1이면 +를 해줘야 하기 때문           return sum   코드       def solution(x):         d = [0] * 11              for i in range(2, x + 1):             d[i] = d[i-1]+1             if i%2 ==0:                 d[i] = min(d[i], d[i //2] + 1)             if i%3 ==0:                 d[i] = min(d[i], d[i //3] + 1)             if i%5 ==0:                 d[i] = min(d[i], d[i //5] + 1)              return d[x]          if __name__ == \"__main__\":         x = 10         print(solution(x)) ","categories": ["이코테"],
+        "tags": ["Algorithm","Python","이코테"],
+        "url": "/%EC%9D%B4%EC%BD%94%ED%85%8C/this_11/",
+        "teaser": null
       }]

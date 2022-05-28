@@ -1,0 +1,53 @@
+I"�<h1 id="이것이-코딩-테스트다-with-python">이것이 코딩 테스트다 with python</h1>
+
+<h2 id="그리디-문자열-뒤집기python">그리디 문자열 뒤집기(Python)</h2>
+
+<h2 id="문제">문제</h2>
+
+<p>0과 1로만 이루어진 문자열 S가 있다.<br />
+연속된 숫자를 잡고 뒤집을 수 있다.(0을 1로, 1로 0으로)<br />
+모두 같은 수를 만들 수 있는 뒤집기의 최소 횟수를 구하라.</p>
+
+<ul>
+  <li>예시</li>
+</ul>
+
+<p>입력 : ‘00001110000’<br />
+결과 : 1</p>
+
+<h2 id="풀이">풀이</h2>
+<blockquote>
+  <p>0과1이 인접한 부분이 몇개 있는지를 체크하면 된다. 예를들어 인접한 부분의 패턴을 ‘01’을 조사한다. 하지만, 1010 문자열을 조사하게 되면 마지막 인접한 부분을 조사하지 못해 최소 횟수가 1이 되므로
+마지막 문자열에 1을 붙여주고 조사한다. 이렇게만 진행했을 경우 ‘010’을 조사하게 되면 최소 횟수가 2회가 된다. 그렇기 때문에 같은 방법으로 ‘01’과 ‘10’을 둘다 조사하여 두가지의 최소 횟수중 최소값을 구한다.</p>
+</blockquote>
+
+<ol>
+  <li>문자열 S(str)의 마지막 부분을 조사해서 0 또는 1을 붙여준다.</li>
+  <li>반복문을 돌며 ‘01’패턴과 ‘10’패턴을 조사한다 각각의 횟수를 count_0, count_1에 저장한다.</li>
+  <li>count_0과 count_1중 최소값을 return한다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'1'</span><span class="p">:</span>
+            <span class="nb">str</span> <span class="o">+=</span> <span class="s">'0'</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">str</span> <span class="o">+=</span> <span class="s">'1'</span>
+        <span class="n">count_0</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">count_1</span> <span class="o">=</span> <span class="mi">0</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'01'</span><span class="p">:</span>
+                <span class="n">count_0</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">'10'</span><span class="p">:</span>
+                <span class="n">count_1</span> <span class="o">+=</span><span class="mi">1</span>
+    
+        <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">count_0</span><span class="p">,</span><span class="n">count_1</span><span class="p">)</span>
+    
+    
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="nb">str</span> <span class="o">=</span> <span class="s">"010"</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span></code></pre></figure>
+:ET
