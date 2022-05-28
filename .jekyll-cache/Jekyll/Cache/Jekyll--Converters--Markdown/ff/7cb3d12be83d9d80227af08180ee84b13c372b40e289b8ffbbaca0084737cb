@@ -1,0 +1,74 @@
+I"�<h1 id="boj">BOJ</h1>
+
+<h2 id="dp-11727-2xn-타일링-2">DP 11727 2xN 타일링 2</h2>
+<p><a href="https://www.acmicpc.net/problem/11727">문제로 이동!</a></p>
+
+<h2 id="문제">문제</h2>
+
+<p>2×n 직사각형을 1×2, 2×1과 2×2 타일로 채우는 방법의 수를 구하는 프로그램을 작성하시오.</p>
+
+<p>아래 그림은 2×17 직사각형을 채운 한가지 예이다.</p>
+
+<p><img src="../../assets/img/boj/46/img.png" width="100%" height="100%" /></p>
+
+<h2 id="입력">입력</h2>
+
+<p>첫째 줄에 n이 주어진다. (1 ≤ n ≤ 1,000)</p>
+
+<h2 id="출력">출력</h2>
+
+<p>첫째 줄에 2×n 크기의 직사각형을 채우는 방법의 수를 10,007로 나눈 나머지를 출력한다.</p>
+
+<h2 id="예제-입력">예제 입력</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="s">"""
+    case 1:
+    입력
+    2 
+    출력
+    3
+
+    case 2:
+    입력
+    8 
+    출력
+    171
+    """</span></code></pre></figure>
+
+<h2 id="풀이">풀이</h2>
+
+<p>DP 문제로 해당 문제의 규칙을 찾고 점화식을 세운 뒤 해당 점화식으로 코드를 작성하면 된다. 우선 규칙을 찾기 위해 약간의 노가다를 해보면 다음과 같은 규칙을 찾게 된다.</p>
+
+<p>규칙 :</p>
+
+<p>1 -&gt; 1개<br />
+2 -&gt; 3개<br />
+3 -&gt; 5개<br />
+4 -&gt; 11개(3*2 + 5)<br />
+5 -&gt; 21개(5+2 + 11)<br /></p>
+
+<p>점화식 : f(n) = f(n-1) + f(n-2) * 2</p>
+
+<blockquote>
+  <p>DP 문제는 보텀업이나 메모이제이션을 사용하여 문제를 해결하는 방법과 규칙을 찾아 점화식을 세우는 방법 두가지로 나뉘는 것 같다!</p>
+</blockquote>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">dp</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">dp</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span> <span class="o">%</span> <span class="mi">10007</span>
+        <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">n</span><span class="p">))</span></code></pre></figure>
+:ET
