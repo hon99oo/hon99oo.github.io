@@ -1,347 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-09T23:02:51+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)</title><link href="http://localhost:4000/ostep/ostep_08/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_08</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_08/">&lt;h1 id=&quot;1-물리-메모리-크기의-극복-메커니즘&quot;&gt;1. 물리 메모리 크기의 극복: 메커니즘&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;큰 주소 공간을 지원하기 위해서 운영체제는 주소 공간 중에 현재는 크게 필요하지 않은 일부를 보관해 둘 공간이 필요하다.
-    &lt;ul&gt;
-      &lt;li&gt;현대 시스템에서는 보통 &lt;strong&gt;하드 디스크 드라이브&lt;/strong&gt;가 이 역할을 담당한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;왜 프로세스에게 굳이 “큰” 주소 공간을 제공해야하는가이다.
-    &lt;ul&gt;
-      &lt;li&gt;이에 대한 답은 다시 한번 편리함과 사용 용이성이다.&lt;/li&gt;
-      &lt;li&gt;주소 공간이 충분히 크면, 프로그램의 자료 구조들을 위한 충분한 메모리 공간이 있는지 걱정핮 ㅣ않아도 된다.&lt;/li&gt;
-      &lt;li&gt;필요 시 메모리 할당을 운영체제에게 요청하기만 하면 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;스왑 공간이 추가되면 운영체제는 실행되는 각 프로세스들에게 큰 가상 메모리가 있는 것 같은 환상을 줄 수 있다.&lt;/li&gt;
-  &lt;li&gt;멀티프로그래밍 시스템이 발명되면서 많은 프로세스들의 페이지를 물리 메모리에 전부 저장하는 것이 불가능하게 되었다.
-    &lt;ul&gt;
-      &lt;li&gt;그래서 일부 페이지들을 스왑 아웃하는 기능이 필요하게 되었다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;11-스왑-공간&quot;&gt;1.1 스왑 공간&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;디스크에 페이지들을 저장할 수 있는 일정 공간을 확보하는 것이다.
-    &lt;ul&gt;
-      &lt;li&gt;이 용도의 공간을 &lt;strong&gt;스왑 공간(swap space)&lt;/strong&gt;라고 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;운영체제는 스왑 공간에 있는 모든 페이지들의 &lt;strong&gt;디스크 주소&lt;/strong&gt;를 기억해야 한다.&lt;/li&gt;
-  &lt;li&gt;스왑 공간의 크기는 매우 중요하다.
-    &lt;ul&gt;
-      &lt;li&gt;시스템이 사용할 수 있는 메모리 페이지의 최대수를 결정하기 때문이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 긞은 물리 메모리와 스왑 공간이다.
-    &lt;ul&gt;
-      &lt;li&gt;Proc3은 사용되고 있지 않다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;12-present-bit&quot;&gt;1.2 Present Bit&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리가 참조되는 과정
-    &lt;ol&gt;
-      &lt;li&gt;프로세스가 가상 메모리 참조를 생성한다(명령어 탑재나 데이터 접근등).&lt;/li&gt;
-      &lt;li&gt;하드웨어는 메모리에서 원하는 데이터를 가져오기 전에, 우선 가상 주소를 물리 주소로 변환한다.&lt;/li&gt;
-      &lt;li&gt;TLB Hit 하면 TLB에서 물리 주소를 얻은 후에 메모리로 가져온다.&lt;/li&gt;
-      &lt;li&gt;TLB Miss 하면 하드웨어는 페이지 테이블의 메모리 주소를 파악하고(&lt;strong&gt;페이지 테이블 베이스 레지스터&lt;/strong&gt;를 사용), VPN을 인덱스로 하여 원하는 &lt;strong&gt;페이지 테이블 항목(PTE)&lt;/strong&gt;을 추출한다.&lt;/li&gt;
-      &lt;li&gt;해당 페이지 테이블 항목이 유효하고 관련 페이지가 물리 메모리에 존재한다면 하드웨어는 PTE에서 PFN 정보를 추출하고 그 정보를 TLB에 탑재한다.&lt;/li&gt;
-      &lt;li&gt;TLB 탑재 후 명령어를 재실행한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;페이지가 디스크로 스왑되는 것을 가능케 하려면, 많은 기법이 추가되어야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;하드웨어가 PTE에서 해당 페이지가 물리 메모리에 존재하지 않는다는 것을 표현 해야 한다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;present bit&lt;/strong&gt;을 사용하여 각 페이지 테이블 항목에 어떤 페이지가 존재하는지를 표현한다.&lt;/li&gt;
-      &lt;li&gt;present bit이 1로 설정 되어 있다면, 물리 메모리에 해당 페이지가 존재한다.&lt;/li&gt;
-      &lt;li&gt;present bit이 0으로 설저오디어 있다면, 물리 메모리에 존재하지 않고 디스크에 존재한다는 것을 나타낸다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;물리 메모리에 존재하지 않는 페이지를 접근하는 행위를 일반적으로 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;라 한다.
-    &lt;ul&gt;
-      &lt;li&gt;페이지 폴트가 발생하면, 페이지 폴트를 처리하기 위해 운영체제로 제어권이 넘어가 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;가 실행된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;13-페이지-폴트&quot;&gt;1.3 페이지 폴트&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;페이지 폴트가 발생하면 운영체제가 그 처리를 담당한다.
-    &lt;ul&gt;
-      &lt;li&gt;운영체제의 &lt;strong&gt;페이지 폴트 핸들러&lt;/strong&gt;가 그 처리 메커니즘을 규정한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;만약 요청된 페이지가 메모리에 없고, 디스크로 스왑되었다면, 운영체제는 해당 페이지를 메모리로 스왑해 온다.
-    &lt;ul&gt;
-      &lt;li&gt;많은 시스템들에서 해당 정보를 페이지 테이블에 저장한다.&lt;/li&gt;
-      &lt;li&gt;페이지 폴트 발생 시, 운영체제는 페이지 테이블 항목에서 해당 페이지의 디스크 상 위치를 파악하여, 메모리로 탑재한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;14-메모리에-빈-공간이-없으면&quot;&gt;1.4 메모리에 빈 공간이 없으면?&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리에 여유 공간이 없다면 탑재하고자 하는 새로운 페이지들을 위한 공간을 확보하기 위해 하나 또는 그 이상의 페이지들을 먼저 &lt;strong&gt;페이지 아웃(page out)&lt;/strong&gt;하려고 할 수도 있다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;교체(replace)&lt;/strong&gt; 페이지를 선택하는 것을 &lt;strong&gt;페이지 교체 정책(page-replacement policy)&lt;/strong&gt;이라고 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;15-페이지-폴트의-처리&quot;&gt;1.5 페이지 폴트의 처리&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_1.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 코드를 보면 TLB 미스 발생시, 세 가지의 중요한 경우가 있다는 것을 알 수 있다.
-    &lt;ol&gt;
-      &lt;li&gt;페이지가 &lt;strong&gt;존재&lt;/strong&gt;하며 &lt;strong&gt;유효&lt;/strong&gt;한 경우다.
-        &lt;ul&gt;
-          &lt;li&gt;TLB 미스 핸들러가 PTE에서 PFN을 가져와서 명령어를 재시도 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;페이지가 유효하지만 존재하지 않는 경우다.
-        &lt;ul&gt;
-          &lt;li&gt;페이지 폴트 핸들러가 반드시 실행되어야 한다.(물리 메모리에 존재하지 않고 디스크 상에 존재하는 경우다.)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;페이지가 유효하지 않는 경우다.
-        &lt;ul&gt;
-          &lt;li&gt;하드웨어는 이 무효한 접근이 운영체제의 트랩 핸들러에 의해서 처리되도록 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;16-교체는-실제-언제-일어나는가&quot;&gt;1.6 교체는 실제 언제 일어나는가&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리에 항상 어느 정도의 여유 공간을 비워두기 위해서, 대부분의 운영체제들은 여유 공간에 관련된 &lt;strong&gt;최댓값(high watermark, HW)&lt;/strong&gt;과 &lt;strong&gt;최솟값(low watermark, LW)&lt;/strong&gt;을 설정하여 교체 알고리즘 작동에 활용한다.&lt;/li&gt;
-  &lt;li&gt;동작 방법은 다음과 같다.
-    &lt;ul&gt;
-      &lt;li&gt;운영체제가 공간의 크기가 최솟값보다 작아지면 여유 공간 확보를 담당하는 백그라운드 쓰레드가 실행된다.&lt;/li&gt;
-      &lt;li&gt;이 쓰레드는 여유 공간의 크기가 최댓값에 이를 때까지 페이지를 제거한다.&lt;/li&gt;
-      &lt;li&gt;이 백그라운드 쓰레드는 일반적으로 &lt;strong&gt;스왑 데몬(swap daemon)&lt;/strong&gt; 또는 &lt;strong&gt;페이지 데몬(page daemon)&lt;/strong&gt;이라고 불린다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;일시에 여러 개를 교체하면 성능 개선이 가능하다.
-    &lt;ul&gt;
-      &lt;li&gt;많은 시스템들은 다수의 페이지들을 &lt;strong&gt;클러스터(cluster)&lt;/strong&gt;나 &lt;strong&gt;그룹(group)&lt;/strong&gt;으로 묶어서 한번에 스왑 파티션에 저장함으로써 디스크의 효율을 높인다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;17-요약&quot;&gt;1.7 요약&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;시스템에 실제 존재하는 물리 메모리의 크기보다 더 많은 메모리를 사용하기 위한 개념을 소개하였다.&lt;/li&gt;
-  &lt;li&gt;메모리에 특정 페이지가 존재하는지를 알리기 위한 &lt;strong&gt;present bit&lt;/strong&gt;와 좀 더 복잡한 페이지 테이블 구조가 필요하다.&lt;/li&gt;
-  &lt;li&gt;운영체제는 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;를 처리하기 위해서 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;를 실행시킨다.
-    &lt;ul&gt;
-      &lt;li&gt;핸들러는 원하는 페이지를 디스크에서 메모리로 전송하기 ㅜ이해 메모리의 일부 페이지들을 먼저 교체하여 새롭게 스왑되서 들어올 페이지를 위한 공간을 만드는 조치를 취한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;2-물리-메모리-크기의-극복-정책&quot;&gt;2. 물리 메모리 크기의 극복: 정책&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;빈 메모리 공간이 거의 없으면 일이 더 복잡해진다.&lt;/li&gt;
-  &lt;li&gt;그런 경우 운영체제는 &lt;strong&gt;메모리 압박(memory pressure)&lt;/strong&gt;을 해소하기 위해 다른 페이지들을 강제적으로 페이징 아웃(paging out)하여 활발히 사용 중인 페이지들을 위한 공간을 확보한다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;내보낼(evict)&lt;/strong&gt; 페이지(또는 페이지들) 선택은 운영체제의 &lt;strong&gt;교체 정책(replacement policy)&lt;/strong&gt;안에 집약되어 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;21-캐시-관리&quot;&gt;2.1 캐시 관리&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;시스템의 전체 페이지들 중 일부분만이 메인 메모리에 유지된다는 것을 가정하면, 메인 메모리는 시스템의 가상 메모리 페이지를 가져다 놓기 위한 &lt;strong&gt;캐시&lt;/strong&gt;로 생각될 수 있다.&lt;/li&gt;
-  &lt;li&gt;이 캐시를 위한 교체 정책의 목표는 &lt;strong&gt;캐시 미스&lt;/strong&gt;의 횟수를 최소화하는 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;평균-메모리-접근-시간average-memory-access-time-amat&quot;&gt;평균 메모리 접근 시간(average memory access time, AMAT)&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;앞으로 나올 페이지 교체 정책을 평균 메모리 접근 시간을 통해서 비교할 것이다.&lt;/li&gt;
-  &lt;li&gt;캐시 히트와 미스의 횟수를 안다면 프로그램의 평균 메모리 접근 시간을 계산할 수 있다.&lt;/li&gt;
-  &lt;li&gt;AMAT 는 다음과 같은 식으로 계싼할 수가 있다.
-    &lt;ul&gt;
-      &lt;li&gt;AMAT = Tm + (Pmiss * Td)&lt;/li&gt;
-      &lt;li&gt;Tm: 메모리 접근 비용&lt;/li&gt;
-      &lt;li&gt;Td: 디스크 접근 비용&lt;/li&gt;
-      &lt;li&gt;Pmiss: 캐시미스 확률(0.0~1.0)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;22-최적-교체-정책&quot;&gt;2.2 최적 교체 정책&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;교체 정책의 동작 방식을 잘 이해하기 위해서 &lt;strong&gt;최적&lt;/strong&gt; 교체 정책(The Optimal Replacement Policy)과 비교하는 것이 좋다.
-    &lt;ul&gt;
-      &lt;li&gt;최적 교체 정책은 미스를 최소화한다.&lt;/li&gt;
-      &lt;li&gt;가장 나중에 접근될 페이지를 교체하는 것이 최적이며, 가장 적은 횟수의 미스를 발생시킨다는 것이 증명되었다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_2.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 최적의 교체 정책의 흐름이다.
-    &lt;ul&gt;
-      &lt;li&gt;캐시는 처음에 비어 있는 상태로 시작하기 때문에 첫 세 번의 접근은 미스이다.&lt;/li&gt;
-      &lt;li&gt;이러한 종류의 미스는 &lt;strong&gt;최초 시작 미스(cold-start miss)&lt;/strong&gt; 또는 &lt;strong&gt;강제 미스(compulsory miss)&lt;/strong&gt;라고 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;23-간단한-정책-fifo&quot;&gt;2.3 간단한 정책: FIFO&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;FIFO(먼저 들어온 것이 먼저 나간다, 선입선출) 교체 방식을 사용하였다.&lt;/li&gt;
-  &lt;li&gt;FIFO는 매우 구현하기 쉽다는 장점을 가진다.&lt;/li&gt;
-  &lt;li&gt;최적의 경우와 비교하면 FIFO는 눈에 띄게 성능이 안좋다.&lt;/li&gt;
-  &lt;li&gt;FIFO는 블럭들의 중요도를 판단할 수가 없다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_3.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 FIFO 정책의 흐름&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;24-또-다른-간단한-정책-무작위-선택&quot;&gt;2.4 또 다른 간단한 정책: 무작위 선택&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;또 다른 유사한 교체 정책은 무작위 방식이다.&lt;/li&gt;
-  &lt;li&gt;메모리 압박이 있을 때 페이지를 무작위로 선택하여 교체한다.&lt;/li&gt;
-  &lt;li&gt;때로는 매우 좋은 성능을 보이며 때로는 최악의 성능을 보여준다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_4.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 무작위 선택 정책의 흐름&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;25-과거-정보의-사용-lru&quot;&gt;2.5 과거 정보의 사용: LRU&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;불행하게도 FIFO 또는 무작위 선택 방식처럼 단순한 정책들은 중요한 페이지들을 혹은 바로 다시 참조하게 될 것들을 내보낼 수 있다는 비슷한 문제를 겪는다.&lt;/li&gt;
-  &lt;li&gt;스케줄링 정책에서와 같이 미래에 대한 예측을 위해서 과거 사용 이력을 활용한 기법이다.
-    &lt;ul&gt;
-      &lt;li&gt;페이지 교체 정책이 활용할 수 있는 과거 정보 중 하나는 &lt;strong&gt;빈도수(frequency)&lt;/strong&gt;이다.&lt;/li&gt;
-      &lt;li&gt;좀 더 자주 사용되는 페이지의 특징은 접근의 &lt;strong&gt;최근성(recency)&lt;/strong&gt;이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이러한 류의 정책은 &lt;strong&gt;지역성의 원칙(principle of locality)&lt;/strong&gt;라고 부르는 특성에 기반을 둔다.&lt;/li&gt;
-  &lt;li&gt;그리하여 과거 이력에 기반한 교체 알고리즘 부류가 탄생하게 되었다.
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Least-Frequently-Used(LFU)&lt;/strong&gt; 정책은 가장 적은 빈도로 사용된 페이지를 교체한다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Least-Recently-Used(LRU)&lt;/strong&gt; 정책은 가장 오래 전에 사용된 페이지를 교체한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_5.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 LRU 정책의 흐름이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;26-워크로드에-따른-성능-비교&quot;&gt;2.6 워크로드에 따른 성능 비교&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_6.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 지역성이 없는 워크로드&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_7.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위의 그림은 지역성(80대20) 워크로드&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;지역성의 여부에 따라 워크로드의 효율성이 차이가 난다.&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;특히 LRU나 FIFO는 “순차 반복” 워크로드에서 거의 최악의 효율을 보여준다.&lt;/li&gt;
-      &lt;li&gt;순차반복: 0,1,2 ~ 50 -&amp;gt; 0,1,2 ~ 50…&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_8.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 순환 형 워크로드이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;27-과거-이력-기반-알고리즘의-구현&quot;&gt;2.7 과거 이력 기반 알고리즘의 구현&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 효율이 나빠지는 문제들을 해결하기 위한 방법은 약간의 하드웨어 지원을 받는 것이다.&lt;/li&gt;
-  &lt;li&gt;예를들어 페이지 접근이 있을 때마다 하드웨어가 메모리의 시간 필드를 갱신하도록 할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;28-lru-정책-근사하기&quot;&gt;2.8 LRU 정책 근사하기&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;LRU는 가장 오래 전에 사용된 페이지를 탐색하는데 많은 비용을 사용한다.&lt;/li&gt;
-  &lt;li&gt;그렇기 때문에 LRU를 “근사” 하는 식으로 만들면 구현이 훨씬 쉬워진다.&lt;/li&gt;
-  &lt;li&gt;이 개념에는 &lt;strong&gt;use bit&lt;/strong&gt;(때로는 &lt;strong&gt;reference bit&lt;/strong&gt; 라고도 불린다)라고 하는 약간의 하드웨어 지원이 필요하다.&lt;/li&gt;
-  &lt;li&gt;페이지가 참조될 때마다(즉, 읽히거나 기록되면) 하드웨어에 의해서 use bit가 1로 설정된다.
-    &lt;ul&gt;
-      &lt;li&gt;하드웨어는 이 비트를 절대로 지우지 않는다.&lt;/li&gt;
-      &lt;li&gt;0으로 바꾸는 것은 운영체제의 몫이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;운영체제가 LRU에 가깝게 구현하기 위해서 use bit를 활용하는 방법은 &lt;strong&gt;시계 알고리즘(clock algorithm)&lt;/strong&gt;이다.
-    &lt;ul&gt;
-      &lt;li&gt;운영체제는 현재 바늘이 가리키고 있는 페이지 P의 use bit가 1인지 0인지 검사한다.&lt;/li&gt;
-      &lt;li&gt;만약 1이라면 페이지 P는 최근에 사요되었으며 바람직한 교체 대상이 아니라는 것을 뜻한다.&lt;/li&gt;
-      &lt;li&gt;P의 use bit은 0으로 설정되고 시계 바늘은 다음 페이지 P+1로 이동한다.&lt;/li&gt;
-      &lt;li&gt;알고리즘은 use bit가 0으로 설정되어 있는, 즉 최근에 사용된 적이 없는, 페이지를 찾을 때까지 반복된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;29-갱신된-페이지dirty-page의-고려&quot;&gt;2.9 갱신된 페이지(Dirty Page)의 고려&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;운영체제가 교체 대상을 선택할 때 메모리에 탑재된 이후에 변경되었는지를 추가적으로 고려하는 것이다.&lt;/li&gt;
-  &lt;li&gt;어떤 페이지가 &lt;strong&gt;변경(modified)&lt;/strong&gt;되어 &lt;strong&gt;더티(dirty)&lt;/strong&gt; 상태가 되었다면, 그 페이지를 내보내기 위해서는 디스크에 변경 내용을 기록해야 하기 때문에 비싼 비용을 지불해야한다.
-    &lt;ul&gt;
-      &lt;li&gt;VM 시스템들은 더티 페이지 대신 깨끗한 페이지를 내보내는 것을 선호한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이와 같은 동작을 지원하기 위해서 하드웨어는 &lt;strong&gt;modified bit(더티 비트)&lt;/strong&gt;를 포함해야 한다.&lt;/li&gt;
-  &lt;li&gt;예를들어, 시계 알고리즘은 교체 대상을 선택할 때 사용되지 않은 상태이고 깨끗한, 두 조건을 모두 만족하는 페이지를 먼저 찾도록 수정된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;210-다른-vm-정책들&quot;&gt;2.10 다른 VM 정책들&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;페이지 선택&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;운영체제는 언제 페이지를 메모리로 불러들일지 결정해야한다.&lt;/li&gt;
-      &lt;li&gt;이러한 정책을 &lt;strong&gt;페이지 선택(page selection)&lt;/strong&gt; 정책이라고 불린다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;요구 페이징(demanding paging)&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;운영체제는 대부분의 페이지를 읽어 들일 때 요구 페이징 정책을 사용한다.&lt;/li&gt;
-      &lt;li&gt;이 정책은 말 그대로 “요청된 후 즉시”, 즉 페이지가 실제로 접근될 때 운영체제가 해당 페이지를 메모리로 읽어 들인다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;운영체제가 변경된 페이지를 디스크에 반영하는 데 관련된 방식의 정책
-    &lt;ul&gt;
-      &lt;li&gt;많은 시스템은 기록해야 할 페이지들을 메모리에 모은 후, 한번에 (더 효율적으로) 디스크에 기록한다.&lt;/li&gt;
-      &lt;li&gt;위와 같은 동작을 &lt;strong&gt;클러스터링(clustering)&lt;/strong&gt; 또는 단순하게 &lt;strong&gt;쓰기 모으기(grouping of writes)&lt;/strong&gt;라고 부른다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;211-쓰래싱thrashing&quot;&gt;2.11 쓰래싱(Thrashing)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;시스템이 끊임없이 페이징을 할 수 밖에 없는 상황을 &lt;strong&gt;쓰래싱(thrashing)&lt;/strong&gt;이라고 부른다.&lt;/li&gt;
-  &lt;li&gt;쓰래싱 해결 기법
-    &lt;ul&gt;
-      &lt;li&gt;다수의 프로세스가 존재할 때, 일부 프로세스의 실행을 중지시킨다.&lt;/li&gt;
-      &lt;li&gt;메모리 요구가 초과되면 &lt;strong&gt;메모리 부족 킬러(out-of-memory killer)&lt;/strong&gt;를 실행시켜 많은 메모리를 요구하는 프로세스를 골라 죽인다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 08</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)</title><link href="http://localhost:4000/ostep/ostep_07/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_07</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_07/">&lt;h1 id=&quot;1-페이징-더-빠른-변환tlb&quot;&gt;1. 페이징: 더 빠른 변환(TLB)&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-09T23:07:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 병행성 - 개요</title><link href="http://localhost:4000/ostep/ostep_09/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 개요" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_09</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_09/"></content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 09</summary></entry><entry><title type="html">[OSTEP] 병행성 - 쓰레드 API 구현</title><link href="http://localhost:4000/ostep/ostep_thread_API/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 쓰레드 API 구현" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_thread_API</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_thread_API/"></content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">create, join, lock 함수에 대하여</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)</title><link href="http://localhost:4000/ostep/ostep_07/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_07</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_07/">&lt;h1 id=&quot;1-페이징-더-빠른-변환tlb&quot;&gt;1. 페이징: 더 빠른 변환(TLB)&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;페이징은 주소 공간을 작은 크기(페이지)로 나누고 각 페이지의 실제 위치(매핑 정보)를 메모리에 저장한다. 매핑 정보를 저장하는 자료 구조를 페이지 테이블이라 한다.&lt;/li&gt;
   &lt;li&gt;페이징은 성능 저하를 유발할 수 있다.
@@ -687,7 +344,350 @@
   &lt;li&gt;테이블을 위한 자료 구조에는 시간과 공간이라는 모순적 선택 사항이 존재한다.&lt;/li&gt;
   &lt;li&gt;공간을 많이 소모하는 테이블 구조를 사용할 수록 TLB미스의 처리속도가 빨라진다.&lt;/li&gt;
   &lt;li&gt;공간을 작게 차지한는 테이블 구조를 사용하면 상황은 반대가 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 07</summary></entry><entry><title type="html">[백준/Python] 16916 부분 문자열(문자열)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/" rel="alternate" type="text/html" title="[백준/Python] 16916 부분 문자열(문자열)" /><published>2022-05-28T00:00:00+09:00</published><updated>2022-05-28T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 07</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)</title><link href="http://localhost:4000/ostep/ostep_08/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_08</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_08/">&lt;h1 id=&quot;1-물리-메모리-크기의-극복-메커니즘&quot;&gt;1. 물리 메모리 크기의 극복: 메커니즘&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;큰 주소 공간을 지원하기 위해서 운영체제는 주소 공간 중에 현재는 크게 필요하지 않은 일부를 보관해 둘 공간이 필요하다.
+    &lt;ul&gt;
+      &lt;li&gt;현대 시스템에서는 보통 &lt;strong&gt;하드 디스크 드라이브&lt;/strong&gt;가 이 역할을 담당한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;왜 프로세스에게 굳이 “큰” 주소 공간을 제공해야하는가이다.
+    &lt;ul&gt;
+      &lt;li&gt;이에 대한 답은 다시 한번 편리함과 사용 용이성이다.&lt;/li&gt;
+      &lt;li&gt;주소 공간이 충분히 크면, 프로그램의 자료 구조들을 위한 충분한 메모리 공간이 있는지 걱정핮 ㅣ않아도 된다.&lt;/li&gt;
+      &lt;li&gt;필요 시 메모리 할당을 운영체제에게 요청하기만 하면 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스왑 공간이 추가되면 운영체제는 실행되는 각 프로세스들에게 큰 가상 메모리가 있는 것 같은 환상을 줄 수 있다.&lt;/li&gt;
+  &lt;li&gt;멀티프로그래밍 시스템이 발명되면서 많은 프로세스들의 페이지를 물리 메모리에 전부 저장하는 것이 불가능하게 되었다.
+    &lt;ul&gt;
+      &lt;li&gt;그래서 일부 페이지들을 스왑 아웃하는 기능이 필요하게 되었다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;11-스왑-공간&quot;&gt;1.1 스왑 공간&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;디스크에 페이지들을 저장할 수 있는 일정 공간을 확보하는 것이다.
+    &lt;ul&gt;
+      &lt;li&gt;이 용도의 공간을 &lt;strong&gt;스왑 공간(swap space)&lt;/strong&gt;라고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;운영체제는 스왑 공간에 있는 모든 페이지들의 &lt;strong&gt;디스크 주소&lt;/strong&gt;를 기억해야 한다.&lt;/li&gt;
+  &lt;li&gt;스왑 공간의 크기는 매우 중요하다.
+    &lt;ul&gt;
+      &lt;li&gt;시스템이 사용할 수 있는 메모리 페이지의 최대수를 결정하기 때문이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 긞은 물리 메모리와 스왑 공간이다.
+    &lt;ul&gt;
+      &lt;li&gt;Proc3은 사용되고 있지 않다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;12-present-bit&quot;&gt;1.2 Present Bit&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리가 참조되는 과정
+    &lt;ol&gt;
+      &lt;li&gt;프로세스가 가상 메모리 참조를 생성한다(명령어 탑재나 데이터 접근등).&lt;/li&gt;
+      &lt;li&gt;하드웨어는 메모리에서 원하는 데이터를 가져오기 전에, 우선 가상 주소를 물리 주소로 변환한다.&lt;/li&gt;
+      &lt;li&gt;TLB Hit 하면 TLB에서 물리 주소를 얻은 후에 메모리로 가져온다.&lt;/li&gt;
+      &lt;li&gt;TLB Miss 하면 하드웨어는 페이지 테이블의 메모리 주소를 파악하고(&lt;strong&gt;페이지 테이블 베이스 레지스터&lt;/strong&gt;를 사용), VPN을 인덱스로 하여 원하는 &lt;strong&gt;페이지 테이블 항목(PTE)&lt;/strong&gt;을 추출한다.&lt;/li&gt;
+      &lt;li&gt;해당 페이지 테이블 항목이 유효하고 관련 페이지가 물리 메모리에 존재한다면 하드웨어는 PTE에서 PFN 정보를 추출하고 그 정보를 TLB에 탑재한다.&lt;/li&gt;
+      &lt;li&gt;TLB 탑재 후 명령어를 재실행한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;페이지가 디스크로 스왑되는 것을 가능케 하려면, 많은 기법이 추가되어야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;하드웨어가 PTE에서 해당 페이지가 물리 메모리에 존재하지 않는다는 것을 표현 해야 한다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;present bit&lt;/strong&gt;을 사용하여 각 페이지 테이블 항목에 어떤 페이지가 존재하는지를 표현한다.&lt;/li&gt;
+      &lt;li&gt;present bit이 1로 설정 되어 있다면, 물리 메모리에 해당 페이지가 존재한다.&lt;/li&gt;
+      &lt;li&gt;present bit이 0으로 설저오디어 있다면, 물리 메모리에 존재하지 않고 디스크에 존재한다는 것을 나타낸다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;물리 메모리에 존재하지 않는 페이지를 접근하는 행위를 일반적으로 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;라 한다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 폴트가 발생하면, 페이지 폴트를 처리하기 위해 운영체제로 제어권이 넘어가 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;가 실행된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;13-페이지-폴트&quot;&gt;1.3 페이지 폴트&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;페이지 폴트가 발생하면 운영체제가 그 처리를 담당한다.
+    &lt;ul&gt;
+      &lt;li&gt;운영체제의 &lt;strong&gt;페이지 폴트 핸들러&lt;/strong&gt;가 그 처리 메커니즘을 규정한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;만약 요청된 페이지가 메모리에 없고, 디스크로 스왑되었다면, 운영체제는 해당 페이지를 메모리로 스왑해 온다.
+    &lt;ul&gt;
+      &lt;li&gt;많은 시스템들에서 해당 정보를 페이지 테이블에 저장한다.&lt;/li&gt;
+      &lt;li&gt;페이지 폴트 발생 시, 운영체제는 페이지 테이블 항목에서 해당 페이지의 디스크 상 위치를 파악하여, 메모리로 탑재한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;14-메모리에-빈-공간이-없으면&quot;&gt;1.4 메모리에 빈 공간이 없으면?&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리에 여유 공간이 없다면 탑재하고자 하는 새로운 페이지들을 위한 공간을 확보하기 위해 하나 또는 그 이상의 페이지들을 먼저 &lt;strong&gt;페이지 아웃(page out)&lt;/strong&gt;하려고 할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;교체(replace)&lt;/strong&gt; 페이지를 선택하는 것을 &lt;strong&gt;페이지 교체 정책(page-replacement policy)&lt;/strong&gt;이라고 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;15-페이지-폴트의-처리&quot;&gt;1.5 페이지 폴트의 처리&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_1.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 코드를 보면 TLB 미스 발생시, 세 가지의 중요한 경우가 있다는 것을 알 수 있다.
+    &lt;ol&gt;
+      &lt;li&gt;페이지가 &lt;strong&gt;존재&lt;/strong&gt;하며 &lt;strong&gt;유효&lt;/strong&gt;한 경우다.
+        &lt;ul&gt;
+          &lt;li&gt;TLB 미스 핸들러가 PTE에서 PFN을 가져와서 명령어를 재시도 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;페이지가 유효하지만 존재하지 않는 경우다.
+        &lt;ul&gt;
+          &lt;li&gt;페이지 폴트 핸들러가 반드시 실행되어야 한다.(물리 메모리에 존재하지 않고 디스크 상에 존재하는 경우다.)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;페이지가 유효하지 않는 경우다.
+        &lt;ul&gt;
+          &lt;li&gt;하드웨어는 이 무효한 접근이 운영체제의 트랩 핸들러에 의해서 처리되도록 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;16-교체는-실제-언제-일어나는가&quot;&gt;1.6 교체는 실제 언제 일어나는가&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리에 항상 어느 정도의 여유 공간을 비워두기 위해서, 대부분의 운영체제들은 여유 공간에 관련된 &lt;strong&gt;최댓값(high watermark, HW)&lt;/strong&gt;과 &lt;strong&gt;최솟값(low watermark, LW)&lt;/strong&gt;을 설정하여 교체 알고리즘 작동에 활용한다.&lt;/li&gt;
+  &lt;li&gt;동작 방법은 다음과 같다.
+    &lt;ul&gt;
+      &lt;li&gt;운영체제가 공간의 크기가 최솟값보다 작아지면 여유 공간 확보를 담당하는 백그라운드 쓰레드가 실행된다.&lt;/li&gt;
+      &lt;li&gt;이 쓰레드는 여유 공간의 크기가 최댓값에 이를 때까지 페이지를 제거한다.&lt;/li&gt;
+      &lt;li&gt;이 백그라운드 쓰레드는 일반적으로 &lt;strong&gt;스왑 데몬(swap daemon)&lt;/strong&gt; 또는 &lt;strong&gt;페이지 데몬(page daemon)&lt;/strong&gt;이라고 불린다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;일시에 여러 개를 교체하면 성능 개선이 가능하다.
+    &lt;ul&gt;
+      &lt;li&gt;많은 시스템들은 다수의 페이지들을 &lt;strong&gt;클러스터(cluster)&lt;/strong&gt;나 &lt;strong&gt;그룹(group)&lt;/strong&gt;으로 묶어서 한번에 스왑 파티션에 저장함으로써 디스크의 효율을 높인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;17-요약&quot;&gt;1.7 요약&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템에 실제 존재하는 물리 메모리의 크기보다 더 많은 메모리를 사용하기 위한 개념을 소개하였다.&lt;/li&gt;
+  &lt;li&gt;메모리에 특정 페이지가 존재하는지를 알리기 위한 &lt;strong&gt;present bit&lt;/strong&gt;와 좀 더 복잡한 페이지 테이블 구조가 필요하다.&lt;/li&gt;
+  &lt;li&gt;운영체제는 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;를 처리하기 위해서 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;를 실행시킨다.
+    &lt;ul&gt;
+      &lt;li&gt;핸들러는 원하는 페이지를 디스크에서 메모리로 전송하기 ㅜ이해 메모리의 일부 페이지들을 먼저 교체하여 새롭게 스왑되서 들어올 페이지를 위한 공간을 만드는 조치를 취한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2-물리-메모리-크기의-극복-정책&quot;&gt;2. 물리 메모리 크기의 극복: 정책&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;빈 메모리 공간이 거의 없으면 일이 더 복잡해진다.&lt;/li&gt;
+  &lt;li&gt;그런 경우 운영체제는 &lt;strong&gt;메모리 압박(memory pressure)&lt;/strong&gt;을 해소하기 위해 다른 페이지들을 강제적으로 페이징 아웃(paging out)하여 활발히 사용 중인 페이지들을 위한 공간을 확보한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;내보낼(evict)&lt;/strong&gt; 페이지(또는 페이지들) 선택은 운영체제의 &lt;strong&gt;교체 정책(replacement policy)&lt;/strong&gt;안에 집약되어 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;21-캐시-관리&quot;&gt;2.1 캐시 관리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템의 전체 페이지들 중 일부분만이 메인 메모리에 유지된다는 것을 가정하면, 메인 메모리는 시스템의 가상 메모리 페이지를 가져다 놓기 위한 &lt;strong&gt;캐시&lt;/strong&gt;로 생각될 수 있다.&lt;/li&gt;
+  &lt;li&gt;이 캐시를 위한 교체 정책의 목표는 &lt;strong&gt;캐시 미스&lt;/strong&gt;의 횟수를 최소화하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;평균-메모리-접근-시간average-memory-access-time-amat&quot;&gt;평균 메모리 접근 시간(average memory access time, AMAT)&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;앞으로 나올 페이지 교체 정책을 평균 메모리 접근 시간을 통해서 비교할 것이다.&lt;/li&gt;
+  &lt;li&gt;캐시 히트와 미스의 횟수를 안다면 프로그램의 평균 메모리 접근 시간을 계산할 수 있다.&lt;/li&gt;
+  &lt;li&gt;AMAT 는 다음과 같은 식으로 계싼할 수가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;AMAT = Tm + (Pmiss * Td)&lt;/li&gt;
+      &lt;li&gt;Tm: 메모리 접근 비용&lt;/li&gt;
+      &lt;li&gt;Td: 디스크 접근 비용&lt;/li&gt;
+      &lt;li&gt;Pmiss: 캐시미스 확률(0.0~1.0)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;22-최적-교체-정책&quot;&gt;2.2 최적 교체 정책&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;교체 정책의 동작 방식을 잘 이해하기 위해서 &lt;strong&gt;최적&lt;/strong&gt; 교체 정책(The Optimal Replacement Policy)과 비교하는 것이 좋다.
+    &lt;ul&gt;
+      &lt;li&gt;최적 교체 정책은 미스를 최소화한다.&lt;/li&gt;
+      &lt;li&gt;가장 나중에 접근될 페이지를 교체하는 것이 최적이며, 가장 적은 횟수의 미스를 발생시킨다는 것이 증명되었다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 최적의 교체 정책의 흐름이다.
+    &lt;ul&gt;
+      &lt;li&gt;캐시는 처음에 비어 있는 상태로 시작하기 때문에 첫 세 번의 접근은 미스이다.&lt;/li&gt;
+      &lt;li&gt;이러한 종류의 미스는 &lt;strong&gt;최초 시작 미스(cold-start miss)&lt;/strong&gt; 또는 &lt;strong&gt;강제 미스(compulsory miss)&lt;/strong&gt;라고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;23-간단한-정책-fifo&quot;&gt;2.3 간단한 정책: FIFO&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;FIFO(먼저 들어온 것이 먼저 나간다, 선입선출) 교체 방식을 사용하였다.&lt;/li&gt;
+  &lt;li&gt;FIFO는 매우 구현하기 쉽다는 장점을 가진다.&lt;/li&gt;
+  &lt;li&gt;최적의 경우와 비교하면 FIFO는 눈에 띄게 성능이 안좋다.&lt;/li&gt;
+  &lt;li&gt;FIFO는 블럭들의 중요도를 판단할 수가 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 FIFO 정책의 흐름&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;24-또-다른-간단한-정책-무작위-선택&quot;&gt;2.4 또 다른 간단한 정책: 무작위 선택&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;또 다른 유사한 교체 정책은 무작위 방식이다.&lt;/li&gt;
+  &lt;li&gt;메모리 압박이 있을 때 페이지를 무작위로 선택하여 교체한다.&lt;/li&gt;
+  &lt;li&gt;때로는 매우 좋은 성능을 보이며 때로는 최악의 성능을 보여준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 무작위 선택 정책의 흐름&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;25-과거-정보의-사용-lru&quot;&gt;2.5 과거 정보의 사용: LRU&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;불행하게도 FIFO 또는 무작위 선택 방식처럼 단순한 정책들은 중요한 페이지들을 혹은 바로 다시 참조하게 될 것들을 내보낼 수 있다는 비슷한 문제를 겪는다.&lt;/li&gt;
+  &lt;li&gt;스케줄링 정책에서와 같이 미래에 대한 예측을 위해서 과거 사용 이력을 활용한 기법이다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 교체 정책이 활용할 수 있는 과거 정보 중 하나는 &lt;strong&gt;빈도수(frequency)&lt;/strong&gt;이다.&lt;/li&gt;
+      &lt;li&gt;좀 더 자주 사용되는 페이지의 특징은 접근의 &lt;strong&gt;최근성(recency)&lt;/strong&gt;이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이러한 류의 정책은 &lt;strong&gt;지역성의 원칙(principle of locality)&lt;/strong&gt;라고 부르는 특성에 기반을 둔다.&lt;/li&gt;
+  &lt;li&gt;그리하여 과거 이력에 기반한 교체 알고리즘 부류가 탄생하게 되었다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Least-Frequently-Used(LFU)&lt;/strong&gt; 정책은 가장 적은 빈도로 사용된 페이지를 교체한다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Least-Recently-Used(LRU)&lt;/strong&gt; 정책은 가장 오래 전에 사용된 페이지를 교체한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_5.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 LRU 정책의 흐름이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;26-워크로드에-따른-성능-비교&quot;&gt;2.6 워크로드에 따른 성능 비교&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_6.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 지역성이 없는 워크로드&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_7.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 그림은 지역성(80대20) 워크로드&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;지역성의 여부에 따라 워크로드의 효율성이 차이가 난다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;특히 LRU나 FIFO는 “순차 반복” 워크로드에서 거의 최악의 효율을 보여준다.&lt;/li&gt;
+      &lt;li&gt;순차반복: 0,1,2 ~ 50 -&amp;gt; 0,1,2 ~ 50…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_8.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 순환 형 워크로드이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;27-과거-이력-기반-알고리즘의-구현&quot;&gt;2.7 과거 이력 기반 알고리즘의 구현&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 효율이 나빠지는 문제들을 해결하기 위한 방법은 약간의 하드웨어 지원을 받는 것이다.&lt;/li&gt;
+  &lt;li&gt;예를들어 페이지 접근이 있을 때마다 하드웨어가 메모리의 시간 필드를 갱신하도록 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;28-lru-정책-근사하기&quot;&gt;2.8 LRU 정책 근사하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;LRU는 가장 오래 전에 사용된 페이지를 탐색하는데 많은 비용을 사용한다.&lt;/li&gt;
+  &lt;li&gt;그렇기 때문에 LRU를 “근사” 하는 식으로 만들면 구현이 훨씬 쉬워진다.&lt;/li&gt;
+  &lt;li&gt;이 개념에는 &lt;strong&gt;use bit&lt;/strong&gt;(때로는 &lt;strong&gt;reference bit&lt;/strong&gt; 라고도 불린다)라고 하는 약간의 하드웨어 지원이 필요하다.&lt;/li&gt;
+  &lt;li&gt;페이지가 참조될 때마다(즉, 읽히거나 기록되면) 하드웨어에 의해서 use bit가 1로 설정된다.
+    &lt;ul&gt;
+      &lt;li&gt;하드웨어는 이 비트를 절대로 지우지 않는다.&lt;/li&gt;
+      &lt;li&gt;0으로 바꾸는 것은 운영체제의 몫이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제가 LRU에 가깝게 구현하기 위해서 use bit를 활용하는 방법은 &lt;strong&gt;시계 알고리즘(clock algorithm)&lt;/strong&gt;이다.
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 현재 바늘이 가리키고 있는 페이지 P의 use bit가 1인지 0인지 검사한다.&lt;/li&gt;
+      &lt;li&gt;만약 1이라면 페이지 P는 최근에 사요되었으며 바람직한 교체 대상이 아니라는 것을 뜻한다.&lt;/li&gt;
+      &lt;li&gt;P의 use bit은 0으로 설정되고 시계 바늘은 다음 페이지 P+1로 이동한다.&lt;/li&gt;
+      &lt;li&gt;알고리즘은 use bit가 0으로 설정되어 있는, 즉 최근에 사용된 적이 없는, 페이지를 찾을 때까지 반복된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;29-갱신된-페이지dirty-page의-고려&quot;&gt;2.9 갱신된 페이지(Dirty Page)의 고려&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제가 교체 대상을 선택할 때 메모리에 탑재된 이후에 변경되었는지를 추가적으로 고려하는 것이다.&lt;/li&gt;
+  &lt;li&gt;어떤 페이지가 &lt;strong&gt;변경(modified)&lt;/strong&gt;되어 &lt;strong&gt;더티(dirty)&lt;/strong&gt; 상태가 되었다면, 그 페이지를 내보내기 위해서는 디스크에 변경 내용을 기록해야 하기 때문에 비싼 비용을 지불해야한다.
+    &lt;ul&gt;
+      &lt;li&gt;VM 시스템들은 더티 페이지 대신 깨끗한 페이지를 내보내는 것을 선호한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이와 같은 동작을 지원하기 위해서 하드웨어는 &lt;strong&gt;modified bit(더티 비트)&lt;/strong&gt;를 포함해야 한다.&lt;/li&gt;
+  &lt;li&gt;예를들어, 시계 알고리즘은 교체 대상을 선택할 때 사용되지 않은 상태이고 깨끗한, 두 조건을 모두 만족하는 페이지를 먼저 찾도록 수정된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;210-다른-vm-정책들&quot;&gt;2.10 다른 VM 정책들&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;페이지 선택&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 언제 페이지를 메모리로 불러들일지 결정해야한다.&lt;/li&gt;
+      &lt;li&gt;이러한 정책을 &lt;strong&gt;페이지 선택(page selection)&lt;/strong&gt; 정책이라고 불린다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;요구 페이징(demanding paging)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 대부분의 페이지를 읽어 들일 때 요구 페이징 정책을 사용한다.&lt;/li&gt;
+      &lt;li&gt;이 정책은 말 그대로 “요청된 후 즉시”, 즉 페이지가 실제로 접근될 때 운영체제가 해당 페이지를 메모리로 읽어 들인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;운영체제가 변경된 페이지를 디스크에 반영하는 데 관련된 방식의 정책
+    &lt;ul&gt;
+      &lt;li&gt;많은 시스템은 기록해야 할 페이지들을 메모리에 모은 후, 한번에 (더 효율적으로) 디스크에 기록한다.&lt;/li&gt;
+      &lt;li&gt;위와 같은 동작을 &lt;strong&gt;클러스터링(clustering)&lt;/strong&gt; 또는 단순하게 &lt;strong&gt;쓰기 모으기(grouping of writes)&lt;/strong&gt;라고 부른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;211-쓰래싱thrashing&quot;&gt;2.11 쓰래싱(Thrashing)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템이 끊임없이 페이징을 할 수 밖에 없는 상황을 &lt;strong&gt;쓰래싱(thrashing)&lt;/strong&gt;이라고 부른다.&lt;/li&gt;
+  &lt;li&gt;쓰래싱 해결 기법
+    &lt;ul&gt;
+      &lt;li&gt;다수의 프로세스가 존재할 때, 일부 프로세스의 실행을 중지시킨다.&lt;/li&gt;
+      &lt;li&gt;메모리 요구가 초과되면 &lt;strong&gt;메모리 부족 킬러(out-of-memory killer)&lt;/strong&gt;를 실행시켜 많은 메모리를 요구하는 프로세스를 골라 죽인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 08</summary></entry><entry><title type="html">[백준/Python] 16916 부분 문자열(문자열)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/" rel="alternate" type="text/html" title="[백준/Python] 16916 부분 문자열(문자열)" /><published>2022-05-28T00:00:00+09:00</published><updated>2022-05-28T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;수학-16916-부분-문자열&quot;&gt;수학 16916 부분 문자열&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/16916&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
@@ -1260,129 +1260,4 @@
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 43</summary></entry><entry><title type="html">[백준/Python] 2193 이친수(DP)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_42/" rel="alternate" type="text/html" title="[백준/Python] 2193 이친수(DP)" /><published>2022-05-27T00:00:00+09:00</published><updated>2022-05-27T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_42</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_42/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
-
-&lt;h2 id=&quot;dp-2193-이친수&quot;&gt;DP 2193 이친수&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2193&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
-
-&lt;p&gt;0과 1로만 이루어진 수를 이진수라 한다. 이러한 이진수 중 특별한 성질을 갖는 것들이 있는데, 이들을 이친수(pinary number)라 한다. 이친수는 다음의 성질을 만족한다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;이친수는 0으로 시작하지 않는다.&lt;/li&gt;
-  &lt;li&gt;이친수에서는 1이 두 번 연속으로 나타나지 않는다. 즉, 11을 부분 문자열로 갖지 않는다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;예를 들면 1, 10, 100, 101, 1000, 1001 등이 이친수가 된다. 하지만 0010101이나 101101은 각각 1, 2번 규칙에 위배되므로 이친수가 아니다.&lt;/p&gt;
-
-&lt;p&gt;N(1 ≤ N ≤ 90)이 주어졌을 때, N자리 이친수의 개수를 구하는 프로그램을 작성하시오.&lt;/p&gt;
-
-&lt;h2 id=&quot;입력&quot;&gt;입력&lt;/h2&gt;
-
-&lt;p&gt;첫째 줄에 N이 주어진다.&lt;/p&gt;
-
-&lt;h2 id=&quot;예제-입력&quot;&gt;예제 입력&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
-    case 1:
-    입력
-    3
-    출력
-    2
-
-    case 2:
-    입력
-    6
-    출력
-    8
-    &quot;&quot;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
-
-&lt;p&gt;DP 문제로 해당 문제의 규칙을 찾고 점화식을 세운 뒤 해당 점화식으로 코드를 작성하면 된다. 우선 규칙을 찾기 위해 약간의 노가다를 해보면 다음과 같은 규칙을 찾게 된다.&lt;/p&gt;
-
-&lt;p&gt;규칙 :&lt;/p&gt;
-
-&lt;p&gt;1 -&amp;gt; 1개&lt;br /&gt;
-2 -&amp;gt; 1개&lt;br /&gt;
-3 -&amp;gt; 2개&lt;br /&gt;
-4 -&amp;gt; 3개(1 + 2)&lt;br /&gt;
-5 -&amp;gt; 5개(2 + 3)&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;점화식 : f(n) = f(n-1) + f(n-2)&lt;/p&gt;
-
-&lt;p&gt;결국 피보나치수열과 같은 규칙이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 42</summary></entry><entry><title type="html">[백준/Python] 1912 연속합(DP)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_41/" rel="alternate" type="text/html" title="[백준/Python] 1912 연속합(DP)" /><published>2022-05-27T00:00:00+09:00</published><updated>2022-05-27T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_41</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_41/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
-
-&lt;h2 id=&quot;dp-1912-연속합&quot;&gt;DP 1912 연속합&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/1912&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
-
-&lt;p&gt;n개의 정수로 이루어진 임의의 수열이 주어진다. 우리는 이 중 연속된 몇 개의 수를 선택해서 구할 수 있는 합 중 가장 큰 합을 구하려고 한다. 단, 수는 한 개 이상 선택해야 한다.&lt;/p&gt;
-
-&lt;p&gt;예를 들어서 10, -4, 3, 1, 5, 6, -35, 12, 21, -1 이라는 수열이 주어졌다고 하자. 여기서 정답은 12+21인 33이 정답이 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;입력&quot;&gt;입력&lt;/h2&gt;
-
-&lt;p&gt;첫째 줄에 정수 n(1 ≤ n ≤ 100,000)이 주어지고 둘째 줄에는 n개의 정수로 이루어진 수열이 주어진다. 수는 -1,000보다 크거나 같고, 1,000보다 작거나 같은 정수이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;예제-입력&quot;&gt;예제 입력&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
-    case 1:
-    입력
-    10
-    2 1 -4 3 4 -4 6 5 -5 1
-    출력
-    14
-
-    case 2:
-    입력
-    5
-    -1 -2 -3 -4 -5
-    출력
-    -1
-    &quot;&quot;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
-
-&lt;p&gt;메모이제이션을 사용하여 문제를 해결한다. max_v(최대 값을 저장할 변수), dp&lt;a href=&quot;dp 테이블의 첫번째 값&quot;&gt;0&lt;/a&gt; 둘 모두 array[0]으로 초기화한다. 이후 1부터 n까지 반복문을 순회하며
-dp테이블을 업데이트 하는데, 이전 dp 테이블 값과 현재 array의 값을 더한 값과 현재 array의 값을 비교해서 더 큰 값으로 dp값을 업데이트해준다.&lt;/p&gt;
-
-&lt;p&gt;array[i] 와 array[i]+dp[i-1] 을 비교하는 이유는, 음수를 만나도 그 다음 값이 훨씬 큰 양수면 음수를 이어서 더하는 것이 더 큰 값을 가지기 때문이다. 예를 들면, 10 -1 2000 이라면 이 세개의 숫자를 모두 이어서 더해야한다.
-하지만, 음수를 더하지 않을 경우는 음수를 더한 뒤에 만나는 array의 현재 값보다 더한 값이 작아지면 음수를 더할 필요가 없기 때문에 현재 해당 array값 부터 다시 이어서 더하기 시작한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;max_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;max_v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max_v&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()))&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 41</summary></entry></feed>
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 43</summary></entry></feed>

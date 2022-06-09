@@ -1,7 +1,7 @@
 ---
 layout: single
 
-title: "[OSTEP] 프로세스 API 구현"
+title: "[OSTEP] CPU 가상화 - 프로세스 API 구현"
 excerpt: "fork, wait, exec 함수에 대하여"
 
 author_profile: true # 왼쪽부분 프로필을 띄울건지
