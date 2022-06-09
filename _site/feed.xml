@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-09T18:42:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)</title><link href="http://localhost:4000/ostep/ostep_07/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_07</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_07/">&lt;h1 id=&quot;1-페이징-더-빠른-변환tlb&quot;&gt;1. 페이징: 더 빠른 변환(TLB)&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-09T18:45:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)</title><link href="http://localhost:4000/ostep/ostep_07/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_07</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_07/">&lt;h1 id=&quot;1-페이징-더-빠른-변환tlb&quot;&gt;1. 페이징: 더 빠른 변환(TLB)&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;페이징은 주소 공간을 작은 크기(페이지)로 나누고 각 페이지의 실제 위치(매핑 정보)를 메모리에 저장한다. 매핑 정보를 저장하는 자료 구조를 페이지 테이블이라 한다.&lt;/li&gt;
   &lt;li&gt;페이징은 성능 저하를 유발할 수 있다.
@@ -325,6 +325,25 @@
       &lt;li&gt;복잡도&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;24-역-페이지-테이블&quot;&gt;2.4 역 페이지 테이블&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;획기적인 공간 절약 방법으로 &lt;strong&gt;역 페이지 테이블(inverted page table)&lt;/strong&gt;이 있다.&lt;/li&gt;
+  &lt;li&gt;시스템에 단 하나의 페이지 테이블만 둔다.&lt;/li&gt;
+  &lt;li&gt;페이지 테이블은 물리 페이지를 가상 주소 상의 페이지로 변환한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;25-페이지-테이블을-디스크로-스와핑하기&quot;&gt;2.5 페이지 테이블을 디스크로 스와핑하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;어떤 시스템들은 페이지 테이블들을 &lt;strong&gt;커널 가상 메모리&lt;/strong&gt;에 위치시키고, 메모리가 부족할 경우 페이지 테이블들을 디스크로 &lt;strong&gt;스왑(swap)&lt;/strong&gt;한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;26-요약&quot;&gt;2.6 요약&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;테이블을 위한 자료 구조에는 시간과 공간이라는 모순적 선택 사항이 존재한다.&lt;/li&gt;
+  &lt;li&gt;공간을 많이 소모하는 테이블 구조를 사용할 수록 TLB미스의 처리속도가 빨라진다.&lt;/li&gt;
+  &lt;li&gt;공간을 작게 차지한는 테이블 구조를 사용하면 상황은 반대가 된다.&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 07</summary></entry><entry><title type="html">[백준/Python] 1316 그룹 단어 체커(문자열)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_48/" rel="alternate" type="text/html" title="[백준/Python] 1316 그룹 단어 체커(문자열)" /><published>2022-05-28T00:00:00+09:00</published><updated>2022-05-28T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_48</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_48/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;문자열-1316-그룹-단어-체커&quot;&gt;문자열 1316 그룹 단어 체커&lt;/h2&gt;
