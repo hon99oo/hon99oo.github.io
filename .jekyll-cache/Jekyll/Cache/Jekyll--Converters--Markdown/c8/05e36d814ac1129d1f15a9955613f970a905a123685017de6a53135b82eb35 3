@@ -1,0 +1,71 @@
+I"X<h1 id="boj">BOJ</h1>
+
+<h2 id="이진-탐색-16401-과자-나눠주기">이진 탐색 16401 과자 나눠주기</h2>
+<p><a href="https://www.acmicpc.net/problem/16401">문제로 이동!</a></p>
+
+<h2 id="문제">문제</h2>
+
+<p>명절이 되면, 홍익이 집에는 조카들이 놀러 온다. 떼를 쓰는 조카들을 달래기 위해 홍익이는 막대 과자를 하나씩 나눠준다.</p>
+
+<p>조카들이 과자를 먹는 동안은 떼를 쓰지 않기 때문에, 홍익이는 조카들에게 최대한 긴 과자를 나눠주려고 한다.</p>
+
+<p>그런데 나눠준 과자의 길이가 하나라도 다르면 조카끼리 싸움이 일어난다. 따라서 반드시 모든 조카에게 같은 길이의 막대 과자를 나눠주어야 한다.</p>
+
+<p>M명의 조카가 있고 N개의 과자가 있을 때, 조카 1명에게 줄 수 있는 막대 과자의 최대 길이를 구하라.</p>
+
+<p>단, 막대 과자는 길이와 상관없이 여러 조각으로 나눠질 수 있지만, 과자를 하나로 합칠 수는 없다. 단, 막대 과자의 길이는 양의 정수여야 한다.</p>
+
+<h2 id="입력">입력</h2>
+
+<p>첫째 줄에 조카의 수 M (1 ≤ M ≤ 1,000,000), 과자의 수 N (1 ≤ N ≤ 1,000,000)이 주어진다.</p>
+
+<p>둘째 줄에 과자 N개의 길이 L1, L2, …, LN이 공백으로 구분되어 주어진다. 과자의 길이는 (1 ≤ L1, L2, …, LN ≤ 1,000,000,000) 를 만족한다.</p>
+
+<h2 id="예제-입력">예제 입력</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="s">"""
+    case 1:
+    입력
+    3 10
+    1 2 3 4 5 6 7 8 9 10
+    출력
+    8
+
+    case 2:
+    입력
+    4 3
+    10 10 15
+    출력
+    7
+    """</span></code></pre></figure>
+
+<h2 id="풀이">풀이</h2>
+
+<blockquote>
+  <p>파라메트릭 서치(parametric search)를 사용해서 풀었다. mid 값을 조사하고 답이 되지 않는다면 그 이하 또는 이상은 답이 되지 않는다고 판단하는 방법이다.
+mid 값에서 과자를 나눠줄 수 있는 경우의 수를 구한 뒤 target과 비교하고 mid 값을 조절해준다. mid값과 target이 같아 진다면 answer에 저장해둔 뒤 mid값을 또 조사해 최적의 answer를 탐색한다.</p>
+</blockquote>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">upper_bound</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">sum_v</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">//</span><span class="n">mid</span><span class="p">,</span> <span class="n">array</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">sum_v</span> <span class="o">&gt;=</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">mid</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">end</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">result</span>
+    
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">array</span><span class="p">),</span><span class="n">n</span><span class="p">))</span></code></pre></figure>
+:ET
