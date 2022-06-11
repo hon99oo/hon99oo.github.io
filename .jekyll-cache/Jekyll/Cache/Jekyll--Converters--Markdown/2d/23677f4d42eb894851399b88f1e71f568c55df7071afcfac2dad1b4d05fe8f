@@ -1,0 +1,161 @@
+I"a3<h1 id="1-컨디션-변수">1. 컨디션 변수</h1>
+<ul>
+  <li>“락” 이외에도 병행 프로그램을 제작할 수 있는 다른 기법들이 존재한다.</li>
+  <li>쓰레드가 실행을 계속하기 전에, 특정 <strong>조건</strong>의 만족여부를 검사해야 하는 경우가 많이 있다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="k">volatile</span> <span class="kt">int</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  
+    <span class="kt">void</span> <span class="o">*</span><span class="nf">child</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"child</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"parent: begin</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">pthread_t</span> <span class="n">c</span><span class="p">;</span>
+        <span class="n">pthread_Create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">done</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// spin-wait</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"parent: end</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>위의 코드는 공유 변수를 사용한다.
+    <ul>
+      <li>while 문을 돌며 공유 변수가 변경될 때까지 기다린다.</li>
+      <li>이 방법은 제대로 동작하지만 부모 쓰레드가 회전을 하면서 CPU 시간을 낭비하기 때문에 비효율적이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="11-컨디션-변수의-개념과-관련-루틴">1.1 컨디션 변수의 개념과 관련 루틴</h2>
+<ul>
+  <li>쓰레드 실행시, 특정 조건이 만족될 때까지의 대기를 위해 <strong>컨디션 변수(conditional variable)</strong>라고 불리는 개념을 사용할 수 있다.</li>
+  <li>컨디션 변수는 일종의 큐 자료 구조다.</li>
+  <li>컨디션 변수는 쓰레드 실행에서 어떤 상태(또는 어떤 <strong>조건</strong>)가 원하는 것과 다를 때 조건이 만족되기를 <strong>대기</strong>하는 큐이다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">pthread_mutex_t</span> <span class="n">m</span> <span class="o">=</span> <span class="n">PTHREAD_MUTEX_INITIALIZER</span><span class="p">;</span>
+    <span class="n">pthread_cond_t</span> <span class="n">c</span> <span class="o">=</span> <span class="n">PTHREAD_COND_INITIALIZER</span><span class="p">;</span>
+    
+    <span class="kt">void</span> <span class="nf">thr_exit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">pthread_cond_signal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">);</span>
+        <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="o">*</span><span class="nf">child</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"child</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">thr_exit</span><span class="p">();</span>
+        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="nf">thr_join</span><span class="p">(){</span>
+        <span class="n">pthread_mutex_lock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">done</span> <span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">pthread_cond_wait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">c</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+        <span class="n">pthread_mutex_unlock</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"parent: begin</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">pthread_t</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+        <span class="n">thr_join</span><span class="p">();</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"parent: end</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>wait()는 mutex를 인자로 받으며 wait()가 호출될 때 mutex는 잠겨있다고 가정한다.</li>
+  <li>wait()는 mutex를 해제하고 호출한 쓰레드를 재운다.</li>
+  <li>다른 쓰레드가 시그널을 보내어 대기중인 쓰레드가 슬립(sleep) 상태에서 깨어나면, wait()에서 리턴하기 전에 반드시 락을 재획득해야 한다.
+    <blockquote>
+      <p>“슬립에서 깨어난 프로세스는 리턴하기전에 락을 재획득해야한다.” &lt;- 중요한 문장이다.</p>
+    </blockquote>
+  </li>
+  <li>pthread_cond_wait(&amp;c, &amp;m) &lt;- 함수의 호출을 통하여, 부모쓰레드는 자신의 상태를 대기로 변경함과 동시에 획득했던 락을 반납한다.</li>
+  <li>wait()에서 리턴 시, 부모 쓰레드는 락을 보유한 상태가 된다.</li>
+  <li>잠자고, 깨우고, 락을 설정하는 것이 done 이라는 상태 변수를 중심으로 구현되어 있다.</li>
+</ul>
+
+<h2 id="12-생산자소비자유한-버퍼-문제">1.2 생산자/소비자(유한 버퍼) 문제</h2>
+<ul>
+  <li>Dijkstra가 처음 제시한 <strong>생산자/소비자(producer/consumer)</strong> 문제를 살펴볼 것이다.
+    <ul>
+      <li>락이나 컨디션 변수를 대신하여 사용할 수 있는 일반화된 세마포어를 발명하게 된 이유가 이 생산자/소비자 문제 때문이다.
+        <blockquote>
+          <p>생산자/소비자란, 다수의 생산자 쓰레드와 소비자 쓰레드가 있다고 하자. 생산자는 데이터를 만들어 버퍼에 넣고, 소비자는 버퍼에서 데이터를 꺼내어 사용한다.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li>유한 버퍼는 공유 자원이다. 경쟁 조건의 발생을 방지하기 위해 동기화가 필요하다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  
+    <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="nf">get</span><span class="p">(){</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">buffer</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<h3 id="불완전한-해답">불완전한 해답</h3>
+<ul>
+  <li>put()과 get() 루틴에는 임계 영역이 존재한다.
+    <ul>
+      <li>put()은 버퍼에 내용을 기록하고, get()은 버퍼에 있는 내용을 읽는다.</li>
+    </ul>
+  </li>
+  <li>임계 영역을 락으로 보호하는 것만으로는 제대로 동작하지 않는다. 추가적인 장치가 필요하다. 추가적인 장치가 컨디션 변수이다.</li>
+  <li>if문을 사용해서 어느정도 문제를 해결할 수 있지만, 여전히 문제가 존재한다.
+    <ul>
+      <li>쓰레드가 대기 상태에서 깨어나는 시점과 이 쓰레드가 실제로 실행되는 시점사이에 시차가 존재한다.
+        <ul>
+          <li>이 기간동안 버퍼 상태가 변경될 수 있다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>위의 문제를 해결하기 위해 깨어난 쓰레드가 실제 실행되는 시점에는 시그널을 받았떤 시점의 상태가 그대로 유지되어있는지를 다시 체크해야 한다.
+    <ul>
+      <li>이런 식의 시그널을 정의하는 것을 <strong>Mesa semantic</strong>이라 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="개선된-하지만-아직도-불완전한-if-문-대신-while-문">개선된, 하지만 아직도 불완전한: if 문 대신 while 문</h3>
+<ul>
+  <li>간단하게 해결하기 위해서는 if 문을 while 문으로 바꾸면 된다.
+    <ul>
+      <li>if문은 처음만 조건을 계산한 이후 if문을 탈출하지만, while 문은 조건을 계속 계산해서 조건에 부합하지 않을 때 while문을 탈출한다.</li>
+    </ul>
+  </li>
+  <li>while문을 사용해서 어느정도 문제를 해결할 수 있지만, 여전히 문제가 존재한다.
+    <ul>
+      <li>여러 쓰레드가 존재할 때 깨워야할 쓰레드가 아닌 다른 쓰레드를 깨우게 되면 모두 대기 상태로 빠질 수도 있다.</li>
+      <li>시그널을 받는 대상을 명시하는 것이 실질적으로 가능하지 않다. 우리가 원하는 것은 소비자는 생산자만을, 생산자는 소비자만을 깨우는 것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="단일-버퍼-생산자소비자-해법">단일 버퍼 생산자/소비자 해법</h3>
+
+<ul>
+  <li>두 개의 컨디션 변수를 사용하면 된다.</li>
+  <li>생산자 쓰레드가 empty 조건 변수에서 대기하고 fill에 대해서 시그널을 발생한다.</li>
+  <li>정반대로 소비자 쓰레드는 fill 에 대해서 대기하고 empty에 대해서 시그널을 발생시킨다.</li>
+</ul>
+:ET
