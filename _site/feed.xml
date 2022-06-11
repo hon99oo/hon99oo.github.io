@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-11T11:40:23+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 병행성 - 개요</title><link href="http://localhost:4000/ostep/ostep_09/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 개요" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_09</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_09/">&lt;h1 id=&quot;1-병행성-개요&quot;&gt;1. 병행성: 개요&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-06-11T12:04:00+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">홍구의 개발 블로그</title><subtitle>본격적인 개발 블로그를 시작해볼까!</subtitle><author><name>honggoo</name></author><entry><title type="html">[OSTEP] 병행성 - 락</title><link href="http://localhost:4000/ostep/ostep_10/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 락" /><published>2022-06-10T00:00:00+09:00</published><updated>2022-06-10T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_10</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_10/">&lt;h1 id=&quot;1-락&quot;&gt;1. 락&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;여러 개의 명령어들을 원자적으로 실행해보고 싶지만 단일 프로세서의 인터럽트로 인해서(또는 멀티 쓰레드를 여러 프로세서에 병행성하려고 해서) 그렇게 할 수가 없었다.&lt;/li&gt;
+  &lt;li&gt;프로그래머들은 소스 코드의 임계 영역을 &lt;strong&gt;락(lock)&lt;/strong&gt;으로 둘러서 그 임계 영역이 마치 하나의 원자 단위 명령어인 것처럼 실행되도록 한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 10</summary></entry><entry><title type="html">[OSTEP] 병행성 - 개요</title><link href="http://localhost:4000/ostep/ostep_09/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 개요" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_09</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_09/">&lt;h1 id=&quot;1-병행성-개요&quot;&gt;1. 병행성: 개요&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;멀티 쓰레드 프로그램은 하나 이상의 실행 지점(독립적으로 불러 들여지고 실행될 수 있는 여러 개의 PC 값)을 가지고 있다.&lt;/li&gt;
   &lt;li&gt;멀티 쓰레드를 이해하는 다른 방법은 각 쓰레드가 프로세스와 매우 유사하지만, 차이가 있다면 쓰레드들은 주소 공간을 공유하기 때문에 동일한 값에 접근할 수 있다는 것이다.&lt;/li&gt;
@@ -141,252 +145,350 @@
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;우리가 대신 해야 할 일은 하드웨어 &lt;strong&gt;동기화 함수(synchronization primitives)&lt;/strong&gt; 구현에 필요한 몇 가지 유용한 명령어를 요청하는 것이다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 09</summary></entry><entry><title type="html">[OSTEP] 병행성 - 쓰레드 API 구현</title><link href="http://localhost:4000/ostep/ostep_thread_API/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 쓰레드 API 구현" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_thread_API</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_thread_API/">&lt;h1 id=&quot;1-쓰레드-api&quot;&gt;1. 쓰레드 API&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 09</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)</title><link href="http://localhost:4000/ostep/ostep_08/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_08</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_08/">&lt;h1 id=&quot;1-물리-메모리-크기의-극복-메커니즘&quot;&gt;1. 물리 메모리 크기의 극복: 메커니즘&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;쓰레드 API의 주요 부분을 간략하게 사용해보고 결과를 확인해볼 것이다.&lt;/li&gt;
-  &lt;li&gt;생성, 종료, 락 세가지에 대해서 사용해 볼 것이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;11-쓰레드-생성&quot;&gt;1.1 쓰레드 생성&lt;/h2&gt;
-
-&lt;h3 id=&quot;쓰레드-생성&quot;&gt;쓰레드 생성&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
-&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-        
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 코드는 쓰레드를 생성하는 코드이다. 하지만, 실행했을 때 args가 출력되지 않는 것을 볼 수 있다.
+  &lt;li&gt;큰 주소 공간을 지원하기 위해서 운영체제는 주소 공간 중에 현재는 크게 필요하지 않은 일부를 보관해 둘 공간이 필요하다.
     &lt;ul&gt;
-      &lt;li&gt;이 이유는 쓰레드가 생성했지만, 쓰레드 실행 전에 메인 쓰레드인 main() 문이 종료되었기 때문이다.&lt;/li&gt;
+      &lt;li&gt;현대 시스템에서는 보통 &lt;strong&gt;하드 디스크 드라이브&lt;/strong&gt;가 이 역할을 담당한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;왜 프로세스에게 굳이 “큰” 주소 공간을 제공해야하는가이다.
+    &lt;ul&gt;
+      &lt;li&gt;이에 대한 답은 다시 한번 편리함과 사용 용이성이다.&lt;/li&gt;
+      &lt;li&gt;주소 공간이 충분히 크면, 프로그램의 자료 구조들을 위한 충분한 메모리 공간이 있는지 걱정핮 ㅣ않아도 된다.&lt;/li&gt;
+      &lt;li&gt;필요 시 메모리 할당을 운영체제에게 요청하기만 하면 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;스왑 공간이 추가되면 운영체제는 실행되는 각 프로세스들에게 큰 가상 메모리가 있는 것 같은 환상을 줄 수 있다.&lt;/li&gt;
+  &lt;li&gt;멀티프로그래밍 시스템이 발명되면서 많은 프로세스들의 페이지를 물리 메모리에 전부 저장하는 것이 불가능하게 되었다.
+    &lt;ul&gt;
+      &lt;li&gt;그래서 일부 페이지들을 스왑 아웃하는 기능이 필요하게 되었다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;12-쓰레드-종료&quot;&gt;1.2 쓰레드 종료&lt;/h2&gt;
-
-&lt;h3 id=&quot;쓰레드-종료-기다리기&quot;&gt;쓰레드 종료 기다리기&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
-&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-        
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_1.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
+&lt;h2 id=&quot;11-스왑-공간&quot;&gt;1.1 스왑 공간&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;pthread_join 문을 추가하여 부모 쓰레드인 main에게 자식 쓰레드인 p가 종료할 때 까지 기다리라고 지시했다.
+  &lt;li&gt;디스크에 페이지들을 저장할 수 있는 일정 공간을 확보하는 것이다.
     &lt;ul&gt;
-      &lt;li&gt;결과는 args인 10과 20이 잘 출력되는 모습을 볼 수 있다.&lt;/li&gt;
+      &lt;li&gt;이 용도의 공간을 &lt;strong&gt;스왑 공간(swap space)&lt;/strong&gt;라고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;운영체제는 스왑 공간에 있는 모든 페이지들의 &lt;strong&gt;디스크 주소&lt;/strong&gt;를 기억해야 한다.&lt;/li&gt;
+  &lt;li&gt;스왑 공간의 크기는 매우 중요하다.
+    &lt;ul&gt;
+      &lt;li&gt;시스템이 사용할 수 있는 메모리 페이지의 최대수를 결정하기 때문이다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;쓰레드에게-간단한-인자-전달하기&quot;&gt;쓰레드에게 간단한 인자 전달하기&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
-&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myret_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;returned %lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;위의 코드는 쓰레드에게 간단한 인자를 전달하는 코드이다.
+  &lt;li&gt;위의 긞은 물리 메모리와 스왑 공간이다.
     &lt;ul&gt;
-      &lt;li&gt;결과로 100이 출력되고 101이 잘 리턴 된 것을 볼 수 있다.&lt;/li&gt;
+      &lt;li&gt;Proc3은 사용되고 있지 않다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;쓰레드에게-간단한-인자-전달하기잘못된-방법&quot;&gt;쓰레드에게 간단한 인자 전달하기(잘못된 방법)&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
-&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myret_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;myret_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;returned %lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
+&lt;h2 id=&quot;12-present-bit&quot;&gt;1.2 Present Bit&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;위의 코드에서는 리턴되는 값을 스택에 할당했기 때문에 에러가 발생하는 것을 볼 수 있다.
+  &lt;li&gt;메모리가 참조되는 과정
+    &lt;ol&gt;
+      &lt;li&gt;프로세스가 가상 메모리 참조를 생성한다(명령어 탑재나 데이터 접근등).&lt;/li&gt;
+      &lt;li&gt;하드웨어는 메모리에서 원하는 데이터를 가져오기 전에, 우선 가상 주소를 물리 주소로 변환한다.&lt;/li&gt;
+      &lt;li&gt;TLB Hit 하면 TLB에서 물리 주소를 얻은 후에 메모리로 가져온다.&lt;/li&gt;
+      &lt;li&gt;TLB Miss 하면 하드웨어는 페이지 테이블의 메모리 주소를 파악하고(&lt;strong&gt;페이지 테이블 베이스 레지스터&lt;/strong&gt;를 사용), VPN을 인덱스로 하여 원하는 &lt;strong&gt;페이지 테이블 항목(PTE)&lt;/strong&gt;을 추출한다.&lt;/li&gt;
+      &lt;li&gt;해당 페이지 테이블 항목이 유효하고 관련 페이지가 물리 메모리에 존재한다면 하드웨어는 PTE에서 PFN 정보를 추출하고 그 정보를 TLB에 탑재한다.&lt;/li&gt;
+      &lt;li&gt;TLB 탑재 후 명령어를 재실행한다.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;페이지가 디스크로 스왑되는 것을 가능케 하려면, 많은 기법이 추가되어야 한다.
     &lt;ul&gt;
-      &lt;li&gt;스택에 할당되면 해당 값은 쓰레드가 리턴할 때 자동적으로 해제된다.&lt;/li&gt;
-      &lt;li&gt;해제된 변수를 가리키는 포인터를 반환하는 것은 좋지 않은 결과를 가져온다.&lt;/li&gt;
+      &lt;li&gt;하드웨어가 PTE에서 해당 페이지가 물리 메모리에 존재하지 않는다는 것을 표현 해야 한다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;present bit&lt;/strong&gt;을 사용하여 각 페이지 테이블 항목에 어떤 페이지가 존재하는지를 표현한다.&lt;/li&gt;
+      &lt;li&gt;present bit이 1로 설정 되어 있다면, 물리 메모리에 해당 페이지가 존재한다.&lt;/li&gt;
+      &lt;li&gt;present bit이 0으로 설저오디어 있다면, 물리 메모리에 존재하지 않고 디스크에 존재한다는 것을 나타낸다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;물리 메모리에 존재하지 않는 페이지를 접근하는 행위를 일반적으로 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;라 한다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 폴트가 발생하면, 페이지 폴트를 처리하기 위해 운영체제로 제어권이 넘어가 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;가 실행된다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;13-락&quot;&gt;1.3 락&lt;/h2&gt;
-
-&lt;h3 id=&quot;락이-없는-코드의-문제점&quot;&gt;락이 없는 코드의 문제점&lt;/h3&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
-&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// mythread()&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 반복문을 사용하여 단순히 1씩 더하기&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 10,000,000을 변수 counter에 더하는 방법이 아니다.&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 하지만, 문제가 무엇인지 명확하게 해준다.&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: begin&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: done&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// main()&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 두 개의 쓰레드를 실행하고 (pthread_create)&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 대기한다 (pthread_join)&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: begin (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;B&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 종료할 수 있도록 대기 중인 쓰레드 병합하기&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: done with both (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
+&lt;h2 id=&quot;13-페이지-폴트&quot;&gt;1.3 페이지 폴트&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;위의 코드는 락이 없을 때 임계 영역에 두 쓰레드가 동시 접근을 하게 되어 예상한 결과값인 20000000이 나오지 않는 모습을 볼 수 있다.
+  &lt;li&gt;페이지 폴트가 발생하면 운영체제가 그 처리를 담당한다.
     &lt;ul&gt;
-      &lt;li&gt;예상한대로 코드를 실행시키기 위해 락을 추가하여 임계 영역을 보호해준다.&lt;/li&gt;
+      &lt;li&gt;운영체제의 &lt;strong&gt;페이지 폴트 핸들러&lt;/strong&gt;가 그 처리 메커니즘을 규정한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;만약 요청된 페이지가 메모리에 없고, 디스크로 스왑되었다면, 운영체제는 해당 페이지를 메모리로 스왑해 온다.
+    &lt;ul&gt;
+      &lt;li&gt;많은 시스템들에서 해당 정보를 페이지 테이블에 저장한다.&lt;/li&gt;
+      &lt;li&gt;페이지 폴트 발생 시, 운영체제는 페이지 테이블 항목에서 해당 페이지의 디스크 상 위치를 파악하여, 메모리로 탑재한다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;락을-사용한-코드&quot;&gt;락을 사용한 코드&lt;/h3&gt;
+&lt;h2 id=&quot;14-메모리에-빈-공간이-없으면&quot;&gt;1.4 메모리에 빈 공간이 없으면?&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리에 여유 공간이 없다면 탑재하고자 하는 새로운 페이지들을 위한 공간을 확보하기 위해 하나 또는 그 이상의 페이지들을 먼저 &lt;strong&gt;페이지 아웃(page out)&lt;/strong&gt;하려고 할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;교체(replace)&lt;/strong&gt; 페이지를 선택하는 것을 &lt;strong&gt;페이지 교체 정책(page-replacement policy)&lt;/strong&gt;이라고 한다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;assert.h&amp;gt;
-&lt;/span&gt;    
-    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;pthread_mutex_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// mythread()&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 반복문을 사용하여 단순히 1씩 더하기&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 10,000,000을 변수 counter에 더하는 방법이 아니다.&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 하지만, 문제가 무엇인지 명확하게 해준다.&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: begin&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_mutex_unlock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: done&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    
-    &lt;span class=&quot;c1&quot;&gt;// main()&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 두 개의 쓰레드를 실행하고 (pthread_create)&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 대기한다 (pthread_join)&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: begin (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pthread_mutex_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;B&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// 종료할 수 있도록 대기 중인 쓰레드 병합하기&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: done with both (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;15-페이지-폴트의-처리&quot;&gt;1.5 페이지 폴트의 처리&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_1.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;위의 코드는 락을 추가하여 임계 영역을 보호해주었다.
+  &lt;li&gt;위의 코드를 보면 TLB 미스 발생시, 세 가지의 중요한 경우가 있다는 것을 알 수 있다.
+    &lt;ol&gt;
+      &lt;li&gt;페이지가 &lt;strong&gt;존재&lt;/strong&gt;하며 &lt;strong&gt;유효&lt;/strong&gt;한 경우다.
+        &lt;ul&gt;
+          &lt;li&gt;TLB 미스 핸들러가 PTE에서 PFN을 가져와서 명령어를 재시도 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;페이지가 유효하지만 존재하지 않는 경우다.
+        &lt;ul&gt;
+          &lt;li&gt;페이지 폴트 핸들러가 반드시 실행되어야 한다.(물리 메모리에 존재하지 않고 디스크 상에 존재하는 경우다.)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;페이지가 유효하지 않는 경우다.
+        &lt;ul&gt;
+          &lt;li&gt;하드웨어는 이 무효한 접근이 운영체제의 트랩 핸들러에 의해서 처리되도록 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;16-교체는-실제-언제-일어나는가&quot;&gt;1.6 교체는 실제 언제 일어나는가&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리에 항상 어느 정도의 여유 공간을 비워두기 위해서, 대부분의 운영체제들은 여유 공간에 관련된 &lt;strong&gt;최댓값(high watermark, HW)&lt;/strong&gt;과 &lt;strong&gt;최솟값(low watermark, LW)&lt;/strong&gt;을 설정하여 교체 알고리즘 작동에 활용한다.&lt;/li&gt;
+  &lt;li&gt;동작 방법은 다음과 같다.
     &lt;ul&gt;
-      &lt;li&gt;결과로는 우리가 예상한 20000000이 출력되는 것을 확인할 수 있다.&lt;/li&gt;
+      &lt;li&gt;운영체제가 공간의 크기가 최솟값보다 작아지면 여유 공간 확보를 담당하는 백그라운드 쓰레드가 실행된다.&lt;/li&gt;
+      &lt;li&gt;이 쓰레드는 여유 공간의 크기가 최댓값에 이를 때까지 페이지를 제거한다.&lt;/li&gt;
+      &lt;li&gt;이 백그라운드 쓰레드는 일반적으로 &lt;strong&gt;스왑 데몬(swap daemon)&lt;/strong&gt; 또는 &lt;strong&gt;페이지 데몬(page daemon)&lt;/strong&gt;이라고 불린다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">create, join, lock 함수에 대하여</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)</title><link href="http://localhost:4000/ostep/ostep_07/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_07</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_07/">&lt;h1 id=&quot;1-페이징-더-빠른-변환tlb&quot;&gt;1. 페이징: 더 빠른 변환(TLB)&lt;/h1&gt;
+  &lt;li&gt;일시에 여러 개를 교체하면 성능 개선이 가능하다.
+    &lt;ul&gt;
+      &lt;li&gt;많은 시스템들은 다수의 페이지들을 &lt;strong&gt;클러스터(cluster)&lt;/strong&gt;나 &lt;strong&gt;그룹(group)&lt;/strong&gt;으로 묶어서 한번에 스왑 파티션에 저장함으로써 디스크의 효율을 높인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;17-요약&quot;&gt;1.7 요약&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템에 실제 존재하는 물리 메모리의 크기보다 더 많은 메모리를 사용하기 위한 개념을 소개하였다.&lt;/li&gt;
+  &lt;li&gt;메모리에 특정 페이지가 존재하는지를 알리기 위한 &lt;strong&gt;present bit&lt;/strong&gt;와 좀 더 복잡한 페이지 테이블 구조가 필요하다.&lt;/li&gt;
+  &lt;li&gt;운영체제는 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;를 처리하기 위해서 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;를 실행시킨다.
+    &lt;ul&gt;
+      &lt;li&gt;핸들러는 원하는 페이지를 디스크에서 메모리로 전송하기 위해 메모리의 일부 페이지들을 먼저 교체하여 새롭게 스왑되서 들어올 페이지를 위한 공간을 만드는 조치를 취한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2-물리-메모리-크기의-극복-정책&quot;&gt;2. 물리 메모리 크기의 극복: 정책&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;빈 메모리 공간이 거의 없으면 일이 더 복잡해진다.&lt;/li&gt;
+  &lt;li&gt;그런 경우 운영체제는 &lt;strong&gt;메모리 압박(memory pressure)&lt;/strong&gt;을 해소하기 위해 다른 페이지들을 강제적으로 페이징 아웃(paging out)하여 활발히 사용 중인 페이지들을 위한 공간을 확보한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;내보낼(evict)&lt;/strong&gt; 페이지(또는 페이지들) 선택은 운영체제의 &lt;strong&gt;교체 정책(replacement policy)&lt;/strong&gt;안에 집약되어 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;21-캐시-관리&quot;&gt;2.1 캐시 관리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템의 전체 페이지들 중 일부분만이 메인 메모리에 유지된다는 것을 가정하면, 메인 메모리는 시스템의 가상 메모리 페이지를 가져다 놓기 위한 &lt;strong&gt;캐시&lt;/strong&gt;로 생각될 수 있다.&lt;/li&gt;
+  &lt;li&gt;이 캐시를 위한 교체 정책의 목표는 &lt;strong&gt;캐시 미스&lt;/strong&gt;의 횟수를 최소화하는 것이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;평균-메모리-접근-시간average-memory-access-time-amat&quot;&gt;평균 메모리 접근 시간(average memory access time, AMAT)&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;앞으로 나올 페이지 교체 정책을 평균 메모리 접근 시간을 통해서 비교할 것이다.&lt;/li&gt;
+  &lt;li&gt;캐시 히트와 미스의 횟수를 안다면 프로그램의 평균 메모리 접근 시간을 계산할 수 있다.&lt;/li&gt;
+  &lt;li&gt;AMAT 는 다음과 같은 식으로 계싼할 수가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;AMAT = Tm + (Pmiss * Td)&lt;/li&gt;
+      &lt;li&gt;Tm: 메모리 접근 비용&lt;/li&gt;
+      &lt;li&gt;Td: 디스크 접근 비용&lt;/li&gt;
+      &lt;li&gt;Pmiss: 캐시미스 확률(0.0~1.0)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;22-최적-교체-정책&quot;&gt;2.2 최적 교체 정책&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;교체 정책의 동작 방식을 잘 이해하기 위해서 &lt;strong&gt;최적&lt;/strong&gt; 교체 정책(The Optimal Replacement Policy)과 비교하는 것이 좋다.
+    &lt;ul&gt;
+      &lt;li&gt;최적 교체 정책은 미스를 최소화한다.&lt;/li&gt;
+      &lt;li&gt;가장 나중에 접근될 페이지를 교체하는 것이 최적이며, 가장 적은 횟수의 미스를 발생시킨다는 것이 증명되었다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 최적의 교체 정책의 흐름이다.
+    &lt;ul&gt;
+      &lt;li&gt;캐시는 처음에 비어 있는 상태로 시작하기 때문에 첫 세 번의 접근은 미스이다.&lt;/li&gt;
+      &lt;li&gt;이러한 종류의 미스는 &lt;strong&gt;최초 시작 미스(cold-start miss)&lt;/strong&gt; 또는 &lt;strong&gt;강제 미스(compulsory miss)&lt;/strong&gt;라고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;23-간단한-정책-fifo&quot;&gt;2.3 간단한 정책: FIFO&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;FIFO(먼저 들어온 것이 먼저 나간다, 선입선출) 교체 방식을 사용하였다.&lt;/li&gt;
+  &lt;li&gt;FIFO는 매우 구현하기 쉽다는 장점을 가진다.&lt;/li&gt;
+  &lt;li&gt;최적의 경우와 비교하면 FIFO는 눈에 띄게 성능이 안좋다.&lt;/li&gt;
+  &lt;li&gt;FIFO는 블럭들의 중요도를 판단할 수가 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 FIFO 정책의 흐름&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;24-또-다른-간단한-정책-무작위-선택&quot;&gt;2.4 또 다른 간단한 정책: 무작위 선택&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;또 다른 유사한 교체 정책은 무작위 방식이다.&lt;/li&gt;
+  &lt;li&gt;메모리 압박이 있을 때 페이지를 무작위로 선택하여 교체한다.&lt;/li&gt;
+  &lt;li&gt;때로는 매우 좋은 성능을 보이며 때로는 최악의 성능을 보여준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 무작위 선택 정책의 흐름&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;25-과거-정보의-사용-lru&quot;&gt;2.5 과거 정보의 사용: LRU&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;불행하게도 FIFO 또는 무작위 선택 방식처럼 단순한 정책들은 중요한 페이지들을 혹은 바로 다시 참조하게 될 것들을 내보낼 수 있다는 비슷한 문제를 겪는다.&lt;/li&gt;
+  &lt;li&gt;스케줄링 정책에서와 같이 미래에 대한 예측을 위해서 과거 사용 이력을 활용한 기법이다.
+    &lt;ul&gt;
+      &lt;li&gt;페이지 교체 정책이 활용할 수 있는 과거 정보 중 하나는 &lt;strong&gt;빈도수(frequency)&lt;/strong&gt;이다.&lt;/li&gt;
+      &lt;li&gt;좀 더 자주 사용되는 페이지의 특징은 접근의 &lt;strong&gt;최근성(recency)&lt;/strong&gt;이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이러한 류의 정책은 &lt;strong&gt;지역성의 원칙(principle of locality)&lt;/strong&gt;라고 부르는 특성에 기반을 둔다.&lt;/li&gt;
+  &lt;li&gt;그리하여 과거 이력에 기반한 교체 알고리즘 부류가 탄생하게 되었다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Least-Frequently-Used(LFU)&lt;/strong&gt; 정책은 가장 적은 빈도로 사용된 페이지를 교체한다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Least-Recently-Used(LRU)&lt;/strong&gt; 정책은 가장 오래 전에 사용된 페이지를 교체한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_5.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 LRU 정책의 흐름이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;26-워크로드에-따른-성능-비교&quot;&gt;2.6 워크로드에 따른 성능 비교&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_6.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 지역성이 없는 워크로드&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_7.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;위의 그림은 지역성(80대20) 워크로드&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;지역성의 여부에 따라 워크로드의 효율성이 차이가 난다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;특히 LRU나 FIFO는 “순차 반복” 워크로드에서 거의 최악의 효율을 보여준다.&lt;/li&gt;
+      &lt;li&gt;순차반복: 0,1,2 ~ 50 -&amp;gt; 0,1,2 ~ 50…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_8.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 그림은 순환 형 워크로드이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;27-과거-이력-기반-알고리즘의-구현&quot;&gt;2.7 과거 이력 기반 알고리즘의 구현&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;위의 효율이 나빠지는 문제들을 해결하기 위한 방법은 약간의 하드웨어 지원을 받는 것이다.&lt;/li&gt;
+  &lt;li&gt;예를들어 페이지 접근이 있을 때마다 하드웨어가 메모리의 시간 필드를 갱신하도록 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;28-lru-정책-근사하기&quot;&gt;2.8 LRU 정책 근사하기&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;LRU는 가장 오래 전에 사용된 페이지를 탐색하는데 많은 비용을 사용한다.&lt;/li&gt;
+  &lt;li&gt;그렇기 때문에 LRU를 “근사” 하는 식으로 만들면 구현이 훨씬 쉬워진다.&lt;/li&gt;
+  &lt;li&gt;이 개념에는 &lt;strong&gt;use bit&lt;/strong&gt;(때로는 &lt;strong&gt;reference bit&lt;/strong&gt; 라고도 불린다)라고 하는 약간의 하드웨어 지원이 필요하다.&lt;/li&gt;
+  &lt;li&gt;페이지가 참조될 때마다(즉, 읽히거나 기록되면) 하드웨어에 의해서 use bit가 1로 설정된다.
+    &lt;ul&gt;
+      &lt;li&gt;하드웨어는 이 비트를 절대로 지우지 않는다.&lt;/li&gt;
+      &lt;li&gt;0으로 바꾸는 것은 운영체제의 몫이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제가 LRU에 가깝게 구현하기 위해서 use bit를 활용하는 방법은 &lt;strong&gt;시계 알고리즘(clock algorithm)&lt;/strong&gt;이다.
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 현재 바늘이 가리키고 있는 페이지 P의 use bit가 1인지 0인지 검사한다.&lt;/li&gt;
+      &lt;li&gt;만약 1이라면 페이지 P는 최근에 사요되었으며 바람직한 교체 대상이 아니라는 것을 뜻한다.&lt;/li&gt;
+      &lt;li&gt;P의 use bit은 0으로 설정되고 시계 바늘은 다음 페이지 P+1로 이동한다.&lt;/li&gt;
+      &lt;li&gt;알고리즘은 use bit가 0으로 설정되어 있는, 즉 최근에 사용된 적이 없는, 페이지를 찾을 때까지 반복된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;29-갱신된-페이지dirty-page의-고려&quot;&gt;2.9 갱신된 페이지(Dirty Page)의 고려&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;운영체제가 교체 대상을 선택할 때 메모리에 탑재된 이후에 변경되었는지를 추가적으로 고려하는 것이다.&lt;/li&gt;
+  &lt;li&gt;어떤 페이지가 &lt;strong&gt;변경(modified)&lt;/strong&gt;되어 &lt;strong&gt;더티(dirty)&lt;/strong&gt; 상태가 되었다면, 그 페이지를 내보내기 위해서는 디스크에 변경 내용을 기록해야 하기 때문에 비싼 비용을 지불해야한다.
+    &lt;ul&gt;
+      &lt;li&gt;VM 시스템들은 더티 페이지 대신 깨끗한 페이지를 내보내는 것을 선호한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이와 같은 동작을 지원하기 위해서 하드웨어는 &lt;strong&gt;modified bit(더티 비트)&lt;/strong&gt;를 포함해야 한다.&lt;/li&gt;
+  &lt;li&gt;예를들어, 시계 알고리즘은 교체 대상을 선택할 때 사용되지 않은 상태이고 깨끗한, 두 조건을 모두 만족하는 페이지를 먼저 찾도록 수정된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;210-다른-vm-정책들&quot;&gt;2.10 다른 VM 정책들&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;페이지 선택&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 언제 페이지를 메모리로 불러들일지 결정해야한다.&lt;/li&gt;
+      &lt;li&gt;이러한 정책을 &lt;strong&gt;페이지 선택(page selection)&lt;/strong&gt; 정책이라고 불린다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;요구 페이징(demanding paging)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;운영체제는 대부분의 페이지를 읽어 들일 때 요구 페이징 정책을 사용한다.&lt;/li&gt;
+      &lt;li&gt;이 정책은 말 그대로 “요청된 후 즉시”, 즉 페이지가 실제로 접근될 때 운영체제가 해당 페이지를 메모리로 읽어 들인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;운영체제가 변경된 페이지를 디스크에 반영하는 데 관련된 방식의 정책
+    &lt;ul&gt;
+      &lt;li&gt;많은 시스템은 기록해야 할 페이지들을 메모리에 모은 후, 한번에 (더 효율적으로) 디스크에 기록한다.&lt;/li&gt;
+      &lt;li&gt;위와 같은 동작을 &lt;strong&gt;클러스터링(clustering)&lt;/strong&gt; 또는 단순하게 &lt;strong&gt;쓰기 모으기(grouping of writes)&lt;/strong&gt;라고 부른다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;211-쓰래싱thrashing&quot;&gt;2.11 쓰래싱(Thrashing)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;시스템이 끊임없이 페이징을 할 수 밖에 없는 상황을 &lt;strong&gt;쓰래싱(thrashing)&lt;/strong&gt;이라고 부른다.&lt;/li&gt;
+  &lt;li&gt;쓰래싱 해결 기법
+    &lt;ul&gt;
+      &lt;li&gt;다수의 프로세스가 존재할 때, 일부 프로세스의 실행을 중지시킨다.&lt;/li&gt;
+      &lt;li&gt;메모리 요구가 초과되면 &lt;strong&gt;메모리 부족 킬러(out-of-memory killer)&lt;/strong&gt;를 실행시켜 많은 메모리를 요구하는 프로세스를 골라 죽인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 08</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)</title><link href="http://localhost:4000/ostep/ostep_07/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 페이징 개선(TLB, 더 작은 테이블)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_07</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_07/">&lt;h1 id=&quot;1-페이징-더-빠른-변환tlb&quot;&gt;1. 페이징: 더 빠른 변환(TLB)&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;페이징은 주소 공간을 작은 크기(페이지)로 나누고 각 페이지의 실제 위치(매핑 정보)를 메모리에 저장한다. 매핑 정보를 저장하는 자료 구조를 페이지 테이블이라 한다.&lt;/li&gt;
   &lt;li&gt;페이징은 성능 저하를 유발할 수 있다.
@@ -732,350 +834,269 @@
   &lt;li&gt;테이블을 위한 자료 구조에는 시간과 공간이라는 모순적 선택 사항이 존재한다.&lt;/li&gt;
   &lt;li&gt;공간을 많이 소모하는 테이블 구조를 사용할 수록 TLB미스의 처리속도가 빨라진다.&lt;/li&gt;
   &lt;li&gt;공간을 작게 차지한는 테이블 구조를 사용하면 상황은 반대가 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 07</summary></entry><entry><title type="html">[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)</title><link href="http://localhost:4000/ostep/ostep_08/" rel="alternate" type="text/html" title="[OSTEP] 메모리 가상화 - 물리 메모리 크기의 극복(메커니즘과 정책)" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_08</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_08/">&lt;h1 id=&quot;1-물리-메모리-크기의-극복-메커니즘&quot;&gt;1. 물리 메모리 크기의 극복: 메커니즘&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 07</summary></entry><entry><title type="html">[OSTEP] 병행성 - 쓰레드 API 구현</title><link href="http://localhost:4000/ostep/ostep_thread_API/" rel="alternate" type="text/html" title="[OSTEP] 병행성 - 쓰레드 API 구현" /><published>2022-06-09T00:00:00+09:00</published><updated>2022-06-09T00:00:00+09:00</updated><id>http://localhost:4000/ostep/ostep_thread_API</id><content type="html" xml:base="http://localhost:4000/ostep/ostep_thread_API/">&lt;h1 id=&quot;1-쓰레드-api&quot;&gt;1. 쓰레드 API&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;큰 주소 공간을 지원하기 위해서 운영체제는 주소 공간 중에 현재는 크게 필요하지 않은 일부를 보관해 둘 공간이 필요하다.
-    &lt;ul&gt;
-      &lt;li&gt;현대 시스템에서는 보통 &lt;strong&gt;하드 디스크 드라이브&lt;/strong&gt;가 이 역할을 담당한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;왜 프로세스에게 굳이 “큰” 주소 공간을 제공해야하는가이다.
-    &lt;ul&gt;
-      &lt;li&gt;이에 대한 답은 다시 한번 편리함과 사용 용이성이다.&lt;/li&gt;
-      &lt;li&gt;주소 공간이 충분히 크면, 프로그램의 자료 구조들을 위한 충분한 메모리 공간이 있는지 걱정핮 ㅣ않아도 된다.&lt;/li&gt;
-      &lt;li&gt;필요 시 메모리 할당을 운영체제에게 요청하기만 하면 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;스왑 공간이 추가되면 운영체제는 실행되는 각 프로세스들에게 큰 가상 메모리가 있는 것 같은 환상을 줄 수 있다.&lt;/li&gt;
-  &lt;li&gt;멀티프로그래밍 시스템이 발명되면서 많은 프로세스들의 페이지를 물리 메모리에 전부 저장하는 것이 불가능하게 되었다.
-    &lt;ul&gt;
-      &lt;li&gt;그래서 일부 페이지들을 스왑 아웃하는 기능이 필요하게 되었다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;쓰레드 API의 주요 부분을 간략하게 사용해보고 결과를 확인해볼 것이다.&lt;/li&gt;
+  &lt;li&gt;생성, 종료, 락 세가지에 대해서 사용해 볼 것이다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;11-스왑-공간&quot;&gt;1.1 스왑 공간&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;디스크에 페이지들을 저장할 수 있는 일정 공간을 확보하는 것이다.
-    &lt;ul&gt;
-      &lt;li&gt;이 용도의 공간을 &lt;strong&gt;스왑 공간(swap space)&lt;/strong&gt;라고 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;운영체제는 스왑 공간에 있는 모든 페이지들의 &lt;strong&gt;디스크 주소&lt;/strong&gt;를 기억해야 한다.&lt;/li&gt;
-  &lt;li&gt;스왑 공간의 크기는 매우 중요하다.
-    &lt;ul&gt;
-      &lt;li&gt;시스템이 사용할 수 있는 메모리 페이지의 최대수를 결정하기 때문이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;11-쓰레드-생성&quot;&gt;1.1 쓰레드 생성&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;쓰레드-생성&quot;&gt;쓰레드 생성&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+        
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;위의 긞은 물리 메모리와 스왑 공간이다.
+  &lt;li&gt;위의 코드는 쓰레드를 생성하는 코드이다. 하지만, 실행했을 때 args가 출력되지 않는 것을 볼 수 있다.
     &lt;ul&gt;
-      &lt;li&gt;Proc3은 사용되고 있지 않다.&lt;/li&gt;
+      &lt;li&gt;이 이유는 쓰레드가 생성했지만, 쓰레드 실행 전에 메인 쓰레드인 main() 문이 종료되었기 때문이다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;12-present-bit&quot;&gt;1.2 Present Bit&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리가 참조되는 과정
-    &lt;ol&gt;
-      &lt;li&gt;프로세스가 가상 메모리 참조를 생성한다(명령어 탑재나 데이터 접근등).&lt;/li&gt;
-      &lt;li&gt;하드웨어는 메모리에서 원하는 데이터를 가져오기 전에, 우선 가상 주소를 물리 주소로 변환한다.&lt;/li&gt;
-      &lt;li&gt;TLB Hit 하면 TLB에서 물리 주소를 얻은 후에 메모리로 가져온다.&lt;/li&gt;
-      &lt;li&gt;TLB Miss 하면 하드웨어는 페이지 테이블의 메모리 주소를 파악하고(&lt;strong&gt;페이지 테이블 베이스 레지스터&lt;/strong&gt;를 사용), VPN을 인덱스로 하여 원하는 &lt;strong&gt;페이지 테이블 항목(PTE)&lt;/strong&gt;을 추출한다.&lt;/li&gt;
-      &lt;li&gt;해당 페이지 테이블 항목이 유효하고 관련 페이지가 물리 메모리에 존재한다면 하드웨어는 PTE에서 PFN 정보를 추출하고 그 정보를 TLB에 탑재한다.&lt;/li&gt;
-      &lt;li&gt;TLB 탑재 후 명령어를 재실행한다.&lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-  &lt;li&gt;페이지가 디스크로 스왑되는 것을 가능케 하려면, 많은 기법이 추가되어야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;하드웨어가 PTE에서 해당 페이지가 물리 메모리에 존재하지 않는다는 것을 표현 해야 한다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;present bit&lt;/strong&gt;을 사용하여 각 페이지 테이블 항목에 어떤 페이지가 존재하는지를 표현한다.&lt;/li&gt;
-      &lt;li&gt;present bit이 1로 설정 되어 있다면, 물리 메모리에 해당 페이지가 존재한다.&lt;/li&gt;
-      &lt;li&gt;present bit이 0으로 설저오디어 있다면, 물리 메모리에 존재하지 않고 디스크에 존재한다는 것을 나타낸다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;물리 메모리에 존재하지 않는 페이지를 접근하는 행위를 일반적으로 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;라 한다.
-    &lt;ul&gt;
-      &lt;li&gt;페이지 폴트가 발생하면, 페이지 폴트를 처리하기 위해 운영체제로 제어권이 넘어가 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;가 실행된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;12-쓰레드-종료&quot;&gt;1.2 쓰레드 종료&lt;/h2&gt;
 
-&lt;h2 id=&quot;13-페이지-폴트&quot;&gt;1.3 페이지 폴트&lt;/h2&gt;
+&lt;h3 id=&quot;쓰레드-종료-기다리기&quot;&gt;쓰레드 종료 기다리기&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+        
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_1.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;페이지 폴트가 발생하면 운영체제가 그 처리를 담당한다.
+  &lt;li&gt;pthread_join 문을 추가하여 부모 쓰레드인 main에게 자식 쓰레드인 p가 종료할 때 까지 기다리라고 지시했다.
     &lt;ul&gt;
-      &lt;li&gt;운영체제의 &lt;strong&gt;페이지 폴트 핸들러&lt;/strong&gt;가 그 처리 메커니즘을 규정한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;만약 요청된 페이지가 메모리에 없고, 디스크로 스왑되었다면, 운영체제는 해당 페이지를 메모리로 스왑해 온다.
-    &lt;ul&gt;
-      &lt;li&gt;많은 시스템들에서 해당 정보를 페이지 테이블에 저장한다.&lt;/li&gt;
-      &lt;li&gt;페이지 폴트 발생 시, 운영체제는 페이지 테이블 항목에서 해당 페이지의 디스크 상 위치를 파악하여, 메모리로 탑재한다.&lt;/li&gt;
+      &lt;li&gt;결과는 args인 10과 20이 잘 출력되는 모습을 볼 수 있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;14-메모리에-빈-공간이-없으면&quot;&gt;1.4 메모리에 빈 공간이 없으면?&lt;/h2&gt;
+&lt;h3 id=&quot;쓰레드에게-간단한-인자-전달하기&quot;&gt;쓰레드에게 간단한 인자 전달하기&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myret_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;returned %lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_2.png&quot; width=&quot;70%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;메모리에 여유 공간이 없다면 탑재하고자 하는 새로운 페이지들을 위한 공간을 확보하기 위해 하나 또는 그 이상의 페이지들을 먼저 &lt;strong&gt;페이지 아웃(page out)&lt;/strong&gt;하려고 할 수도 있다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;교체(replace)&lt;/strong&gt; 페이지를 선택하는 것을 &lt;strong&gt;페이지 교체 정책(page-replacement policy)&lt;/strong&gt;이라고 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;15-페이지-폴트의-처리&quot;&gt;1.5 페이지 폴트의 처리&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_1.png&quot; width=&quot;90%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 코드를 보면 TLB 미스 발생시, 세 가지의 중요한 경우가 있다는 것을 알 수 있다.
-    &lt;ol&gt;
-      &lt;li&gt;페이지가 &lt;strong&gt;존재&lt;/strong&gt;하며 &lt;strong&gt;유효&lt;/strong&gt;한 경우다.
-        &lt;ul&gt;
-          &lt;li&gt;TLB 미스 핸들러가 PTE에서 PFN을 가져와서 명령어를 재시도 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;페이지가 유효하지만 존재하지 않는 경우다.
-        &lt;ul&gt;
-          &lt;li&gt;페이지 폴트 핸들러가 반드시 실행되어야 한다.(물리 메모리에 존재하지 않고 디스크 상에 존재하는 경우다.)&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;페이지가 유효하지 않는 경우다.
-        &lt;ul&gt;
-          &lt;li&gt;하드웨어는 이 무효한 접근이 운영체제의 트랩 핸들러에 의해서 처리되도록 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;16-교체는-실제-언제-일어나는가&quot;&gt;1.6 교체는 실제 언제 일어나는가&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;메모리에 항상 어느 정도의 여유 공간을 비워두기 위해서, 대부분의 운영체제들은 여유 공간에 관련된 &lt;strong&gt;최댓값(high watermark, HW)&lt;/strong&gt;과 &lt;strong&gt;최솟값(low watermark, LW)&lt;/strong&gt;을 설정하여 교체 알고리즘 작동에 활용한다.&lt;/li&gt;
-  &lt;li&gt;동작 방법은 다음과 같다.
+  &lt;li&gt;위의 코드는 쓰레드에게 간단한 인자를 전달하는 코드이다.
     &lt;ul&gt;
-      &lt;li&gt;운영체제가 공간의 크기가 최솟값보다 작아지면 여유 공간 확보를 담당하는 백그라운드 쓰레드가 실행된다.&lt;/li&gt;
-      &lt;li&gt;이 쓰레드는 여유 공간의 크기가 최댓값에 이를 때까지 페이지를 제거한다.&lt;/li&gt;
-      &lt;li&gt;이 백그라운드 쓰레드는 일반적으로 &lt;strong&gt;스왑 데몬(swap daemon)&lt;/strong&gt; 또는 &lt;strong&gt;페이지 데몬(page daemon)&lt;/strong&gt;이라고 불린다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;일시에 여러 개를 교체하면 성능 개선이 가능하다.
-    &lt;ul&gt;
-      &lt;li&gt;많은 시스템들은 다수의 페이지들을 &lt;strong&gt;클러스터(cluster)&lt;/strong&gt;나 &lt;strong&gt;그룹(group)&lt;/strong&gt;으로 묶어서 한번에 스왑 파티션에 저장함으로써 디스크의 효율을 높인다.&lt;/li&gt;
+      &lt;li&gt;결과로 100이 출력되고 101이 잘 리턴 된 것을 볼 수 있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;17-요약&quot;&gt;1.7 요약&lt;/h2&gt;
+&lt;h3 id=&quot;쓰레드에게-간단한-인자-전달하기잘못된-방법&quot;&gt;쓰레드에게 간단한 인자 전달하기(잘못된 방법)&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myret_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;myarg_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;myret_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;oops&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;returned %lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rvalue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_3.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;시스템에 실제 존재하는 물리 메모리의 크기보다 더 많은 메모리를 사용하기 위한 개념을 소개하였다.&lt;/li&gt;
-  &lt;li&gt;메모리에 특정 페이지가 존재하는지를 알리기 위한 &lt;strong&gt;present bit&lt;/strong&gt;와 좀 더 복잡한 페이지 테이블 구조가 필요하다.&lt;/li&gt;
-  &lt;li&gt;운영체제는 &lt;strong&gt;페이지 폴트(page fault)&lt;/strong&gt;를 처리하기 위해서 &lt;strong&gt;페이지 폴트 핸들러(page-fault handler)&lt;/strong&gt;를 실행시킨다.
+  &lt;li&gt;위의 코드에서는 리턴되는 값을 스택에 할당했기 때문에 에러가 발생하는 것을 볼 수 있다.
     &lt;ul&gt;
-      &lt;li&gt;핸들러는 원하는 페이지를 디스크에서 메모리로 전송하기 위해 메모리의 일부 페이지들을 먼저 교체하여 새롭게 스왑되서 들어올 페이지를 위한 공간을 만드는 조치를 취한다.&lt;/li&gt;
+      &lt;li&gt;스택에 할당되면 해당 값은 쓰레드가 리턴할 때 자동적으로 해제된다.&lt;/li&gt;
+      &lt;li&gt;해제된 변수를 가리키는 포인터를 반환하는 것은 좋지 않은 결과를 가져온다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;2-물리-메모리-크기의-극복-정책&quot;&gt;2. 물리 메모리 크기의 극복: 정책&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;빈 메모리 공간이 거의 없으면 일이 더 복잡해진다.&lt;/li&gt;
-  &lt;li&gt;그런 경우 운영체제는 &lt;strong&gt;메모리 압박(memory pressure)&lt;/strong&gt;을 해소하기 위해 다른 페이지들을 강제적으로 페이징 아웃(paging out)하여 활발히 사용 중인 페이지들을 위한 공간을 확보한다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;내보낼(evict)&lt;/strong&gt; 페이지(또는 페이지들) 선택은 운영체제의 &lt;strong&gt;교체 정책(replacement policy)&lt;/strong&gt;안에 집약되어 있다.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;13-락&quot;&gt;1.3 락&lt;/h2&gt;
 
-&lt;h2 id=&quot;21-캐시-관리&quot;&gt;2.1 캐시 관리&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;시스템의 전체 페이지들 중 일부분만이 메인 메모리에 유지된다는 것을 가정하면, 메인 메모리는 시스템의 가상 메모리 페이지를 가져다 놓기 위한 &lt;strong&gt;캐시&lt;/strong&gt;로 생각될 수 있다.&lt;/li&gt;
-  &lt;li&gt;이 캐시를 위한 교체 정책의 목표는 &lt;strong&gt;캐시 미스&lt;/strong&gt;의 횟수를 최소화하는 것이다.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&quot;락이-없는-코드의-문제점&quot;&gt;락이 없는 코드의 문제점&lt;/h3&gt;
 
-&lt;h3 id=&quot;평균-메모리-접근-시간average-memory-access-time-amat&quot;&gt;평균 메모리 접근 시간(average memory access time, AMAT)&lt;/h3&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// mythread()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 반복문을 사용하여 단순히 1씩 더하기&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 10,000,000을 변수 counter에 더하는 방법이 아니다.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 하지만, 문제가 무엇인지 명확하게 해준다.&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: begin&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: done&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// main()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 두 개의 쓰레드를 실행하고 (pthread_create)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 대기한다 (pthread_join)&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: begin (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;B&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 종료할 수 있도록 대기 중인 쓰레드 병합하기&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: done with both (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_4.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;앞으로 나올 페이지 교체 정책을 평균 메모리 접근 시간을 통해서 비교할 것이다.&lt;/li&gt;
-  &lt;li&gt;캐시 히트와 미스의 횟수를 안다면 프로그램의 평균 메모리 접근 시간을 계산할 수 있다.&lt;/li&gt;
-  &lt;li&gt;AMAT 는 다음과 같은 식으로 계싼할 수가 있다.
+  &lt;li&gt;위의 코드는 락이 없을 때 임계 영역에 두 쓰레드가 동시 접근을 하게 되어 예상한 결과값인 20000000이 나오지 않는 모습을 볼 수 있다.
     &lt;ul&gt;
-      &lt;li&gt;AMAT = Tm + (Pmiss * Td)&lt;/li&gt;
-      &lt;li&gt;Tm: 메모리 접근 비용&lt;/li&gt;
-      &lt;li&gt;Td: 디스크 접근 비용&lt;/li&gt;
-      &lt;li&gt;Pmiss: 캐시미스 확률(0.0~1.0)&lt;/li&gt;
+      &lt;li&gt;예상한대로 코드를 실행시키기 위해 락을 추가하여 임계 영역을 보호해준다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;22-최적-교체-정책&quot;&gt;2.2 최적 교체 정책&lt;/h2&gt;
+&lt;h3 id=&quot;락을-사용한-코드&quot;&gt;락을 사용한 코드&lt;/h3&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;    &lt;span class=&quot;cp&quot;&gt;#include &amp;lt;assert.h&amp;gt;
+&lt;/span&gt;    
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;pthread_mutex_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// mythread()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 반복문을 사용하여 단순히 1씩 더하기&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 10,000,000을 변수 counter에 더하는 방법이 아니다.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 하지만, 문제가 무엇인지 명확하게 해준다.&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: begin&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1e7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_mutex_unlock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%s: done&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// main()&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 두 개의 쓰레드를 실행하고 (pthread_create)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 대기한다 (pthread_join)&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: begin (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pthread_mutex_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mutex_lock&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;assert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mythread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;B&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 종료할 수 있도록 대기 중인 쓰레드 병합하기&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pthread_join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;main: done with both (counter = %d)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;교체 정책의 동작 방식을 잘 이해하기 위해서 &lt;strong&gt;최적&lt;/strong&gt; 교체 정책(The Optimal Replacement Policy)과 비교하는 것이 좋다.
+  &lt;li&gt;위의 코드는 락을 추가하여 임계 영역을 보호해주었다.
     &lt;ul&gt;
-      &lt;li&gt;최적 교체 정책은 미스를 최소화한다.&lt;/li&gt;
-      &lt;li&gt;가장 나중에 접근될 페이지를 교체하는 것이 최적이며, 가장 적은 횟수의 미스를 발생시킨다는 것이 증명되었다.&lt;/li&gt;
+      &lt;li&gt;결과로는 우리가 예상한 20000000이 출력되는 것을 확인할 수 있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_2.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;위의-코드에서-시간-비교를-해보자&quot;&gt;위의 코드에서 시간 비교를 해보자!&lt;/h3&gt;
+&lt;p&gt;두개의 쓰레드를 사용하고 counter에 접근할 때 락을 이용하여 임계 영역을 보호한다. 이 말의 의미는 A 쓰레드와 B 쓰레드가 차례로 번갈아가면서 counter에 접근한다는 의미가 된다.
+그렇다면 이런 경우에서는 굳이 멀티 쓰레드를 사용할 필요가 있을까? 궁금한건 못참는다!! 바로 해보자!!&lt;/p&gt;
+
+&lt;p&gt;위의 락을 사용한 코드에서 코드의 실행시간을 계산하는 코드를 추가하고, 쓰레드를 두개 사용하는 경우와 하나를 사용하는 경우로 나누어 실험을 진행하였다. 또한 캐시 때문에 실행시간에 차이가 있을 수 있어서 5번씩 실행한 결과로 비교를 하였다.
+추가적으로 연산횟수룰 20억으로 늘려서 진행하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/thread_API/img_5.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;위의 그림은 최적의 교체 정책의 흐름이다.
-    &lt;ul&gt;
-      &lt;li&gt;캐시는 처음에 비어 있는 상태로 시작하기 때문에 첫 세 번의 접근은 미스이다.&lt;/li&gt;
-      &lt;li&gt;이러한 종류의 미스는 &lt;strong&gt;최초 시작 미스(cold-start miss)&lt;/strong&gt; 또는 &lt;strong&gt;강제 미스(compulsory miss)&lt;/strong&gt;라고 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;위는 멀티쓰레드, 아래는 단일쓰레드다. 결과를 봤을 땐 단일쓰레드가 아주 미세하게 더 빠르다는 것을 확인할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;23-간단한-정책-fifo&quot;&gt;2.3 간단한 정책: FIFO&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;FIFO(먼저 들어온 것이 먼저 나간다, 선입선출) 교체 방식을 사용하였다.&lt;/li&gt;
-  &lt;li&gt;FIFO는 매우 구현하기 쉽다는 장점을 가진다.&lt;/li&gt;
-  &lt;li&gt;최적의 경우와 비교하면 FIFO는 눈에 띄게 성능이 안좋다.&lt;/li&gt;
-  &lt;li&gt;FIFO는 블럭들의 중요도를 판단할 수가 없다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_3.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 FIFO 정책의 흐름&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;24-또-다른-간단한-정책-무작위-선택&quot;&gt;2.4 또 다른 간단한 정책: 무작위 선택&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;또 다른 유사한 교체 정책은 무작위 방식이다.&lt;/li&gt;
-  &lt;li&gt;메모리 압박이 있을 때 페이지를 무작위로 선택하여 교체한다.&lt;/li&gt;
-  &lt;li&gt;때로는 매우 좋은 성능을 보이며 때로는 최악의 성능을 보여준다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_4.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 무작위 선택 정책의 흐름&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;25-과거-정보의-사용-lru&quot;&gt;2.5 과거 정보의 사용: LRU&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;불행하게도 FIFO 또는 무작위 선택 방식처럼 단순한 정책들은 중요한 페이지들을 혹은 바로 다시 참조하게 될 것들을 내보낼 수 있다는 비슷한 문제를 겪는다.&lt;/li&gt;
-  &lt;li&gt;스케줄링 정책에서와 같이 미래에 대한 예측을 위해서 과거 사용 이력을 활용한 기법이다.
-    &lt;ul&gt;
-      &lt;li&gt;페이지 교체 정책이 활용할 수 있는 과거 정보 중 하나는 &lt;strong&gt;빈도수(frequency)&lt;/strong&gt;이다.&lt;/li&gt;
-      &lt;li&gt;좀 더 자주 사용되는 페이지의 특징은 접근의 &lt;strong&gt;최근성(recency)&lt;/strong&gt;이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이러한 류의 정책은 &lt;strong&gt;지역성의 원칙(principle of locality)&lt;/strong&gt;라고 부르는 특성에 기반을 둔다.&lt;/li&gt;
-  &lt;li&gt;그리하여 과거 이력에 기반한 교체 알고리즘 부류가 탄생하게 되었다.
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;Least-Frequently-Used(LFU)&lt;/strong&gt; 정책은 가장 적은 빈도로 사용된 페이지를 교체한다.&lt;/li&gt;
-      &lt;li&gt;&lt;strong&gt;Least-Recently-Used(LRU)&lt;/strong&gt; 정책은 가장 오래 전에 사용된 페이지를 교체한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_5.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 LRU 정책의 흐름이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;26-워크로드에-따른-성능-비교&quot;&gt;2.6 워크로드에 따른 성능 비교&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_6.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 지역성이 없는 워크로드&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_7.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;위의 그림은 지역성(80대20) 워크로드&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;지역성의 여부에 따라 워크로드의 효율성이 차이가 난다.&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;특히 LRU나 FIFO는 “순차 반복” 워크로드에서 거의 최악의 효율을 보여준다.&lt;/li&gt;
-      &lt;li&gt;순차반복: 0,1,2 ~ 50 -&amp;gt; 0,1,2 ~ 50…&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/ostep/08/img_8.png&quot; width=&quot;60%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 그림은 순환 형 워크로드이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;27-과거-이력-기반-알고리즘의-구현&quot;&gt;2.7 과거 이력 기반 알고리즘의 구현&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;위의 효율이 나빠지는 문제들을 해결하기 위한 방법은 약간의 하드웨어 지원을 받는 것이다.&lt;/li&gt;
-  &lt;li&gt;예를들어 페이지 접근이 있을 때마다 하드웨어가 메모리의 시간 필드를 갱신하도록 할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;28-lru-정책-근사하기&quot;&gt;2.8 LRU 정책 근사하기&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;LRU는 가장 오래 전에 사용된 페이지를 탐색하는데 많은 비용을 사용한다.&lt;/li&gt;
-  &lt;li&gt;그렇기 때문에 LRU를 “근사” 하는 식으로 만들면 구현이 훨씬 쉬워진다.&lt;/li&gt;
-  &lt;li&gt;이 개념에는 &lt;strong&gt;use bit&lt;/strong&gt;(때로는 &lt;strong&gt;reference bit&lt;/strong&gt; 라고도 불린다)라고 하는 약간의 하드웨어 지원이 필요하다.&lt;/li&gt;
-  &lt;li&gt;페이지가 참조될 때마다(즉, 읽히거나 기록되면) 하드웨어에 의해서 use bit가 1로 설정된다.
-    &lt;ul&gt;
-      &lt;li&gt;하드웨어는 이 비트를 절대로 지우지 않는다.&lt;/li&gt;
-      &lt;li&gt;0으로 바꾸는 것은 운영체제의 몫이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;운영체제가 LRU에 가깝게 구현하기 위해서 use bit를 활용하는 방법은 &lt;strong&gt;시계 알고리즘(clock algorithm)&lt;/strong&gt;이다.
-    &lt;ul&gt;
-      &lt;li&gt;운영체제는 현재 바늘이 가리키고 있는 페이지 P의 use bit가 1인지 0인지 검사한다.&lt;/li&gt;
-      &lt;li&gt;만약 1이라면 페이지 P는 최근에 사요되었으며 바람직한 교체 대상이 아니라는 것을 뜻한다.&lt;/li&gt;
-      &lt;li&gt;P의 use bit은 0으로 설정되고 시계 바늘은 다음 페이지 P+1로 이동한다.&lt;/li&gt;
-      &lt;li&gt;알고리즘은 use bit가 0으로 설정되어 있는, 즉 최근에 사용된 적이 없는, 페이지를 찾을 때까지 반복된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;29-갱신된-페이지dirty-page의-고려&quot;&gt;2.9 갱신된 페이지(Dirty Page)의 고려&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;운영체제가 교체 대상을 선택할 때 메모리에 탑재된 이후에 변경되었는지를 추가적으로 고려하는 것이다.&lt;/li&gt;
-  &lt;li&gt;어떤 페이지가 &lt;strong&gt;변경(modified)&lt;/strong&gt;되어 &lt;strong&gt;더티(dirty)&lt;/strong&gt; 상태가 되었다면, 그 페이지를 내보내기 위해서는 디스크에 변경 내용을 기록해야 하기 때문에 비싼 비용을 지불해야한다.
-    &lt;ul&gt;
-      &lt;li&gt;VM 시스템들은 더티 페이지 대신 깨끗한 페이지를 내보내는 것을 선호한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이와 같은 동작을 지원하기 위해서 하드웨어는 &lt;strong&gt;modified bit(더티 비트)&lt;/strong&gt;를 포함해야 한다.&lt;/li&gt;
-  &lt;li&gt;예를들어, 시계 알고리즘은 교체 대상을 선택할 때 사용되지 않은 상태이고 깨끗한, 두 조건을 모두 만족하는 페이지를 먼저 찾도록 수정된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;210-다른-vm-정책들&quot;&gt;2.10 다른 VM 정책들&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;페이지 선택&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;운영체제는 언제 페이지를 메모리로 불러들일지 결정해야한다.&lt;/li&gt;
-      &lt;li&gt;이러한 정책을 &lt;strong&gt;페이지 선택(page selection)&lt;/strong&gt; 정책이라고 불린다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;요구 페이징(demanding paging)&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;운영체제는 대부분의 페이지를 읽어 들일 때 요구 페이징 정책을 사용한다.&lt;/li&gt;
-      &lt;li&gt;이 정책은 말 그대로 “요청된 후 즉시”, 즉 페이지가 실제로 접근될 때 운영체제가 해당 페이지를 메모리로 읽어 들인다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;운영체제가 변경된 페이지를 디스크에 반영하는 데 관련된 방식의 정책
-    &lt;ul&gt;
-      &lt;li&gt;많은 시스템은 기록해야 할 페이지들을 메모리에 모은 후, 한번에 (더 효율적으로) 디스크에 기록한다.&lt;/li&gt;
-      &lt;li&gt;위와 같은 동작을 &lt;strong&gt;클러스터링(clustering)&lt;/strong&gt; 또는 단순하게 &lt;strong&gt;쓰기 모으기(grouping of writes)&lt;/strong&gt;라고 부른다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;211-쓰래싱thrashing&quot;&gt;2.11 쓰래싱(Thrashing)&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;시스템이 끊임없이 페이징을 할 수 밖에 없는 상황을 &lt;strong&gt;쓰래싱(thrashing)&lt;/strong&gt;이라고 부른다.&lt;/li&gt;
-  &lt;li&gt;쓰래싱 해결 기법
-    &lt;ul&gt;
-      &lt;li&gt;다수의 프로세스가 존재할 때, 일부 프로세스의 실행을 중지시킨다.&lt;/li&gt;
-      &lt;li&gt;메모리 요구가 초과되면 &lt;strong&gt;메모리 부족 킬러(out-of-memory killer)&lt;/strong&gt;를 실행시켜 많은 메모리를 요구하는 프로세스를 골라 죽인다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">OSTEP - 08</summary></entry><entry><title type="html">[백준/Python] 16916 부분 문자열(문자열)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/" rel="alternate" type="text/html" title="[백준/Python] 16916 부분 문자열(문자열)" /><published>2022-05-28T00:00:00+09:00</published><updated>2022-05-28T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
+&lt;p&gt;왜 이런 결과가 나왔을까? count에 접근하는 해당 로직은 사실상 사실상 멀티 쓰레드를 이용해도 두개의 쓰레드가 차례로 번갈아가면서 counter에 접근한다. 단일 쓰레드를 사용했을 때와 마찬가지인 것이다.
+하지만 락에 의해서 지연이 조금 늘어나게 되고 이를 통해서 단일쓰레드보다 멀티쓰레드가 성능이 더 저하되는 것이다.&lt;/p&gt;</content><author><name>honggoo</name></author><category term="OSTEP" /><category term="OSTEP" /><category term="CS" /><summary type="html">create, join, lock 함수에 대하여</summary></entry><entry><title type="html">[백준/Python] 16916 부분 문자열(문자열)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/" rel="alternate" type="text/html" title="[백준/Python] 16916 부분 문자열(문자열)" /><published>2022-05-28T00:00:00+09:00</published><updated>2022-05-28T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_49/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
 
 &lt;h2 id=&quot;수학-16916-부분-문자열&quot;&gt;수학 16916 부분 문자열&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/16916&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
@@ -1546,106 +1567,4 @@
         &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
     
         &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 44</summary></entry><entry><title type="html">[백준/Python] 2579 계단 오르기(DP)</title><link href="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_43/" rel="alternate" type="text/html" title="[백준/Python] 2579 계단 오르기(DP)" /><published>2022-05-27T00:00:00+09:00</published><updated>2022-05-27T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B0%B1%EC%A4%80/python_43</id><content type="html" xml:base="http://localhost:4000/%EB%B0%B1%EC%A4%80/python_43/">&lt;h1 id=&quot;boj&quot;&gt;BOJ&lt;/h1&gt;
-
-&lt;h2 id=&quot;dp-2579-계단-오르기&quot;&gt;DP 2579 계단 오르기&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.acmicpc.net/problem/2579&quot;&gt;문제로 이동!&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;문제&quot;&gt;문제&lt;/h2&gt;
-
-&lt;p&gt;계단 오르기 게임은 계단 아래 시작점부터 계단 꼭대기에 위치한 도착점까지 가는 게임이다. &amp;lt;그림 1&amp;gt;과 같이 각각의 계단에는 일정한 점수가 쓰여 있는데 계단을 밟으면 그 계단에 쓰여 있는 점수를 얻게 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/boj/43/img.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;예를 들어 &amp;lt;그림 2&amp;gt;와 같이 시작점에서부터 첫 번째, 두 번째, 네 번째, 여섯 번째 계단을 밟아 도착점에 도달하면 총 점수는 10 + 20 + 25 + 20 = 75점이 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;../../assets/img/boj/43/img_1.png&quot; width=&quot;100%&quot; height=&quot;100%&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;계단 오르는 데는 다음과 같은 규칙이 있다.&lt;/p&gt;
-
-&lt;p&gt;계단은 한 번에 한 계단씩 또는 두 계단씩 오를 수 있다. 즉, 한 계단을 밟으면서 이어서 다음 계단이나, 다음 다음 계단으로 오를 수 있다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;연속된 세 개의 계단을 모두 밟아서는 안 된다. 단, 시작점은 계단에 포함되지 않는다.&lt;/li&gt;
-  &lt;li&gt;마지막 도착 계단은 반드시 밟아야 한다.&lt;/li&gt;
-  &lt;li&gt;따라서 첫 번째 계단을 밟고 이어 두 번째 계단이나, 세 번째 계단으로 오를 수 있다. 하지만, 첫 번째 계단을 밟고 이어 네 번째 계단으로 올라가거나, 첫 번째, 두 번째, 세 번째 계단을 연속해서 모두 밟을 수는 없다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;각 계단에 쓰여 있는 점수가 주어질 때 이 게임에서 얻을 수 있는 총 점수의 최댓값을 구하는 프로그램을 작성하시오.&lt;/p&gt;
-
-&lt;h2 id=&quot;입력&quot;&gt;입력&lt;/h2&gt;
-
-&lt;p&gt;입력의 첫째 줄에 계단의 개수가 주어진다.&lt;/p&gt;
-
-&lt;p&gt;둘째 줄부터 한 줄에 하나씩 제일 아래에 놓인 계단부터 순서대로 각 계단에 쓰여 있는 점수가 주어진다. 계단의 개수는 300이하의 자연수이고, 계단에 쓰여 있는 점수는 10,000이하의 자연수이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;예제-입력&quot;&gt;예제 입력&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
-    case 1:
-    입력
-    6
-    10
-    20
-    15
-    25
-    10
-    20
-    출력
-    75 
-    &quot;&quot;&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;풀이&quot;&gt;풀이&lt;/h2&gt;
-
-&lt;p&gt;DP를 사용해서 문제를 해결한다. 보텀업 방식을 사용할 것이고, 점화식 또는 규칙을 찾아야한다.&lt;/p&gt;
-
-&lt;p&gt;계단을 오르는 규칙은 문제에 나와있듯이&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;두 계단씩 연속으로 오를 수 있다.&lt;/li&gt;
-  &lt;li&gt;마지막 계단은 밟아야한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;2번 규칙을 통해 마지막 계단을 꼭 밟아야 하기 때문에, 경우의 수는 두가지가 생긴다. 마지막 계단을 n이라 하자.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;n을 밟고, n-1을 밟고(연속으로 밟았다.) n-2는 건너 뛰고 n-3을 밟은 경우&lt;/li&gt;
-  &lt;li&gt;n을 밟고, n-1을 건너 뛰고 n-2를 밟은 경우&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;첫번째 경우는 n-1은 연속으로 밟기 때문에 array에서 값을 가져오고 n-3은 이전부터 max 값이 저장된 값인 dp값을 가져온다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;dp[n] = array[n] + array[n-1] + dp[n-3]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;두번째 경우는 n-2를 이전부터 max 값이 저장된 값인 dp 값을 가져온다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;dp[n] = array[n] + dp[n-2]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이 두 경우중 max인 값을 찾아 dp[n]에 저장하면된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;코드&quot;&gt;코드&lt;/h2&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;
-    
-    
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;__main__&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;array&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)]&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 43</summary></entry></feed>
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content><author><name>honggoo</name></author><category term="백준" /><category term="Algorithm" /><category term="Python" /><category term="백준" /><summary type="html">백준 알고리즘 - 44</summary></entry></feed>
