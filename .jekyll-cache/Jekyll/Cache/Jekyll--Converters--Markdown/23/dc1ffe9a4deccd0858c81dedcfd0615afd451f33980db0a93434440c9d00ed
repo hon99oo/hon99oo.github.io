@@ -1,0 +1,111 @@
+I"�*<h1 id="1-쓰레드-api">1. 쓰레드 API</h1>
+<ul>
+  <li>쓰레드 API의 주요 부분을 간략하게 사용해보고 결과를 확인해볼 것이다.</li>
+  <li>생성, 종료, 락, 컨디션 변수 총 네가지에 대해서 사용해 볼 것이다.</li>
+</ul>
+
+<h2 id="11-쓰레드-생성">1.1 쓰레드 생성</h2>
+
+<h3 id="쓰레드-생성">쓰레드 생성</h3>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;pthread.h&gt;
+</span>    
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">myarg_t</span><span class="p">;</span>
+    
+    <span class="kt">void</span> <span class="o">*</span><span class="nf">mythread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">myarg_t</span> <span class="o">*</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">myarg_t</span> <span class="o">*</span><span class="p">)</span> <span class="n">arg</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">a</span><span class="p">,</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">b</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="n">pthread_t</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">myarg_t</span> <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">};</span>
+        
+        <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">mythread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">args</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p><img src="../../assets/img/ostep/thread_API/img.png" width="70%" height="100%" /></p>
+
+<ul>
+  <li>위의 코드는 쓰레드를 생성하는 코드이다. 하지만, 실행했을 때 args가 출력되지 않는 것을 볼 수 있다.
+    <ul>
+      <li>이 이유는 쓰레드가 생성했지만, 쓰레드 실행 전에 메인 쓰레드인 main() 문이 종료되었기 때문이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="쓰레드-종료-기다리기">쓰레드 종료 기다리기</h3>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;pthread.h&gt;
+</span>    
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">myarg_t</span><span class="p">;</span>
+    
+    <span class="kt">void</span> <span class="o">*</span><span class="nf">mythread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">myarg_t</span> <span class="o">*</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">myarg_t</span> <span class="o">*</span><span class="p">)</span> <span class="n">arg</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%d %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">a</span><span class="p">,</span> <span class="n">args</span><span class="o">-&gt;</span><span class="n">b</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="n">pthread_t</span> <span class="n">p</span><span class="p">;</span>
+        <span class="n">myarg_t</span> <span class="n">args</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">};</span>
+        
+        <span class="kt">int</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">mythread</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">args</span><span class="p">);</span>
+        <span class="n">pthread_join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">args</span><span class="p">);</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p><img src="../../assets/img/ostep/thread_API/img_1.png" width="70%" height="100%" /></p>
+
+<ul>
+  <li>pthread_join 문을 추가하여 부모 쓰레드인 main에게 자식 쓰레드인 p가 종료할 때 까지 기다리라고 지시했다.
+    <ul>
+      <li>결과는 args인 10과 20이 잘 출력되는 모습을 볼 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="쓰레드에게-간단한-인자-전달하기">쓰레드에게 간단한 인자 전달하기</h3>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="cp">#include &lt;stdio.h&gt;
+</span>    <span class="cp">#include &lt;pthread.h&gt;
+</span>    
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="kt">int</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="n">myarg_t</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span> <span class="kt">int</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="n">myret_t</span><span class="p">;</span>
+    
+    <span class="kt">void</span> <span class="o">*</span><span class="nf">mythread</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)</span> <span class="n">arg</span><span class="p">;</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"%lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="n">value</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="n">pthread_t</span> <span class="n">p</span><span class="p">;</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">rvalue</span><span class="p">;</span>
+        <span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">p</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">mythread</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="mi">100</span><span class="p">);</span>
+        <span class="n">pthread_join</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">rvalue</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"returned %lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rvalue</span><span class="p">);</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p><img src="../../assets/img/ostep/thread_API/img_2.png" width="70%" height="100%" /></p>
+
+<ul>
+  <li>위의 코드는 쓰레드에게 간단한 인자를 전달하는 코드이다.
+    <ul>
+      <li>결과로 100이 출력되고 101이 잘 리턴 된 것을 볼 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="쓰레드에게-간단한-인자-전달하기잘못된-방법">쓰레드에게 간단한 인자 전달하기(잘못된 방법)</h3>
+
+:ET
