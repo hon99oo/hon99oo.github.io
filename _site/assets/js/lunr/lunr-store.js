@@ -850,4 +850,16 @@ var store = [{
         "tags": ["OSTEP","CS"],
         "url": "/ostep/ostep_13/",
         "teaser": null
+      },{
+        "title": "[OSTEP] 영속성 - I/O 장치",
+        "excerpt":" ","categories": ["OSTEP"],
+        "tags": ["OSTEP","CS"],
+        "url": "/ostep/ostep_14/",
+        "teaser": null
+      },{
+        "title": "[OSTEP] 영속성 - 하드 디스크 드라이브와 RAID",
+        "excerpt":" ","categories": ["OSTEP"],
+        "tags": ["OSTEP","CS"],
+        "url": "/ostep/ostep_15/",
+        "teaser": null
       }]
