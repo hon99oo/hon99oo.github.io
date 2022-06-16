@@ -1,0 +1,20 @@
+I"�<h1 id="1-redundant-array-of-inexpensive-diskraid">1. Redundant Array of Inexpensive Disk(RAID)</h1>
+<ul>
+  <li>직역하면 경제적인 Disk의 이중화 배열이다.</li>
+  <li>디스크를 사용할 때 디스크가 좀 더 빨랐으면 하는 바램이 있다. I/O 작업은 느려서 전체 시스템의 병목이 되기 때문이다.</li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>RAID 기술은 여러 개의 디스크를 조화롭게 사용하여 고속이면서 대용량의 신뢰할 수 있는 디스크 시스템을 만든다.</li>
+  <li>RAID는 여러 개의 디스크와 메모리, 시스템을 관리하기 위한 하나 또는 그 이상의 프로세서로 이루어진 복잡한 기계이다.</li>
+  <li>RAID의 하드웨어는 컴퓨터 시스템과 매우 유사하며 디스크의 그룹을 ㅗ간리하기 위한 전용 시스템이다.</li>
+  <li>RAID의 장점
+    <ul>
+      <li>성능이다. 디스크 여러 개를 병렬적으로 사용하면 I/O 시간이 크게 개선된다.</li>
+      <li>용량이다.</li>
+      <li>신뢰성을 높일 수 있다. <strong>데이터 중복 기술(redundancy)</strong></li>
+    </ul>
+  </li>
+</ul>
+:ET

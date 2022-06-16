@@ -1,0 +1,7 @@
+I"b<h1 id="1-redundant-array-of-inexpensive-diskraid">1. Redundant Array of Inexpensive Disk(RAID)</h1>
+<ul>
+  <li>직역하면 경제적인 Disk의 이중화 배열이다.</li>
+  <li>디스크를 사용할 때 디스크가 좀 더 빨랐으면 하는 바램이 있다. I/O 작업은 느려서 전체 시스템의 병목이 되기 때문이다.</li>
+</ul>
+
+:ET
