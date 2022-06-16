@@ -1,0 +1,289 @@
+I"�M<h1 id="1-락">1. 락</h1>
+<ul>
+  <li>여러 개의 명령어들을 원자적으로 실행해보고 싶지만 단일 프로세서의 인터럽트로 인해서(또는 멀티 쓰레드를 여러 프로세서에 병행성하려고 해서) 그렇게 할 수가 없었다.</li>
+  <li>프로그래머들은 소스 코드의 임계 영역을 <strong>락(lock)</strong>으로 둘러서 그 임계 영역이 마치 하나의 원자 단위 명령어인 것처럼 실행되도록 한다.</li>
+</ul>
+
+<h2 id="11-락-기본-개념">1.1 락: 기본 개념</h2>
+<ul>
+  <li>락은 일종의 변수다.</li>
+  <li>락을 사용하기 위해서는 락 변수를 먼저 선언해야 한다.</li>
+  <li>이 <strong>락 변수</strong>는 락의 상태를 나타낸다.</li>
+  <li>락은 둘중 하나의 상태를 갖는다.
+    <ol>
+      <li><strong>사용 가능(available)</strong> 상태 (<strong>unlockedf</strong> 또는 <strong>free</strong>)
+        <ul>
+          <li>즉 어떤 쓰레드도 락을 소유하고 있지 않다.</li>
+        </ul>
+      </li>
+      <li><strong>사용 중(acquired)</strong> 상태
+        <ul>
+          <li>즉 임계 영역에서 정확히 하나의 쓰레드가 락을 <strong>획득</strong>한 상태이다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>lock() 루틴 호출을 통해 락 획득을 시도한다.
+    <ul>
+      <li>이렇게 락을 획득한 쓰레드를 <strong>소유자(owner)</strong>라고 부른다.</li>
+      <li>락을 소유한 쓰레드가 임계 영역에 존재하는 상태에서는 다른 쓰레드들이 임계 영역으로 진입할 수 없다.</li>
+    </ul>
+  </li>
+  <li>락 소유자가 unlock()을 호출한다면 락은 이제 다시 사용 가능한 상태가 된다.</li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>일반적으로 쓰레드는 프로그래머가 생성하고 운영체제가 제어한다.</li>
+  <li>락으로 코드를 감싸서 프로그래머는 크 코드 내에서는 하나의 쓰레드만 동작하도록 보장할 수 있다.</li>
+</ul>
+
+<h2 id="12-pthread-락">1.2 Pthread 락</h2>
+<ul>
+  <li>쓰레드 간에 <strong>상호 배제(mutual exclusion)</strong> 기능을 제공하기 때문에 POSIX 라이브러리는 락을 <strong>mutex</strong>라고 부른다.</li>
+  <li>상호 배제는 한 쓰레드가 임계 영역 내에 있다면 이 쓰레드의 동작이 끝날 때까지 다른 쓰레드가 임계 영역에 들어 올 수 없도록 제한한다고해서 얻은 이름이다.</li>
+  <li>각 데이터와 자료 구조를 보호하는 데 있어서, 여러 락을 사용한다.</li>
+</ul>
+
+<h2 id="13-락의-평가">1.3 락의 평가</h2>
+<ul>
+  <li>락 설계시, 락의 정상동작 여부 판단을 위한 평가기준을 정해야 한다.
+    <ol>
+      <li><strong>상호 배제</strong>를 제대로 지원하는가이다.</li>
+      <li><strong>공정성(fairness)</strong>
+        <ul>
+          <li>락을 전혀 얻지 못해 <strong>굶주리는(starve)</strong> 경우가 발생하는지를 판단해야한다.</li>
+        </ul>
+      </li>
+      <li><strong>성능(performance)</strong>이다.</li>
+    </ol>
+  </li>
+</ul>
+
+<blockquote>
+  <p>이제부터 1.4절부터 락을 구현하는 여러가지 방법에 대해 알아볼 것이다. 스핀락부터 스핀을 사용하지 않는 락까지 알아본다.</p>
+</blockquote>
+
+<h2 id="14-인터럽트-제어">1.4 인터럽트 제어</h2>
+<ul>
+  <li>초창기 단일 프로세스 시스템에서는 상호 배제 지원을 위해 임계 영역 내에서는 인터럽트를 비활성화하는 방법을 사용했다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">void</span> <span class="nf">lock</span><span class="p">(){</span>
+        <span class="n">DisableInterrupts</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">(){</span>
+        <span class="n">EnableInterrupts</span><span class="p">();</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>이 방법은 잔점이 많다.</li>
+  <li>첫 번째 단점은, 요청을 하는 쓰레드가 인터럽트를 활성/비활성화하는 <strong>특권(privileged)</strong> 연산을 실행할 수 있도록 허가해야 한다.
+    <ul>
+      <li>이를 다른 목적으로 사용하지 않음을 신뢰할 수 있어야 한다.</li>
+    </ul>
+  </li>
+  <li>두 번째 단점은, 멀티프로세서에서는 적용을 할 수가 없다.</li>
+  <li>세 번째 단점은, 장시간 동안 인터럽트를 중지시키는 것은 중요한 인터럽트의 시점을 놓칠 수 있다.</li>
+  <li>마지막은, 이 방법은 비효율적이다.</li>
+</ul>
+
+<h2 id="15-오직-loadstore-명령어만-사용하기실패한-시도">1.5 오직 load/store 명령어만 사용하기(실패한 시도)</h2>
+<ul>
+  <li>load와 store 명령어만으로 락을 구현한다.
+    <ul>
+      <li>간단한 플래그 변수를 사용하여 쓰레드가 락을 획득하였는지를 나타낸다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">mutex</span><span class="p">){</span>
+        <span class="n">mutex</span><span class="o">-&gt;</span><span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 0 -&gt; 락 사용가능, 1 -&gt; 락 사용중</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">lock</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">mutex</span><span class="p">){</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">mutex</span><span class="o">-&gt;</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">;</span> <span class="c1">// flag 변수 검사 이후 spin-wait</span>
+        <span class="n">mutex</span><span class="o">-&gt;</span><span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 이제 설정</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">mutex</span><span class="p">){</span>
+        <span class="n">mutex</span><span class="o">-&gt;</span><span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>실패원인: 적시에 인터럽트가 발생하면 두 쓰레드 모두 플래그를 1로 설정하는 경우가 생길 수 있어서 임계 영역에 두 쓰레드 다 진입할 수 있게 된다.</li>
+  <li>성능저하: <strong>spin-wait</strong>라는 방법을 사용하여 플래그의 값을 무한히 검사하는데, 이는 시간을 낭비한다.</li>
+</ul>
+
+<h2 id="16-test-and-set을-사용하여-작동하는-스핀-락-구현하기">1.6 Test-And-Set을 사용하여 작동하는 스핀 락 구현하기</h2>
+<ul>
+  <li>하드웨어 기법 중 가장 기본은 <strong>test-and-set</strong> 명령어 또는 <strong>원자적 교체(atomic exchange)</strong>로 알려진 명령어이다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="nf">TestAndSet</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">old_ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">old</span> <span class="o">=</span> <span class="o">*</span><span class="n">old_ptr</span><span class="p">;</span>
+        <span class="o">*</span><span class="n">old_ptr</span> <span class="o">=</span> <span class="n">new</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="nf">lock</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">mutex</span><span class="p">){</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">TestAndSet</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">;</span> <span class="c1">// TestAndSet으로 원자적으로 플래그를 검사</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>락의 값을 <strong>검사(test)&lt;/storng&gt;하고 새로운 값으로 <strong>설정(set)</strong>하는 동작을 원자적 연산으로 만듦으로써 오직 하나의 쓰레드만 락을 획득할 수 있도록 만들었다.</strong></li>
+  <li>지금 설명한 방법이 <strong>스핀 락</strong>으로 불리는 이유를 이제 이해할 수 있다.</li>
+  <li>락을 획득할 때까지, CPU 사이클을 소모하면서 회전한다.</li>
+  <li>이 방식을 제대로 사용하려면 <strong>선점형 스케줄러(preemptive scheduler)</strong>를 사용해야 한다.
+    <ul>
+      <li>선점형이 아니면, 단일 CPU에서 스핀 락의 사용은 불가능하다. 왜냐하면 while 문을 회전하며 대기하는 쓰레드가 CPU를 영원히 독점하기 때문이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="스핀-락-평가">스핀 락 평가</h3>
+<ol>
+  <li>정확성
+    <ul>
+      <li>제대로 동작한다.</li>
+    </ul>
+  </li>
+  <li>공정성
+    <ul>
+      <li>단순한 스핀 락은 공정하지 않으며 쓰레드가 굶주리게 만들 수 있다. (while문을 회전하기 때문에)</li>
+    </ul>
+  </li>
+  <li>성능
+    <ul>
+      <li>단일 CPU의 경우 성능 오버헤드는 상당히 클 수 있다. 쓰레드는 할당받은 기간 동안 CPU 사이클을 낭비하면서 락을 획득하기 위해 대기한다.</li>
+      <li>멀티 CPU의 경우 다른 프로세서에서 락을 획득하기 위해 while문을 회전하면서 대기하는 것은 그렇게 많은 사이클을 낭비하지 않기 때문에 효율적일 수 있다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="17-compare-and-swap">1.7 Compare-And-Swap</h2>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="nf">CompareAndSwap</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">expected</span><span class="p">,</span> <span class="kt">int</span> <span class="n">new</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">original</span> <span class="o">=</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">original</span> <span class="o">==</span> <span class="n">expected</span><span class="p">)</span>
+            <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="n">new</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">original</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>Compare-And-Swap 기법은 기본 개념은 ptr이 가리키고 있는 주소의 값이 expected 변수와 일치하는지 검사하는 것이다.</li>
+  <li>CompareAndSwap 명령어는 TestAndSet 명령어보다 더 강력하다.
+    <ul>
+      <li><strong>대기없는 동기화(wait-free synchronization)</strong>와 같은 주제를 다룰 때 이 루틴이 갖느 능력을 알게 될 것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="18-load-linked-그리고-store-conditional">1.8 Load-Linked 그리고 Store-Conditional</h2>
+<ul>
+  <li><strong>load-linked</strong>와 <strong>store-conditional</strong> 명령어를 앞뒤로 사용하여 락이나 기타 병행 연산을 위한 자료 구조를 만들 수 있다.</li>
+</ul>
+
+<h2 id="19-fetch-and-add">1.9 Fetch-And-Add</h2>
+<ul>
+  <li>Fetch-And-Add 명령어로 원자적으로 특정 주소의 예전 값을 반환하면서 값을 증가시킨다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="nf">FetchAndAdd</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">old</span> <span class="o">=</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+        <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="n">old</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="k">typedef</span> <span class="k">struct</span> <span class="n">__lock_t</span><span class="p">{</span>
+        <span class="kt">int</span> <span class="n">ticket</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">turn</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">lock_t</span><span class="p">;</span>
+    
+    <span class="kt">void</span> <span class="nf">lock_init</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">lock</span><span class="p">){</span>
+        <span class="n">lock</span><span class="o">-&gt;</span><span class="n">ticket</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">lock</span><span class="o">-&gt;</span><span class="n">turn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">lock</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">lock</span><span class="p">){</span>
+        <span class="kt">int</span> <span class="n">myturn</span> <span class="o">=</span> <span class="n">FetchAndAdd</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="o">-&gt;</span><span class="n">ticket</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">lock</span><span class="o">-&gt;</span><span class="n">turn</span> <span class="o">!=</span> <span class="n">myturn</span><span class="p">)</span> <span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">(</span><span class="n">lock_t</span> <span class="o">*</span><span class="n">lock</span><span class="p">){</span>
+        <span class="n">FetchAndAdd</span><span class="p">(</span><span class="o">&amp;</span><span class="n">lock</span><span class="o">-&gt;</span><span class="n">turn</span><span class="p">)</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>위의 방법은 티켓락
+    <ul>
+      <li>이전까지의 접근 방법과 이번 해법의 중요한 차이 중 하나는 모든 쓰레드들이 각자의 순서에 따라 진행한다는 것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="110-요약-과도한-스핀">1.10 요약: 과도한 스핀</h2>
+<ul>
+  <li>두개의 쓰레드를 프로세서가 하나인 시스템에서 실행하면 레이턴시가 증가한다.</li>
+  <li>N개의 쓰레드가 하나의 락을 획득하기 위해 경쟁하게 되면 상황은 더욱 심각해진다.</li>
+  <li>N-1개의 쓰레드에 할당된 CPU 시간 동안, 비슷한 이유로 낭비하게된다.</li>
+</ul>
+
+<h2 id="111-간단한-접근법-조건-없는-양보">1.11 간단한 접근법: 조건 없는 양보!</h2>
+<ul>
+  <li>위의 방법들로 동작이 검증된 락과 락 획득의 공정성(티켓 락을 사용한 경우) 까지도 해결할 수 있었다.</li>
+  <li>이전 쓰레드가 인터럽트에 걸리기 전에 락을 이미 획득한 상태라서 그 쓰레드가 락을 해제하기를 기다리며 스핀만 무한히 하는 경우에 어떻게 해야 할것인가?
+    <ul>
+      <li>첫 번째 방법은 락이 해제되기를 기다리며 스핀해야하는 경우 자신에게 할당된 CPU를 다른 쓰레드에게 양보하는 것이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">void</span> <span class="nf">init</span><span class="p">(){</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">lock</span><span class="p">(){</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">TestAndSet</span><span class="p">(</span><span class="o">&amp;</span><span class="n">flag</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">yield</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">unlock</span><span class="p">(){</span>
+        <span class="n">flag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<ul>
+  <li>위의 방법은 Test-And-Set와 양보를 이용한 락이다.
+    <ul>
+      <li>운영체제에 자신이 할당받은 CPU 시간을 포기하고 다른 쓰레드가 실행될 수 있도록 하는 yield90 기법을 사용한다.</li>
+      <li>단점은 많은 쓰레드가 있을 때 하나를 제외한 나머지의 쓰레드가 실행과 양보를 반복하는 패턴으로 비용이 많이 든다. 또한 어떤 쓰레드는 무한히 양보만 하고 있는 경우가 있을 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="112-뮤의-사용-스핀-대시-잠자기">1.12 뮤의 사용: 스핀 대시 잠자기</h2>
+<ul>
+  <li>이전 방법들의 근본 문제는 너무 많은 부분을 운에 맡긴다는 것이다.</li>
+  <li>다수의 쓰레드가 락을 대기하고 있을 경우, 다음으로 락을 획득할 쓰레드를 명시적으로 선택할 수 있어야 한다. 이를 위해서는 운영체제의 적절한 지원과 큐를 이요한 대기 쓰레드들의 관리가 필요하다.
+    <ul>
+      <li>park(), unpark() &lt;- 쓰레드를 잠재우고 깨우는 함수이다.</li>
+    </ul>
+  </li>
+  <li>장점
+    <ol>
+      <li>앞서 배운 Test-And-Set 개념을 락 대가지 전용 큐와 함께 사용하여 좀 더 효율적인 락을 만들 수 있다.</li>
+      <li>큐를 사용하여 다음으로 락을 획득할 대상을 제어하여 기아 현상을 피할 수 있도록 할 수 있다.</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="113-2단계-락">1.13 2단계 락</h2>
+<ul>
+  <li>첫 번째 단계에서는 회전하며 대기한다. 락이 빠른 시간 내에 해제될 것을 가정한다.</li>
+  <li>만약 첫 단계에서 락을 획득하지 못했다면 두 번째 단계로 진입한다.</li>
+  <li>두 번째 단계에서 호출자는 차단된다.</li>
+  <li>락 해제시 블럭된 쓰레드중 하나를 잠에서 깨운다.</li>
+</ul>
+:ET

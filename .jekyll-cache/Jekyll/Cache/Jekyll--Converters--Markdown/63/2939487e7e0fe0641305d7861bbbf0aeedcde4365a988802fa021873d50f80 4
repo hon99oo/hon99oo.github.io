@@ -1,0 +1,59 @@
+I"�<h1 id="boj">BOJ</h1>
+
+<h2 id="수학-1790-수-이어-쓰기2">수학 1790 수 이어 쓰기2</h2>
+<p><a href="https://www.acmicpc.net/problem/1790">문제로 이동!</a></p>
+
+<h2 id="문제">문제</h2>
+
+<p>1부터 N까지의 수를 이어서 쓰면 다음과 같이 새로운 하나의 수를 얻을 수 있다.</p>
+
+<p>1234567891011121314151617181920212223…</p>
+
+<p>이렇게 만들어진 새로운 수에서, 앞에서 k번째 자리 숫자가 어떤 숫자인지 구하는 프로그램을 작성하시오.</p>
+
+<h2 id="입력">입력</h2>
+
+<p>첫째 줄에 N(1 ≤ N ≤ 100,000,000)과,  k(1 ≤ k ≤ 1,000,000,000)가 주어진다. N과 k 사이에는 공백이 하나 이상 있다.</p>
+
+<h2 id="예제-입력">예제 입력</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="s">"""
+    case 1:
+    입력
+    20 23
+    출력
+    6
+    """</span></code></pre></figure>
+
+<h2 id="풀이">풀이</h2>
+<blockquote>
+  <p>자연수를 이어 쓴다면, 1~9, 10~99, 100~999, … 으로 구분할 수 있다. “자릿수”에 따라 이어지는 숫자의 위치가 달라진다. 그럼 N번째의 숫자가 무엇인지 알기 위해서는
+1~9 자리인 9개의 숫자, 10~99 자리인 180개의 숫자(자릿수가 2개이기 때문에 90*2를 해준다.), 100~999 자리인 2700개의 숫자… 로 표현할 수 있다. 
+그렇기 때문에 반복문을 돌면서 N에 9를 빼주고, 180을 빼주고, 2700을 빼주고를 반복한다. 이후 더이상 뺄 수 없는 숫자라면, 예를들어 9를 뺄 수 있다면 N은 10부터 시작이다.
+또한 9와 180 사이의 N에서 9를 빼면 10~99 에서 숫자가 나온다. 자릿수가 2이기 때문에 2씩 나눈다면, 해당 N번째 숫자가 무엇인지 확인 할 수 있다. 이후 한번더 자릿수로 나누어 정확한 N번째 숫자가 무엇인지 구할 수 있다.</p>
+</blockquote>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">store</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">nine</span> <span class="o">=</span> <span class="mi">9</span>
+    
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="n">digit</span> <span class="o">*</span> <span class="n">nine</span><span class="p">:</span>
+            <span class="n">k</span> <span class="o">-=</span> <span class="p">(</span><span class="n">digit</span> <span class="o">*</span> <span class="n">nine</span><span class="p">)</span>
+            <span class="n">store</span> <span class="o">+=</span> <span class="n">nine</span>
+            <span class="n">digit</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">nine</span> <span class="o">*=</span> <span class="mi">10</span>
+    
+        <span class="n">answer</span> <span class="o">=</span> <span class="p">(</span><span class="n">store</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">digit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">answer</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">answer</span><span class="p">)[(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">digit</span><span class="p">])</span>
+    
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">n</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">input</span><span class="p">().</span><span class="n">split</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution</span><span class="p">(</span><span class="n">k</span><span class="p">))</span></code></pre></figure>
+:ET

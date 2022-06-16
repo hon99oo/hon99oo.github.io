@@ -1,0 +1,112 @@
+I"Q,<h1 id="프로그래머스programmers-코딩테스트-연습">프로그래머스(Programmers) 코딩테스트 연습</h1>
+
+<h2 id="level2-그리디-큰-수-만들기-파이썬python-풀이">Level2 그리디 큰 수 만들기 파이썬(Python) 풀이</h2>
+
+<ul>
+  <li><a href="https://programmers.co.kr/learn/courses/30/lessons/42748">풀이로 이동!</a></li>
+</ul>
+
+<h2 id="문제풀이">문제풀이</h2>
+<blockquote>
+  <p>총 두가지의 방법으로 문제를 풀었는데 모두 테스트케이스 10에서 시간 초과로 인해 풀지 못하였다… 
+그래서 정답 코드를 가지고 와서 공부를 하는 것으로 대신하겠다. 
+파이썬에는 스택 자료구조가 따로 없고 리스트로 스택을 흉내내서 사용할 수 있다.
+정답 코드는 스택의 성질을 사용하여서 문제를 해결했다.</p>
+</blockquote>
+
+<h3 id="맞는-풀이-solution3">맞는 풀이 solution3</h3>
+
+<ol>
+  <li>stack을 흉내내는 리스트(stack이라 부르겠다.)에 number의 첫번째 값을 넣어준다(push).</li>
+  <li>number의 두번째 값부터 반복문을 돈다.</li>
+  <li>while문을 도는데, 조건은 세가지다.
+    <ol>
+      <li>stack에 값이 있어야한다.</li>
+      <li>stack의 마지막 값(stack.top)이 num보다 작아야한다.</li>
+      <li>k가 0보다 커야한다.</li>
+    </ol>
+  </li>
+  <li>위에 해당하지 않으면 stack에 값을 추가해준다(push).</li>
+  <li>조건이 해당하면, 반복문을 돌면서 stack.pop()과 k를 1씩 줄여준다.</li>
+  <li>반복문이 끝나고도 k가 0이 아니면 stack을 뒤에서 k만큼 slicing해준다.</li>
+  <li>'’으로 join하여 문자열로 return한다.</li>
+</ol>
+
+<h3 id="틀린-풀이-solution1">틀린 풀이 solution1</h3>
+
+<ol>
+  <li>numbur의 i와 i+1을 비교한다.</li>
+  <li>i가 i+1보다 작으면 i를 pop해준다.</li>
+  <li>다시 첫번째 index로 돌아가 1-2번을 반복한다.</li>
+  <li>남아있는 값이 len(number)-k의 길이가 아니면, 뒤에서 k만큼 slicing 해준다.</li>
+  <li>'’으로 join하여 문자열로 return한다.</li>
+</ol>
+
+<h3 id="틀린-풀이-solution2">틀린 풀이 solution2</h3>
+
+<ol>
+  <li>number의 i와 j를 비교한다.</li>
+  <li>i가 j보다 작으면 i의 인덱스를 새로운 배열에 저장한다.</li>
+  <li>모두 저장된 배열에 포함된 인덱스를 number에서 제거해준다.</li>
+  <li>남아있는 값이 len(number)-k의 길이가 아니면, 뒤에서 k만큼 slicing 해준다.</li>
+  <li>'’으로 join하여 문자열로 return한다.</li>
+</ol>
+
+<h2 id="코드">코드</h2>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="k">def</span> <span class="nf">solution1</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s">'9'</span><span class="p">:</span> <span class="k">break</span>
+                <span class="k">if</span> <span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">number</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span><span class="mi">1</span>
+                        <span class="k">break</span>
+                    <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+                    <span class="k">break</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">answer</span>
+    
+    <span class="k">def</span> <span class="nf">solution2</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="o">-</span><span class="n">k</span>
+        <span class="n">remove_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+                <span class="k">break</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">k</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">number</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">remove_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                    <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="k">break</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">number</span><span class="p">))</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">remove_list</span><span class="p">]</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="n">number</span><span class="p">[:</span><span class="n">length</span><span class="p">]</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">answer</span>
+    
+    
+    
+    <span class="k">def</span> <span class="nf">solution3</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">number</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">number</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">num</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="n">stack</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">stack</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="n">stack</span><span class="p">[:</span><span class="o">-</span><span class="n">k</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+    
+    
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="s">'4177252841'</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">solution3</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">k</span><span class="p">))</span></code></pre></figure>
+:ET

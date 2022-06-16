@@ -383,6 +383,8 @@
   <li>쓰레드 실행시, 특정 조건이 만족될 때까지의 대기를 위해 <strong>컨디션 변수(conditional variable)</strong>라고 불리는 개념을 사용할 수 있다.</li>
   <li>컨디션 변수는 일종의 큐 자료 구조다.</li>
   <li>컨디션 변수는 쓰레드 실행에서 어떤 상태(또는 어떤 <strong>조건</strong>)가 원하는 것과 다를 때 조건이 만족되기를 <strong>대기</strong>하는 큐이다.</li>
+  <li>wait(): 쓰레드가 스스로를 잠재우기 위해서 호출</li>
+  <li>signal(): 조건이 만족되기를 대기하며 잠자고 있던 쓰레드를 깨울 때 호출</li>
 </ul>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="n">done</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -650,6 +652,43 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/ostep/ostep_14/" rel="permalink">[OSTEP] 영속성 - I/O 장치
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-15T00:00:00+09:00">June 15, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 14
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/ostep/ostep_13/" rel="permalink">[OSTEP] 병행성 - 병행성 관련 버그
 </a>
       
@@ -747,43 +786,6 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">OSTEP - 12
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/ostep/ostep_10/" rel="permalink">[OSTEP] 병행성 - 락
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        
-        <time datetime="2022-06-10T00:00:00+09:00">June 10, 2022</time>
-      </span>
-    
-
-    
-
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">OSTEP - 10
 </p>
   </article>
 </div>

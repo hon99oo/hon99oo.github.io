@@ -1,0 +1,25 @@
+I"�<h1 id="1-io-장치">1. I/O 장치</h1>
+<p>I/O는 컴퓨터 시스템에서 상당히 중요한 부분이다.</p>
+<ul>
+  <li>시스템에 I/O를 어떻게 통합해야 하는가?</li>
+  <li>일반적인 방법은 무엇인가?</li>
+  <li>어떻게 효율적으로 통합할 수 있을까?</li>
+</ul>
+
+<h1 id="11-시스템-구조">1.1 시스템 구조</h1>
+<ul>
+  <li>CPU와 주메모리가 <strong>메모리 버스</strong>로 연결되어 있다.</li>
+  <li>몇가지 장치들이 범용 <strong>I/O 버스</strong>에 연결이 되어 있는데, 많은 현대의 시스템에서는 <strong>PCI</strong>(또는 다른 파생된 형태의 버스)를 사용하고 있다.
+    <ul>
+      <li>그래픽이나 다른 고성능 I/O 장치들이 여기에 연결될 수 있다.</li>
+    </ul>
+  </li>
+  <li>그 아래에는 <strong>SCSI</strong>나 <strong>SATA</strong> 또는 <strong>USB</strong>와 같은 <strong>주변장치용 버스</strong>가 있다.
+    <ul>
+      <li>이 버스들을 통해 <strong>디스크, 마우스, 키보드</strong>와 같은 느린 장치들이 연결된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/06/img.png" width="40%" height="100%" /></p>
+:ET
