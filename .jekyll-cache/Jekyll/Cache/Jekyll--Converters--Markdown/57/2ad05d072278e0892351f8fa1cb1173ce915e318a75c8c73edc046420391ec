@@ -1,0 +1,37 @@
+I"�<h1 id="공유하는-파일-테이블">공유하는 파일 테이블</h1>
+<p>프로세스들이 열린 파일 테이블을 공유하는 경우가 있다. 부모 프로세스가 fork()를 사용하여 자식 프로세스를 생성하는 것이 그런 경우중 하나이다.
+그렇다면 부모 프로세스가 먼저 파일을 열고 “A” 라고 파일을 작성하고 자식 프로세스를 생성한 뒤 자식 프로세스에서 “B” 라고 파일에 작성한 뒤 자식 프로세스는 종료,
+자식 프로세스가 종료될 때 까지 부모 프로세스가 wait 하다가 자식 프로세스가 종료되면 “C” 라고 작성하게 된다면 파일에는 어떻게 문자열이 저장될까?
+바로 코드를 작성해서 확인해보자!</p>
+
+<h1 id="왜-파일에는-네개의-문자열이-저장되고-터미널에서-출력은-세번-되지">왜 파일에는 네개의 문자열이 저장되고 터미널에서 출력은 세번 되지?!</h1>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span>
+        <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT1 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">fputs</span><span class="p">(</span><span class="s">"CHILDREN "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">rc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+            <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT1 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>위의 코드를 작성하고 터미널에서 gcc 컴파일러를 사용하여 실행시켜보았다.</p>
+
+<p><img src="../../assets/img/csetc/03/img.png" width="80%" height="100%" /></p>
+<ul>
+  <li>출력은 위의 그림처럼 부모 프로세스는 두번 자식 프로세스는 한번 출력되었다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="n">PARENT1</span> <span class="n">CHILDREN</span> <span class="n">PARENT1</span> <span class="n">PARENT1</span> </code></pre></figure>
+
+:ET

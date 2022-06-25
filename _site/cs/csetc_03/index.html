@@ -1,0 +1,782 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>자식 프로세스와 부모 프로세스는 파일 디스크립터를 어떻게 공유할까? - 홍구의 개발 블로그</title>
+<meta name="description" content="터미널 출력 버퍼와 파일 출력 버퍼의 차이">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="자식 프로세스와 부모 프로세스는 파일 디스크립터를 어떻게 공유할까?">
+<meta property="og:url" content="http://localhost:4000/cs/csetc_03/">
+
+
+  <meta property="og:description" content="터미널 출력 버퍼와 파일 출력 버퍼의 차이">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-06-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/cs/csetc_03/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          자식 프로세스와 부모 프로세스는 파일 디스크립터를 어떻게 공유할까?
+
+        
+      </h1>
+      
+        <p class="page__lead">터미널 출력 버퍼와 파일 출력 버퍼의 차이
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-24T00:00:00+09:00">June 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+
+  
+
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="자식 프로세스와 부모 프로세스는 파일 디스크립터를 어떻게 공유할까?">
+    <meta itemprop="description" content="터미널 출력 버퍼와 파일 출력 버퍼의 차이">
+    <meta itemprop="datePublished" content="2022-06-24T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#공유하는-파일-테이블">공유하는 파일 테이블</a></li><li><a href="#왜-파일에는-네개의-문자열이-저장되고-터미널에서-출력은-세번-되지">왜 파일에는 네개의 문자열이 저장되고 터미널에서 출력은 세번 되지?!</a></li><li><a href="#터미널-출력-버퍼와-파일-출력-버퍼의-차이">터미널 출력 버퍼와 파일 출력 버퍼의 차이</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="공유하는-파일-테이블">공유하는 파일 테이블</h1>
+<p>프로세스들이 열린 파일 테이블을 공유하는 경우가 있다. 부모 프로세스가 fork()를 사용하여 자식 프로세스를 생성하는 것이 그런 경우중 하나이다.
+그렇다면 부모 프로세스가 먼저 파일을 열고 “A” 라고 파일을 작성하고 자식 프로세스를 생성한 뒤 자식 프로세스에서 “B” 라고 파일에 작성한 뒤 자식 프로세스는 종료,
+자식 프로세스가 종료될 때 까지 부모 프로세스가 wait 하다가 자식 프로세스가 종료되면 “C” 라고 작성하게 된다면 파일에는 어떻게 문자열이 저장될까?
+바로 코드를 작성해서 확인해보자!</p>
+
+<h1 id="왜-파일에는-네개의-문자열이-저장되고-터미널에서-출력은-세번-되지">왜 파일에는 네개의 문자열이 저장되고 터미널에서 출력은 세번 되지?!</h1>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span>
+        <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT1 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">fputs</span><span class="p">(</span><span class="s">"CHILDREN "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">rc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+            <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT1 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span></code></pre></figure>
+
+<p>위의 코드를 작성하고 터미널에서 gcc 컴파일러를 사용하여 실행시켜보았다.</p>
+
+<p><img src="../../assets/img/csetc/03/img.png" width="60%" height="100%" /></p>
+<ul>
+  <li>출력은 위의 그림처럼 부모 프로세스는 두번 자식 프로세스는 한번 출력되었다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="c1">// file.txt</span>
+    <span class="n">PARENT1</span> <span class="n">CHILDREN</span> <span class="n">PARENT1</span> <span class="n">PARENT2</span></code></pre></figure>
+
+<ul>
+  <li>텍스트 파일은 위의 그림처럼 PARENT1이 하나 더 많은 총 네개의 문자열이 저장되었다.</li>
+</ul>
+
+<p><br />
+이유가 무엇일까…? 자식 프로세스를 생성하면 자식 프로세스는 fork() 이후의 코드만 실행한다. 하지만 어째서인지 텍스트 파일에 저장된 문자열은 PARENT1이 하나 더 많다…
+너무나도 궁금해서 구글링을 열심히 해봤지만… 답을 찾을 수는 없었다. 그래서 c언어 오픈채팅에 열심히 질문글을 작성했다.. 오픈채팅방에서 한 초초초초고수님께서 답변을 달아주셨다.
+이 답변을 한번 정리해보겠다.</p>
+
+<h1 id="터미널-출력-버퍼와-파일-출력-버퍼의-차이">터미널 출력 버퍼와 파일 출력 버퍼의 차이</h1>
+<p>터미널 출력과 특스트 파일에 저장된 문자열의 개수가 다른 이유는 <strong>터미널 출력 버퍼</strong>와 <strong>파일 출력 버퍼</strong>의 단위가 다르기 때문이다.
+터미널 출력 버퍼는 엔터를 만나면 출력 버퍼를 비운다. 하지만 파일 출력 버퍼는 좀 더 넓은 버퍼 범위를 갖고 있는다.
+그렇기 때문에 내 코드에서 pid를 출력하는 코드는 한번씩 알맞게 출력되어 터미널 상에 출력되었다.
+하지만, PARENT1은 출력을 한번 하였지만 파일 출력 버퍼에서 아직 사라지지 않은 상태로 fork()를 만나고 자식 프로세스에 함께 복사되었다. 이후에 자식 프로세스에서 
+CHILDREN을 출력하고 버퍼에 남아있는 PARENT1을 출력하게 되어 “PARENT1 CHILDREN PARENT1 PARENT2”가 출력된 것이다.</p>
+
+<p>조금 더 요약하자면,
+PARENT1(부모 프로세스, 자식 프로세스 분개 전) CHILDREN(자식 프로세스) PARENT1(자식 프로세스, 아직 파일 출력 버퍼에 남아있는) PARENT2(부모 프로세스, 자식 프로세스가 종료되고 출력)
+이다.</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span>
+    <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT1 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">rc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+        <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT2 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="c1">// file.txt</span>
+    <span class="c1">// PARENT1 PARENT2</span></code></pre></figure>
+
+<ul>
+  <li>위의 코드는 자식 프로세스에서는 파일에 쓰기하지 않았다.</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c">    <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+        <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">rc</span><span class="p">;</span>
+        <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"file.txt"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">);</span>
+        <span class="n">fputs</span><span class="p">(</span><span class="s">"PARENT1 "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="n">fork</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">fputs</span><span class="p">(</span><span class="s">"CHILDREN "</span><span class="p">,</span> <span class="n">fp</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">rc</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">wait</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"pid:%d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">getpid</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// file.txt</span>
+    <span class="c1">// PARENT1 CHILDREN PARENT1</span></code></pre></figure>
+
+<ul>
+  <li>위의 코드는 자식 프로세스가 종료된 이후 파일에 쓰지 않았다.</li>
+</ul>
+
+<p>위의 두 코드의 결과를 보고 더 명확하게 이해할 수 있었다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-24T00:00:00+09:00">June 24, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%9E%90%EC%8B%9D+%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80+%EB%B6%80%EB%AA%A8+%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EB%8A%94+%ED%8C%8C%EC%9D%BC+%EB%94%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%84%B0%EB%A5%BC+%EC%96%B4%EB%96%BB%EA%B2%8C+%EA%B3%B5%EC%9C%A0%ED%95%A0%EA%B9%8C%3F%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fcsetc_03%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fcsetc_03%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2Fcsetc_03%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ostep/ostep_16/" class="pagination--pager" title="[OSTEP] 영속성 - Redundant Array of Inexpensive Disk(RAID)
+">이전</a>
+    
+    
+      <a href="/ostep/ostep_17/" class="pagination--pager" title="[OSTEP] 영속성 - 파일과 디렉터리
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_17/" rel="permalink">[OSTEP] 영속성 - 파일과 디렉터리
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-24T00:00:00+09:00">June 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 17
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_16/" rel="permalink">[OSTEP] 영속성 - Redundant Array of Inexpensive Disk(RAID)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-16T00:00:00+09:00">June 16, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 16
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_15/" rel="permalink">[OSTEP] 영속성 - 하드 디스크 드라이브
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-15T00:00:00+09:00">June 15, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 15
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_14/" rel="permalink">[OSTEP] 영속성 - I/O 장치
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-15T00:00:00+09:00">June 15, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 14
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/cs/csetc_03/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/cs/csetc_03"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
