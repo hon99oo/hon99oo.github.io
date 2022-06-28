@@ -1,0 +1,949 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[OSTEP] 영속성 - 파일 시스템 구현 - 홍구의 개발 블로그</title>
+<meta name="description" content="OSTEP - 18">
+
+
+  <meta name="author" content="honggoo">
+  
+  <meta property="article:author" content="honggoo">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="홍구의 개발 블로그">
+<meta property="og:title" content="[OSTEP] 영속성 - 파일 시스템 구현">
+<meta property="og:url" content="http://localhost:4000/ostep/ostep_18/">
+
+
+  <meta property="og:description" content="OSTEP - 18">
+
+
+
+  <meta property="og:image" content="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80">
+
+
+
+
+
+  <meta property="article:published_time" content="2022-06-25T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/ostep/ostep_18/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "honggoo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="홍구의 개발 블로그 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          홍구의 개발 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about_me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Archive</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+<div class="page__hero--overlay"
+  style=" background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');"
+>
+  
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">
+        
+          [OSTEP] 영속성 - 파일 시스템 구현
+
+        
+      </h1>
+      
+        <p class="page__lead">OSTEP - 18
+</p>
+      
+      
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-25T00:00:00+09:00">June 25, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+      
+      
+    </div>
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="http://localhost:4000/">
+        <img src="/assets/img/avatar2.png" alt="honggoo" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">honggoo</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>본격적인 개발 블로그를 시작해 볼까!</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="cocoti5797@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer me"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i><span class="label">Instagram</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+  
+
+  
+
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[OSTEP] 영속성 - 파일 시스템 구현">
+    <meta itemprop="description" content="OSTEP - 18">
+    <meta itemprop="datePublished" content="2022-06-25T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-bars"></i> table of content</h4></header>
+              <ul class="toc__menu"><li><a href="#1-파일-시스템-구현">1. 파일 시스템 구현</a></li><li><a href="#11-생각하는-방법">1.1 생각하는 방법</a></li><li><a href="#12-전체-구성">1.2 전체 구성</a><ul><li><a href="#13-파일-구성-아이노드">1.3 파일 구성: 아이노드</a><ul><li><a href="#멀티-레벨-인덱스">멀티 레벨 인덱스</a></li></ul></li><li><a href="#14-디렉터리-구조">1.4 디렉터리 구조</a></li><li><a href="#15-빈-공간의-관리">1.5 빈 공간의 관리</a></li><li><a href="#16-실행-흐름-읽기와-쓰기">1.6 실행 흐름: 읽기와 쓰기</a><ul><li><a href="#디스크에서-파일-읽기">디스크에서 파일 읽기</a></li><li><a href="#디스크에-파일-쓰기">디스크에 파일 쓰기</a></li></ul></li><li><a href="#17-캐싱과-버퍼링">1.7 캐싱과 버퍼링</a></li><li><a href="#18-요약">1.8 요약</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="1-파일-시스템-구현">1. 파일 시스템 구현</h1>
+<ul>
+  <li><strong>vsfs(Very Simple File System)</strong>은 Unix 파일 시스템을 단순화한 것으로 디스크 자료구조(on-disk structure)와 접근 방법 그리고 다양한 파일 시스텤들의 정책들을 소개하기 위한 용도이다.</li>
+  <li>파일 시스템은 순수한 소프트웨어이다.</li>
+  <li>어떻게 간단한 파일 시스템을 만들 것인가
+    <ul>
+      <li>간단한 파일 시스템을 어떻게 만들 수 있을까?</li>
+      <li>디스크 위에는 어떤 자료 구조가 필요할까?</li>
+      <li>그러한 자료 구조는 어떤 정보를 추적해야 하는가?</li>
+      <li>그 자료 구조들은 어떻게 접근되어야 하는가?</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="11-생각하는-방법">1.1 생각하는 방법</h1>
+<ul>
+  <li>파일 시스템에 대해 학습할 때, 두 가지 측면에서 접근해야 한다.
+    <ol>
+      <li>파일 시스템의 <strong>자료 구조</strong>
+        <ul>
+          <li>파일 시스템이 자신의 데이터와 메타데이터를 관리하기 위해 디스크 상에 어떤 종류의 자료 구조가 있어야 하겠는가?</li>
+        </ul>
+      </li>
+      <li><strong>접근 방법(access method)</strong>
+        <ul>
+          <li>프로세스가 호출하는 open(), read(), write() 등의 명령들은 파일 시스템의 자료 구조와 어떤 관련이 있는가?</li>
+          <li>특정 시스템 콜을 실행할 때에 어떤 자료 구조들이 읽히는가?</li>
+          <li>이 모든 과정이 얼마나 효율적으로 동작하는가?</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h1 id="12-전체-구성">1.2 전체 구성</h1>
+<ul>
+  <li>가장 먼저 해야 할 것은 디스크를 <strong>블럭(block)</strong>들로 나누는 것이다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/18/img.png" width="80%" height="100%" /></p>
+
+<ul>
+  <li>파일 시스템의 대부분의 공간은 사용자 데이터로 이루어져 있다.</li>
+  <li>사용자 데이터가 있는 디스크 공간을 <strong>데이터 영역(data region)</strong>이라고 하자.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/18/img_1.png" width="80%" height="100%" /></p>
+
+<ul>
+  <li>파일 시스템은 각 파일에 대한 정보를 관리한다.</li>
+  <li>그 정보가 <strong>메타데이터(metadata)</strong>의 핵심이다.</li>
+  <li>파일을 구성하는 데이터 블럭(데이터 영역 내의)들과 그 파일의 크기, 소유자, 접근 권한, 접근과 변경 시간 등과 같은 정보들이 이에 해당한다.</li>
+  <li>파일 시스템은 이 정보를 보통 <strong>아이노드(inode)</strong>라고 부르는 자료 구조에 저장한다.</li>
+  <li>아이노드들의 저장을 위해 디스크 공간이 필요하다.
+    <ul>
+      <li>이 영역을 <strong>아이노드 테이블(inode table)</strong>이라 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/18/img_2.png" width="80%" height="100%" /></p>
+<ul>
+  <li>꼭 필요한 정보는 아이노드나 데이터 블럭의 사용여부에 대한 것이다.
+    <ul>
+      <li>각 블럭이 현재 사용 중인지 아닌지를 표현할 <strong>할당 구조(allocation structure)</strong>가 필요하다.</li>
+      <li>예를 들면 <strong>프리 리스트(free list)</strong>를 사용하여, 사용 중이 아닌 블럭들을 링크드 리스트 형태로 관리할 수 있다.</li>
+      <li>아이노드 첫 번째 프리 블럭의 위치만 기억하면 된다.</li>
+      <li>우리는 단순한 <strong>비트맵(bitmap)</strong>을 사용한다.</li>
+    </ul>
+  </li>
+  <li>데이터 영역에 있는 블럭들의 사용여부를 표현하기 위해서 <strong>데이터 비트맵(data bitmap)</strong>을, 아이노드 테이블에 있는 아이노드들이 사용 중인지를 나타내기 위해서 <strong>아이노드 비트맵(inode bitmap)</strong>을 사용한다.
+    <ul>
+      <li>비트맵은 비트들의 배열이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="../../assets/img/ostep/18/img_3.png" width="80%" height="100%" /></p>
+<ul>
+  <li>남은 한 블럭의 존재는 <strong>슈퍼블럭(super block)</strong>을 위한 공간이다.
+    <ul>
+      <li>슈퍼블럭은 이 파일 시스템 전체에 대한 정보를 담고 있다.</li>
+      <li>예를 들면 파일 시스템에 몇 개의 아이노드와 데이터 블럭이 있는지, 아이노드 테이블은 어디에서 시작하는지 같은 정보를 담고 있다.</li>
+      <li>일반적으로 대부분의 파일 시스템은 슈퍼블럭을 몇 개 복사 해둔다.</li>
+    </ul>
+  </li>
+  <li>파일 시스템을 마운트할 때, 운영체제는 우선 슈퍼블럭을 읽어들여서 파일 시스템의 여러가지 요소들을 초기화하고, 그 후에 각 파티션을 파일 시스템 트리에 붙히는 작업을 진행한다.</li>
+</ul>
+
+<h2 id="13-파일-구성-아이노드">1.3 파일 구성: 아이노드</h2>
+<ul>
+  <li>파일 시스템의 디스크 자료 구조 중 가장 중요한 것은 <strong>아이노드(inode)</strong>이다.</li>
+  <li>아이노드는 <strong>인덱스 노드(index node)</strong>의 줄임말이다.</li>
+  <li>이 노드들은 원래는 배열로 되어 있었는데, 각 배열은 특정 아이노드를 접근하기 위해 탐색된다.</li>
+  <li><strong>아이노드</strong>
+    <ul>
+      <li>이 자료 구조는 파일 크기, 접근권한 그리고 파일 블럭들의 위치 정보를 가지고 있다.</li>
+    </ul>
+  </li>
+  <li>각 아이노드는 숫자(<strong>아이-넘버(i-number)</strong>)로 표현된다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/18/img_4.png" width="80%" height="100%" /></p>
+<ul>
+  <li>아이노드에는 파일에 대한 정보가 다 들어있다.
+    <ul>
+      <li>파일의 종류(예, 일반 파일, 디렉터리 등), 크기, 할당된 블럭 수, 보호 정보(파일의 소유, 접근 권한 등), 시간 정보와 더불어 데이터 블럭이 디스크 어디에 존재하는지(예, 포인터의 일종)와 같은 정보들이 담겨 있다.</li>
+      <li>이와 같은 정보들을 <strong>메타데이터(metadata)</strong>라고 한다.</li>
+    </ul>
+  </li>
+  <li>아이노드를 설계 시 가장 중요한 결정 중 하나는 데이터 블럭의 위치를 표현하는 방법이다.
+    <ul>
+      <li>간단한 방법은 아이노드 내에 여러 개의 <strong>직접 포인터(direct pointer, 디스크 주소)</strong>를 두는 것이다.</li>
+      <li>각 포인터는 파일의 디스크 블럭 하나를 기리킨다.</li>
+      <li>이 방법에는 파일 크기의 제한이 있다. 파일 크기는 (포인터의 개수)*(블럭 크기)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="멀티-레벨-인덱스">멀티 레벨 인덱스</h3>
+<ul>
+  <li>큰 파일을 지원하기 위해서 파일 시스템 개발자들은 아이노드 내에 다른 자료 구조를 추가해야 했다.</li>
+  <li>일반적으로 사용되는 방법 중 하나는 <strong>간접 포인터(indirect pointer)</strong>라는 특수한 포인터를 사용하는 것이다.</li>
+  <li>간접 포인터는 데이터 블럭을 가리키지 않는다.</li>
+  <li>
+    <p>간접 포인터가 가리키는 블럭에는 데이터 블럭을 가리키는 포인터들이 저장된다.</p>
+  </li>
+  <li>더 큰 파일을 저장하고 싶을 땐 <strong>이중 간접 포인터(double indirect pointer)</strong>를 추가한다.
+    <ul>
+      <li>이중 간접 포인터가 가르키는 블럭에는 간접 포인터들이 저장되어 있다.</li>
+      <li>더 큰 파일을 저장하고 싶다면 <strong>삼중 간접 포인터(triple indirect pointer)</strong>를 사용하면 된다.</li>
+    </ul>
+  </li>
+  <li>디스크 블럭들은 일종의 트리 형태로 구성되어 하나의 파일을 이룬다. 이러한 구성방식을 <strong>멀티 레벨 인덱스</strong> 기법이라 한다.</li>
+</ul>
+
+<blockquote>
+  <p>위의 방식의 트리는 형태가 매우 편향적이다. 파일의 시작 부분을 이루는 블럭들은 한번의 포인터로 접근이 가능하다. 큰 파일의 경우, 파일의 끝부분에 있는 블럭들은 포인터를
+세 번 따라가야 실제 블럭을 읽을 수 있다. 왜 이렇게 했을까? <strong>대부분의 크기가 작기</strong> 때문이다. 대부분의 파일들이 작다면, 작은 파일을 빨리 읽고 쓸 수 있도록 파일 구조를 설계 해야한다.</p>
+</blockquote>
+
+<h2 id="14-디렉터리-구조">1.4 디렉터리 구조</h2>
+<ul>
+  <li>디렉터리는 (항목의 이름, 아이노드 번호) 쌍의 배열로 구성되어 있다.</li>
+</ul>
+
+<p><img src="../../assets/img/ostep/18/img_6.png" width="80%" height="100%" /></p>
+<ul>
+  <li>위의 표는 dir의 데이터 블럭이다.
+    <ul>
+      <li>항목의 길이를 명시하는 이유 중에 하나가 중간에 빈 공간이 생기기 때문이다. 새로운 디렉터리 항목을 생성할 때, 기존 항목이 삭제되어 생긴 빈 공간에 새로이 생성된 항목을 위치시킬 수도 있기 때문이다.</li>
+    </ul>
+  </li>
+  <li>대부분 파일 시스템에서 디렉터리는 특수한 종류의 파일로 간주한다.
+    <ul>
+      <li>디렉터리는 자신의 아이노드를 가지며, 이 아이노드는 아이노드 테이블에 존재한다.(아이노드의 type 필드에 “일반 파일” 대신에 “디렉터리”라고 명시되어 있다).</li>
+      <li>디렉터리는 자신의 데이터 블럭을 갖고 있으며, 이들 블럭의 위치는 일반 파일과 마찬가지로 아이노드에 명시되어 있다.</li>
+    </ul>
+  </li>
+  <li>파일 생성 시 현재 디렉터리에 동일한 이름의 파일이 있는지를 먼저 검사해야 한다.</li>
+</ul>
+
+<h2 id="15-빈-공간의-관리">1.5 빈 공간의 관리</h2>
+<ul>
+  <li><strong>빈 공간 관리(free space management)</strong>는 모든 파일 시스템에서 중요하다.</li>
+  <li>파일 생성 시 아이노드를 할당해야 한다.
+    <ul>
+      <li>파일 시스템은 아이노드 비트맵을 탐색하여 비어 있는 아이노드를 찾아 파일에 할당한다.</li>
+      <li>파일 시스템은 해당 아이노드를 사용 중으로 표기하고(1로 표기) 디스크 비트맵도 적절히 갱신한다.</li>
+    </ul>
+  </li>
+  <li>할당 시 가능하면 여러 개의 블럭들이 연속적으로 비어 있는 공간(예, 여덟개)을 찾아서 할당한다.
+    <ul>
+      <li>추후에 할당요청이 발생하면 기존에 할당된 공간에 이어서 블럭을 할당하기 위해서이다.</li>
+      <li>이러한 <strong>선할당(pre-allocation)</strong> 정책은 데이터 블럭 할당 시 자주 사용된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="16-실행-흐름-읽기와-쓰기">1.6 실행 흐름: 읽기와 쓰기</h2>
+<ul>
+  <li><strong>실행 과정(access path)</strong>을 이해하는 것은 파일 시스템 동작을 완전히 이해하는 매우 중요한 두 번째 요인이다.</li>
+</ul>
+
+<h3 id="디스크에서-파일-읽기">디스크에서 파일 읽기</h3>
+
+<p><img src="../../assets/img/ostep/18/img_7.png" width="80%" height="100%" /></p>
+<ol>
+  <li>root i-number 는 파일 시스템이 마운트될 때 값이 결정된다.</li>
+  <li>파일 시스템은 읽어들인 아이노드에서 데이터 블럭의 포인터를 추출한다.
+    <ul>
+      <li>포인터가 가리키는 블럭에는 루트 디렉터리의 내용이 들어 있따.</li>
+      <li>파일 시스템은 이 포인터들을 사용하여 디렉터리 정보를 읽고, foo라는 항목을 찾는다.</li>
+    </ul>
+  </li>
+  <li>foo 파일의 디렉터리 항목을 찾아서, foo의 아이노드 번호를 파악한다.</li>
+  <li>foo의 아이노드가 있는 블럭과 그에 대한 디렉터리 데이터를 읽은 후에 bar에 대한 아이노드 번호를 찾아낸다.</li>
+  <li>마지막 단계의 open()은 bar에 대한 아이노드를 메모리로 읽어 들인다.
+    <ul>
+      <li>파일 시스템은 최종적으로 해당 파일에 대한 접근 권한을 확인하고, 이프로세스의 open file-table에서 파일 디스크립터를 할당받아 사용자에게 리턴한다.</li>
+    </ul>
+  </li>
+  <li>open() 이후에는, read() 시스템 콜을 통해 파일을 읽는다.</li>
+</ol>
+
+<h3 id="디스크에-파일-쓰기">디스크에 파일 쓰기</h3>
+
+<p><img src="../../assets/img/ostep/18/img_8.png" width="80%" height="100%" /></p>
+<ul>
+  <li>읽기와 비슷한 과정을 밟는다.
+    <ul>
+      <li>먼저 파일을 열고 응용 프로그램은 write()를 호출하여 새로운 내용으로 파일을 갱신하고 파일을 닫는다.</li>
+    </ul>
+  </li>
+  <li>읽기와는 다르게 파일 쓰기는 블럭 <strong>할당</strong>을 필요로 할 수 있다.
+    <ul>
+      <li>새로운 파일에 쓸 때에는 각 write()는 데이터를 디스크에 기록해야 할 뿐만 아니라 파일에 어느 블럭을 할당할지를 결정해야 하며 그에 따라 디스크에 다른 자료 구조들을 갱신해야 한다(예, 데이터 비트맵과 아이노드)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="17-캐싱과-버퍼링">1.7 캐싱과 버퍼링</h2>
+<ul>
+  <li>파일을 읽고 쓰는 것은 많은 I/O를 발생시킨다.
+    <ul>
+      <li>컴퓨터의 전체 성능에 중요한 영향을 미친다.</li>
+      <li>성능 개선을 위해 대부분의 파일 시스템들은 자주 사용되는 블럭들을 메모리(DRAM)에 캐싱한다.</li>
+    </ul>
+  </li>
+  <li>초기의 파일 시스템에서는 자주 사용되는 블럭들을 저장하기 위해서 캐시를 도입하였다.
+    <ul>
+      <li><strong>LRU</strong>와 기타 다른 캐시 교체 정책들인 <strong>고정 크기의 캐시</strong>는 일반적으로 부팅 시에 할당되고 이러한 <strong>정적 기법</strong>은 낭비가 많다.</li>
+    </ul>
+  </li>
+  <li>그에 반해 현대의 시스템은 <strong>동적 파티션</strong> 방식을 사용한다.
+    <ul>
+      <li>현대의 많은 운영체제는 가상 메모리 페이지들과 파일 시스템 페이지들을 통합하여 <strong>일원화된 페이지 캐시(unified page chache)</strong>를 만들었다.</li>
+      <li>어느 한 시점에 어느 부분에 더 많은 메모리가 필요하냐에 따라 파일 시스템과 가상 메모리에 좀 더 융통성 있게 메모리를 할당할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+<ul>
+  <li>쓰기는 영속성을 유지하기 위해서 해당 블럭들을 디스크로 내려야 한다.
+    <ul>
+      <li>쓰기의 경우에는 캐시가 읽기에서와 같은 필터 역할을 할 수가 없다.</li>
+      <li>캐시는 쓰기 시점을 연기하는 역할을 한다.</li>
+      <li>이를 <strong>쓰기 버퍼링(write buffering)</strong>이라 한다.</li>
+    </ul>
+  </li>
+  <li>쓰기 버퍼링을 사용하면 몇가지 장점이 있다.
+    <ol>
+      <li>쓰기 요청을 지연시켜 다수의 쓰기 작업들을 적은 수의 I/O로 <strong>일괄처리(batch)</strong>할 수도 있다.</li>
+      <li>여러 개의 쓰기 요청들을 모아둠으로써 다수의 I/O들을 <strong>스케줄</strong>하여 성능을 개선할 수 있다.</li>
+      <li>지연시키는 것을 통해 쓰기 자체를 피할 수도 있다.</li>
+    </ol>
+  </li>
+  <li>쓰기 버퍼링으로 인한 예기치 않은 데이터 유실을 피하기 위해서 fsync()를 사용한다.
+    <ul>
+      <li>이를 호출하면 갱신된 내용이 디스케 강제적으로 기록한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="18-요약">1.8 요약</h2>
+<ul>
+  <li>각 파일에 어떤 정보가 필요한지 살펴보면서 대부분은 아이노드라고 부르는 자료 구조에 저장한다는 것을 보았다.</li>
+  <li>디렉터리는 특수 파일로서 파일 이름과 아이노드 번호 간의 연결 정보를 저장한다.</li>
+  <li>파일 시스템은 아이노드나 데이터 블럭의 할당과 해제 여부를 나타내는 비트맵과 같은 정보를 갖고 있다.</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#ostep" class="page__taxonomy-item p-category" rel="tag">OSTEP</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#ostep" class="page__taxonomy-item p-category" rel="tag">OSTEP</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2022-06-25T00:00:00+09:00">June 25, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BOSTEP%5D+%EC%98%81%EC%86%8D%EC%84%B1+-+%ED%8C%8C%EC%9D%BC+%EC%8B%9C%EC%8A%A4%ED%85%9C+%EA%B5%AC%ED%98%84%20http%3A%2F%2Flocalhost%3A4000%2Fostep%2Fostep_18%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fostep%2Fostep_18%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fostep%2Fostep_18%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/ostep/ostep_17/" class="pagination--pager" title="[OSTEP] 영속성 - 파일과 디렉터리
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_17/" rel="permalink">[OSTEP] 영속성 - 파일과 디렉터리
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-24T00:00:00+09:00">June 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 17
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/cs/csetc_03/" rel="permalink">자식 프로세스와 부모 프로세스는 파일 디스크립터를 어떻게 공유할까?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-24T00:00:00+09:00">June 24, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">터미널 출력 버퍼와 파일 출력 버퍼의 차이
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_16/" rel="permalink">[OSTEP] 영속성 - Redundant Array of Inexpensive Disk(RAID)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-16T00:00:00+09:00">June 16, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 16
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/ostep/ostep_15/" rel="permalink">[OSTEP] 영속성 - 하드 디스크 드라이브
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-06-15T00:00:00+09:00">June 15, 2022</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">OSTEP - 15
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://instagram.com/hon99oo" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 honggoo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/ostep/ostep_18/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/ostep/ostep_18"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://honggoo.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
